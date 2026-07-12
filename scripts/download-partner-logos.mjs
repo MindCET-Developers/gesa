@@ -34,7 +34,13 @@ const manifest = {};
 for (const partner of RAW_PARTNERS) {
   if (!partner.logoUrl) continue;
 
-  const res = await fetch(partner.logoUrl);
+  let res;
+  try {
+    res = await fetch(partner.logoUrl, { signal: AbortSignal.timeout(15_000) });
+  } catch (err) {
+    console.warn(`Failed to download logo for "${partner.name}": ${err.message}`);
+    continue;
+  }
   if (!res.ok) {
     console.warn(`Failed to download logo for "${partner.name}": HTTP ${res.status}`);
     continue;
