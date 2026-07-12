@@ -38,7 +38,7 @@ export const winnerYearsQuery = /* groq */ `
   array::unique(*[_type == "winner"].year) | order(@ desc)`;
 
 export const winnersByYearQuery = /* groq */ `
-  *[_type == "winner" && year == $year]{ name, year, track, country, description, "logo": logo.asset->url }`;
+  *[_type == "winner" && year == $year]{ name, year, track, website, country, description, "logo": logo.asset->url }`;
 
 export const pageQuery = /* groq */ `
   *[_type == "page" && slug.current == $slug][0]{ "slug": slug.current, title, intro, body }`;

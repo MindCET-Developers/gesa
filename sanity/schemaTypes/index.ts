@@ -176,6 +176,7 @@ const winner = {
     { name: "name", title: "Startup name", type: "string" },
     { name: "year", title: "Edition year", type: "number" },
     { name: "track", title: "Track", type: "string" },
+    { name: "website", title: "Website", type: "url" },
     { name: "country", title: "Country", type: "string" },
     { name: "description", title: "Description", type: "text", rows: 3 },
     { name: "logo", title: "Logo", type: "image" },

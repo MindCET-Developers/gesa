@@ -122,6 +122,7 @@ export type Winner = {
   year: number;
   name: string;
   track: string;
+  website?: string;
   country?: string;
   description?: string;
   logo?: string;

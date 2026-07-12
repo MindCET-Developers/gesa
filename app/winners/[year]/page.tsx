@@ -80,7 +80,18 @@ export default async function WinnersYearPage({
                   {w.track}
                 </span>
                 <h2 className="mt-1 font-display text-xl font-bold text-navy">
-                  {w.name}
+                  {w.website ? (
+                    <a
+                      href={w.website}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="transition-colors hover:text-brand"
+                    >
+                      {w.name}
+                    </a>
+                  ) : (
+                    w.name
+                  )}
                 </h2>
                 {w.country && (
                   <p className="mt-1 text-sm text-muted">{w.country}</p>
