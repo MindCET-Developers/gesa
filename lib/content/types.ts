@@ -86,12 +86,29 @@ export type Partner = {
   type: "powered-by" | "worldwide" | "prize-sponsor";
 };
 
-export type RegionalSemifinal = {
+export type ContinentKey =
+  | "europe"
+  | "asia"
+  | "middle-east"
+  | "north-america"
+  | "latin-america"
+  | "africa"
+  | "rest-of-world";
+
+export type SemifinalCountry = {
+  /** Display name, matches the Airtable "all countries" table. */
   name: string;
-  region: string;
-  country?: string;
-  logo: string;
-  url?: string;
+  /** ISO 3166-1 alpha-2, lowercase — matches flag-icons' `fi-<code>` class. */
+  code: string;
+};
+
+export type RegionalSemifinalEntry = {
+  partner: string;
+  continent: ContinentKey;
+  /** Only the countries belonging to *this* continent (a partner can span several). */
+  countries: SemifinalCountry[];
+  /** Path under /public, e.g. "/brand/partners/sek-lab.png". Absent = initials fallback. */
+  logo?: string;
 };
 
 export type Track = {
