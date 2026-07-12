@@ -1,0 +1,1374 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>GESAwards Website — Project Status</title>
+<style>
+  :root {
+    --navy:   #000633;
+    --navy2:  #0a1450;
+    --brand:  #116DFF;
+    --sky:    #4EB7F5;
+    --red:    #ED1C24;
+    --yellow: #FFCB05;
+    --ink:    #0b1020;
+    --muted:  #5d6070;
+    --line:   #e6e8f0;
+    --surface:#f5f7ff;
+    --white:  #ffffff;
+    --green:  #22c55e;
+    --orange: #f97316;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: system-ui, -apple-system, 'Segoe UI', sans-serif; background: var(--surface); color: var(--ink); direction: ltr; }
+
+  /* ── Header ── */
+  .site-header {
+    background: var(--navy);
+    color: #fff;
+    padding: 1.25rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 16px rgba(0,0,0,.4);
+  }
+  .site-header h1 { font-size: 1.15rem; font-weight: 700; letter-spacing: -.02em; }
+  .site-header h1 span { color: var(--sky); }
+  .header-meta { font-size: .78rem; color: rgba(255,255,255,.5); }
+  #last-updated { color: var(--sky); }
+
+  /* ── Tabs ── */
+  .tabs-bar {
+    display: flex;
+    background: var(--white);
+    border-bottom: 2px solid var(--line);
+    overflow-x: auto;
+    padding: 0 1.5rem;
+    gap: .25rem;
+  }
+  .tab-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: .85rem 1.25rem;
+    font-size: .875rem;
+    font-weight: 600;
+    color: var(--muted);
+    white-space: nowrap;
+    border-bottom: 3px solid transparent;
+    transition: color .15s, border-color .15s;
+    display: flex;
+    align-items: center;
+    gap: .4rem;
+  }
+  .tab-btn:hover { color: var(--brand); }
+  .tab-btn.active { color: var(--brand); border-bottom-color: var(--brand); }
+  .tab-icon { font-size: 1rem; }
+  .tab-panel { display: none; padding: 2rem 1.5rem; max-width: 1200px; margin: 0 auto; }
+  .tab-panel.active { display: block; }
+
+  /* ── Cards ── */
+  .card {
+    background: var(--white);
+    border-radius: 12px;
+    border: 1px solid var(--line);
+    padding: 1.5rem;
+    margin-bottom: 1.25rem;
+  }
+  .card-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+  }
+  .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; margin-bottom: 1.5rem; }
+
+  /* ── Stats ── */
+  .stat-card {
+    background: var(--white);
+    border-radius: 12px;
+    border: 1px solid var(--line);
+    padding: 1.25rem 1.5rem;
+    text-align: center;
+  }
+  .stat-card .value { font-size: 2rem; font-weight: 800; color: var(--brand); }
+  .stat-card .label { font-size: .8rem; color: var(--muted); margin-top: .25rem; }
+
+  /* ── Progress ── */
+  .progress-bar-wrap { background: var(--line); border-radius: 99px; height: 8px; overflow: hidden; margin-top: .5rem; }
+  .progress-bar-fill { height: 100%; border-radius: 99px; background: linear-gradient(90deg, var(--brand), var(--sky)); transition: width .4s ease; }
+
+  /* ── Tasks ── */
+  .phase-header {
+    font-size: .95rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin: 1.5rem 0 .75rem;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+  }
+  .phase-badge {
+    font-size: .7rem;
+    padding: .2rem .55rem;
+    border-radius: 99px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+  }
+  .badge-done  { background: #dcfce7; color: #15803d; }
+  .badge-next  { background: #eff6ff; color: var(--brand); }
+  .badge-later { background: #fef9c3; color: #92400e; }
+
+  .task-item {
+    display: flex;
+    align-items: flex-start;
+    gap: .75rem;
+    padding: .6rem .75rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background .12s;
+    user-select: none;
+  }
+  .task-item:hover { background: var(--surface); }
+  .task-item input[type=checkbox] { width: 18px; height: 18px; accent-color: var(--brand); flex-shrink: 0; margin-top: 2px; cursor: pointer; }
+  .task-text { flex: 1; font-size: .875rem; line-height: 1.5; }
+  .task-item.done .task-text { text-decoration: line-through; color: var(--muted); }
+  .task-file { font-size: .75rem; color: var(--brand); font-family: 'Courier New', monospace; margin-top: .15rem; }
+  .task-note { font-size: .75rem; color: var(--muted); margin-top: .15rem; }
+
+  /* ── File tree ── */
+  .filetree { font-family: 'Courier New', monospace; font-size: .82rem; line-height: 1.8; }
+  .filetree .dir  { color: var(--navy); font-weight: 700; }
+  .filetree .file { color: var(--ink); }
+  .filetree .desc { color: var(--muted); font-family: system-ui, sans-serif; font-size: .75rem; }
+  .filetree .status-done  { color: var(--green); }
+  .filetree .status-todo  { color: var(--orange); }
+  .indent { margin-right: 0; padding-left: 1.25rem; border-left: 1px solid var(--line); margin-left: .5rem; }
+
+  /* ── Badges / pills ── */
+  .pill { display: inline-block; font-size: .7rem; font-weight: 700; padding: .2rem .6rem; border-radius: 99px; text-transform: uppercase; letter-spacing: .05em; }
+  .pill-blue   { background: #dbeafe; color: #1d4ed8; }
+  .pill-green  { background: #dcfce7; color: #15803d; }
+  .pill-orange { background: #ffedd5; color: #c2410c; }
+  .pill-gray   { background: #f1f5f9; color: #475569; }
+
+  /* ── Architecture SVG ── */
+  .arch-svg-wrap { overflow-x: auto; }
+  .arch-svg { font-family: system-ui, sans-serif; }
+
+  /* ── SEO table ── */
+  table { width: 100%; border-collapse: collapse; font-size: .875rem; margin-top: .75rem; }
+  th { background: var(--navy); color: #fff; padding: .6rem 1rem; text-align: left; font-size: .8rem; }
+  td { padding: .6rem 1rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+  tr:hover td { background: var(--surface); }
+  .tick { color: var(--green); font-size: 1.1rem; }
+  .cross { color: var(--red); font-size: 1.1rem; }
+  .warn  { color: var(--orange); font-size: 1.1rem; }
+
+  /* ── Code blocks ── */
+  pre { background: #0f172a; color: #e2e8f0; padding: 1rem 1.25rem; border-radius: 10px; font-size: .8rem; overflow-x: auto; margin-top: .75rem; line-height: 1.7; }
+  code { font-family: 'Courier New', monospace; }
+  .cmd { color: var(--sky); }
+  .cmt { color: #64748b; }
+  .str { color: var(--yellow); }
+
+  /* ── Section headings ── */
+  .section-h { font-size: 1.3rem; font-weight: 800; color: var(--navy); margin-bottom: 1.25rem; }
+  .section-sub { font-size: .95rem; color: var(--muted); margin-bottom: 1.5rem; margin-top: -.75rem; }
+
+  /* ── Step list ── */
+  .step-list { counter-reset: step; list-style: none; }
+  .step-list li { counter-increment: step; display: flex; gap: 1rem; align-items: flex-start; padding: .85rem 0; border-bottom: 1px solid var(--line); }
+  .step-list li:last-child { border-bottom: none; }
+  .step-num { min-width: 2rem; height: 2rem; border-radius: 50%; background: var(--brand); color: #fff; font-weight: 800; font-size: .85rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .step-content strong { display: block; margin-bottom: .25rem; font-size: .9rem; }
+  .step-content p { font-size: .825rem; color: var(--muted); line-height: 1.6; }
+
+  /* ── Responsive ── */
+  @media (max-width: 600px) {
+    .card-grid { grid-template-columns: 1fr; }
+    .tabs-bar { padding: 0 .5rem; }
+    .tab-btn { padding: .75rem .8rem; font-size: .8rem; }
+  }
+
+  /* ── Misc ── */
+  .legend-dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: .3rem; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+  @media (max-width: 700px) { .two-col { grid-template-columns: 1fr; } }
+  .tag-list { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .5rem; }
+  a { color: var(--brand); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  hr { border: none; border-top: 1px solid var(--line); margin: 1.25rem 0; }
+  .info-box { background: #eff6ff; border-left: 4px solid var(--brand); border-radius: 6px; padding: .75rem 1rem; font-size: .85rem; color: var(--ink); margin-top: .75rem; }
+  .warn-box  { background: #fff7ed; border-left: 4px solid var(--orange); border-radius: 6px; padding: .75rem 1rem; font-size: .85rem; color: var(--ink); margin-top: .75rem; }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════════════
+     HEADER
+══════════════════════════════════════════════════════════ -->
+<header class="site-header">
+  <div>
+    <h1>GESAwards <span>Website Rebuild</span></h1>
+    <p style="font-size:.75rem;color:rgba(255,255,255,.5);margin-top:.2rem;">globaledtechawards.org · Next.js 16 + Tailwind v4 + Sanity</p>
+  </div>
+  <div class="header-meta" style="text-align:right">
+    <div>עודכן לאחרונה: <span id="last-updated">—</span></div>
+    <div style="margin-top:.3rem;">התקדמות כוללת: <span id="overall-pct" style="color:var(--sky);font-weight:700;">—%</span></div>
+  </div>
+</header>
+
+<!-- ══════════════════════════════════════════════════════════
+     TABS BAR
+══════════════════════════════════════════════════════════ -->
+<div class="tabs-bar">
+  <button class="tab-btn active" data-tab="overview">    <span class="tab-icon">🏠</span> Overview</button>
+  <button class="tab-btn" data-tab="progress">           <span class="tab-icon">✅</span> Progress & Tasks</button>
+  <button class="tab-btn" data-tab="architecture">       <span class="tab-icon">🏗️</span> Architecture</button>
+  <button class="tab-btn" data-tab="files">              <span class="tab-icon">📁</span> Files</button>
+  <button class="tab-btn" data-tab="seo">                <span class="tab-icon">🔍</span> SEO Migration</button>
+  <button class="tab-btn" data-tab="cms">                <span class="tab-icon">⚙️</span> CMS Setup</button>
+  <button class="tab-btn" data-tab="launch">             <span class="tab-icon">🚀</span> Launch Checklist</button>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     TAB 1 — OVERVIEW
+══════════════════════════════════════════════════════════ -->
+<div class="tab-panel active" id="tab-overview">
+  <h2 class="section-h">Project Overview</h2>
+  <p class="section-sub">Rebuilding the GESAwards Wix site in code — full control over design, SEO, and performance.</p>
+
+  <div class="card-grid">
+    <div class="stat-card">
+      <div class="value" id="stat-done">—</div>
+      <div class="label">Tasks Completed</div>
+    </div>
+    <div class="stat-card">
+      <div class="value" id="stat-remain">—</div>
+      <div class="label">Tasks Remaining</div>
+    </div>
+    <div class="stat-card">
+      <div class="value">17</div>
+      <div class="label">Components Built</div>
+    </div>
+    <div class="stat-card">
+      <div class="value">6</div>
+      <div class="label">Pages / Routes</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📊 Overall Progress</div>
+    <div style="margin-bottom:.5rem;font-size:.85rem;color:var(--muted)">Phase 1 — Core Build</div>
+    <div class="progress-bar-wrap"><div class="progress-bar-fill" id="phase1-bar" style="width:100%"></div></div>
+    <div style="margin-top:1rem;margin-bottom:.5rem;font-size:.85rem;color:var(--muted)">Phase 2 — CMS Connection</div>
+    <div class="progress-bar-wrap"><div class="progress-bar-fill" id="phase2-bar" style="width:0%"></div></div>
+    <div style="margin-top:1rem;margin-bottom:.5rem;font-size:.85rem;color:var(--muted)">Phase 3 — SEO Cutover</div>
+    <div class="progress-bar-wrap"><div class="progress-bar-fill" id="phase3-bar" style="width:0%"></div></div>
+    <div style="margin-top:1rem;margin-bottom:.5rem;font-size:.85rem;color:var(--muted)">Phase 4 — Future Pages</div>
+    <div class="progress-bar-wrap"><div class="progress-bar-fill" id="phase4-bar" style="width:0%"></div></div>
+  </div>
+
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title">🛠️ Tech Stack</div>
+      <div class="tag-list">
+        <span class="pill pill-blue">Next.js 16.2.9</span>
+        <span class="pill pill-blue">React 19</span>
+        <span class="pill pill-blue">TypeScript 5</span>
+        <span class="pill pill-blue">Tailwind CSS v4</span>
+        <span class="pill pill-gray">Sanity (pending)</span>
+        <span class="pill pill-gray">Resend (pending)</span>
+        <span class="pill pill-green">Vercel Analytics</span>
+        <span class="pill pill-green">next/font</span>
+        <span class="pill pill-green">next/image</span>
+      </div>
+      <hr/>
+      <div style="font-size:.82rem;color:var(--muted);line-height:1.8">
+        <div>🎨 <strong>Fonts:</strong> Raleway (display) + Open Sans (body)</div>
+        <div>🎨 <strong>Navy:</strong> #000633 · <strong>Blue:</strong> #116DFF · <strong>Sky:</strong> #4EB7F5</div>
+        <div>🎨 <strong>Red:</strong> #ED1C24 · <strong>Yellow:</strong> #FFCB05</div>
+        <div>☁️ <strong>Deploy target:</strong> Vercel</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">🎯 v1 Scope (Delivered)</div>
+      <div style="font-size:.85rem;line-height:2">
+        ✅ Homepage (all sections)<br/>
+        ✅ About page<br/>
+        ✅ Tracks page<br/>
+        ✅ Winners index + /winners/[year]<br/>
+        ✅ Terms & Conditions<br/>
+        ✅ 404 page<br/>
+        ✅ Newsletter Server Action<br/>
+        ✅ Airtable Apply button<br/>
+        ✅ SEO metadata + sitemap + robots<br/>
+        ✅ Wix URL redirects (308)<br/>
+        ✅ Original GESAwards logo<br/>
+        ✅ Sanity schemas pre-written
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📋 Architecture Decisions</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem;">
+      <div style="font-size:.85rem">
+        <strong style="display:block;margin-bottom:.4rem">Content Layer Abstraction</strong>
+        <span style="color:var(--muted)">All components read content through <code>lib/content/index.ts</code>. Currently returns seed data. Swap to Sanity GROQ with zero component changes.</span>
+      </div>
+      <div style="font-size:.85rem">
+        <strong style="display:block;margin-bottom:.4rem">Forms Strategy</strong>
+        <span style="color:var(--muted)">Application form → Airtable (existing link). Newsletter → native Server Action → Resend Audiences.</span>
+      </div>
+      <div style="font-size:.85rem">
+        <strong style="display:block;margin-bottom:.4rem">Header Always Navy</strong>
+        <span style="color:var(--muted)">White logo requires dark background. Header is sticky navy always, gaining border+shadow on scroll.</span>
+      </div>
+      <div style="font-size:.85rem">
+        <strong style="display:block;margin-bottom:.4rem">Images</strong>
+        <span style="color:var(--muted)">Currently pointing at Wix CDN (static.wixstatic.com). Migration to Sanity assets is step 5 of CMS setup.</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     TAB 2 — PROGRESS & TASKS
+══════════════════════════════════════════════════════════ -->
+<div class="tab-panel" id="tab-progress">
+  <h2 class="section-h">Progress & Tasks</h2>
+  <p class="section-sub">לחצו על משימה כדי לסמן אותה. המצב נשמר בדפדפן.</p>
+
+  <div class="card" style="padding:1rem 1.5rem;margin-bottom:1.5rem">
+    <div style="display:flex;gap:2rem;flex-wrap:wrap">
+      <div><span class="legend-dot" style="background:var(--green)"></span>הושלם</div>
+      <div><span class="legend-dot" style="background:var(--brand)"></span>שלב הבא</div>
+      <div><span class="legend-dot" style="background:var(--yellow)"></span>עתידי</div>
+    </div>
+  </div>
+
+  <!-- ── PHASE 1 ── -->
+  <div class="phase-header">
+    <span class="legend-dot" style="background:var(--green)"></span>
+    Phase 1 — Core Build
+    <span class="phase-badge badge-done">DONE ✓</span>
+  </div>
+
+  <div id="tasks-phase1">
+    <div class="task-item" data-task="p1-t1">
+      <input type="checkbox" id="p1-t1" checked />
+      <div class="task-text">
+        <label for="p1-t1" style="cursor:pointer;font-weight:600">Scaffold Next.js 16 + Tailwind v4 + TypeScript</label>
+        <div class="task-file">package.json · next.config.ts · app/globals.css · tsconfig.json</div>
+      </div>
+    </div>
+    <div class="task-item" data-task="p1-t2">
+      <input type="checkbox" id="p1-t2" checked />
+      <div class="task-text">
+        <label for="p1-t2" style="cursor:pointer;font-weight:600">Define brand tokens + typography (Raleway / Open Sans)</label>
+        <div class="task-file">app/globals.css (@theme block)</div>
+      </div>
+    </div>
+    <div class="task-item" data-task="p1-t3">
+      <input type="checkbox" id="p1-t3" checked />
+      <div class="task-text">
+        <label for="p1-t3" style="cursor:pointer;font-weight:600">Define TypeScript content types</label>
+        <div class="task-file">lib/content/types.ts</div>
+      </div>
+    </div>
+    <div class="task-item" data-task="p1-t4">
+      <input type="checkbox" id="p1-t4" checked />
+      <div class="task-text">
+        <label for="p1-t4" style="cursor:pointer;font-weight:600">Migrate seed content from live Wix site</label>
+        <div class="task-file">lib/content/seed.ts</div>
+        <div class="task-note">Judges, stats, timeline, criteria, partners, tracks — all real content</div>
+      </div>
+    </div>
+    <div class="task-item" data-task="p1-t5">
+      <input type="checkbox" id="p1-t5" checked />
+      <div class="task-text">
+        <label for="p1-t5" style="cursor:pointer;font-weight:600">Build content abstraction layer (getters)</label>
+        <div class="task-file">lib/content/index.ts</div>
+        <div class="task-note">getSiteSettings, getHomeContent, getJudges, getPartners, getTracks, getWinnersByYear, getPage</div>
+      </div>
+    </div>
+    <div class="task-item" data-task="p1-t6">
+      <input type="checkbox" id="p1-t6" checked />
+      <div class="task-text">
+        <label for="p1-t6" style="cursor:pointer;font-weight:600">Build Header + Footer (sticky navy, white logo)</label>
+        <div class="task-file">components/layout/Header.tsx · components/layout/Footer.tsx</div>
+      </div>
+    </div>
+    <div class="task-item" data-task="p1-t7">
+      <input type="checkbox" id="p1-t7" checked />
+      <div class="task-text">
+        <label for="p1-t7" style="cursor:pointer;font-weight:600">Build all 10 homepage sections</label>
+        <div class="task-file">components/home/ — Hero, GalleryMarquee, IntroStats, Criteria, PrizeCategories, JudgesGrid, Journey, Partners, NewsletterSignup</div>
+      </div>
+    </div>
+    <div class="task-item" data-task="p1-t8">
+      <input type="checkbox" id="p1-t8" checked />
+      <div class="task-text">
+        <label for="p1-t8" style="cursor:pointer;font-weight:600">Build UI primitives (Button, Icons, VideoDialog, SectionHeading, RichBody)</label>
+        <div class="task-file">components/ui/</div>
+      </div>
+    </div>
+    <div class="task-item" data-task="p1-t9">
+      <input type="checkbox" id="p1-t9" checked />
+      <div class="task-text">
+        <label for="p1-t9" style="cursor:pointer;font-weight:600">Build core pages: About, Tracks, Terms, Winners index, /winners/[year]</label>
+        <div class="task-file">app/about · app/tracks · app/terms-and-condition · app/winners</div>
+      </div>
+    </div>
+    <div class="task-item" data-task="p1-t10">
+      <input type="checkbox" id="p1-t10" checked />
+      <div class="task-text">
+        <label for="p1-t10" style="cursor:pointer;font-weight:600">Newsletter Server Action → Resend Audiences</label>
+        <div class="task-file">app/actions/subscribe.ts</div>
+        <div class="task-note">Works in dev without API keys. env vars: RESEND_API_KEY, RESEND_AUDIENCE_ID</div>
+      </div>
+    </div>
+    <div class="task-item" data-task="p1-t11">
+      <input type="checkbox" id="p1-t11" checked />
+      <div class="task-text">
+        <label for="p1-t11" style="cursor:pointer;font-weight:600">SEO: metadata, sitemap.ts, robots.ts, 308 redirects, Wix URL mapping</label>
+        <div class="task-file">app/sitemap.ts · app/robots.ts · next.config.ts (redirects)</div>
+      </div>
+    </div>
+    <div class="task-item" data-task="p1-t12">
+      <input type="checkbox" id="p1-t12" checked />
+      <div class="task-text">
+        <label for="p1-t12" style="cursor:pointer;font-weight:600">Integrate original GESAwards logo + MindCET logo + favicon</label>
+        <div class="task-file">public/brand/gesawards-white.png · public/brand/mindcet.png · app/icon.jpeg</div>
+      </div>
+    </div>
+    <div class="task-item" data-task="p1-t13">
+      <input type="checkbox" id="p1-t13" checked />
+      <div class="task-text">
+        <label for="p1-t13" style="cursor:pointer;font-weight:600">Pre-write Sanity schemas + GROQ queries</label>
+        <div class="task-file">sanity/schemaTypes/index.ts · sanity/queries.ts</div>
+        <div class="task-note">Plain objects — no sanity import needed. Ready to activate with sanity init.</div>
+      </div>
+    </div>
+    <div class="task-item" data-task="p1-t14">
+      <input type="checkbox" id="p1-t14" checked />
+      <div class="task-text">
+        <label for="p1-t14" style="cursor:pointer;font-weight:600">Vercel Analytics integration</label>
+        <div class="task-file">app/layout.tsx — &lt;Analytics /&gt;</div>
+      </div>
+    </div>
+    <div class="task-item" data-task="p1-t15">
+      <input type="checkbox" id="p1-t15" checked />
+      <div class="task-text">
+        <label for="p1-t15" style="cursor:pointer;font-weight:600">404 page + branded not-found</label>
+        <div class="task-file">app/not-found.tsx</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── PHASE 2 ── -->
+  <div class="phase-header">
+    <span class="legend-dot" style="background:var(--brand)"></span>
+    Phase 2 — Sanity CMS Connection
+    <span class="phase-badge badge-next">NEXT</span>
+  </div>
+
+  <div class="info-box" style="margin-bottom:.75rem">
+    ⚡ כל הסכמות והקוורי כבר כתובים. המעבר לSanity הוא ~40 שורות קוד + הגדרת פרויקט.
+  </div>
+
+  <div id="tasks-phase2">
+    <div class="task-item" data-task="p2-t1">
+      <input type="checkbox" id="p2-t1" />
+      <div class="task-text">
+        <label for="p2-t1" style="cursor:pointer;font-weight:600">Create Sanity project (sanity.io + sanity init)</label>
+        <div class="task-note">npm install sanity next-sanity @sanity/image-url · npx sanity@latest init --env</div>
+      </div>
+    </div>
+    <div class="task-item" data-task="p2-t2">
+      <input type="checkbox" id="p2-t2" />
+      <div class="task-text">
+        <label for="p2-t2" style="cursor:pointer;font-weight:600">Add env vars to Vercel + .env.local</label>
+        <div class="task-note">NEXT_PUBLIC_SANITY_PROJECT_ID · NEXT_PUBLIC_SANITY_DATASET · NEXT_PUBLIC_SANITY_API_VERSION</div>
+      </div>
+    </div>
+    <div class="task-item" data-task="p2-t3">
+      <input type="checkbox" id="p2-t3" />
+      <div class="task-text">
+        <label for="p2-t3" style="cursor:pointer;font-weight:600">Create sanity.config.ts (Studio embedded at /studio)</label>
+        <div class="task-file">sanity.config.ts · app/studio/[[...tool]]/page.tsx</div>
+      </div>
+    </div>
+    <div class="task-item" data-task="p2-t4">
+      <input type="checkbox" id="p2-t4" />
+      <div class="task-text">
+        <label for="p2-t4" style="cursor:pointer;font-weight:600">Create Sanity client</label>
+        <div class="task-file">lib/sanity/client.ts</div>
+      </div>
+    </div>
+    <div class="task-item" data-task="p2-t5">
+      <input type="checkbox" id="p2-t5" />
+      <div class="task-text">
+        <label for="p2-t5" style="cursor:pointer;font-weight:600">Switch content getters from seed to GROQ</label>
+        <div class="task-file">lib/content/index.ts — swap 8 getter bodies</div>
+        <div class="task-note">No component changes needed. Signatures identical.</div>
+      </div>
+    </div>
+    <div class="task-item" data-task="p2-t6">
+      <input type="checkbox" id="p2-t6" />
+      <div class="task-text">
+        <label for="p2-t6" style="cursor:pointer;font-weight:600">Migrate content into Studio (copy from seed.ts)</label>
+        <div class="task-note">Homepage singleton, judges, categories, partners, tracks, About + Terms pages</div>
+      </div>
+    </div>
+    <div class="task-item" data-task="p2-t7">
+      <input type="checkbox" id="p2-t7" />
+      <div class="task-text">
+        <label for="p2-t7" style="cursor:pointer;font-weight:600">Upload images to Sanity assets (migrate from Wix CDN)</label>
+        <div class="task-note">Judges photos, partner logos, gallery images → drag-and-drop into Studio</div>
+      </div>
+    </div>
+    <div class="task-item" data-task="p2-t8">
+      <input type="checkbox" id="p2-t8" />
+      <div class="task-text">
+        <label for="p2-t8" style="cursor:pointer;font-weight:600">Populate winners archive per year</label>
+        <div class="task-note">Each year in Sanity auto-populates /winners/[year]</div>
+      </div>
+    </div>
+    <div class="task-item" data-task="p2-t9">
+      <input type="checkbox" id="p2-t9" />
+      <div class="task-text">
+        <label for="p2-t9" style="cursor:pointer;font-weight:600">Set up revalidation webhook (Sanity → Vercel)</label>
+        <div class="task-file">app/api/revalidate/route.ts</div>
+        <div class="task-note">Instant content updates after publish in Studio</div>
+      </div>
+    </div>
+    <div class="task-item" data-task="p2-t10">
+      <input type="checkbox" id="p2-t10" />
+      <div class="task-text">
+        <label for="p2-t10" style="cursor:pointer;font-weight:600">Set up Resend Audiences (newsletter)</label>
+        <div class="task-note">RESEND_API_KEY + RESEND_AUDIENCE_ID → add to Vercel env</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── PHASE 3 ── -->
+  <div class="phase-header">
+    <span class="legend-dot" style="background:var(--brand)"></span>
+    Phase 3 — SEO Cutover (Domain Migration)
+    <span class="phase-badge badge-next">NEXT</span>
+  </div>
+
+  <div id="tasks-phase3">
+    <div class="task-item" data-task="p3-t1">
+      <input type="checkbox" id="p3-t1" />
+      <div class="task-text">
+        <label for="p3-t1" style="cursor:pointer;font-weight:600">Export all Wix URLs + rankings from Google Search Console</label>
+        <div class="task-note">Baseline snapshot before migration</div>
+      </div>
+    </div>
+    <div class="task-item" data-task="p3-t2">
+      <input type="checkbox" id="p3-t2" />
+      <div class="task-text">
+        <label for="p3-t2" style="cursor:pointer;font-weight:600">Audit all Wix URLs → confirm they redirect or exist in Next.js</label>
+        <div class="task-file">next.config.ts (redirects array)</div>
+      </div>
+    </div>
+    <div class="task-item" data-task="p3-t3">
+      <input type="checkbox" id="p3-t3" />
+      <div class="task-text">
+        <label for="p3-t3" style="cursor:pointer;font-weight:600">Add domain to Vercel project</label>
+        <div class="task-note">globaledtechawards.org → Vercel DNS or CNAME</div>
+      </div>
+    </div>
+    <div class="task-item" data-task="p3-t4">
+      <input type="checkbox" id="p3-t4" />
+      <div class="task-text">
+        <label for="p3-t4" style="cursor:pointer;font-weight:600">Point DNS from Wix → Vercel (cutover)</label>
+        <div class="task-note">TTL propagation: 24–48h. Do during low-traffic period.</div>
+      </div>
+    </div>
+    <div class="task-item" data-task="p3-t5">
+      <input type="checkbox" id="p3-t5" />
+      <div class="task-text">
+        <label for="p3-t5" style="cursor:pointer;font-weight:600">Submit sitemap to Google Search Console (new property)</label>
+        <div class="task-note">https://globaledtechawards.org/sitemap.xml</div>
+      </div>
+    </div>
+    <div class="task-item" data-task="p3-t6">
+      <input type="checkbox" id="p3-t6" />
+      <div class="task-text">
+        <label for="p3-t6" style="cursor:pointer;font-weight:600">Verify all 308 redirects are working post-cutover</label>
+        <div class="task-note">Test: /2023-winners, /winners2018, /tracks2025, /copy-of-about → correct destinations</div>
+      </div>
+    </div>
+    <div class="task-item" data-task="p3-t7">
+      <input type="checkbox" id="p3-t7" />
+      <div class="task-text">
+        <label for="p3-t7" style="cursor:pointer;font-weight:600">Check Index Coverage in Search Console (2–4 weeks after cutover)</label>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── PHASE 4 ── -->
+  <div class="phase-header">
+    <span class="legend-dot" style="background:var(--yellow)"></span>
+    Phase 4 — Future Pages
+    <span class="phase-badge badge-later">LATER</span>
+  </div>
+
+  <div id="tasks-phase4">
+    <div class="task-item" data-task="p4-t1">
+      <input type="checkbox" id="p4-t1" />
+      <div class="task-text">
+        <label for="p4-t1" style="cursor:pointer;font-weight:600">Blog / News section</label>
+        <div class="task-note">Sanity post schema (already partially planned) · /blog + /blog/[slug]</div>
+      </div>
+    </div>
+    <div class="task-item" data-task="p4-t2">
+      <input type="checkbox" id="p4-t2" />
+      <div class="task-text">
+        <label for="p4-t2" style="cursor:pointer;font-weight:600">Bootcamp page</label>
+        <div class="task-note">Decide: CMS (dates, registration) or static marketing page?</div>
+      </div>
+    </div>
+    <div class="task-item" data-task="p4-t3">
+      <input type="checkbox" id="p4-t3" />
+      <div class="task-text">
+        <label for="p4-t3" style="cursor:pointer;font-weight:600">Apply page with Airtable iframe embed (/apply)</label>
+        <div class="task-note">Optional: embed https://airtable.com/appEAyMD4UhcamkNW/shrfEPmUEerujTDnf in an iframe</div>
+      </div>
+    </div>
+    <div class="task-item" data-task="p4-t4">
+      <input type="checkbox" id="p4-t4" />
+      <div class="task-text">
+        <label for="p4-t4" style="cursor:pointer;font-weight:600">Sponsor-a-Track page</label>
+      </div>
+    </div>
+    <div class="task-item" data-task="p4-t5">
+      <input type="checkbox" id="p4-t5" />
+      <div class="task-text">
+        <label for="p4-t5" style="cursor:pointer;font-weight:600">Judges directory page (/judges)</label>
+        <div class="task-note">Full judge profiles, past years, linkedin links</div>
+      </div>
+    </div>
+    <div class="task-item" data-task="p4-t6">
+      <input type="checkbox" id="p4-t6" />
+      <div class="task-text">
+        <label for="p4-t6" style="cursor:pointer;font-weight:600">Performance audit + Lighthouse</label>
+        <div class="task-note">Target: LCP &lt; 2.5s, CLS &lt; 0.1, INP &lt; 200ms on Vercel preview</div>
+      </div>
+    </div>
+    <div class="task-item" data-task="p4-t7">
+      <input type="checkbox" id="p4-t7" />
+      <div class="task-text">
+        <label for="p4-t7" style="cursor:pointer;font-weight:600">Accessibility audit (WCAG 2.1 AA)</label>
+        <div class="task-note">Focus order, aria-labels, color contrast, keyboard nav</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     TAB 3 — ARCHITECTURE
+══════════════════════════════════════════════════════════ -->
+<div class="tab-panel" id="tab-architecture">
+  <h2 class="section-h">System Architecture</h2>
+
+  <div class="card arch-svg-wrap">
+    <svg class="arch-svg" viewBox="0 0 900 520" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:900px">
+      <defs>
+        <marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+          <path d="M0,0 L0,6 L8,3 z" fill="#116DFF" />
+        </marker>
+        <marker id="arr-gray" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+          <path d="M0,0 L0,6 L8,3 z" fill="#94a3b8" />
+        </marker>
+        <marker id="arr-green" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+          <path d="M0,0 L0,6 L8,3 z" fill="#22c55e" />
+        </marker>
+      </defs>
+
+      <!-- Background areas -->
+      <rect x="10" y="10" width="880" height="500" rx="12" fill="#f8faff" stroke="#e6e8f0" stroke-width="1.5"/>
+
+      <!-- Visitor -->
+      <rect x="40" y="200" width="120" height="60" rx="10" fill="#000633"/>
+      <text x="100" y="228" text-anchor="middle" fill="white" font-size="12" font-weight="700">Visitor</text>
+      <text x="100" y="246" text-anchor="middle" fill="#4EB7F5" font-size="10">Browser</text>
+
+      <!-- Vercel -->
+      <rect x="220" y="160" width="180" height="140" rx="10" fill="#000633" stroke="#116DFF" stroke-width="2"/>
+      <text x="310" y="185" text-anchor="middle" fill="white" font-size="11" font-weight="700">Vercel</text>
+      <rect x="235" y="195" width="150" height="30" rx="6" fill="#0a1450"/>
+      <text x="310" y="215" text-anchor="middle" fill="#4EB7F5" font-size="10">Next.js App Router</text>
+      <rect x="235" y="235" width="150" height="25" rx="6" fill="#0a1450"/>
+      <text x="310" y="252" text-anchor="middle" fill="#4EB7F5" font-size="10">Server Components + RSC</text>
+      <rect x="235" y="268" width="150" height="22" rx="6" fill="#0a1450"/>
+      <text x="310" y="283" text-anchor="middle" fill="#4EB7F5" font-size="10">Server Actions</text>
+
+      <!-- Content Layer -->
+      <rect x="460" y="80" width="160" height="90" rx="10" fill="#ffffff" stroke="#e6e8f0" stroke-width="2"/>
+      <text x="540" y="103" text-anchor="middle" fill="#000633" font-size="11" font-weight="700">Content Layer</text>
+      <text x="540" y="120" text-anchor="middle" fill="#5d6070" font-size="9">lib/content/index.ts</text>
+      <rect x="475" y="128" width="130" height="20" rx="4" fill="#dcfce7"/>
+      <text x="540" y="142" text-anchor="middle" fill="#15803d" font-size="9" font-weight="700">Seed data (NOW)</text>
+      <rect x="475" y="152" width="130" height="20" rx="4" fill="#dbeafe"/>
+      <text x="540" y="166" text-anchor="middle" fill="#1d4ed8" font-size="9" font-weight="700">→ Sanity GROQ (NEXT)</text>
+
+      <!-- Sanity -->
+      <rect x="460" y="210" width="160" height="70" rx="10" fill="#fff7ed" stroke="#f97316" stroke-width="1.5" stroke-dasharray="5,3"/>
+      <text x="540" y="235" text-anchor="middle" fill="#c2410c" font-size="11" font-weight="700">Sanity CMS</text>
+      <text x="540" y="252" text-anchor="middle" fill="#92400e" font-size="9">Studio at /studio</text>
+      <text x="540" y="267" text-anchor="middle" fill="#92400e" font-size="9">cdn.sanity.io</text>
+      <text x="485" y="213" fill="#f97316" font-size="9" font-weight="700">PENDING</text>
+
+      <!-- Resend -->
+      <rect x="460" y="320" width="160" height="60" rx="10" fill="#faf5ff" stroke="#a855f7" stroke-width="1.5" stroke-dasharray="5,3"/>
+      <text x="540" y="345" text-anchor="middle" fill="#7e22ce" font-size="11" font-weight="700">Resend</text>
+      <text x="540" y="362" text-anchor="middle" fill="#6b21a8" font-size="9">Newsletter Audiences</text>
+      <text x="485" y="323" fill="#a855f7" font-size="9" font-weight="700">PENDING</text>
+
+      <!-- Airtable -->
+      <rect x="460" y="420" width="160" height="60" rx="10" fill="#f0fdf4" stroke="#22c55e" stroke-width="1.5"/>
+      <text x="540" y="445" text-anchor="middle" fill="#15803d" font-size="11" font-weight="700">Airtable</text>
+      <text x="540" y="462" text-anchor="middle" fill="#166534" font-size="9">Apply Form (existing)</text>
+      <text x="485" y="423" fill="#22c55e" font-size="9" font-weight="700">LIVE</text>
+
+      <!-- Vercel Analytics -->
+      <rect x="690" y="180" width="160" height="50" rx="10" fill="#eff6ff" stroke="#116DFF" stroke-width="1.5"/>
+      <text x="770" y="203" text-anchor="middle" fill="#1d4ed8" font-size="11" font-weight="700">Vercel Analytics</text>
+      <text x="770" y="220" text-anchor="middle" fill="#3b82f6" font-size="9">Web Vitals + page views</text>
+
+      <!-- Wix CDN label -->
+      <rect x="690" y="260" width="160" height="50" rx="10" fill="#fafafa" stroke="#e6e8f0" stroke-width="1.5" stroke-dasharray="4,3"/>
+      <text x="770" y="283" text-anchor="middle" fill="#475569" font-size="11" font-weight="700">Wix CDN</text>
+      <text x="770" y="300" text-anchor="middle" fill="#94a3b8" font-size="9">static.wixstatic.com</text>
+      <text x="700" y="263" fill="#94a3b8" font-size="9">Images (temp)</text>
+
+      <!-- Arrows -->
+      <!-- Visitor → Vercel -->
+      <line x1="160" y1="230" x2="218" y2="230" stroke="#116DFF" stroke-width="2" marker-end="url(#arr)"/>
+      <!-- Vercel → Content Layer -->
+      <line x1="400" y1="200" x2="458" y2="140" stroke="#116DFF" stroke-width="1.5" marker-end="url(#arr)"/>
+      <!-- Vercel → Resend (Server Action) -->
+      <line x1="400" y1="280" x2="458" y2="340" stroke="#a855f7" stroke-width="1.5" marker-end="url(#arr)" stroke-dasharray="5,3"/>
+      <!-- Vercel → Analytics -->
+      <line x1="400" y1="210" x2="688" y2="215" stroke="#116DFF" stroke-width="1.5" marker-end="url(#arr)"/>
+      <!-- Visitor → Airtable (external link) -->
+      <line x1="160" y1="250" x2="458" y2="450" stroke="#22c55e" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arr-green)"/>
+      <!-- Content Layer ↔ Sanity -->
+      <line x1="540" y1="170" x2="540" y2="208" stroke="#f97316" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arr)"/>
+      <!-- Sanity → Wix CDN (images) -->
+      <line x1="620" y1="250" x2="688" y2="275" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arr-gray)"/>
+
+      <!-- Labels on arrows -->
+      <text x="182" y="222" fill="#116DFF" font-size="9">HTTPS</text>
+      <text x="415" y="165" fill="#116DFF" font-size="9">getters</text>
+      <text x="402" y="315" fill="#a855f7" font-size="9">subscribe()</text>
+    </svg>
+  </div>
+
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title">📂 Request Flow</div>
+      <ol class="step-list" style="font-size:.85rem">
+        <li>
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <strong>Browser → Vercel Edge</strong>
+            <p>Request arrives at Vercel. Static pages served from CDN; dynamic via RSC.</p>
+          </div>
+        </li>
+        <li>
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <strong>Server Component renders</strong>
+            <p>Page component calls content getters (e.g. <code>getHomeContent()</code>).</p>
+          </div>
+        </li>
+        <li>
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <strong>Content Layer</strong>
+            <p>Getter returns seed data (now) or fetches from Sanity GROQ (after CMS setup).</p>
+          </div>
+        </li>
+        <li>
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <strong>HTML streamed to browser</strong>
+            <p>Fully server-rendered. Client components hydrate for interactivity (Header scroll, VideoDialog, NewsletterForm).</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+
+    <div class="card">
+      <div class="card-title">🔄 Content Swap Point</div>
+      <div style="font-size:.85rem;color:var(--muted);line-height:1.7">
+        <p>The entire content abstraction is in <strong>lib/content/index.ts</strong>. Components never import from seed.ts directly — they only call async getters.</p>
+        <br/>
+        <p>Switching to Sanity = swapping getter <em>bodies</em> only. Type signatures and return shapes are identical, guaranteed by TypeScript.</p>
+      </div>
+      <pre><code><span class="cmt">// lib/content/index.ts — before (seed)</span>
+export async function getHomeContent() {
+  return homeContent; <span class="cmt">// from seed.ts</span>
+}
+
+<span class="cmt">// after (Sanity)</span>
+export async function getHomeContent() {
+  return sanityClient.fetch(<span class="str">homeQuery</span>);
+}</code></pre>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     TAB 4 — FILES
+══════════════════════════════════════════════════════════ -->
+<div class="tab-panel" id="tab-files">
+  <h2 class="section-h">File Map</h2>
+
+  <div class="card">
+    <div class="filetree">
+      <div><span class="dir">📁 gesa-website/</span></div>
+
+      <div class="indent">
+        <div><span class="dir">📁 app/</span> <span class="desc">Next.js App Router routes</span></div>
+        <div class="indent">
+          <div><span class="status-done">✓</span> <span class="file">layout.tsx</span> <span class="desc">Root layout — fonts, metadata, Header, Footer, Analytics</span></div>
+          <div><span class="status-done">✓</span> <span class="file">globals.css</span> <span class="desc">Tailwind v4 @theme — brand tokens, utilities, animations</span></div>
+          <div><span class="status-done">✓</span> <span class="file">page.tsx</span> <span class="desc">Homepage — composes all sections via Promise.all()</span></div>
+          <div><span class="status-done">✓</span> <span class="file">not-found.tsx</span> <span class="desc">Branded 404 page</span></div>
+          <div><span class="status-done">✓</span> <span class="file">sitemap.ts</span> <span class="desc">Dynamic sitemap — all routes + winner years</span></div>
+          <div><span class="status-done">✓</span> <span class="file">robots.ts</span> <span class="desc">Robots.txt — disallows /studio</span></div>
+          <div><span class="status-done">✓</span> <span class="file">icon.jpeg</span> <span class="desc">Favicon — GESAwards emblem</span></div>
+
+          <div style="margin-top:.5rem"><span class="dir">📁 about/</span></div>
+          <div class="indent"><div><span class="status-done">✓</span> <span class="file">page.tsx</span> <span class="desc">About GESAwards — from content page slug "about"</span></div></div>
+
+          <div><span class="dir">📁 tracks/</span></div>
+          <div class="indent"><div><span class="status-done">✓</span> <span class="file">page.tsx</span> <span class="desc">Current edition tracks from getTracks()</span></div></div>
+
+          <div><span class="dir">📁 terms-and-condition/</span></div>
+          <div class="indent"><div><span class="status-done">✓</span> <span class="file">page.tsx</span> <span class="desc">Terms page — slug kept for Wix SEO continuity</span></div></div>
+
+          <div><span class="dir">📁 winners/</span></div>
+          <div class="indent">
+            <div><span class="status-done">✓</span> <span class="file">page.tsx</span> <span class="desc">Winners index — lists available years</span></div>
+            <div><span class="dir">📁 [year]/</span></div>
+            <div class="indent"><div><span class="status-done">✓</span> <span class="file">page.tsx</span> <span class="desc">generateStaticParams + winner cards, empty state</span></div></div>
+          </div>
+
+          <div><span class="dir status-todo">📁 studio/ (PENDING)</span></div>
+          <div class="indent"><div><span class="status-todo">○</span> <span class="file">[[...tool]]/page.tsx</span> <span class="desc">Embedded Sanity Studio — create after sanity init</span></div></div>
+
+          <div><span class="dir">📁 actions/</span></div>
+          <div class="indent"><div><span class="status-done">✓</span> <span class="file">subscribe.ts</span> <span class="desc">Newsletter Server Action → Resend Audiences API</span></div></div>
+        </div>
+
+        <div style="margin-top:1rem"><span class="dir">📁 components/</span></div>
+        <div class="indent">
+          <div><span class="dir">📁 layout/</span></div>
+          <div class="indent">
+            <div><span class="status-done">✓</span> <span class="file">Header.tsx</span> <span class="desc">Sticky navy header — logo, nav, Apply CTA, mobile menu</span></div>
+            <div><span class="status-done">✓</span> <span class="file">Footer.tsx</span> <span class="desc">Navy footer — logo, social, nav, copyright</span></div>
+            <div><span class="status-done">✓</span> <span class="file">PageHero.tsx</span> <span class="desc">Inner page hero (kicker, title, intro)</span></div>
+          </div>
+
+          <div><span class="dir">📁 home/</span></div>
+          <div class="indent">
+            <div><span class="status-done">✓</span> <span class="file">Hero.tsx</span> <span class="desc">Dark hero — heading, CTAs, photo collage, VideoDialog</span></div>
+            <div><span class="status-done">✓</span> <span class="file">GalleryMarquee.tsx</span> <span class="desc">Infinite-scroll photo strip</span></div>
+            <div><span class="status-done">✓</span> <span class="file">IntroStats.tsx</span> <span class="desc">3 stat cards (9,000+ Startups, 155 Countries, 87 Judges)</span></div>
+            <div><span class="status-done">✓</span> <span class="file">Criteria.tsx</span> <span class="desc">5 judging criteria cards</span></div>
+            <div><span class="status-done">✓</span> <span class="file">PrizeCategories.tsx</span> <span class="desc">4 award category cards with color accents</span></div>
+            <div><span class="status-done">✓</span> <span class="file">JudgesGrid.tsx</span> <span class="desc">Judge photos with initials fallback</span></div>
+            <div><span class="status-done">✓</span> <span class="file">Journey.tsx</span> <span class="desc">Timeline + CTA band</span></div>
+            <div><span class="status-done">✓</span> <span class="file">Partners.tsx</span> <span class="desc">3 partner groups — Powered by, Worldwide, Prize sponsors</span></div>
+            <div><span class="status-done">✓</span> <span class="file">NewsletterSignup.tsx</span> <span class="desc">useActionState + useFormStatus, honeypot</span></div>
+          </div>
+
+          <div><span class="dir">📁 ui/</span></div>
+          <div class="indent">
+            <div><span class="status-done">✓</span> <span class="file">button.tsx</span> <span class="desc">buttonClasses() — primary, secondary, ghost, outline-light</span></div>
+            <div><span class="status-done">✓</span> <span class="file">icons.tsx</span> <span class="desc">SVG icons + socialIcons map</span></div>
+            <div><span class="status-done">✓</span> <span class="file">video-dialog.tsx</span> <span class="desc">YouTube modal with focus trap, scroll lock</span></div>
+            <div><span class="status-done">✓</span> <span class="file">section-heading.tsx</span> <span class="desc">Kicker / h2 / intro with dark/light variants</span></div>
+            <div><span class="status-done">✓</span> <span class="file">rich-body.tsx</span> <span class="desc">Renders page body blocks (h2 | p)</span></div>
+          </div>
+        </div>
+
+        <div style="margin-top:1rem"><span class="dir">📁 lib/</span></div>
+        <div class="indent">
+          <div><span class="dir">📁 content/</span> <span class="desc">Content abstraction layer</span></div>
+          <div class="indent">
+            <div><span class="status-done">✓</span> <span class="file">types.ts</span> <span class="desc">All TypeScript types: SiteSettings, HomeContent, Judge, Partner…</span></div>
+            <div><span class="status-done">✓</span> <span class="file">seed.ts</span> <span class="desc">Migrated content from live Wix site (images → Wix CDN)</span></div>
+            <div><span class="status-done">✓</span> <span class="file">index.ts</span> <span class="desc">Async getters — returns seed now, swap to GROQ for Sanity</span></div>
+          </div>
+          <div><span class="status-done">✓</span> <span class="file">utils.ts</span> <span class="desc">cn() class merging helper</span></div>
+          <div><span class="status-todo">○</span> <span class="file">sanity/client.ts</span> <span class="desc">Sanity client — create after sanity init</span></div>
+        </div>
+
+        <div style="margin-top:1rem"><span class="dir">📁 sanity/</span> <span class="desc">CMS config (no sanity runtime import yet)</span></div>
+        <div class="indent">
+          <div><span class="status-done">✓</span> <span class="file">schemaTypes/index.ts</span> <span class="desc">Plain object schemas: siteSettings, homePage, judge, track, winner, partner, page</span></div>
+          <div><span class="status-done">✓</span> <span class="file">queries.ts</span> <span class="desc">GROQ query strings — ready to use when client is added</span></div>
+          <div><span class="status-todo">○</span> <span class="file">../sanity.config.ts</span> <span class="desc">Studio config — create after sanity init</span></div>
+        </div>
+
+        <div style="margin-top:1rem"><span class="dir">📁 public/brand/</span></div>
+        <div class="indent">
+          <div><span class="status-done">✓</span> <span class="file">gesawards-white.png</span> <span class="desc">White GESAwards wordmark with red "10" — header + footer</span></div>
+          <div><span class="status-done">✓</span> <span class="file">mindcet.png</span> <span class="desc">MindCET partner logo</span></div>
+        </div>
+
+        <div style="margin-top:1rem"><span class="dir">📁 docs/</span></div>
+        <div class="indent">
+          <div><span class="status-done">✓</span> <span class="file">CMS-SETUP.md</span> <span class="desc">Step-by-step Sanity activation guide</span></div>
+          <div><span class="status-done">✓</span> <span class="file">project-status.html</span> <span class="desc">This document</span></div>
+        </div>
+
+        <div style="margin-top:1rem">
+          <div><span class="status-done">✓</span> <span class="file">next.config.ts</span> <span class="desc">Image domains + 308 redirects from all Wix URLs</span></div>
+          <div><span class="status-done">✓</span> <span class="file">.env.example</span> <span class="desc">Template: RESEND_API_KEY, Sanity vars</span></div>
+          <div><span class="status-done">✓</span> <span class="file">README.md</span> <span class="desc">Project overview + quick start</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     TAB 5 — SEO
+══════════════════════════════════════════════════════════ -->
+<div class="tab-panel" id="tab-seo">
+  <h2 class="section-h">SEO Migration Strategy</h2>
+  <p class="section-sub">מעבר מ-Wix ל-Next.js — שמירה על דירוגים ו-backlinks קיימים.</p>
+
+  <div class="warn-box">
+    ⚠️ <strong>הסיכון הגדול:</strong> Google רואה שינוי פלטפורמה כ"migration event" ומוריד דירוגים זמנית (2–8 שבועות). המפתח הוא שמירת הדומיין, redirects תקינים, ו-sitemap מעודכן.
+  </div>
+
+  <div class="card" style="margin-top:1.25rem">
+    <div class="card-title">✅ מה כבר מוכן בקוד</div>
+    <table>
+      <thead><tr><th>פיצ'ר SEO</th><th>סטטוס</th><th>קובץ</th></tr></thead>
+      <tbody>
+        <tr><td>Metadata per-page (title, description, OG, Twitter)</td><td><span class="tick">✓</span> פעיל</td><td><code>app/*/page.tsx — generateMetadata()</code></td></tr>
+        <tr><td>Sitemap XML דינמי</td><td><span class="tick">✓</span> פעיל</td><td><code>app/sitemap.ts</code></td></tr>
+        <tr><td>robots.txt</td><td><span class="tick">✓</span> פעיל</td><td><code>app/robots.ts</code> — /studio disallowed</td></tr>
+        <tr><td>308 Redirects מ-URLs של Wix</td><td><span class="tick">✓</span> פעיל</td><td><code>next.config.ts</code></td></tr>
+        <tr><td>Semantic HTML (h1, nav, main, article)</td><td><span class="tick">✓</span> פעיל</td><td>כל הקומפוננטים</td></tr>
+        <tr><td>next/font (אפס layout shift)</td><td><span class="tick">✓</span> פעיל</td><td><code>app/layout.tsx</code></td></tr>
+        <tr><td>next/image (WebP, lazy load, aspect ratio)</td><td><span class="tick">✓</span> פעיל</td><td>כל התמונות</td></tr>
+        <tr><td>Vercel Analytics (Web Vitals)</td><td><span class="tick">✓</span> פעיל</td><td><code>app/layout.tsx</code></td></tr>
+        <tr><td>Canonical URLs</td><td><span class="warn">~</span> אוטומטי מ-Next.js</td><td>—</td></tr>
+        <tr><td>Structured Data (JSON-LD)</td><td><span class="cross">○</span> לא נעשה</td><td>Future: Organization, Event schema</td></tr>
+        <tr><td>hreflang (רב-לשוני)</td><td><span class="cross">○</span> לא רלוונטי כרגע</td><td>—</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🔀 Wix URL Redirects (כבר בקוד)</div>
+    <table>
+      <thead><tr><th>Wix URL (ישן)</th><th>מיפוי</th><th>Next.js URL (חדש)</th></tr></thead>
+      <tbody>
+        <tr><td><code>/2023-winners</code></td><td>308 →</td><td><code>/winners/2023</code></td></tr>
+        <tr><td><code>/2022-winners</code></td><td>308 →</td><td><code>/winners/2022</code></td></tr>
+        <tr><td><code>/2015-winners</code> עד <code>/2025-winners</code></td><td>308 →</td><td><code>/winners/[year]</code></td></tr>
+        <tr><td><code>/winners2018</code></td><td>308 →</td><td><code>/winners/2018</code></td></tr>
+        <tr><td><code>/tracks2025</code></td><td>308 →</td><td><code>/tracks</code></td></tr>
+        <tr><td><code>/2026-tracks</code></td><td>308 →</td><td><code>/tracks</code></td></tr>
+        <tr><td><code>/copy-of-[slug]</code></td><td>308 →</td><td><code>/</code> (homepage)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📅 לוח זמנים לcutover</div>
+    <ol class="step-list">
+      <li>
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <strong>לפני הcutover — ייצוא נתוני Wix</strong>
+          <p>Google Search Console → Performance → Export. שמור את הURLs והדירוגים הנוכחיים כ-baseline.</p>
+        </div>
+      </li>
+      <li>
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <strong>לפני הcutover — בדיקת כיסוי URLs</strong>
+          <p>ייצא את כל ה-URLs מ-GSC ובדוק שכל אחד מהם מפנה או קיים ב-Next.js. אפשר לעשות את זה עם <code>wget --spider</code> או כלי כמו Screaming Frog.</p>
+        </div>
+      </li>
+      <li>
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <strong>הוסף דומיין ל-Vercel</strong>
+          <p>Vercel Dashboard → Project Settings → Domains → הוסף <code>globaledtechawards.org</code>. Vercel מספק CNAME או A record.</p>
+        </div>
+      </li>
+      <li>
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <strong>Cutover — עדכן DNS</strong>
+          <p>בספק הדומיין: עדכן A record/CNAME להצביע ל-Vercel. TTL התפשטות: 24–48 שעות. עשה זאת בלילה ביום חמישי/שישי.</p>
+        </div>
+      </li>
+      <li>
+        <div class="step-num">5</div>
+        <div class="step-content">
+          <strong>יום ה-cutover — GSC</strong>
+          <p>הגש מחדש את ה-sitemap ב-Search Console: <code>https://globaledtechawards.org/sitemap.xml</code>. אמת ownership של הדומיין.</p>
+        </div>
+      </li>
+      <li>
+        <div class="step-num">6</div>
+        <div class="step-content">
+          <strong>2–4 שבועות אחרי — ניטור</strong>
+          <p>Index Coverage ב-GSC. אם יש URLs עם שגיאה 404 — הוסף redirect ל-next.config.ts ופרסם. ירידה קצרה בדירוגים היא נורמלית.</p>
+        </div>
+      </li>
+    </ol>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     TAB 6 — CMS SETUP
+══════════════════════════════════════════════════════════ -->
+<div class="tab-panel" id="tab-cms">
+  <h2 class="section-h">Sanity CMS — Activation Guide</h2>
+  <p class="section-sub">הסכמות כתובות. רק צריך לחבר את Sanity.</p>
+
+  <div class="info-box">
+    ✅ כבר בקוד: סכמות (<code>sanity/schemaTypes/index.ts</code>), GROQ queries (<code>sanity/queries.ts</code>), מדריך מלא (<code>docs/CMS-SETUP.md</code>).
+  </div>
+
+  <div class="card" style="margin-top:1.25rem">
+    <div class="card-title">❓ מה ניהל ב-CMS ומה בקוד?</div>
+    <table>
+      <thead><tr><th>תוכן</th><th>היכן?</th><th>סיבה</th></tr></thead>
+      <tbody>
+        <tr><td>שופטים (Judges)</td><td><span class="tick">✓</span> CMS</td><td>מתחלפים כל שנה, יש תמונות, עריכה ע"י CET</td></tr>
+        <tr><td>שותפים (Partners)</td><td><span class="tick">✓</span> CMS</td><td>לוגואים, כניסות/יציאות, סדר</td></tr>
+        <tr><td>מסלולים (Tracks)</td><td><span class="tick">✓</span> CMS</td><td>תיאורים ושנה משתנים</td></tr>
+        <tr><td>Winners</td><td><span class="tick">✓</span> CMS</td><td>ארכיון שצומח — חובה CMS</td></tr>
+        <tr><td>עמודי תוכן (About, Terms)</td><td><span class="tick">✓</span> CMS</td><td>עריכה ע"י לא-מפתחים</td></tr>
+        <tr><td>Timeline שנה</td><td>קוד (seed.ts)</td><td>PR מהיר, משתנה פעם בשנה</td></tr>
+        <tr><td>Stats (9,000+...)</td><td>קוד (seed.ts)</td><td>עדכון נדיר</td></tr>
+        <tr><td>Hero text / Kicker</td><td>קוד (seed.ts)</td><td>שינוי שיווקי — PR מהיר</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🚀 שלבי הפעלה (6 שלבים)</div>
+    <ol class="step-list">
+      <li>
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <strong>התקן ואתחל Sanity</strong>
+          <pre><code><span class="cmd">npm install</span> sanity next-sanity @sanity/image-url
+<span class="cmd">npx sanity@latest init</span> --env</code></pre>
+          <p>בחר "production" כdataset. Sanity כותב את הenv vars ל-.env.local.</p>
+        </div>
+      </li>
+      <li>
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <strong>הוסף env vars ל-Vercel</strong>
+          <pre><code>NEXT_PUBLIC_SANITY_PROJECT_ID=<span class="str">xxx</span>
+NEXT_PUBLIC_SANITY_DATASET=<span class="str">production</span>
+NEXT_PUBLIC_SANITY_API_VERSION=<span class="str">2024-10-01</span></code></pre>
+        </div>
+      </li>
+      <li>
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <strong>צור sanity.config.ts + Studio route</strong>
+          <pre><code><span class="cmt">// sanity.config.ts</span>
+import { defineConfig } from <span class="str">"sanity"</span>;
+import { structureTool } from <span class="str">"sanity/structure"</span>;
+import { schemaTypes } from <span class="str">"./sanity/schemaTypes"</span>;
+
+export default defineConfig({
+  basePath: <span class="str">"/studio"</span>,
+  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!,
+  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET!,
+  plugins: [structureTool()],
+  schema: { types: schemaTypes },
+});</code></pre>
+        </div>
+      </li>
+      <li>
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <strong>צור Sanity client</strong>
+          <pre><code><span class="cmt">// lib/sanity/client.ts</span>
+import { createClient } from <span class="str">"next-sanity"</span>;
+
+export const sanityClient = createClient({
+  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!,
+  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET!,
+  apiVersion: <span class="str">"2024-10-01"</span>,
+  useCdn: true,
+});</code></pre>
+        </div>
+      </li>
+      <li>
+        <div class="step-num">5</div>
+        <div class="step-content">
+          <strong>החלף getters ב-lib/content/index.ts</strong>
+          <pre><code>import { sanityClient } from <span class="str">"@/lib/sanity/client"</span>;
+import { homeQuery } from <span class="str">"@/sanity/queries"</span>;
+
+<span class="cmt">// החלף כל getter — שאר הקוד לא משתנה</span>
+export async function getHomeContent() {
+  return sanityClient.fetch(homeQuery);
+}</code></pre>
+        </div>
+      </li>
+      <li>
+        <div class="step-num">6</div>
+        <div class="step-content">
+          <strong>הכנס תוכן ל-Studio + העלה תמונות</strong>
+          <p>פתח /studio, צור homepage singleton, הכנס שופטים/שותפים/מסלולים, גרור תמונות. Winners — הוסף לפי שנה.</p>
+        </div>
+      </li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🔔 Revalidation (Bonus)</div>
+    <p style="font-size:.875rem;color:var(--muted);margin-bottom:.75rem">כדי שעדכון ב-Studio יתעדכן מיד באתר, הוסף Sanity webhook:</p>
+    <pre><code><span class="cmt">// app/api/revalidate/route.ts</span>
+import { revalidateTag } from <span class="str">"next/cache"</span>;
+import { type NextRequest } from <span class="str">"next/server"</span>;
+
+export async function POST(req: NextRequest) {
+  const body = await req.json();
+  revalidateTag(<span class="str">"content"</span>);
+  return Response.json({ revalidated: true });
+}</code></pre>
+    <p style="font-size:.8rem;color:var(--muted);margin-top:.5rem">בסanity.io → Studio → API → Webhooks: הוסף endpoint לhttps://your-site.vercel.app/api/revalidate</p>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     TAB 7 — LAUNCH CHECKLIST
+══════════════════════════════════════════════════════════ -->
+<div class="tab-panel" id="tab-launch">
+  <h2 class="section-h">Launch Checklist</h2>
+  <p class="section-sub">הרשימה הסופית לפני go-live.</p>
+
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title">🔧 טכני</div>
+      <div id="tasks-launch-tech">
+        <div class="task-item" data-task="l-t1">
+          <input type="checkbox" id="l-t1" />
+          <div class="task-text"><label for="l-t1" style="cursor:pointer">npm run build עובר ללא שגיאות</label></div>
+        </div>
+        <div class="task-item" data-task="l-t2">
+          <input type="checkbox" id="l-t2" />
+          <div class="task-text"><label for="l-t2" style="cursor:pointer">npm run lint נקי</label></div>
+        </div>
+        <div class="task-item" data-task="l-t3">
+          <input type="checkbox" id="l-t3" />
+          <div class="task-text"><label for="l-t3" style="cursor:pointer">Vercel preview deploy תקין</label></div>
+        </div>
+        <div class="task-item" data-task="l-t4">
+          <input type="checkbox" id="l-t4" />
+          <div class="task-text"><label for="l-t4" style="cursor:pointer">כל env vars מוגדרים ב-Vercel Production</label>
+          <div class="task-note">RESEND_API_KEY · RESEND_AUDIENCE_ID · Sanity vars</div></div>
+        </div>
+        <div class="task-item" data-task="l-t5">
+          <input type="checkbox" id="l-t5" />
+          <div class="task-text"><label for="l-t5" style="cursor:pointer">Sanity מחובר ותוכן נטען</label></div>
+        </div>
+        <div class="task-item" data-task="l-t6">
+          <input type="checkbox" id="l-t6" />
+          <div class="task-text"><label for="l-t6" style="cursor:pointer">Newsletter — מייל מגיע ל-Resend Audiences</label></div>
+        </div>
+        <div class="task-item" data-task="l-t7">
+          <input type="checkbox" id="l-t7" />
+          <div class="task-text"><label for="l-t7" style="cursor:pointer">Apply button פותח Airtable form</label></div>
+        </div>
+        <div class="task-item" data-task="l-t8">
+          <input type="checkbox" id="l-t8" />
+          <div class="task-text"><label for="l-t8" style="cursor:pointer">VideoDialog פותח YouTube embed</label></div>
+        </div>
+        <div class="task-item" data-task="l-t9">
+          <input type="checkbox" id="l-t9" />
+          <div class="task-text"><label for="l-t9" style="cursor:pointer">Mobile layout — כל הדפים תקינים</label></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">🔍 SEO & Performance</div>
+      <div id="tasks-launch-seo">
+        <div class="task-item" data-task="l-s1">
+          <input type="checkbox" id="l-s1" />
+          <div class="task-text"><label for="l-s1" style="cursor:pointer">Lighthouse ≥ 90 Performance, 90 SEO, 90 A11y</label></div>
+        </div>
+        <div class="task-item" data-task="l-s2">
+          <input type="checkbox" id="l-s2" />
+          <div class="task-text"><label for="l-s2" style="cursor:pointer">LCP &lt; 2.5s על Vercel preview</label></div>
+        </div>
+        <div class="task-item" data-task="l-s3">
+          <input type="checkbox" id="l-s3" />
+          <div class="task-text"><label for="l-s3" style="cursor:pointer">/sitemap.xml מחזיר 200 עם כל הURLs</label></div>
+        </div>
+        <div class="task-item" data-task="l-s4">
+          <input type="checkbox" id="l-s4" />
+          <div class="task-text"><label for="l-s4" style="cursor:pointer">/robots.txt תקין (מאפשר Googlebot, חוסם /studio)</label></div>
+        </div>
+        <div class="task-item" data-task="l-s5">
+          <input type="checkbox" id="l-s5" />
+          <div class="task-text"><label for="l-s5" style="cursor:pointer">OG image מוצגת ב-Twitter Card validator</label></div>
+        </div>
+        <div class="task-item" data-task="l-s6">
+          <input type="checkbox" id="l-s6" />
+          <div class="task-text"><label for="l-s6" style="cursor:pointer">Google Search Console property מאומת</label></div>
+        </div>
+        <div class="task-item" data-task="l-s7">
+          <input type="checkbox" id="l-s7" />
+          <div class="task-text"><label for="l-s7" style="cursor:pointer">Sitemap הוגש ל-Search Console</label></div>
+        </div>
+        <div class="task-item" data-task="l-s8">
+          <input type="checkbox" id="l-s8" />
+          <div class="task-text"><label for="l-s8" style="cursor:pointer">Redirects עובדים: /2023-winners → /winners/2023</label></div>
+        </div>
+        <div class="task-item" data-task="l-s9">
+          <input type="checkbox" id="l-s9" />
+          <div class="task-text"><label for="l-s9" style="cursor:pointer">Vercel Analytics מוצג ב-Dashboard</label></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     JAVASCRIPT
+══════════════════════════════════════════════════════════ -->
+<script>
+  // ─── Tabs ───────────────────────────────────────────────
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+    });
+  });
+
+  // ─── Task persistence ────────────────────────────────────
+  const STORAGE_KEY = 'gesawards-tasks-v2';
+  const TASK_PHASES = {
+    phase1: ['p1-t1','p1-t2','p1-t3','p1-t4','p1-t5','p1-t6','p1-t7','p1-t8','p1-t9','p1-t10','p1-t11','p1-t12','p1-t13','p1-t14','p1-t15'],
+    phase2: ['p2-t1','p2-t2','p2-t3','p2-t4','p2-t5','p2-t6','p2-t7','p2-t8','p2-t9','p2-t10'],
+    phase3: ['p3-t1','p3-t2','p3-t3','p3-t4','p3-t5','p3-t6','p3-t7'],
+    phase4: ['p4-t1','p4-t2','p4-t3','p4-t4','p4-t5','p4-t6','p4-t7'],
+    launch: ['l-t1','l-t2','l-t3','l-t4','l-t5','l-t6','l-t7','l-t8','l-t9','l-s1','l-s2','l-s3','l-s4','l-s5','l-s6','l-s7','l-s8','l-s9'],
+  };
+  const ALL_TASKS = Object.values(TASK_PHASES).flat();
+
+  function loadState() {
+    try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'); } catch { return {}; }
+  }
+
+  function saveState(state) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    localStorage.setItem(STORAGE_KEY + '-ts', new Date().toISOString());
+  }
+
+  function updateUI() {
+    const state = loadState();
+    let done = 0, total = ALL_TASKS.length;
+
+    ALL_TASKS.forEach(id => {
+      const cb = document.getElementById(id);
+      const item = cb && cb.closest('.task-item');
+      if (!cb) return;
+      const isChecked = state[id] !== undefined ? state[id] : cb.defaultChecked;
+      cb.checked = isChecked;
+      if (isChecked) done++;
+      item && (isChecked ? item.classList.add('done') : item.classList.remove('done'));
+    });
+
+    // Stats
+    const remaining = total - done;
+    document.getElementById('stat-done').textContent = done;
+    document.getElementById('stat-remain').textContent = remaining;
+    const pct = Math.round(done / total * 100);
+    document.getElementById('overall-pct').textContent = pct + '%';
+
+    // Phase bars
+    const phaseDone = {};
+    Object.entries(TASK_PHASES).forEach(([phase, ids]) => {
+      const phDone = ids.filter(id => {
+        const cb = document.getElementById(id);
+        return cb && (state[id] !== undefined ? state[id] : cb.defaultChecked);
+      }).length;
+      phaseDone[phase] = Math.round(phDone / ids.length * 100);
+    });
+    setBar('phase1-bar', phaseDone.phase1 ?? 100);
+    setBar('phase2-bar', phaseDone.phase2 ?? 0);
+    setBar('phase3-bar', phaseDone.phase3 ?? 0);
+    setBar('phase4-bar', phaseDone.phase4 ?? 0);
+
+    // Last updated
+    const ts = localStorage.getItem(STORAGE_KEY + '-ts');
+    if (ts) {
+      const d = new Date(ts);
+      document.getElementById('last-updated').textContent = d.toLocaleDateString('he-IL', { day:'numeric', month:'short', year:'numeric', hour:'2-digit', minute:'2-digit' });
+    } else {
+      document.getElementById('last-updated').textContent = new Date().toLocaleDateString('he-IL', { day:'numeric', month:'short', year:'numeric' });
+    }
+  }
+
+  function setBar(id, pct) {
+    const el = document.getElementById(id);
+    if (el) el.style.width = pct + '%';
+  }
+
+  // Wire checkboxes
+  document.querySelectorAll('.task-item input[type=checkbox]').forEach(cb => {
+    cb.addEventListener('change', () => {
+      const state = loadState();
+      state[cb.id] = cb.checked;
+      saveState(state);
+      updateUI();
+    });
+  });
+
+  // Task item click (not on checkbox itself)
+  document.querySelectorAll('.task-item').forEach(item => {
+    item.addEventListener('click', e => {
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'LABEL' || e.target.tagName === 'A') return;
+      const cb = item.querySelector('input[type=checkbox]');
+      if (cb) { cb.checked = !cb.checked; cb.dispatchEvent(new Event('change')); }
+    });
+  });
+
+  // Init
+  updateUI();
+</script>
+</body>
+</html>
