@@ -362,6 +362,7 @@
       <div>✅ Completed a focused browser accessibility pass: added a skip link, removed empty partner links, hid duplicated marquee imagery from assistive technology, and removed nested main landmarks from track pages.</div>
       <div>✅ Audited all 95 URLs in the live Wix sitemaps and expanded permanent redirects for winner archives, historical tracks, campaigns, and blog posts; every URL now returns either 200 or 308 locally.</div>
       <div>✅ Ran a mobile Lighthouse pass against the production build and fixed lazy LCP image loading, responsive image sizing, and every reported color-contrast failure; Accessibility and SEO now score 100, while Performance remains 79 pending Vercel-based LCP optimization.</div>
+      <div>✅ Extended the keyboard accessibility pass across the primary pages and interactive controls; verified one main landmark and H1 per page, labelled controls and images, dialog Escape handling with focus restoration, and expandable-country state.</div>
     </div>
   </div>
 </div>
@@ -706,7 +707,7 @@
       <input type="checkbox" id="p4-t7" />
       <div class="task-text">
         <label for="p4-t7" style="cursor:pointer;font-weight:600">Accessibility audit (WCAG 2.1 AA)</label>
-        <div class="task-note">Browser pass + Lighthouse Accessibility 100 ✓ · assistive-technology audit still pending</div>
+        <div class="task-note">Browser + keyboard pass and Lighthouse Accessibility 100 ✓ · assistive-technology audit still pending</div>
       </div>
     </div>
   </div>
@@ -1273,12 +1274,12 @@ export async function POST(req: NextRequest) {
           <div class="task-text"><label for="l-s2" style="cursor:pointer">LCP &lt; 2.5s על Vercel preview</label></div>
         </div>
         <div class="task-item" data-task="l-s3">
-          <input type="checkbox" id="l-s3" />
-          <div class="task-text"><label for="l-s3" style="cursor:pointer">/sitemap.xml מחזיר 200 עם כל הURLs</label></div>
+          <input type="checkbox" id="l-s3" checked />
+          <div class="task-text"><label for="l-s3" style="cursor:pointer">/sitemap.xml מחזיר 200 עם כל הURLs</label><div class="task-note">Local verification ✓ · 19 canonical URLs returned</div></div>
         </div>
         <div class="task-item" data-task="l-s4">
-          <input type="checkbox" id="l-s4" />
-          <div class="task-text"><label for="l-s4" style="cursor:pointer">/robots.txt תקין (מאפשר Googlebot, חוסם /studio)</label></div>
+          <input type="checkbox" id="l-s4" checked />
+          <div class="task-text"><label for="l-s4" style="cursor:pointer">/robots.txt תקין (מאפשר Googlebot, חוסם /studio)</label><div class="task-note">Local verification ✓ · allows crawlers and disallows /studio</div></div>
         </div>
         <div class="task-item" data-task="l-s5">
           <input type="checkbox" id="l-s5" />

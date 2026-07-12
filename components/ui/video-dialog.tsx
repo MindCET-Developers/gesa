@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Close, Play } from "@/components/ui/icons";
 import { cn } from "@/lib/utils";
 
@@ -12,11 +12,19 @@ type Props = {
 
 export function VideoDialog({ embedUrl, className, children }: Props) {
   const [open, setOpen] = useState(false);
+  const triggerRef = useRef<HTMLButtonElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
+
+  const close = useCallback(() => {
+    setOpen(false);
+    requestAnimationFrame(() => triggerRef.current?.focus());
+  }, []);
 
   useEffect(() => {
     if (!open) return;
-    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") close();
+    };
     document.addEventListener("keydown", onKey);
     document.body.style.overflow = "hidden";
     closeRef.current?.focus();
@@ -24,11 +32,11 @@ export function VideoDialog({ embedUrl, className, children }: Props) {
       document.removeEventListener("keydown", onKey);
       document.body.style.overflow = "";
     };
-  }, [open]);
+  }, [close, open]);
 
   return (
     <>
-      <button type="button" className={className} onClick={() => setOpen(true)}>
+      <button ref={triggerRef} type="button" className={className} onClick={() => setOpen(true)}>
         <Play className="size-4" />
         {children}
       </button>
@@ -39,7 +47,7 @@ export function VideoDialog({ embedUrl, className, children }: Props) {
           aria-modal="true"
           aria-label="Video player"
           className="fixed inset-0 z-[100] grid place-items-center bg-navy/80 p-4 backdrop-blur-sm"
-          onClick={() => setOpen(false)}
+          onClick={close}
         >
           <div
             className="relative w-full max-w-4xl"
@@ -48,7 +56,7 @@ export function VideoDialog({ embedUrl, className, children }: Props) {
             <button
               ref={closeRef}
               type="button"
-              onClick={() => setOpen(false)}
+              onClick={close}
               aria-label="Close video"
               className="absolute -top-12 right-0 grid size-10 place-items-center rounded-full bg-white/10 text-white hover:bg-white/20"
             >
