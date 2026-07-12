@@ -179,6 +179,7 @@ const winner = {
     { name: "country", title: "Country", type: "string" },
     { name: "description", title: "Description", type: "text", rows: 3 },
     { name: "logo", title: "Logo", type: "image" },
+    { name: "sourceUrl", title: "Original source", type: "url", readOnly: true },
   ],
   preview: { select: { title: "name", subtitle: "year", media: "logo" } },
 };

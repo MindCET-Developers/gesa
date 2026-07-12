@@ -16,7 +16,7 @@ function pickTeaserEntries(all: RegionalSemifinalEntry[]): RegionalSemifinalEntr
   return picks;
 }
 
-export function RegionalSeminalsGrid({
+export function RegionalSemifinalsGrid({
   home,
   semifinals,
   showAll = false,

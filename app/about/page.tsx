@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { RegionalSeminalsGrid } from "@/components/home/RegionalSeminalsGrid";
+import { RegionalSemifinalsGrid } from "@/components/home/RegionalSemifinalsGrid";
 import { PageHero } from "@/components/layout/PageHero";
 import { RichBody } from "@/components/ui/rich-body";
 import { SectionHeading } from "@/components/ui/section-heading";
@@ -118,7 +118,7 @@ export default async function AboutPage() {
       </section>
 
       {/* 2026 Regional Semifinals Grid */}
-      <RegionalSeminalsGrid home={home} semifinals={semifinalRegions} />
+      <RegionalSemifinalsGrid home={home} semifinals={semifinalRegions} />
 
       {/* GESAwards Bootcamp */}
       <section className="relative overflow-hidden bg-navy py-20 text-white md:py-28">

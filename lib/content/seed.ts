@@ -38,6 +38,7 @@ export const siteSettings: SiteSettings = {
   nav: [
     { label: "About", href: "/about" },
     { label: "Tracks", href: "/tracks" },
+    { label: "Semifinals", href: "/semifinals" },
     { label: "Winners", href: "/winners" },
     { label: "Terms", href: "/terms-and-condition" },
   ],

@@ -10,11 +10,12 @@ in [`sanity/queries.ts`](../sanity/queries.ts).
 
 ```bash
 npm install sanity next-sanity @sanity/image-url styled-components
-npx sanity@latest init --env
+npx sanity login --provider github
+npx sanity init --project <project-id> --dataset production --env .env.local
 ```
 
-Pick **"production"** as the dataset. This writes `NEXT_PUBLIC_SANITY_PROJECT_ID`
-and `NEXT_PUBLIC_SANITY_DATASET` into `.env.local`.
+Sanity 6 requires a filename value for `--env`. The connected project is
+`g5zdluvf` (`gesawards`) and its public dataset is **production**.
 
 ## 2. Add the embedded Studio
 

@@ -5,7 +5,7 @@ import { Criteria } from "@/components/home/Criteria";
 import { PrizeCategories } from "@/components/home/PrizeCategories";
 import { JudgesGrid } from "@/components/home/JudgesGrid";
 import { Journey } from "@/components/home/Journey";
-import { RegionalSeminalsGrid } from "@/components/home/RegionalSeminalsGrid";
+import { RegionalSemifinalsGrid } from "@/components/home/RegionalSemifinalsGrid";
 import { Partners } from "@/components/home/Partners";
 import { NewsletterSignup } from "@/components/home/NewsletterSignup";
 import {
@@ -36,7 +36,7 @@ export default async function HomePage() {
       <PrizeCategories categories={categories} />
       <JudgesGrid judges={judges} />
       <Journey home={home} settings={settings} />
-      <RegionalSeminalsGrid home={home} semifinals={seminfinals} showAll />
+      <RegionalSemifinalsGrid home={home} semifinals={seminfinals} showAll />
       <Partners home={home} partners={partners} />
       <NewsletterSignup home={home} />
     </>

@@ -257,11 +257,11 @@
       <div class="label">Tasks Remaining</div>
     </div>
     <div class="stat-card">
-      <div class="value">17</div>
+      <div class="value">23</div>
       <div class="label">Components Built</div>
     </div>
     <div class="stat-card">
-      <div class="value">6</div>
+      <div class="value">7</div>
       <div class="label">Pages / Routes</div>
     </div>
   </div>
@@ -286,7 +286,7 @@
         <span class="pill pill-blue">React 19</span>
         <span class="pill pill-blue">TypeScript 5</span>
         <span class="pill pill-blue">Tailwind CSS v4</span>
-        <span class="pill pill-gray">Sanity (pending)</span>
+        <span class="pill pill-green">Sanity project connected</span>
         <span class="pill pill-gray">Resend (pending)</span>
         <span class="pill pill-green">Vercel Analytics</span>
         <span class="pill pill-green">next/font</span>
@@ -308,6 +308,7 @@
         ✅ About page<br/>
         ✅ Tracks page<br/>
         ✅ Winners index + /winners/[year]<br/>
+        ✅ Regional Semifinals explorer + homepage/About integration<br/>
         ✅ Terms & Conditions<br/>
         ✅ 404 page<br/>
         ✅ Newsletter Server Action<br/>
@@ -400,7 +401,7 @@
       <div class="task-text">
         <label for="p1-t5" style="cursor:pointer;font-weight:600">Build content abstraction layer (getters)</label>
         <div class="task-file">lib/content/index.ts</div>
-        <div class="task-note">getSiteSettings, getHomeContent, getJudges, getPartners, getTracks, getWinnersByYear, getPage</div>
+        <div class="task-note">getSiteSettings, getHomeContent, getJudges, getPartners, getRegionalSemifinals, getTracks, getWinnersByYear, getPage</div>
       </div>
     </div>
     <div class="task-item" data-task="p1-t6">
@@ -414,7 +415,7 @@
       <input type="checkbox" id="p1-t7" checked />
       <div class="task-text">
         <label for="p1-t7" style="cursor:pointer;font-weight:600">Build all 10 homepage sections</label>
-        <div class="task-file">components/home/ — Hero, GalleryMarquee, IntroStats, Criteria, PrizeCategories, JudgesGrid, Journey, Partners, NewsletterSignup</div>
+        <div class="task-file">components/home/ — Hero, GalleryMarquee, IntroStats, Criteria, PrizeCategories, JudgesGrid, Journey, Partners, RegionalSemifinalsGrid, NewsletterSignup</div>
       </div>
     </div>
     <div class="task-item" data-task="p1-t8">
@@ -475,6 +476,14 @@
         <div class="task-file">app/not-found.tsx</div>
       </div>
     </div>
+    <div class="task-item" data-task="p1-t16">
+      <input type="checkbox" id="p1-t16" checked />
+      <div class="task-text">
+        <label for="p1-t16" style="cursor:pointer;font-weight:600">Build Regional Semifinals experience and data pipeline</label>
+        <div class="task-file">app/semifinals · components/semifinals · lib/content/regionalSemifinals.ts · scripts/</div>
+        <div class="task-note">32 partner-continent records, continent filtering, country flags, 15 local partner assets, homepage/About integration, navigation and sitemap discovery</div>
+      </div>
+    </div>
   </div>
 
   <!-- ── PHASE 2 ── -->
@@ -490,10 +499,10 @@
 
   <div id="tasks-phase2">
     <div class="task-item" data-task="p2-t1">
-      <input type="checkbox" id="p2-t1" />
+      <input type="checkbox" id="p2-t1" checked />
       <div class="task-text">
         <label for="p2-t1" style="cursor:pointer;font-weight:600">Create Sanity project (sanity.io + sanity init)</label>
-        <div class="task-note">npm install sanity next-sanity @sanity/image-url · npx sanity@latest init --env</div>
+        <div class="task-note">Connected project: gesawards (g5zdluvf) · production dataset</div>
       </div>
     </div>
     <div class="task-item" data-task="p2-t2">
@@ -501,35 +510,36 @@
       <div class="task-text">
         <label for="p2-t2" style="cursor:pointer;font-weight:600">Add env vars to Vercel + .env.local</label>
         <div class="task-note">NEXT_PUBLIC_SANITY_PROJECT_ID · NEXT_PUBLIC_SANITY_DATASET · NEXT_PUBLIC_SANITY_API_VERSION</div>
+        <div class="task-note">Local .env.local configured ✓ · Vercel Production still pending</div>
       </div>
     </div>
     <div class="task-item" data-task="p2-t3">
-      <input type="checkbox" id="p2-t3" />
+      <input type="checkbox" id="p2-t3" checked />
       <div class="task-text">
         <label for="p2-t3" style="cursor:pointer;font-weight:600">Create sanity.config.ts (Studio embedded at /studio)</label>
         <div class="task-file">sanity.config.ts · app/studio/[[...tool]]/page.tsx</div>
       </div>
     </div>
     <div class="task-item" data-task="p2-t4">
-      <input type="checkbox" id="p2-t4" />
+      <input type="checkbox" id="p2-t4" checked />
       <div class="task-text">
         <label for="p2-t4" style="cursor:pointer;font-weight:600">Create Sanity client</label>
         <div class="task-file">lib/sanity/client.ts</div>
       </div>
     </div>
     <div class="task-item" data-task="p2-t5">
-      <input type="checkbox" id="p2-t5" />
+      <input type="checkbox" id="p2-t5" checked />
       <div class="task-text">
         <label for="p2-t5" style="cursor:pointer;font-weight:600">Switch content getters from seed to GROQ</label>
         <div class="task-file">lib/content/index.ts — swap 8 getter bodies</div>
-        <div class="task-note">No component changes needed. Signatures identical.</div>
+        <div class="task-note">Sanity is primary with safe seed fallback for unavailable fields and images.</div>
       </div>
     </div>
     <div class="task-item" data-task="p2-t6">
-      <input type="checkbox" id="p2-t6" />
+      <input type="checkbox" id="p2-t6" checked />
       <div class="task-text">
         <label for="p2-t6" style="cursor:pointer;font-weight:600">Migrate content into Studio (copy from seed.ts)</label>
-        <div class="task-note">Homepage singleton, judges, categories, partners, tracks, About + Terms pages</div>
+        <div class="task-note">29 documents migrated automatically: settings, homepage, judges, categories, partners, tracks, About + Terms</div>
       </div>
     </div>
     <div class="task-item" data-task="p2-t7">
@@ -862,6 +872,9 @@ export async function getHomeContent() {
           <div><span class="dir">📁 tracks/</span></div>
           <div class="indent"><div><span class="status-done">✓</span> <span class="file">page.tsx</span> <span class="desc">Current edition tracks from getTracks()</span></div></div>
 
+          <div><span class="dir">📁 semifinals/</span></div>
+          <div class="indent"><div><span class="status-done">✓</span> <span class="file">page.tsx</span> <span class="desc">Continent-filterable Regional Semifinals explorer</span></div></div>
+
           <div><span class="dir">📁 terms-and-condition/</span></div>
           <div class="indent"><div><span class="status-done">✓</span> <span class="file">page.tsx</span> <span class="desc">Terms page — slug kept for Wix SEO continuity</span></div></div>
 
@@ -872,8 +885,8 @@ export async function getHomeContent() {
             <div class="indent"><div><span class="status-done">✓</span> <span class="file">page.tsx</span> <span class="desc">generateStaticParams + winner cards, empty state</span></div></div>
           </div>
 
-          <div><span class="dir status-todo">📁 studio/ (PENDING)</span></div>
-          <div class="indent"><div><span class="status-todo">○</span> <span class="file">[[...tool]]/page.tsx</span> <span class="desc">Embedded Sanity Studio — create after sanity init</span></div></div>
+          <div><span class="dir">📁 studio/</span></div>
+          <div class="indent"><div><span class="status-done">✓</span> <span class="file">[[...tool]]/page.tsx</span> <span class="desc">Embedded Sanity Studio connected to production dataset</span></div></div>
 
           <div><span class="dir">📁 actions/</span></div>
           <div class="indent"><div><span class="status-done">✓</span> <span class="file">subscribe.ts</span> <span class="desc">Newsletter Server Action → Resend Audiences API</span></div></div>
@@ -899,7 +912,11 @@ export async function getHomeContent() {
             <div><span class="status-done">✓</span> <span class="file">Journey.tsx</span> <span class="desc">Timeline + CTA band</span></div>
             <div><span class="status-done">✓</span> <span class="file">Partners.tsx</span> <span class="desc">3 partner groups — Powered by, Worldwide, Prize sponsors</span></div>
             <div><span class="status-done">✓</span> <span class="file">NewsletterSignup.tsx</span> <span class="desc">useActionState + useFormStatus, honeypot</span></div>
+            <div><span class="status-done">✓</span> <span class="file">RegionalSemifinalsGrid.tsx</span> <span class="desc">Regional Semifinals integration for homepage and About</span></div>
           </div>
+
+          <div><span class="dir">📁 semifinals/</span></div>
+          <div class="indent"><div><span class="status-done">✓</span> <span class="file">7 components</span> <span class="desc">Explorer, continent sections, partner rows, flags and logo fallbacks</span></div></div>
 
           <div><span class="dir">📁 ui/</span></div>
           <div class="indent">
@@ -918,22 +935,25 @@ export async function getHomeContent() {
             <div><span class="status-done">✓</span> <span class="file">types.ts</span> <span class="desc">All TypeScript types: SiteSettings, HomeContent, Judge, Partner…</span></div>
             <div><span class="status-done">✓</span> <span class="file">seed.ts</span> <span class="desc">Migrated content from live Wix site (images → Wix CDN)</span></div>
             <div><span class="status-done">✓</span> <span class="file">index.ts</span> <span class="desc">Async getters — returns seed now, swap to GROQ for Sanity</span></div>
+            <div><span class="status-done">✓</span> <span class="file">regionalSemifinals.ts</span> <span class="desc">Generated continent-aware partner dataset (32 records)</span></div>
+            <div><span class="status-done">✓</span> <span class="file">regional-semifinals-source.ts</span> <span class="desc">Airtable-derived source data for regeneration</span></div>
           </div>
           <div><span class="status-done">✓</span> <span class="file">utils.ts</span> <span class="desc">cn() class merging helper</span></div>
-          <div><span class="status-todo">○</span> <span class="file">sanity/client.ts</span> <span class="desc">Sanity client — create after sanity init</span></div>
+          <div><span class="status-done">✓</span> <span class="file">sanity/client.ts</span> <span class="desc">Sanity client connected to project g5zdluvf</span></div>
         </div>
 
         <div style="margin-top:1rem"><span class="dir">📁 sanity/</span> <span class="desc">CMS config (no sanity runtime import yet)</span></div>
         <div class="indent">
           <div><span class="status-done">✓</span> <span class="file">schemaTypes/index.ts</span> <span class="desc">Plain object schemas: siteSettings, homePage, judge, track, winner, partner, page</span></div>
           <div><span class="status-done">✓</span> <span class="file">queries.ts</span> <span class="desc">GROQ query strings — ready to use when client is added</span></div>
-          <div><span class="status-todo">○</span> <span class="file">../sanity.config.ts</span> <span class="desc">Studio config — create after sanity init</span></div>
+          <div><span class="status-done">✓</span> <span class="file">../sanity.config.ts</span> <span class="desc">Studio config — /studio, structure tool, registered schemas</span></div>
         </div>
 
         <div style="margin-top:1rem"><span class="dir">📁 public/brand/</span></div>
         <div class="indent">
           <div><span class="status-done">✓</span> <span class="file">gesawards-white.png</span> <span class="desc">White GESAwards wordmark with red "10" — header + footer</span></div>
           <div><span class="status-done">✓</span> <span class="file">mindcet.png</span> <span class="desc">MindCET partner logo</span></div>
+          <div><span class="status-done">✓</span> <span class="file">partners/</span> <span class="desc">15 local Regional Semifinals partner assets + manifest</span></div>
         </div>
 
         <div style="margin-top:1rem"><span class="dir">📁 docs/</span></div>
@@ -944,7 +964,6 @@ export async function getHomeContent() {
 
         <div style="margin-top:1rem">
           <div><span class="status-done">✓</span> <span class="file">next.config.ts</span> <span class="desc">Image domains + 308 redirects from all Wix URLs</span></div>
-          <div><span class="status-done">✓</span> <span class="file">.env.example</span> <span class="desc">Template: RESEND_API_KEY, Sanity vars</span></div>
           <div><span class="status-done">✓</span> <span class="file">README.md</span> <span class="desc">Project overview + quick start</span></div>
         </div>
       </div>
@@ -1181,11 +1200,11 @@ export async function POST(req: NextRequest) {
       <div class="card-title">🔧 טכני</div>
       <div id="tasks-launch-tech">
         <div class="task-item" data-task="l-t1">
-          <input type="checkbox" id="l-t1" />
+          <input type="checkbox" id="l-t1" checked />
           <div class="task-text"><label for="l-t1" style="cursor:pointer">npm run build עובר ללא שגיאות</label></div>
         </div>
         <div class="task-item" data-task="l-t2">
-          <input type="checkbox" id="l-t2" />
+          <input type="checkbox" id="l-t2" checked />
           <div class="task-text"><label for="l-t2" style="cursor:pointer">npm run lint נקי</label></div>
         </div>
         <div class="task-item" data-task="l-t3">
@@ -1281,7 +1300,7 @@ export async function POST(req: NextRequest) {
   // ─── Task persistence ────────────────────────────────────
   const STORAGE_KEY = 'gesawards-tasks-v2';
   const TASK_PHASES = {
-    phase1: ['p1-t1','p1-t2','p1-t3','p1-t4','p1-t5','p1-t6','p1-t7','p1-t8','p1-t9','p1-t10','p1-t11','p1-t12','p1-t13','p1-t14','p1-t15'],
+    phase1: ['p1-t1','p1-t2','p1-t3','p1-t4','p1-t5','p1-t6','p1-t7','p1-t8','p1-t9','p1-t10','p1-t11','p1-t12','p1-t13','p1-t14','p1-t15','p1-t16'],
     phase2: ['p2-t1','p2-t2','p2-t3','p2-t4','p2-t5','p2-t6','p2-t7','p2-t8','p2-t9','p2-t10'],
     phase3: ['p3-t1','p3-t2','p3-t3','p3-t4','p3-t5','p3-t6','p3-t7'],
     phase4: ['p4-t1','p4-t2','p4-t3','p4-t4','p4-t5','p4-t6','p4-t7'],
