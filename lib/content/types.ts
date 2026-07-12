@@ -113,9 +113,23 @@ export type RegionalSemifinalEntry = {
 
 export type Track = {
   title: string;
+  slug: string;
   year: number;
+  order?: number;
   description: string;
+  subtitle?: string;
   sponsor?: string;
+  criteria?: string[];
+  benefits?: string[];
+  logos?: TrackLogo[];
+  sourceUrl?: string;
+};
+
+export type TrackLogo = {
+  name: string;
+  role: "award" | "sponsor" | "partner" | "benefit-provider";
+  image: string;
+  url?: string;
 };
 
 export type Winner = {

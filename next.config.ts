@@ -31,6 +31,26 @@ const nextConfig: NextConfig = {
       { source: "/tracks2025", destination: "/tracks", permanent: true },
       { source: "/2026-tracks", destination: "/tracks", permanent: true },
       { source: "/2021-tracks", destination: "/tracks", permanent: true },
+      {
+        source: "/closing-the-workforce-skills-gap",
+        destination: "/tracks/closing-the-workforce-skills-gap",
+        permanent: true,
+      },
+      {
+        source: "/hackingeducationwithvibecoding",
+        destination: "/tracks/hacking-education-with-vibe-coding",
+        permanent: true,
+      },
+      {
+        source: "/femalefounderstrack",
+        destination: "/tracks/female-founders-track",
+        permanent: true,
+      },
+      {
+        source: "/learning-by-creating",
+        destination: "/tracks/learning-by-creating",
+        permanent: true,
+      },
       // Drop legacy Wix duplicate pages (single segment, e.g. /copy-of-2024-winners).
       { source: "/copy-of-:slug", destination: "/", permanent: true },
     ];

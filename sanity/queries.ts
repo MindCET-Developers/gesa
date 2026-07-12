@@ -32,7 +32,16 @@ export const partnersQuery = /* groq */ `
   *[_type == "partner"] | order(order asc){ name, url, type, "logo": logo.asset->url }`;
 
 export const tracksQuery = /* groq */ `
-  *[_type == "track" && ($year == null || year == $year)] | order(title asc){ title, year, description, sponsor }`;
+  *[_type == "track" && ($year == null || year == $year)] | order(order asc, title asc){
+    "slug": slug.current, title, year, order, subtitle, description, sponsor,
+    criteria, benefits, logos[]{name, role, url, "image": image.asset->url}, sourceUrl
+  }`;
+
+export const trackBySlugQuery = /* groq */ `
+  *[_type == "track" && slug.current == $slug][0]{
+    "slug": slug.current, title, year, order, subtitle, description, sponsor,
+    criteria, benefits, logos[]{name, role, url, "image": image.asset->url}, sourceUrl
+  }`;
 
 export const winnerYearsQuery = /* groq */ `
   array::unique(*[_type == "winner"].year) | order(@ desc)`;

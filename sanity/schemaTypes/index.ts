@@ -161,11 +161,50 @@ const track = {
   type: "document",
   fields: [
     { name: "title", title: "Title", type: "string" },
+    { name: "slug", title: "Slug", type: "slug", options: { source: "title" } },
     { name: "year", title: "Year", type: "number" },
+    { name: "order", title: "Display order", type: "number" },
+    { name: "subtitle", title: "Subtitle", type: "string" },
     { name: "description", title: "Description", type: "text", rows: 3 },
     { name: "sponsor", title: "Sponsor", type: "string" },
+    {
+      name: "criteria",
+      title: "What we're looking for",
+      type: "array",
+      of: [{ type: "string" }],
+    },
+    {
+      name: "benefits",
+      title: "What winners gain",
+      type: "array",
+      of: [{ type: "string" }],
+    },
+    {
+      name: "logos",
+      title: "Logos",
+      type: "array",
+      of: [
+        {
+          type: "object",
+          fields: [
+            { name: "name", title: "Name / alt text", type: "string" },
+            {
+              name: "role",
+              title: "Role",
+              type: "string",
+              options: {
+                list: ["award", "sponsor", "partner", "benefit-provider"],
+              },
+            },
+            { name: "image", title: "Image", type: "image" },
+            { name: "url", title: "Website", type: "url" },
+          ],
+        },
+      ],
+    },
+    { name: "sourceUrl", title: "Original source", type: "url", readOnly: true },
   ],
-  preview: { select: { title: "title", subtitle: "year" } },
+  preview: { select: { title: "title", subtitle: "year", media: "logos.0.image" } },
 };
 
 const winner = {

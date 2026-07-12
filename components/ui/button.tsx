@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 
-type Variant = "primary" | "secondary" | "ghost" | "outline-light";
+type Variant = "primary" | "secondary" | "light" | "ghost" | "outline-light";
 type Size = "md" | "lg";
 
 const base =
@@ -11,6 +11,8 @@ const variants: Record<Variant, string> = {
     "bg-brand text-white shadow-[0_8px_24px_-8px_rgba(17,109,255,0.7)] hover:bg-brand-600 hover:-translate-y-0.5",
   secondary:
     "bg-navy text-white hover:bg-navy-700 hover:-translate-y-0.5",
+  light:
+    "bg-white text-navy shadow-[0_8px_24px_-8px_rgba(17,109,255,0.7)] hover:bg-white/90 hover:-translate-y-0.5",
   ghost: "text-navy hover:bg-surface",
   "outline-light":
     "border border-white/40 text-white hover:bg-white/10 backdrop-blur-sm",

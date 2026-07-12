@@ -1,10 +1,11 @@
 import type { MetadataRoute } from "next";
-import { getWinnerYears } from "@/lib/content";
+import { getHomeContent, getTracks, getWinnerYears } from "@/lib/content";
 
 const BASE = "https://www.globaledtechawards.org";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const years = await getWinnerYears();
+  const [years, home] = await Promise.all([getWinnerYears(), getHomeContent()]);
+  const tracks = await getTracks(home.editionYear);
 
   const staticRoutes = [
     "",
@@ -27,5 +28,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.5,
   }));
 
-  return [...staticRoutes, ...winnerRoutes];
+  const trackRoutes = tracks.map((track) => ({
+    url: `${BASE}/tracks/${track.slug}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly" as const,
+    priority: 0.65,
+  }));
+
+  return [...staticRoutes, ...trackRoutes, ...winnerRoutes];
 }

@@ -6,6 +6,7 @@ import {
   partnersQuery,
   prizeCategoriesQuery,
   siteSettingsQuery,
+  trackBySlugQuery,
   tracksQuery,
   winnerYearsQuery,
   winnersByYearQuery,
@@ -37,6 +38,8 @@ import type {
  * images are still being migrated. */
 
 async function fetchCms<T>(query: string, fallback: T, params: Record<string, unknown> = {}) {
+  if (!sanityClient) return fallback;
+
   try {
     return (await sanityClient.fetch<T | null>(query, params)) ?? fallback;
   } catch {
@@ -96,6 +99,11 @@ export async function getTracks(year?: number): Promise<Track[]> {
   const content = await fetchCms<Track[]>(tracksQuery, [], { year: year ?? null });
   if (content.length) return content;
   return year ? tracks.filter((track) => track.year === year) : tracks;
+}
+
+export async function getTrackBySlug(slug: string): Promise<Track | undefined> {
+  const fallback = tracks.find((track) => track.slug === slug);
+  return fetchCms<Track | undefined>(trackBySlugQuery, fallback, { slug });
 }
 
 export async function getWinnerYears(): Promise<number[]> {
