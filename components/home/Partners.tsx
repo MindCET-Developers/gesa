@@ -11,35 +11,41 @@ function LogoGroup({ title, items }: { title: string; items: Partner[] }) {
         {title}
       </h3>
       <div className="mt-6 flex flex-wrap items-center justify-center gap-x-10 gap-y-6">
-        {items.map((p, i) =>
-          p.logo ? (
+        {items.map((p, i) => {
+          const content = p.logo ? (
+            <Image
+              src={p.logo}
+              alt={p.name}
+              width={160}
+              height={64}
+              className="max-h-16 w-auto object-contain"
+            />
+          ) : (
+            p.name
+          );
+          const className = p.logo
+            ? "grid h-16 w-40 place-items-center grayscale transition hover:grayscale-0"
+            : "font-display text-xl font-extrabold tracking-tight text-navy/70 transition hover:text-navy";
+
+          return p.url ? (
             <a
               key={i}
-              href={p.url ?? "#"}
-              target={p.url ? "_blank" : undefined}
+              href={p.url}
+              target="_blank"
               rel="noopener noreferrer"
-              className="grid h-16 w-40 place-items-center grayscale transition hover:grayscale-0"
+              className={className}
             >
-              <Image
-                src={p.logo}
-                alt={p.name}
-                width={160}
-                height={64}
-                className="max-h-16 w-auto object-contain"
-              />
+              {content}
             </a>
           ) : (
-            <a
+            <span
               key={i}
-              href={p.url ?? "#"}
-              target={p.url ? "_blank" : undefined}
-              rel="noopener noreferrer"
-              className="font-display text-xl font-extrabold tracking-tight text-navy/70 transition hover:text-navy"
+              className={className}
             >
-              {p.name}
-            </a>
-          )
-        )}
+              {content}
+            </span>
+          );
+        })}
       </div>
     </div>
   );

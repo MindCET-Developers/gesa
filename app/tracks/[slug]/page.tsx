@@ -95,7 +95,7 @@ export default async function TrackDetailPage({
         </div>
       </section>
 
-      <main className="bg-white">
+      <div className="bg-white">
         <section className="container-page py-16 md:py-24">
           <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_320px] lg:gap-20">
             <div>
@@ -185,7 +185,7 @@ export default async function TrackDetailPage({
             </aside>
           </div>
         </section>
-      </main>
+      </div>
     </>
   );
 }

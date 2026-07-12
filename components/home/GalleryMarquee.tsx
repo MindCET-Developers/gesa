@@ -16,11 +16,12 @@ export function GalleryMarquee({ images }: { images: GalleryImage[] }) {
           {loop.map((img, i) => (
             <div
               key={i}
+              aria-hidden={i >= images.length ? true : undefined}
               className="relative h-40 w-64 shrink-0 overflow-hidden rounded-xl sm:h-48 sm:w-72"
             >
               <Image
                 src={img.src}
-                alt={img.alt}
+                alt={i >= images.length ? "" : img.alt}
                 fill
                 sizes="288px"
                 className="object-cover"

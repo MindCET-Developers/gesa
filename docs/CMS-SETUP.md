@@ -93,6 +93,7 @@ entered: `return (await sanityClient.fetch(homeQuery)) ?? homeContent;`
 
 ## 6. Revalidation
 
-For instant updates after publishing, add a Sanity webhook to a revalidate route
-(`app/api/revalidate/route.ts`) or use `revalidateTag`. Until then, content uses the
-build/ISR cache.
+For instant updates after publishing, add `SANITY_REVALIDATE_SECRET` to Vercel,
+then create a Sanity webhook that sends `POST /api/revalidate` with an
+`Authorization: Bearer <SANITY_REVALIDATE_SECRET>` header. The route invalidates
+the complete site layout so every CMS-backed page is regenerated.

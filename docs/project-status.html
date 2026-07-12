@@ -355,6 +355,11 @@
       <div>✅ Migrated the legacy GESAwards trophy graphic into Sanity, added optimized logo rendering with accessible alt text, and retained numbered artwork as the no-logo fallback.</div>
       <div>✅ Added track detail URLs to the sitemap and permanent redirects from all four legacy 2026 track URLs.</div>
       <div>✅ Populated and verified the complete 2018–2025 winners archive in Sanity: 67 winner records across eight years, 67 migrated logos, and 43 verified website links.</div>
+      <div>✅ Added a first-party <code>/apply</code> page with the Airtable application embedded, a resilient external fallback, and internal application links across desktop and mobile navigation.</div>
+      <div>✅ Migrated the remaining core content imagery from Wix CDN to Sanity: 8 gallery images, 9 judge photos, and 5 partner logos, with gallery alt text preserved.</div>
+      <div>✅ Re-ran ESLint and the full Next.js production build after the content-image migration; all 25 generated pages completed successfully.</div>
+      <div>✅ Hardened the Sanity revalidation endpoint with Bearer-token authentication and non-cacheable responses; deployment secret and webhook registration remain external launch steps.</div>
+      <div>✅ Completed a focused browser accessibility pass: added a skip link, removed empty partner links, hid duplicated marquee imagery from assistive technology, and removed nested main landmarks from track pages.</div>
     </div>
   </div>
 </div>
@@ -558,10 +563,10 @@
       </div>
     </div>
     <div class="task-item" data-task="p2-t7">
-      <input type="checkbox" id="p2-t7" />
+      <input type="checkbox" id="p2-t7" checked />
       <div class="task-text">
         <label for="p2-t7" style="cursor:pointer;font-weight:600">Upload images to Sanity assets (migrate from Wix CDN)</label>
-        <div class="task-note">Judges photos, partner logos, gallery images → drag-and-drop into Studio</div>
+        <div class="task-note">8 gallery images, 9 judge photos, and 5 partner logos migrated and verified in Sanity</div>
       </div>
     </div>
     <div class="task-item" data-task="p2-t8">
@@ -576,7 +581,7 @@
       <div class="task-text">
         <label for="p2-t9" style="cursor:pointer;font-weight:600">Set up revalidation webhook (Sanity → Vercel)</label>
         <div class="task-file">app/api/revalidate/route.ts</div>
-        <div class="task-note">Instant content updates after publish in Studio</div>
+        <div class="task-note">Authenticated endpoint implemented ✓ · add SANITY_REVALIDATE_SECRET to Vercel and register the Sanity webhook</div>
       </div>
     </div>
     <div class="task-item" data-task="p2-t10">
@@ -699,7 +704,7 @@
       <input type="checkbox" id="p4-t7" />
       <div class="task-text">
         <label for="p4-t7" style="cursor:pointer;font-weight:600">Accessibility audit (WCAG 2.1 AA)</label>
-        <div class="task-note">Focus order, aria-labels, color contrast, keyboard nav</div>
+        <div class="task-note">Focused browser pass complete ✓ · full WCAG 2.1 AA contrast and assistive-technology audit still pending</div>
       </div>
     </div>
   </div>
@@ -1232,7 +1237,7 @@ export async function POST(req: NextRequest) {
           <div class="task-note">RESEND_API_KEY · RESEND_AUDIENCE_ID · Sanity vars</div></div>
         </div>
         <div class="task-item" data-task="l-t5">
-          <input type="checkbox" id="l-t5" />
+          <input type="checkbox" id="l-t5" checked />
           <div class="task-text"><label for="l-t5" style="cursor:pointer">Sanity מחובר ותוכן נטען</label></div>
         </div>
         <div class="task-item" data-task="l-t6">

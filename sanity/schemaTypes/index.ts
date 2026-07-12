@@ -102,7 +102,13 @@ const homePage = {
       name: "gallery",
       title: "Gallery images",
       type: "array",
-      of: [{ type: "image", options: { hotspot: true } }],
+      of: [
+        {
+          type: "image",
+          options: { hotspot: true },
+          fields: [{ name: "alt", title: "Alternative text", type: "string" }],
+        },
+      ],
     },
     { name: "introTitle", title: "Intro title", type: "text", rows: 2 },
     { name: "stats", title: "Statistics", type: "array", of: [stat] },
