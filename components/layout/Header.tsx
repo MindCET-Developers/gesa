@@ -12,10 +12,9 @@ import type { NavItem } from "@/lib/content/types";
 type Props = {
   logoText: string;
   nav: NavItem[];
-  applyUrl: string;
 };
 
-export function Header({ logoText, nav, applyUrl }: Props) {
+export function Header({ logoText, nav }: Props) {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
@@ -71,15 +70,13 @@ export function Header({ logoText, nav, applyUrl }: Props) {
         </nav>
 
         <div className="flex items-center gap-2">
-          <a
-            href={applyUrl}
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            href="/apply"
             className={cn(buttonClasses({ size: "md" }), "hidden sm:inline-flex")}
           >
             Apply today
             <ArrowRight className="size-4" />
-          </a>
+          </Link>
           <button
             type="button"
             className="grid size-10 place-items-center rounded-full text-white hover:bg-white/10 md:hidden"
@@ -108,16 +105,14 @@ export function Header({ logoText, nav, applyUrl }: Props) {
                 </Link>
               ))}
             </nav>
-            <a
-              href={applyUrl}
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href="/apply"
               onClick={() => setOpen(false)}
               className={cn(buttonClasses({ size: "lg" }), "mt-3 w-full")}
             >
               Apply today
               <ArrowRight className="size-4" />
-            </a>
+            </Link>
           </div>
         </div>
       )}

@@ -54,7 +54,6 @@ export default async function RootLayout({
         <Header
           logoText={settings.logoText}
           nav={settings.nav}
-          applyUrl={settings.applyUrl}
         />
         <main className="flex-1">{children}</main>
         <Footer />
