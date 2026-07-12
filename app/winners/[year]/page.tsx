@@ -4,8 +4,39 @@ import Link from "next/link";
 import { PageHero } from "@/components/layout/PageHero";
 import { ArrowRight } from "@/components/ui/icons";
 import { getWinnersByYear, getWinnerYears } from "@/lib/content";
+import type { Winner } from "@/lib/content";
 
 type Params = { year: string };
+
+function WinnerCardContent({ winner }: { winner: Winner }) {
+  return (
+    <>
+      {winner.logo && (
+        <Image
+          src={winner.logo}
+          alt={winner.name}
+          width={120}
+          height={48}
+          className="mb-4 h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+        />
+      )}
+      <span className="text-xs font-bold uppercase tracking-wide text-brand">
+        {winner.track}
+      </span>
+      <h2 className="mt-1 font-display text-xl font-bold text-navy transition-colors group-hover:text-brand">
+        {winner.name}
+      </h2>
+      {winner.country && (
+        <p className="mt-1 text-sm text-muted">{winner.country}</p>
+      )}
+      {winner.description && (
+        <p className="mt-3 text-sm leading-relaxed text-muted">
+          {winner.description}
+        </p>
+      )}
+    </>
+  );
+}
 
 export async function generateStaticParams() {
   const years = await getWinnerYears();
@@ -63,43 +94,21 @@ export default async function WinnersYearPage({
         ) : (
           <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {winners.map((w) => (
-              <li
-                key={`${w.name}-${w.track}`}
-                className="flex flex-col rounded-2xl border border-line bg-white p-7"
-              >
-                {w.logo && (
-                  <Image
-                    src={w.logo}
-                    alt={w.name}
-                    width={120}
-                    height={48}
-                    className="mb-4 h-12 w-auto object-contain"
-                  />
-                )}
-                <span className="text-xs font-bold uppercase tracking-wide text-brand">
-                  {w.track}
-                </span>
-                <h2 className="mt-1 font-display text-xl font-bold text-navy">
-                  {w.website ? (
-                    <a
-                      href={w.website}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="transition-colors hover:text-brand"
-                    >
-                      {w.name}
-                    </a>
-                  ) : (
-                    w.name
-                  )}
-                </h2>
-                {w.country && (
-                  <p className="mt-1 text-sm text-muted">{w.country}</p>
-                )}
-                {w.description && (
-                  <p className="mt-3 text-sm leading-relaxed text-muted">
-                    {w.description}
-                  </p>
+              <li key={`${w.name}-${w.track}`} className="h-full">
+                {w.website ? (
+                  <a
+                    href={w.website}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`Visit ${w.name} website (opens in a new tab)`}
+                    className="group flex h-full flex-col rounded-2xl border border-line bg-white p-7 transition-all duration-300 hover:-translate-y-1.5 hover:border-brand/40 hover:shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-4"
+                  >
+                    <WinnerCardContent winner={w} />
+                  </a>
+                ) : (
+                  <div className="flex h-full flex-col rounded-2xl border border-line bg-white p-7">
+                    <WinnerCardContent winner={w} />
+                  </div>
                 )}
               </li>
             ))}
