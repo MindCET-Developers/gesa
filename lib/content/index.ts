@@ -4,12 +4,12 @@ import {
   pages,
   partners,
   prizeCategories,
-  regionalSemifinals,
   siteSettings,
   tracks,
   winners,
 } from "./seed";
-import type { Partner, RichPage, RegionalSemifinal } from "./types";
+import { regionalSemifinals } from "./regionalSemifinals";
+import type { Partner, RichPage } from "./types";
 
 /* ----------------------------------------------------------------------------
    Content access layer.

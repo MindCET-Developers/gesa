@@ -255,61 +255,6 @@ export const winners: Winner[] = [
   // entries grouped by year; left empty here so the page shows its empty state.
 ];
 
-export const regionalSemifinals: import("./types").RegionalSemifinal[] = [
-  {
-    name: "MEXT",
-    region: "Japan",
-    logo: wixSquare("69f6a1_c2ab29b37ec446b092f2bee723ad4021"),
-    url: "https://www.mext.go.jp/",
-  },
-  {
-    name: "xEdu",
-    region: "Nordics and Baltics",
-    logo: wixSquare("69f6a1_b2c1d5e8f9a0b3c4d5e6f7g8h9i0j1k2"),
-  },
-  {
-    name: "Dutch EdTech",
-    region: "Netherlands",
-    logo: wixSquare("69f6a1_c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7"),
-  },
-  {
-    name: "Started",
-    region: "USA West",
-    logo: wixSquare("69f6a1_d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8"),
-  },
-  {
-    name: "MindCET",
-    region: "Israel",
-    logo: "/brand/mindcet.png",
-    url: "http://www.mindcet.org",
-  },
-  {
-    name: "LearningSpark",
-    region: "South Korea",
-    logo: wixSquare("69f6a1_e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9"),
-  },
-  {
-    name: "School Guardian",
-    region: "Latin America",
-    logo: wixSquare("69f6a1_f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0"),
-  },
-  {
-    name: "Positivo",
-    region: "Brazil",
-    logo: wixSquare("69f6a1_g7h8i9j0k1l2m3n4o5p6q7r8s9t0u1"),
-  },
-  {
-    name: "GSET",
-    region: "Ghana",
-    logo: wixSquare("69f6a1_h8i9j0k1l2m3n4o5p6q7r8s9t0u1v2"),
-  },
-  {
-    name: "Esperanza",
-    region: "China",
-    logo: wixSquare("69f6a1_i9j0k1l2m3n4o5p6q7r8s9t0u1v2w3"),
-  },
-];
-
 export const pages: RichPage[] = [
   {
     slug: "about",

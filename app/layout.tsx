@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Raleway, Open_Sans } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
+import "flag-icons/css/flag-icons.min.css";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
