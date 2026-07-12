@@ -2,7 +2,7 @@
 
 import { useCallback, useLayoutEffect, useMemo, useRef, useState } from "react";
 import type { RegionalSemifinalEntry } from "@/lib/content/types";
-import { CONTINENTS, WORLDWIDE_COLOR_VAR } from "./continents";
+import { CONTINENTS } from "./continents";
 import { ContinentSection } from "./ContinentSection";
 
 type TabKey = "worldwide" | RegionalSemifinalEntry["continent"];
@@ -47,10 +47,11 @@ export function SemifinalsExplorer({ entries }: { entries: RegionalSemifinalEntr
   }
 
   const visible = grouped.filter((group) => active === "worldwide" || active === group.meta.key);
-  const activeColorVar =
+  const activeAccessibleColor =
     active === "worldwide"
-      ? WORLDWIDE_COLOR_VAR
-      : CONTINENTS.find((continent) => continent.key === active)?.colorVar ?? WORLDWIDE_COLOR_VAR;
+      ? "var(--color-navy)"
+      : CONTINENTS.find((continent) => continent.key === active)?.accessibleColor ??
+        "var(--color-navy)";
 
   return (
     <div>
@@ -62,7 +63,7 @@ export function SemifinalsExplorer({ entries }: { entries: RegionalSemifinalEntr
             top: indicator.top,
             width: indicator.width,
             height: indicator.height,
-            background: `var(${activeColorVar})`,
+            background: activeAccessibleColor,
           }}
         />
         <button
@@ -92,8 +93,8 @@ export function SemifinalsExplorer({ entries }: { entries: RegionalSemifinalEntr
               onClick={() => selectTab(meta.key)}
               className="relative z-10 flex items-center gap-1.5 rounded-full border px-4 py-2 text-sm font-semibold transition-colors"
               style={{
-                borderColor: isActive ? "transparent" : `var(${meta.colorVar})`,
-                color: isActive ? "#fff" : `var(${meta.colorVar})`,
+                borderColor: isActive ? "transparent" : meta.accessibleColor,
+                color: isActive ? "#fff" : meta.accessibleColor,
               }}
             >
               {meta.label}

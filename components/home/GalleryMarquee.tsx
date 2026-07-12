@@ -12,7 +12,7 @@ export function GalleryMarquee({ images }: { images: GalleryImage[] }) {
       className="border-y border-line bg-white py-6"
     >
       <div className="group relative flex overflow-hidden">
-        <div className="flex shrink-0 gap-4 pr-4 animate-marquee group-hover:[animation-play-state:paused]">
+        <div className="flex shrink-0 gap-4 pr-4 md:animate-marquee group-hover:[animation-play-state:paused]">
           {loop.map((img, i) => (
             <div
               key={i}
@@ -23,7 +23,10 @@ export function GalleryMarquee({ images }: { images: GalleryImage[] }) {
                 src={img.src}
                 alt={i >= images.length ? "" : img.alt}
                 fill
-                sizes="288px"
+                sizes="(min-width: 640px) 288px, 256px"
+                loading={i < 2 ? "eager" : "lazy"}
+                fetchPriority={i === 0 ? "high" : undefined}
+                quality={65}
                 className="object-cover"
               />
             </div>

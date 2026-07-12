@@ -579,10 +579,10 @@
       </div>
     </div>
     <div class="task-item" data-task="p3-t2">
-      <input type="checkbox" id="p3-t2" />
+      <input type="checkbox" id="p3-t2" checked />
       <div class="task-text">
         <label for="p3-t2" style="cursor:pointer;font-weight:600">Audit all Wix URLs → confirm they redirect or exist in Next.js</label>
-        <div class="task-file">next.config.ts (redirects array)</div>
+        <div class="task-file">next.config.ts · 95 live Wix sitemap URLs audited, 0 unresolved</div>
       </div>
     </div>
     <div class="task-item" data-task="p3-t3">
@@ -667,14 +667,14 @@
       <input type="checkbox" id="p4-t6" />
       <div class="task-text">
         <label for="p4-t6" style="cursor:pointer;font-weight:600">Performance audit + Lighthouse</label>
-        <div class="task-note">Target: LCP &lt; 2.5s, CLS &lt; 0.1, INP &lt; 200ms on Vercel preview</div>
+        <div class="task-note">Local mobile Lighthouse: Performance 79 · LCP 4.9s · TBT 90ms · CLS 0 · Vercel preview audit still required</div>
       </div>
     </div>
     <div class="task-item" data-task="p4-t7">
       <input type="checkbox" id="p4-t7" />
       <div class="task-text">
         <label for="p4-t7" style="cursor:pointer;font-weight:600">Accessibility audit (WCAG 2.1 AA)</label>
-        <div class="task-note">Focused browser pass complete ✓ · full WCAG 2.1 AA contrast and assistive-technology audit still pending</div>
+        <div class="task-note">Browser pass + Lighthouse Accessibility 100 ✓ · assistive-technology audit still pending</div>
       </div>
     </div>
   </div>
@@ -1252,7 +1252,7 @@ export async function POST(req: NextRequest) {
           <div class="task-text"><label for="l-s7" style="cursor:pointer">Sitemap הוגש ל-Search Console</label></div>
         </div>
         <div class="task-item" data-task="l-s8">
-          <input type="checkbox" id="l-s8" />
+          <input type="checkbox" id="l-s8" checked />
           <div class="task-text"><label for="l-s8" style="cursor:pointer">Redirects עובדים: /2023-winners → /winners/2023</label></div>
         </div>
         <div class="task-item" data-task="l-s9">

@@ -3,10 +3,10 @@ import type { PrizeCategory } from "@/lib/content/types";
 
 // Static class maps so Tailwind can see every utility at build time.
 const accent: Record<PrizeCategory["color"], { bar: string; glow: string; chip: string }> = {
-  brand: { bar: "bg-brand", glow: "from-brand/10", chip: "bg-brand/10 text-brand" },
-  sky: { bar: "bg-sky", glow: "from-sky/10", chip: "bg-sky/10 text-[#1f7fb8]" },
-  red: { bar: "bg-accent-red", glow: "from-accent-red/10", chip: "bg-accent-red/10 text-accent-red" },
-  yellow: { bar: "bg-accent-yellow", glow: "from-accent-yellow/20", chip: "bg-accent-yellow/20 text-[#9a7a00]" },
+  brand: { bar: "bg-brand", glow: "from-brand/10", chip: "bg-brand/10 text-brand-700" },
+  sky: { bar: "bg-sky", glow: "from-sky/10", chip: "bg-sky/10 text-[#17658f]" },
+  red: { bar: "bg-accent-red", glow: "from-accent-red/10", chip: "bg-accent-red/10 text-[#b51219]" },
+  yellow: { bar: "bg-accent-yellow", glow: "from-accent-yellow/20", chip: "bg-accent-yellow/20 text-[#765e00]" },
 };
 
 export function PrizeCategories({ categories }: { categories: PrizeCategory[] }) {

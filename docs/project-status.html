@@ -360,6 +360,8 @@
       <div>✅ Re-ran ESLint and the full Next.js production build after the content-image migration; all 25 generated pages completed successfully.</div>
       <div>✅ Hardened the Sanity revalidation endpoint with Bearer-token authentication and non-cacheable responses; deployment secret and webhook registration remain external launch steps.</div>
       <div>✅ Completed a focused browser accessibility pass: added a skip link, removed empty partner links, hid duplicated marquee imagery from assistive technology, and removed nested main landmarks from track pages.</div>
+      <div>✅ Audited all 95 URLs in the live Wix sitemaps and expanded permanent redirects for winner archives, historical tracks, campaigns, and blog posts; every URL now returns either 200 or 308 locally.</div>
+      <div>✅ Ran a mobile Lighthouse pass against the production build and fixed lazy LCP image loading, responsive image sizing, and every reported color-contrast failure; Accessibility and SEO now score 100, while Performance remains 79 pending Vercel-based LCP optimization.</div>
     </div>
   </div>
 </div>
@@ -609,10 +611,10 @@
       </div>
     </div>
     <div class="task-item" data-task="p3-t2">
-      <input type="checkbox" id="p3-t2" />
+      <input type="checkbox" id="p3-t2" checked />
       <div class="task-text">
         <label for="p3-t2" style="cursor:pointer;font-weight:600">Audit all Wix URLs → confirm they redirect or exist in Next.js</label>
-        <div class="task-file">next.config.ts (redirects array)</div>
+        <div class="task-file">next.config.ts · 95 live Wix sitemap URLs audited, 0 unresolved</div>
       </div>
     </div>
     <div class="task-item" data-task="p3-t3">
@@ -697,14 +699,14 @@
       <input type="checkbox" id="p4-t6" />
       <div class="task-text">
         <label for="p4-t6" style="cursor:pointer;font-weight:600">Performance audit + Lighthouse</label>
-        <div class="task-note">Target: LCP &lt; 2.5s, CLS &lt; 0.1, INP &lt; 200ms on Vercel preview</div>
+        <div class="task-note">Local mobile Lighthouse: Performance 79 · LCP 4.9s · TBT 90ms · CLS 0 · Vercel preview audit still required</div>
       </div>
     </div>
     <div class="task-item" data-task="p4-t7">
       <input type="checkbox" id="p4-t7" />
       <div class="task-text">
         <label for="p4-t7" style="cursor:pointer;font-weight:600">Accessibility audit (WCAG 2.1 AA)</label>
-        <div class="task-note">Focused browser pass complete ✓ · full WCAG 2.1 AA contrast and assistive-technology audit still pending</div>
+        <div class="task-note">Browser pass + Lighthouse Accessibility 100 ✓ · assistive-technology audit still pending</div>
       </div>
     </div>
   </div>
@@ -1291,7 +1293,7 @@ export async function POST(req: NextRequest) {
           <div class="task-text"><label for="l-s7" style="cursor:pointer">Sitemap הוגש ל-Search Console</label></div>
         </div>
         <div class="task-item" data-task="l-s8">
-          <input type="checkbox" id="l-s8" />
+          <input type="checkbox" id="l-s8" checked />
           <div class="task-text"><label for="l-s8" style="cursor:pointer">Redirects עובדים: /2023-winners → /winners/2023</label></div>
         </div>
         <div class="task-item" data-task="l-s9">

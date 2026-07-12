@@ -17,7 +17,10 @@ export function Criteria({ home }: { home: HomeContent }) {
               key={c.index}
               className="group relative overflow-hidden rounded-2xl border border-line bg-white p-7 transition-all hover:border-brand/40 hover:shadow-[0_18px_40px_-24px_rgba(17,109,255,0.5)]"
             >
-              <span className="font-display text-5xl font-extrabold text-brand/15 transition-colors group-hover:text-brand/30">
+              <span
+                aria-hidden="true"
+                className="font-display text-5xl font-extrabold text-brand transition-colors group-hover:text-brand-700"
+              >
                 {String(c.index).padStart(2, "0")}
               </span>
               <p className="mt-3 text-lg font-semibold leading-snug text-navy">

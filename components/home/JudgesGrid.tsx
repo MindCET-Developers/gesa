@@ -50,7 +50,7 @@ export function JudgesGrid({ judges }: { judges: Judge[] }) {
               <h3 className="mt-4 font-display text-base font-bold text-navy">
                 {judge.name}
               </h3>
-              <p className="mt-1 text-sm font-semibold text-brand">{judge.title}</p>
+              <p className="mt-1 text-sm font-semibold text-brand-700">{judge.title}</p>
               <p className="text-sm text-muted">{judge.company}</p>
             </li>
           ))}

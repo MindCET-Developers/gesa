@@ -29,7 +29,7 @@ export function SectionHeading({
         <span
           className={cn(
             "inline-block text-sm font-bold uppercase tracking-[0.2em]",
-            tone === "dark" ? "text-brand" : "text-sky"
+            tone === "dark" ? "text-brand-700" : "text-sky"
           )}
         >
           {kicker}
