@@ -27,7 +27,8 @@ export const regionalSemifinals: RegionalSemifinalEntry[] = [
         "name": "United States",
         "code": "us"
       }
-    ]
+    ],
+    "logo": "/brand/partners/startedaccelerator.png"
   },
   {
     "partner": "Dutch EdTech",
@@ -37,7 +38,8 @@ export const regionalSemifinals: RegionalSemifinalEntry[] = [
         "name": "Netherlands",
         "code": "nl"
       }
-    ]
+    ],
+    "logo": "/brand/partners/dutch-edtech.png"
   },
   {
     "partner": "Edcrunch",
@@ -47,7 +49,8 @@ export const regionalSemifinals: RegionalSemifinalEntry[] = [
         "name": "Russia",
         "code": "ru"
       }
-    ]
+    ],
+    "logo": "/brand/partners/edcrunch.svg"
   },
   {
     "partner": "EdTech Austria - Innovation Salzburg",
@@ -97,7 +100,8 @@ export const regionalSemifinals: RegionalSemifinalEntry[] = [
         "name": "Italy",
         "code": "it"
       }
-    ]
+    ],
+    "logo": "/brand/partners/future-education-modena.png"
   },
   {
     "partner": "SEK Lab",
@@ -111,7 +115,8 @@ export const regionalSemifinals: RegionalSemifinalEntry[] = [
         "name": "Portugal",
         "code": "pt"
       }
-    ]
+    ],
+    "logo": "/brand/partners/sek-lab.png"
   },
   {
     "partner": "Startup Braga",
@@ -169,7 +174,8 @@ export const regionalSemifinals: RegionalSemifinalEntry[] = [
         "name": "Norway",
         "code": "no"
       }
-    ]
+    ],
+    "logo": "/brand/partners/xedu.png"
   },
   {
     "partner": "Rest of the World",
@@ -245,7 +251,8 @@ export const regionalSemifinals: RegionalSemifinalEntry[] = [
         "name": "Georgia",
         "code": "ge"
       }
-    ]
+    ],
+    "logo": "/brand/partners/edcrunch.svg"
   },
   {
     "partner": "Eduspaze",
@@ -295,7 +302,8 @@ export const regionalSemifinals: RegionalSemifinalEntry[] = [
         "name": "Myanmar (formerly Burma)",
         "code": "mm"
       }
-    ]
+    ],
+    "logo": "/brand/partners/eduspaze.jpg"
   },
   {
     "partner": "Esperanza",
@@ -305,7 +313,8 @@ export const regionalSemifinals: RegionalSemifinalEntry[] = [
         "name": "China",
         "code": "cn"
       }
-    ]
+    ],
+    "logo": "/brand/partners/esperanza.png"
   },
   {
     "partner": "Ingenious Faces",
@@ -315,7 +324,8 @@ export const regionalSemifinals: RegionalSemifinalEntry[] = [
         "name": "India",
         "code": "in"
       }
-    ]
+    ],
+    "logo": "/brand/partners/ingenious-faces.png"
   },
   {
     "partner": "Japan",
@@ -325,7 +335,8 @@ export const regionalSemifinals: RegionalSemifinalEntry[] = [
         "name": "Japan",
         "code": "jp"
       }
-    ]
+    ],
+    "logo": "/brand/partners/japan.png"
   },
   {
     "partner": "Learning Spark",
@@ -373,7 +384,8 @@ export const regionalSemifinals: RegionalSemifinalEntry[] = [
         "name": "Brazil",
         "code": "br"
       }
-    ]
+    ],
+    "logo": "/brand/partners/br-founder-institute-schoolguardian.png"
   },
   {
     "partner": "EdLATAM Alliance",
@@ -493,7 +505,8 @@ export const regionalSemifinals: RegionalSemifinalEntry[] = [
         "name": "Brazil",
         "code": "br"
       }
-    ]
+    ],
+    "logo": "/brand/partners/positivo.png"
   },
   {
     "partner": "Prismapar",
@@ -603,7 +616,8 @@ export const regionalSemifinals: RegionalSemifinalEntry[] = [
         "name": "Trinidad and Tobago",
         "code": "tt"
       }
-    ]
+    ],
+    "logo": "/brand/partners/prismapar.png"
   },
   {
     "partner": "Tech Monterrey",
@@ -935,7 +949,8 @@ export const regionalSemifinals: RegionalSemifinalEntry[] = [
         "name": "Seychelles",
         "code": "sc"
       }
-    ]
+    ],
+    "logo": "/brand/partners/gset-ghana-society-for-education-technology.png"
   },
   {
     "partner": "Prismapar",
@@ -945,7 +960,8 @@ export const regionalSemifinals: RegionalSemifinalEntry[] = [
         "name": "Equatorial Guinea",
         "code": "gq"
       }
-    ]
+    ],
+    "logo": "/brand/partners/prismapar.png"
   },
   {
     "partner": "Tech Monterrey",
@@ -965,7 +981,8 @@ export const regionalSemifinals: RegionalSemifinalEntry[] = [
         "name": "Hong Kong",
         "code": "hk"
       }
-    ]
+    ],
+    "logo": "/brand/partners/esperanza.png"
   },
   {
     "partner": "Rest of the World",
