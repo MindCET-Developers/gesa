@@ -3,8 +3,9 @@ import { Raleway, Open_Sans } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import "flag-icons/css/flag-icons.min.css";
 import "./globals.css";
-import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { Header } from "@/components/layout/Header";
+import { SiteShell } from "@/components/layout/SiteShell";
 import { getSiteSettings } from "@/lib/content";
 
 const raleway = Raleway({
@@ -50,21 +51,18 @@ export default async function RootLayout({
       lang="en"
       className={`${raleway.variable} ${openSans.variable} h-full antialiased`}
     >
-      <body className="flex min-h-full flex-col bg-white">
-        <a
-          href="#main-content"
-          className="fixed left-4 top-4 z-[100] -translate-y-24 rounded-md bg-white px-4 py-2 font-semibold text-navy shadow-lg transition-transform focus:translate-y-0"
+      <body className="min-h-full bg-white">
+        <SiteShell
+          header={
+            <Header
+              logoText={settings.logoText}
+              nav={settings.nav}
+            />
+          }
+          footer={<Footer />}
         >
-          Skip to main content
-        </a>
-        <Header
-          logoText={settings.logoText}
-          nav={settings.nav}
-        />
-        <main id="main-content" tabIndex={-1} className="flex-1 scroll-mt-24">
           {children}
-        </main>
-        <Footer />
+        </SiteShell>
         <Analytics />
       </body>
     </html>

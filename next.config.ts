@@ -13,6 +13,20 @@ const nextConfig: NextConfig = {
       { protocol: "https", hostname: "cdn.sanity.io" },
     ],
   },
+  async headers() {
+    return [
+      {
+        source: "/embed/:path*",
+        headers: [
+          {
+            key: "Content-Security-Policy",
+            value:
+              "frame-ancestors 'self' https://*.wix.com https://*.wixsite.com https://*.wixstudio.com https://globaledtechawards.org https://www.globaledtechawards.org",
+          },
+        ],
+      },
+    ];
+  },
   async redirects() {
     // Preserve SEO from the old Wix URLs. Winner archive pages collapse into the
     // new /winners/[year] template; orphaned "copy-of-*" pages are dropped home.
