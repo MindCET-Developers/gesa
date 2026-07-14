@@ -1,11 +1,14 @@
 import type { Metadata } from "next";
 import { Raleway, Open_Sans } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import "flag-icons/css/flag-icons.min.css";
 import "./globals.css";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { SiteShell } from "@/components/layout/SiteShell";
+import { GoogleConsentMode } from "@/components/cookies/GoogleConsentMode";
+import { CookieConsentBanner } from "@/components/cookies/CookieConsentBanner";
 import { getSiteSettings } from "@/lib/content";
 
 const raleway = Raleway({
@@ -52,6 +55,7 @@ export default async function RootLayout({
       className={`${raleway.variable} ${openSans.variable} h-full antialiased`}
     >
       <body className="min-h-full bg-white">
+        <GoogleConsentMode />
         <SiteShell
           header={
             <Header
@@ -63,7 +67,9 @@ export default async function RootLayout({
         >
           {children}
         </SiteShell>
+        <CookieConsentBanner />
         <Analytics />
+        <GoogleAnalytics gaId="G-4JBT3Y2KMR" />
       </body>
     </html>
   );

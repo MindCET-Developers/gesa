@@ -3,6 +3,30 @@ import Link from "next/link";
 import { socialIcons } from "@/components/ui/icons";
 import { getSiteSettings } from "@/lib/content";
 
+function CookieSettings() {
+  const handleCookieSettings = () => {
+    // Clear consent and reload to show banner
+    if (typeof window !== "undefined") {
+      try {
+        localStorage.removeItem("gesa_cookie_consent_v1");
+        window.location.reload();
+      } catch {
+        // Silently fail if localStorage is unavailable
+      }
+    }
+  };
+
+  return (
+    <button
+      onClick={handleCookieSettings}
+      className="hover:text-white transition-colors focus:outline focus:outline-2 focus:outline-offset-1 focus:outline-white rounded"
+      aria-label="Cookie settings"
+    >
+      Cookie settings
+    </button>
+  );
+}
+
 export async function Footer() {
   const settings = await getSiteSettings();
   const year = new Date().getFullYear();
@@ -87,7 +111,13 @@ export async function Footer() {
       <div className="border-t border-white/10">
         <div className="container-page flex flex-col items-center justify-between gap-2 py-6 text-xs text-white/50 sm:flex-row">
           <p>© {year} Global EdTech Startup Awards. All rights reserved.</p>
-          <p>Powered by CET · Organised by MindCET</p>
+          <div className="flex items-center gap-3">
+            <Link href="/privacy-policy" className="hover:text-white transition-colors">
+              Privacy Policy
+            </Link>
+            <span>·</span>
+            <CookieSettings />
+          </div>
         </div>
       </div>
     </footer>
