@@ -14,7 +14,7 @@ export function SiteShell({
 }) {
   const pathname = usePathname();
 
-  if (pathname.startsWith("/embed/")) {
+  if (pathname.startsWith("/embed/") || pathname.startsWith("/studio")) {
     return <main>{children}</main>;
   }
 
