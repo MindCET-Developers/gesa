@@ -11,9 +11,13 @@ import {
 import { updateGoogleConsent } from "./GoogleConsentMode";
 
 export function CookieConsentBanner() {
-  const [isVisible, setIsVisible] = useState(() => !hasUserConsented());
+  const [isVisible, setIsVisible] = useState(true);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
+    setIsVisible(!hasUserConsented());
+
     const handleStorageChange = () => {
       setIsVisible(!hasUserConsented());
     };
