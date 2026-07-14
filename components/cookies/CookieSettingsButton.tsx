@@ -2,10 +2,15 @@
 
 export function CookieSettingsButton() {
   const handleCookieSettings = () => {
-    // Clear consent and reload to show banner
     try {
       localStorage.removeItem("gesa_cookie_consent_v1");
-      window.location.reload();
+      // Dispatch storage event to notify other components
+      window.dispatchEvent(new StorageEvent("storage", {
+        key: "gesa_cookie_consent_v1",
+        oldValue: null,
+        newValue: null,
+        storageArea: localStorage,
+      }));
     } catch {
       // Silently fail if localStorage is unavailable
     }

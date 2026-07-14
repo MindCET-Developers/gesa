@@ -14,7 +14,12 @@ export function CookieConsentBanner() {
   const [isVisible, setIsVisible] = useState(() => !hasUserConsented());
 
   useEffect(() => {
-    // Sync state with localStorage changes if needed
+    const handleStorageChange = () => {
+      setIsVisible(!hasUserConsented());
+    };
+
+    window.addEventListener("storage", handleStorageChange);
+    return () => window.removeEventListener("storage", handleStorageChange);
   }, []);
 
   const handleAccept = () => {

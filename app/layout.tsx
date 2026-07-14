@@ -26,7 +26,7 @@ const openSans = Open_Sans({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.globaledtechawards.org"),
+  metadataBase: new URL("https://www.gesawards.io"),
   title: {
     default: "Global EdTech Startup Awards (GESAwards)",
     template: "%s · GESAwards",
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     title: "Global EdTech Startup Awards (GESAwards)",
     description:
       "The largest EdTech startup competition and community in the world. Step onto the global EdTech stage.",
-    url: "https://www.globaledtechawards.org",
+    url: "https://www.gesawards.io",
     siteName: "GESAwards",
     type: "website",
   },
