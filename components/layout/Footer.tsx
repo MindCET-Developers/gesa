@@ -2,30 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { socialIcons } from "@/components/ui/icons";
 import { getSiteSettings } from "@/lib/content";
-
-function CookieSettings() {
-  const handleCookieSettings = () => {
-    // Clear consent and reload to show banner
-    if (typeof window !== "undefined") {
-      try {
-        localStorage.removeItem("gesa_cookie_consent_v1");
-        window.location.reload();
-      } catch {
-        // Silently fail if localStorage is unavailable
-      }
-    }
-  };
-
-  return (
-    <button
-      onClick={handleCookieSettings}
-      className="hover:text-white transition-colors focus:outline focus:outline-2 focus:outline-offset-1 focus:outline-white rounded"
-      aria-label="Cookie settings"
-    >
-      Cookie settings
-    </button>
-  );
-}
+import { CookieSettingsButton } from "@/components/cookies/CookieSettingsButton";
 
 export async function Footer() {
   const settings = await getSiteSettings();
@@ -116,7 +93,7 @@ export async function Footer() {
               Privacy Policy
             </Link>
             <span>·</span>
-            <CookieSettings />
+            <CookieSettingsButton />
           </div>
         </div>
       </div>
