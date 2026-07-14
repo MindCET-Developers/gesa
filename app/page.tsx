@@ -16,6 +16,7 @@ import {
   getSiteSettings,
   getRegionalSemifinals,
 } from "@/lib/content";
+import { SITE_URL, jsonLdString } from "@/lib/site";
 
 export default async function HomePage() {
   const [home, settings, categories, judges, partners, seminfinals] = await Promise.all([
@@ -27,8 +28,27 @@ export default async function HomePage() {
     getRegionalSemifinals(),
   ]);
 
+  // Add startDate/endDate and location once the edition timeline is final —
+  // they are required for Google event rich results.
+  const eventJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Event",
+    name: `Global EdTech Startup Awards ${home.editionYear}`,
+    url: `${SITE_URL}/apply`,
+    eventAttendanceMode: "https://schema.org/MixedEventAttendanceMode",
+    organizer: {
+      "@type": "Organization",
+      name: "Global EdTech Startup Awards",
+      url: SITE_URL,
+    },
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: jsonLdString(eventJsonLd) }}
+      />
       <Hero home={home} settings={settings} />
       <GalleryMarquee images={home.gallery} />
       <IntroStats home={home} />

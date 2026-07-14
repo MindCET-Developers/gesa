@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { buttonClasses } from "@/components/ui/button";
-import { ArrowRight } from "@/components/ui/icons";
+import { ApplyFormLink } from "@/components/apply/ApplyFormLink";
+import { ApplyTracking } from "@/components/apply/ApplyTracking";
 import { getSiteSettings } from "@/lib/content";
 
 export const metadata: Metadata = {
@@ -14,6 +14,7 @@ export default async function ApplyPage() {
 
   return (
     <>
+      <ApplyTracking />
       <section className="bg-navy px-5 py-16 text-center text-white md:py-24">
         <p className="font-display text-sm font-bold uppercase tracking-[0.22em] text-sky">
           2026 applications
@@ -40,15 +41,7 @@ export default async function ApplyPage() {
 
           <div className="mt-6 text-center text-sm text-muted">
             <p>If the embedded form does not load, open it in a new tab.</p>
-            <a
-              href={settings.applyUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`${buttonClasses({ variant: "secondary", size: "md" })} mt-4`}
-            >
-              Open application form
-              <ArrowRight className="size-4" />
-            </a>
+            <ApplyFormLink applyUrl={settings.applyUrl} />
           </div>
         </div>
       </section>

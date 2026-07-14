@@ -3,12 +3,8 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { X } from "lucide-react";
-import {
-  acceptAnalytics,
-  rejectConsent,
-  hasUserConsented,
-} from "@/lib/cookies";
-import { updateGoogleConsent } from "./GoogleConsentMode";
+import { acceptAll, rejectConsent, hasUserConsented } from "@/lib/cookies";
+import { updateGoogleConsent } from "@/lib/analytics";
 
 export function CookieConsentBanner() {
   const [isVisible, setIsVisible] = useState(true);
@@ -27,8 +23,8 @@ export function CookieConsentBanner() {
   }, []);
 
   const handleAccept = () => {
-    acceptAnalytics();
-    updateGoogleConsent("granted", "denied");
+    acceptAll();
+    updateGoogleConsent("granted", "granted");
     setIsVisible(false);
   };
 
@@ -61,12 +57,12 @@ export function CookieConsentBanner() {
         {/* Content */}
         <div className="pr-10 md:pr-0">
           <h2 className="text-sm md:text-base font-semibold mb-2 text-white">
-            We use cookies to analyze performance
+            We use cookies to analyze performance and measure our campaigns
           </h2>
           <p className="text-xs md:text-sm text-white/70 mb-4">
-            We use optional Google Analytics cookies to understand how you use
-            our website and to improve performance. You can accept or reject
-            these cookies at any time.{" "}
+            We use optional Google cookies for analytics (Google Analytics) and
+            for advertising and conversion measurement (Google Ads). You can
+            accept or reject these cookies at any time.{" "}
             <Link
               href="/privacy-policy"
               className="text-brand hover:underline focus:outline focus:outline-2 focus:outline-offset-1 focus:outline-brand rounded"
@@ -80,7 +76,7 @@ export function CookieConsentBanner() {
             <button
               onClick={handleAccept}
               className="px-4 py-2 rounded bg-brand text-white text-sm font-medium hover:bg-opacity-90 transition-all focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-brand active:bg-opacity-80"
-              aria-label="Accept analytics cookies"
+              aria-label="Accept analytics and advertising cookies"
             >
               Accept cookies
             </button>

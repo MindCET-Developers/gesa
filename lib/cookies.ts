@@ -1,14 +1,16 @@
-const COOKIE_CONSENT_KEY = "gesa_cookie_consent_v1";
+// Version bump: v1 only covered analytics consent. v2 also covers Google Ads
+// (Consent Mode v2), so previously-consented visitors are asked again.
+export const COOKIE_CONSENT_KEY = "gesa_cookie_consent_v2";
 
-export type ConsentType = "all" | "rejected" | "none";
+export type ConsentValue = "granted" | "denied";
 
 export interface CookieConsentState {
   accepted: boolean;
   rejected: boolean;
-  analytics_storage: "denied" | "granted";
-  ad_storage: "denied";
-  ad_user_data: "denied";
-  ad_personalization: "denied";
+  analytics_storage: ConsentValue;
+  ad_storage: ConsentValue;
+  ad_user_data: ConsentValue;
+  ad_personalization: ConsentValue;
 }
 
 const DEFAULT_CONSENT_STATE: CookieConsentState = {
@@ -49,14 +51,14 @@ export function setCookieConsent(consent: CookieConsentState): void {
   }
 }
 
-export function acceptAnalytics(): CookieConsentState {
+export function acceptAll(): CookieConsentState {
   const state: CookieConsentState = {
     accepted: true,
     rejected: false,
     analytics_storage: "granted",
-    ad_storage: "denied",
-    ad_user_data: "denied",
-    ad_personalization: "denied",
+    ad_storage: "granted",
+    ad_user_data: "granted",
+    ad_personalization: "granted",
   };
   setCookieConsent(state);
   return state;

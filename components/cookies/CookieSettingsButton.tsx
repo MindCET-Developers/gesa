@@ -1,12 +1,14 @@
 "use client";
 
+import { COOKIE_CONSENT_KEY } from "@/lib/cookies";
+
 export function CookieSettingsButton() {
   const handleCookieSettings = () => {
     try {
-      localStorage.removeItem("gesa_cookie_consent_v1");
+      localStorage.removeItem(COOKIE_CONSENT_KEY);
       // Dispatch storage event to notify other components
       window.dispatchEvent(new StorageEvent("storage", {
-        key: "gesa_cookie_consent_v1",
+        key: COOKIE_CONSENT_KEY,
         oldValue: null,
         newValue: null,
         storageArea: localStorage,

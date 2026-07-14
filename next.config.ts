@@ -38,6 +38,15 @@ const nextConfig: NextConfig = {
     }));
 
     return [
+      // Once the old domain's DNS points at this deployment, send every
+      // request on it to the new canonical host (path-specific legacy
+      // redirects below then apply on gesawards.io, at the cost of one hop).
+      {
+        source: "/:path*",
+        has: [{ type: "host" as const, value: "(www\\.)?globaledtechawards\\.org" }],
+        destination: "https://www.gesawards.io/:path*",
+        permanent: true,
+      },
       ...winnerRedirects,
       { source: "/2015-winners", destination: "/winners", permanent: true },
       { source: "/2016-winners", destination: "/winners", permanent: true },

@@ -1,9 +1,10 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useEffect } from "react";
 import { useFormStatus } from "react-dom";
 import { subscribe, type SubscribeState } from "@/app/actions/subscribe";
 import { ArrowRight, Check } from "@/components/ui/icons";
+import { trackEvent } from "@/lib/analytics";
 import type { HomeContent } from "@/lib/content/types";
 
 const initial: SubscribeState = { ok: false, message: "" };
@@ -24,6 +25,10 @@ function SubmitButton() {
 
 export function NewsletterSignup({ home }: { home: HomeContent }) {
   const [state, formAction] = useActionState(subscribe, initial);
+
+  useEffect(() => {
+    if (state.ok && state.message) trackEvent("newsletter_signup");
+  }, [state.ok, state.message]);
 
   return (
     <section className="container-page py-20 md:py-24">

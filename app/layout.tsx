@@ -7,9 +7,12 @@ import "./globals.css";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { SiteShell } from "@/components/layout/SiteShell";
-import { GoogleConsentMode } from "@/components/cookies/GoogleConsentMode";
+import { GtagInit } from "@/components/analytics/GtagInit";
 import { CookieConsentBanner } from "@/components/cookies/CookieConsentBanner";
 import { getSiteSettings } from "@/lib/content";
+import { SITE_URL, jsonLdString } from "@/lib/site";
+
+const GA_ID = process.env.NEXT_PUBLIC_GA_ID ?? "G-4JBT3Y2KMR";
 
 const raleway = Raleway({
   variable: "--font-raleway",
@@ -26,7 +29,7 @@ const openSans = Open_Sans({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.gesawards.io"),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: "Global EdTech Startup Awards (GESAwards)",
     template: "%s · GESAwards",
@@ -37,7 +40,7 @@ export const metadata: Metadata = {
     title: "Global EdTech Startup Awards (GESAwards)",
     description:
       "The largest EdTech startup competition and community in the world. Step onto the global EdTech stage.",
-    url: "https://www.gesawards.io",
+    url: SITE_URL,
     siteName: "GESAwards",
     type: "website",
   },
@@ -49,13 +52,23 @@ export default async function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   const settings = await getSiteSettings();
 
+  const organizationJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "Global EdTech Startup Awards",
+    alternateName: "GESAwards",
+    url: SITE_URL,
+    logo: `${SITE_URL}/brand/gesawards-white.png`,
+    sameAs: settings.social.map((s) => s.href),
+  };
+
   return (
     <html
       lang="en"
       className={`${raleway.variable} ${openSans.variable} h-full antialiased`}
     >
       <body className="min-h-full bg-white">
-        <GoogleConsentMode />
+        <GtagInit adsId={process.env.NEXT_PUBLIC_GOOGLE_ADS_ID} />
         <SiteShell
           header={
             <Header
@@ -69,7 +82,14 @@ export default async function RootLayout({
         </SiteShell>
         <CookieConsentBanner />
         <Analytics />
-        <GoogleAnalytics gaId="G-4JBT3Y2KMR" />
+        <GoogleAnalytics
+          gaId={GA_ID}
+          debugMode={process.env.NODE_ENV !== "production"}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: jsonLdString(organizationJsonLd) }}
+        />
       </body>
     </html>
   );

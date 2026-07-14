@@ -1,7 +1,8 @@
 import type { MetadataRoute } from "next";
 import { getHomeContent, getTracks, getWinnerYears } from "@/lib/content";
+import { SITE_URL } from "@/lib/site";
 
-const BASE = "https://www.globaledtechawards.org";
+const BASE = SITE_URL;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const [years, home] = await Promise.all([getWinnerYears(), getHomeContent()]);
