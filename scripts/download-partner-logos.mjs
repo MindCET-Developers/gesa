@@ -78,6 +78,20 @@ const airtableNames = new Set(RAW_PARTNERS.filter((p) => p.logoUrl).map((p) => p
 for (const [name, url] of Object.entries(manualLogos)) {
   if (airtableNames.has(name)) continue; // Airtable logo takes precedence
 
+  // A value that isn't an http(s) URL is treated as a local path already under public/
+  // (e.g. a logo dropped in by hand that has no download source). Just register it in the
+  // manifest so it survives re-running the refresh — no download needed.
+  if (!/^https?:\/\//i.test(url)) {
+    const localPath = path.join(root, "public", url.replace(/^\//, ""));
+    if (existsSync(localPath)) {
+      manifest[name] = url.startsWith("/") ? url : `/${url}`;
+      console.log(`Registered ${name} (local file) -> ${manifest[name]}`);
+    } else {
+      console.warn(`Skipping "${name}": local logo "${url}" not found at ${localPath}.`);
+    }
+    continue;
+  }
+
   let res;
   try {
     res = await fetch(url, {

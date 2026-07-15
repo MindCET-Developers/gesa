@@ -351,7 +351,8 @@ export const regionalSemifinals: RegionalSemifinalEntry[] = [
     "name": "Israel",
     "partners": [
       {
-        "name": "MindCET"
+        "name": "MindCET",
+        "logo": "/brand/partners/mindcet.png"
       }
     ],
     "continent": "middle-east",
