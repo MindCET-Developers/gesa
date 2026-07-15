@@ -24,7 +24,7 @@ function LogoGroup({ title, items }: { title: string; items: Partner[] }) {
             p.name
           );
           const className = p.logo
-            ? "grid h-16 w-40 place-items-center grayscale brightness-75 contrast-125 transition hover:grayscale-0 hover:brightness-100 hover:contrast-100"
+            ? "grid h-16 w-40 place-items-center grayscale brightness-75 contrast-125 transition hover:grayscale-0"
             : "font-display text-xl font-extrabold tracking-tight text-navy/70 transition hover:text-navy";
 
           return p.url ? (
