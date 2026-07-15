@@ -1,0 +1,1180 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+<title>מדריך קמפיין גוגל — gesawards.io</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@500;700;900&family=IBM+Plex+Sans+Hebrew:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#faf7f1;
+  --surface:#ffffff;
+  --surface-2:#f2ede3;
+  --border:rgba(30,42,60,.12);
+  --border-soft:rgba(30,42,60,.07);
+  --text:#1c2635;
+  --text-dim:#5d6675;
+  --navy:#1e3a5f;
+  --navy-dim:rgba(30,58,95,.08);
+  --gold:#a97e1c;
+  --gold-bright:#c9992e;
+  --gold-dim:rgba(169,126,28,.12);
+  --me:#0f7b5f;
+  --me-dim:rgba(15,123,95,.12);
+  --claude:#c05b3c;
+  --claude-dim:rgba(192,91,60,.12);
+  --warn:#b45309;
+  --warn-dim:rgba(180,83,9,.1);
+  --free:#0f7b5f;
+  --paid:#a97e1c;
+  --shadow:0 1px 2px rgba(30,42,60,.05),0 8px 24px -12px rgba(30,42,60,.18);
+  --font-body:"IBM Plex Sans Hebrew","Segoe UI",system-ui,sans-serif;
+  --font-head:"Frank Ruhl Libre","Times New Roman",serif;
+  --font-mono:"Fira Code","Consolas",monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#141a24;
+    --surface:#1c2432;
+    --surface-2:#232d3e;
+    --border:rgba(230,225,212,.14);
+    --border-soft:rgba(230,225,212,.07);
+    --text:#e9e4d8;
+    --text-dim:#9aa2ae;
+    --navy:#8db2dd;
+    --navy-dim:rgba(141,178,221,.1);
+    --gold:#d4a73a;
+    --gold-bright:#e2ba55;
+    --gold-dim:rgba(212,167,58,.13);
+    --me:#3cbf97;
+    --me-dim:rgba(60,191,151,.14);
+    --claude:#e07b57;
+    --claude-dim:rgba(224,123,87,.14);
+    --warn:#e0a04a;
+    --warn-dim:rgba(224,160,74,.12);
+    --free:#3cbf97;
+    --paid:#d4a73a;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 28px -12px rgba(0,0,0,.5);
+  }
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  background-image:radial-gradient(ellipse 900px 420px at 85% -80px,var(--gold-dim),transparent 65%);
+  color:var(--text);
+  font-family:var(--font-body);
+  font-size:16px;
+  line-height:1.65;
+}
+.wrap{max-width:1060px;margin:0 auto;padding:0 20px}
+
+/* ---------- hero ---------- */
+.hero{padding:52px 0 26px}
+.hero__label{
+  font-family:var(--font-mono);font-size:.72rem;letter-spacing:.22em;
+  color:var(--gold);text-transform:uppercase;direction:ltr;text-align:right;
+}
+.hero__label::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;
+  background:var(--gold);margin-left:10px;vertical-align:1px}
+h1{
+  font-family:var(--font-head);font-weight:900;
+  font-size:clamp(2.1rem,4.6vw,3.2rem);line-height:1.15;margin:10px 0 12px;
+}
+.hero__lead{max-width:640px;color:var(--text-dim);font-size:1.06rem}
+.hero__lead b{color:var(--text)}
+.hero__lead code{font-family:var(--font-mono);font-size:.92em;color:var(--gold);direction:ltr;unicode-bidi:embed}
+
+/* ---------- progress card ---------- */
+.progress-card{
+  margin-top:26px;background:var(--surface);border:1px solid var(--border);
+  border-radius:14px;box-shadow:var(--shadow);padding:20px 24px;
+  display:flex;flex-wrap:wrap;align-items:center;gap:18px 30px;
+}
+.progress-num{font-family:var(--font-head);font-weight:900;font-size:2.6rem;line-height:1;min-width:96px}
+.progress-num small{font-size:.42em;color:var(--text-dim);font-family:var(--font-body);font-weight:600;display:block;margin-top:2px}
+.progress-mid{flex:1 1 260px;min-width:0}
+.progress-track{
+  display:flex;height:12px;border-radius:99px;overflow:hidden;
+  background:var(--surface-2);border:1px solid var(--border-soft);
+}
+.progress-track .seg-me{background:var(--me);width:0%;transition:width .5s ease}
+.progress-track .seg-claude{background:var(--claude);width:0%;transition:width .5s ease}
+.progress-legend{display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:10px;font-size:.85rem;color:var(--text-dim)}
+.progress-legend .dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-left:6px;vertical-align:0}
+.dot--me{background:var(--me)} .dot--claude{background:var(--claude)}
+.dot--open{background:transparent;border:2px solid var(--text-dim);width:7px;height:7px}
+.btn{
+  font-family:var(--font-body);font-size:.86rem;font-weight:600;cursor:pointer;
+  border:1px solid var(--border);background:var(--surface-2);color:var(--text);
+  padding:9px 16px;border-radius:9px;transition:border-color .15s,background .15s;
+}
+.btn:hover{border-color:var(--gold);color:var(--gold)}
+.btn--ghost{background:transparent;font-size:.8rem;color:var(--text-dim)}
+
+/* ---------- tabs ---------- */
+.tabs{
+  position:sticky;top:0;z-index:30;margin-top:30px;
+  background:color-mix(in srgb,var(--bg) 88%,transparent);
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--border);
+}
+.tabs__inner{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;padding:8px 0}
+.tabs__inner::-webkit-scrollbar{display:none}
+.tabs button{
+  flex:0 0 auto;font-family:var(--font-body);font-size:.9rem;font-weight:600;
+  background:transparent;color:var(--text-dim);border:1px solid transparent;
+  padding:8px 14px;border-radius:9px;cursor:pointer;white-space:nowrap;
+  transition:color .15s,background .15s;
+}
+.tabs button:hover{color:var(--text)}
+.tabs button.active{background:var(--surface);color:var(--text);border-color:var(--border);box-shadow:var(--shadow)}
+.tabs .badge{
+  font-family:var(--font-mono);font-size:.68rem;font-weight:500;direction:ltr;unicode-bidi:embed;
+  background:var(--surface-2);border:1px solid var(--border-soft);
+  border-radius:99px;padding:1px 8px;margin-right:7px;color:var(--text-dim);
+}
+.tabs button.active .badge{background:var(--gold-dim);color:var(--gold);border-color:transparent}
+.tabs .badge.done{background:var(--me-dim);color:var(--me)}
+
+/* ---------- sections ---------- */
+main{padding:34px 0 10px}
+.tab{display:none;animation:fadeUp .35s ease both}
+.tab.active{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+.sec{margin:38px 0 8px}
+.sec__head{display:flex;align-items:baseline;gap:14px;margin-bottom:16px}
+.sec__num{
+  font-family:var(--font-mono);font-size:.8rem;color:var(--gold);
+  border:1px solid var(--gold);border-radius:7px;padding:2px 9px;direction:ltr;
+}
+.sec__head h2{font-family:var(--font-head);font-weight:700;font-size:1.5rem;line-height:1.2}
+.sec__head .rule{flex:1;height:1px;background:var(--border);align-self:center}
+.sec > p.intro{color:var(--text-dim);max-width:700px;margin-bottom:16px}
+.sec > p.intro b{color:var(--text)}
+
+/* ---------- tags ---------- */
+.tag{display:inline-block;font-size:.72rem;font-weight:700;border-radius:99px;padding:2px 11px;vertical-align:2px}
+.tag--free{background:var(--me-dim);color:var(--free)}
+.tag--paid{background:var(--gold-dim);color:var(--paid)}
+.tag--star{background:var(--gold-dim);color:var(--gold)}
+
+/* ---------- tasks ---------- */
+.tasks{display:flex;flex-direction:column;gap:10px}
+.task{
+  display:flex;gap:14px;align-items:flex-start;
+  background:var(--surface);border:1px solid var(--border);border-radius:12px;
+  padding:14px 16px;transition:border-color .15s;
+}
+.task:hover{border-color:var(--gold)}
+.task__check{
+  flex:0 0 auto;width:24px;height:24px;margin-top:2px;border-radius:50%;
+  border:2px solid var(--border);display:grid;place-items:center;
+  font-size:.8rem;font-weight:900;color:transparent;transition:all .18s;
+}
+.task__body{flex:1;min-width:0}
+.task__title{font-weight:600;font-size:.98rem}
+.task__desc{font-size:.87rem;color:var(--text-dim);margin-top:3px}
+.task__desc a{color:var(--navy)}
+.task__marks{flex:0 0 auto;display:flex;gap:6px;margin-top:2px}
+.mark{
+  font-family:var(--font-body);font-size:.74rem;font-weight:700;cursor:pointer;
+  border:1.5px solid var(--border);background:transparent;color:var(--text-dim);
+  border-radius:99px;padding:4px 12px;transition:all .15s;
+}
+.mark[data-who="me"]:hover{border-color:var(--me);color:var(--me)}
+.mark[data-who="claude"]:hover{border-color:var(--claude);color:var(--claude)}
+.task[data-state="me"]{background:linear-gradient(0deg,var(--me-dim),var(--me-dim)),var(--surface);border-color:var(--me)}
+.task[data-state="me"] .task__check{border-color:var(--me);background:var(--me);color:#fff}
+.task[data-state="me"] .task__check::before{content:"✓"}
+.task[data-state="me"] .mark[data-who="me"]{background:var(--me);border-color:var(--me);color:#fff}
+.task[data-state="claude"]{background:linear-gradient(0deg,var(--claude-dim),var(--claude-dim)),var(--surface);border-color:var(--claude)}
+.task[data-state="claude"] .task__check{border-color:var(--claude);background:var(--claude);color:#fff}
+.task[data-state="claude"] .task__check::before{content:"✓"}
+.task[data-state="claude"] .mark[data-who="claude"]{background:var(--claude);border-color:var(--claude);color:#fff}
+.task[data-state="me"] .task__title,.task[data-state="claude"] .task__title{opacity:.75}
+.task .who-note{display:none;font-size:.72rem;font-weight:700;margin-top:5px}
+.task[data-state="me"] .who-note--me{display:block;color:var(--me)}
+.task[data-state="claude"] .who-note--claude{display:block;color:var(--claude)}
+
+/* ---------- callouts ---------- */
+.callout{
+  border-radius:12px;padding:14px 18px;margin:16px 0;font-size:.92rem;
+  border:1px solid var(--border);border-inline-start:4px solid var(--navy);
+  background:var(--surface);
+}
+.callout--warn{border-inline-start-color:var(--warn);background:linear-gradient(0deg,var(--warn-dim),var(--warn-dim)),var(--surface)}
+.callout--warn .callout__title{color:var(--warn)}
+.callout--gold{border-inline-start-color:var(--gold)}
+.callout--gold .callout__title{color:var(--gold)}
+.callout__title{font-weight:700;font-size:.82rem;letter-spacing:.04em;margin-bottom:4px;color:var(--navy)}
+.callout p{color:var(--text-dim)}
+.callout b{color:var(--text)}
+
+/* ---------- chips / code ---------- */
+.chips{display:flex;flex-wrap:wrap;gap:7px;margin:10px 0}
+.chip{
+  font-family:var(--font-mono);font-size:.78rem;direction:ltr;unicode-bidi:embed;
+  background:var(--surface-2);border:1px solid var(--border-soft);
+  border-radius:7px;padding:3px 10px;color:var(--text);
+}
+.chip--neg{color:var(--claude);text-decoration:line-through;text-decoration-thickness:1px}
+code.inline{
+  font-family:var(--font-mono);font-size:.84em;direction:ltr;unicode-bidi:embed;
+  background:var(--surface-2);border:1px solid var(--border-soft);
+  border-radius:5px;padding:1px 6px;
+}
+pre.block{
+  direction:ltr;text-align:left;font-family:var(--font-mono);font-size:.8rem;line-height:1.7;
+  background:var(--surface-2);border:1px solid var(--border-soft);border-radius:10px;
+  padding:14px 16px;overflow-x:auto;white-space:pre-wrap;word-break:break-word;margin:10px 0;
+}
+pre.block .cm{color:var(--text-dim)}
+
+/* ---------- tables ---------- */
+.tbl-wrap{overflow-x:auto;border:1px solid var(--border);border-radius:12px;background:var(--surface);margin:12px 0}
+table{width:100%;border-collapse:collapse;font-size:.9rem}
+th{
+  text-align:right;font-size:.76rem;letter-spacing:.05em;color:var(--text-dim);
+  background:var(--surface-2);padding:10px 16px;border-bottom:1px solid var(--border);
+  position:sticky;top:0;
+}
+td{padding:10px 16px;border-bottom:1px solid var(--border-soft);vertical-align:top}
+tr:last-child td{border-bottom:none}
+tr:nth-child(even) td{background:color-mix(in srgb,var(--surface-2) 40%,transparent)}
+td .ltr{direction:ltr;unicode-bidi:embed;font-family:var(--font-mono);font-size:.82rem;display:inline-block}
+
+/* ---------- flow diagram ---------- */
+.flow{display:flex;align-items:stretch;gap:0;margin:20px 0;flex-wrap:nowrap}
+.flow__step{
+  flex:1 1 0;min-width:0;background:var(--surface);border:1px solid var(--border);
+  border-radius:12px;padding:14px 16px;box-shadow:var(--shadow);position:relative;
+}
+.flow__step .n{
+  font-family:var(--font-mono);font-size:.7rem;color:var(--gold);direction:ltr;display:block;margin-bottom:4px;
+}
+.flow__step .t{font-weight:700;font-size:.92rem;line-height:1.35}
+.flow__step .d{font-size:.78rem;color:var(--text-dim);margin-top:4px}
+.flow__arrow{
+  flex:0 0 34px;display:grid;place-items:center;color:var(--gold);font-size:1.25rem;font-weight:700;
+}
+.flow__arrow::before{content:"←"}
+@media (max-width:720px){
+  .flow{flex-direction:column}
+  .flow__arrow{flex-basis:26px}
+  .flow__arrow::before{content:"↓"}
+}
+
+/* ---------- priority cards (overview) ---------- */
+.prio{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:20px 0}
+.prio__card{
+  background:var(--surface);border:1px solid var(--border);border-radius:14px;
+  padding:20px;box-shadow:var(--shadow);min-width:0;position:relative;overflow:hidden;
+}
+.prio__card--hero{border-color:var(--gold);background:linear-gradient(0deg,var(--gold-dim),transparent 70%),var(--surface)}
+.prio__num{font-family:var(--font-head);font-weight:900;font-size:2.4rem;line-height:1;color:var(--gold)}
+.prio__card h3{font-size:1.05rem;margin:8px 0 6px}
+.prio__card p{font-size:.85rem;color:var(--text-dim)}
+@media (max-width:720px){.prio{grid-template-columns:1fr}}
+
+/* ---------- decision diagram ---------- */
+.decide{margin:20px 0;text-align:center}
+.decide__q{
+  display:inline-block;background:var(--navy-dim);border:1.5px solid var(--navy);
+  color:var(--text);border-radius:12px;padding:12px 26px;font-weight:700;
+}
+.decide__branches{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px;position:relative}
+.decide__branches::before{
+  content:"";position:absolute;top:-14px;right:25%;left:25%;height:14px;
+  border-right:1.5px solid var(--border);border-left:1.5px solid var(--border);
+  border-top:1.5px solid var(--border);border-radius:10px 10px 0 0;
+}
+.decide__b{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px;min-width:0}
+.decide__b .ans{font-family:var(--font-mono);font-size:.72rem;border-radius:99px;padding:2px 12px;font-weight:700}
+.decide__b--yes .ans{background:var(--me-dim);color:var(--me)}
+.decide__b--no .ans{background:var(--gold-dim);color:var(--paid)}
+.decide__b h4{margin:8px 0 4px;font-size:1rem}
+.decide__b p{font-size:.84rem;color:var(--text-dim)}
+@media (max-width:600px){.decide__branches{grid-template-columns:1fr}.decide__branches::before{display:none}}
+
+/* ---------- campaign tree ---------- */
+.tree{margin:20px 0;text-align:center}
+.tree__root{
+  display:inline-block;background:var(--navy);color:#fff;font-weight:700;
+  border-radius:10px;padding:10px 28px;font-size:.95rem;
+}
+@media (prefers-color-scheme:dark){.tree__root{background:var(--navy);color:#10161f}}
+.tree__vline{width:1.5px;height:18px;background:var(--border);margin:0 auto}
+.tree__campaigns{display:grid;grid-template-columns:1fr 1fr;gap:14px;position:relative}
+.tree__campaigns::before{
+  content:"";position:absolute;top:-1px;right:25%;left:25%;height:14px;
+  border-right:1.5px solid var(--border);border-left:1.5px solid var(--border);
+  border-top:1.5px solid var(--border);border-radius:10px 10px 0 0;transform:translateY(-14px);
+}
+.tree__c{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px;text-align:right;min-width:0;box-shadow:var(--shadow)}
+.tree__c h4{font-size:1rem}
+.tree__c .sub{font-size:.8rem;color:var(--text-dim);margin:2px 0 10px}
+.adgroups{display:flex;flex-direction:column;gap:8px}
+.adg{background:var(--surface-2);border:1px solid var(--border-soft);border-radius:9px;padding:9px 12px;font-size:.83rem}
+.adg b{display:block;font-size:.84rem}
+.adg .land{font-family:var(--font-mono);font-size:.74rem;color:var(--gold);direction:ltr;unicode-bidi:embed}
+@media (max-width:600px){.tree__campaigns{grid-template-columns:1fr}.tree__campaigns::before{display:none}}
+
+/* ---------- funnel ---------- */
+.funnel{margin:20px 0;display:flex;flex-direction:column;align-items:center;gap:7px}
+.funnel__bar{
+  border-radius:9px;padding:9px 18px;color:#fff;display:flex;align-items:baseline;gap:12px;
+  justify-content:space-between;min-width:0;flex-wrap:wrap;
+}
+.funnel__bar .ev{font-family:var(--font-mono);font-size:.76rem;direction:ltr;opacity:.9}
+.funnel__bar .lbl{font-weight:600;font-size:.88rem}
+.f1{width:100%;background:var(--navy)}
+.f2{width:76%;background:color-mix(in srgb,var(--navy) 75%,var(--gold))}
+.f3{width:52%;background:color-mix(in srgb,var(--navy) 40%,var(--gold))}
+.f4{width:34%;background:var(--gold);box-shadow:0 6px 20px -6px var(--gold)}
+@media (prefers-color-scheme:dark){
+  .funnel__bar{color:#10161f}
+}
+@media (max-width:600px){.f2{width:88%}.f3{width:72%}.f4{width:56%}}
+
+/* ---------- svg chart ---------- */
+.chart-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:20px;box-shadow:var(--shadow);margin:16px 0}
+.chart-card h3{font-family:var(--font-head);font-size:1.15rem;margin-bottom:2px}
+.chart-card .sub{font-size:.83rem;color:var(--text-dim);margin-bottom:10px}
+.chart-svg{width:100%;height:auto;direction:ltr}
+
+/* ---------- info card grid ---------- */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin:14px 0}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px;min-width:0}
+.card h4{font-size:.94rem;margin-bottom:4px}
+.card h4 .where{font-family:var(--font-mono);font-size:.68rem;color:var(--gold);display:block;direction:ltr;text-align:right;margin-bottom:4px}
+.card p{font-size:.83rem;color:var(--text-dim)}
+.card p b{color:var(--text)}
+
+/* ---------- legend / how-to ---------- */
+.howto{
+  background:var(--surface);border:1px solid var(--border);border-radius:14px;
+  padding:20px 24px;margin:22px 0;box-shadow:var(--shadow);
+}
+.howto h3{font-family:var(--font-head);font-size:1.2rem;margin-bottom:8px}
+.howto ul{list-style:none;display:flex;flex-direction:column;gap:8px;font-size:.9rem;color:var(--text-dim)}
+.howto li{position:relative;padding-right:26px}
+.howto li::before{content:"";position:absolute;right:6px;top:.55em;width:7px;height:7px;border-radius:50%;background:var(--gold)}
+.howto .pill{font-size:.72rem;font-weight:700;border-radius:99px;padding:2px 10px;border:1.5px solid}
+.howto .pill--me{color:var(--me);border-color:var(--me);background:var(--me-dim)}
+.howto .pill--claude{color:var(--claude);border-color:var(--claude);background:var(--claude-dim)}
+
+/* ---------- footer / toast ---------- */
+footer{
+  margin-top:50px;padding:22px 0 40px;border-top:1px solid var(--border);
+  display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;
+  font-size:.8rem;color:var(--text-dim);
+}
+#toast{
+  position:fixed;bottom:26px;right:50%;transform:translate(50%,20px);opacity:0;
+  background:var(--text);color:var(--bg);font-weight:600;font-size:.88rem;
+  padding:10px 22px;border-radius:99px;pointer-events:none;transition:all .25s;z-index:99;
+}
+#toast.show{opacity:1;transform:translate(50%,0)}
+</style>
+</head>
+<body>
+
+<header class="hero wrap">
+  <div class="hero__label">GESA · Google Campaign Playbook</div>
+  <h1>מדריך קמפיין גוגל ומעקב</h1>
+  <p class="hero__lead">שכל מי שמחפש <b>gesa / global edtech startup awards / edtech startup competition</b> יגיע ל־<code>gesawards.io</code> — ושנדע למדוד את זה.</p>
+
+  <div class="progress-card">
+    <div class="progress-num"><span id="pct">0</span>%<small>הושלם</small></div>
+    <div class="progress-mid">
+      <div class="progress-track"><div class="seg-me" id="seg-me"></div><div class="seg-claude" id="seg-claude"></div></div>
+      <div class="progress-legend">
+        <span><span class="dot dot--me"></span>אני: <b id="cnt-me">0</b></span>
+        <span><span class="dot dot--claude"></span>Claude: <b id="cnt-claude">0</b></span>
+        <span><span class="dot dot--open"></span>פתוחות: <b id="cnt-open">0</b></span>
+      </div>
+    </div>
+    <button class="btn" id="copy-status">העתקת סטטוס ל־Claude</button>
+  </div>
+</header>
+
+<nav class="tabs"><div class="tabs__inner wrap" id="tabbar" role="tablist">
+  <button data-tab="overview" role="tab">סקירה</button>
+  <button data-tab="stage-a" role="tab">שלב א׳ · אורגני <span class="badge"></span></button>
+  <button data-tab="stage-b" role="tab">שלב ב׳ · Ad Grants <span class="badge"></span></button>
+  <button data-tab="stage-c" role="tab">שלב ג׳ · קמפיין <span class="badge"></span></button>
+  <button data-tab="measure" role="tab">מדידה <span class="badge"></span></button>
+  <button data-tab="monitor" role="tab">מעקב שוטף <span class="badge"></span></button>
+  <button data-tab="code" role="tab">מה בקוד <span class="badge"></span></button>
+</div></nav>
+
+<main class="wrap">
+
+<!-- ======================== OVERVIEW ======================== -->
+<section class="tab" id="tab-overview" data-title="סקירה">
+
+  <div class="sec">
+    <div class="sec__head"><span class="sec__num">01</span><h2>סדר העדיפויות</h2><span class="rule"></span></div>
+    <p class="intro">מהחינמי והחזק ביותר → למשולם. בכל התרחישים, תשתית המדידה בקוד כבר מוכנה (טאב <b>מה בקוד</b>).</p>
+    <div class="prio">
+      <div class="prio__card prio__card--hero">
+        <div class="prio__num">1</div>
+        <h3>העברה אורגנית מהדומיין הישן <span class="tag tag--free">חינם</span></h3>
+        <p>המהלך החשוב ביותר. הפניות 301 מ־Wix, אימות ב־Search Console ו־Change of Address — כדי שהדירוג הקיים יעבור לאתר החדש.</p>
+      </div>
+      <div class="prio__card">
+        <div class="prio__num">2</div>
+        <h3>Google Ad Grants <span class="tag tag--free">חינם</span></h3>
+        <p>עד $10,000/חודש פרסום חיפוש חינם לארגונים ללא מטרות רווח. שווה לבדוק זכאות דרך המרכז לטכנולוגיה חינוכית.</p>
+      </div>
+      <div class="prio__card">
+        <div class="prio__num">3</div>
+        <h3>קמפיין בתשלום <span class="tag tag--paid">בתשלום</span></h3>
+        <p>רק אם רוצים להאיץ, או שה־Grants לא מתאים. אותו מבנה קמפיין כמו ב־Grants.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="howto">
+    <h3>איך עובדים עם הדף הזה</h3>
+    <ul>
+      <li>בכל משימה יש שני כפתורים: <span class="pill pill--me">אני</span> למה שביצעת בעצמך, ו־<span class="pill pill--claude">Claude</span> למה שבוצע על ידי Claude. לחיצה חוזרת מבטלת את הסימון.</li>
+      <li>הסימונים נשמרים בדפדפן שלך (localStorage) — הם ישרדו רענון וסגירה של הדף.</li>
+      <li>משימות שכבר הושלמו בקוד סומנו מראש כ־<span class="pill pill--claude">Claude</span>.</li>
+      <li>כפתור <b>„העתקת סטטוס ל־Claude"</b> למעלה מעתיק סיכום טקסטואלי של המצב — אפשר להדביק אותו בצ׳אט כדי לעדכן את Claude איפה עומדים.</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec__head"><span class="sec__num">02</span><h2>המסלול במבט אחד</h2><span class="rule"></span></div>
+    <div class="flow">
+      <div class="flow__step"><span class="n">STEP 1</span><span class="t">הפניות 301 מ־Wix</span><span class="d">כל עמוד ישן → העמוד המקביל ב־gesawards.io</span></div>
+      <div class="flow__arrow"></div>
+      <div class="flow__step"><span class="n">STEP 2</span><span class="t">אימות ב־Search Console</span><span class="d">שני האתרים + הגשת sitemap</span></div>
+      <div class="flow__arrow"></div>
+      <div class="flow__step"><span class="n">STEP 3</span><span class="t">Change of Address</span><span class="d">גוגל מעביר את הדירוג בהדרגה (2–12 שבועות)</span></div>
+      <div class="flow__arrow"></div>
+      <div class="flow__step"><span class="n">STEP 4</span><span class="t">קמפיין + מדידה</span><span class="d">Ad Grants או בתשלום, על גבי אירועי ההמרה</span></div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ======================== STAGE A ======================== -->
+<section class="tab" id="tab-stage-a" data-title="שלב א׳ · העברה אורגנית">
+
+  <div class="sec">
+    <div class="sec__head"><span class="sec__num">A</span><h2>העברת התנועה האורגנית <span class="tag tag--free">חינם · לעשות מיד</span></h2><span class="rule"></span></div>
+    <p class="intro">היום גוגל עדיין מדרג את <code class="inline">globaledtechawards.org</code>. בלי העברה מסודרת, מי שמחפש „gesa awards" ימשיך להגיע לאתר הישן או לדף מת.</p>
+
+    <div class="flow">
+      <div class="flow__step"><span class="n">1</span><span class="t">הפניות 301 ב־Wix</span></div>
+      <div class="flow__arrow"></div>
+      <div class="flow__step"><span class="n">2</span><span class="t">אימות ב־Search Console</span></div>
+      <div class="flow__arrow"></div>
+      <div class="flow__step"><span class="n">3</span><span class="t">Change of Address</span></div>
+      <div class="flow__arrow"></div>
+      <div class="flow__step"><span class="n">4</span><span class="t">עדכון נכסים חיצוניים</span></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec__head"><span class="sec__num">A·1</span><h2>הפניות 301 מהאתר הישן (ב־Wix)</h2><span class="rule"></span></div>
+    <p class="intro">יש לכם גישה ל־Wix (לא לדומיין עצמו) — זה מספיק כל עוד הדומיין ממשיך להצביע על Wix. הנתיב: <b>Settings → SEO → URL Redirect Manager</b>.</p>
+
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>מהאתר הישן</th><th>אל</th></tr></thead>
+      <tbody>
+        <tr><td><span class="ltr">/</span></td><td><span class="ltr">https://www.gesawards.io/</span></td></tr>
+        <tr><td><span class="ltr">/about</span> (או המקבילה)</td><td><span class="ltr">https://www.gesawards.io/about</span></td></tr>
+        <tr><td>עמודי זוכים — <span class="ltr">/2023-winners</span> וכו׳</td><td><span class="ltr">https://www.gesawards.io/winners/2023</span> וכו׳</td></tr>
+        <tr><td>עמודי tracks</td><td><span class="ltr">https://www.gesawards.io/tracks/...</span></td></tr>
+      </tbody>
+    </table></div>
+
+    <div class="tasks">
+      <div class="task" data-task="a1" data-label="הוספת הפניות 301 לכל העמודים ב-Wix Redirect Manager">
+        <div class="task__check"></div>
+        <div class="task__body">
+          <div class="task__title">להוסיף הפניות 301 לכל העמודים ב־URL Redirect Manager</div>
+          <div class="task__desc">Wix תומך בהפניה לדומיין חיצוני. לפחות: דף הבית, about, עמודי הזוכים ועמודי ה־tracks לפי הטבלה למעלה.</div>
+          <div class="who-note who-note--me">בוצע על ידי אילן</div><div class="who-note who-note--claude">בוצע על ידי Claude</div>
+        </div>
+        <div class="task__marks"><button class="mark" data-who="me">אני</button><button class="mark" data-who="claude">Claude</button></div>
+      </div>
+      <div class="task" data-task="a2" data-label="טיפול בדף הבית אם Wix לא מאפשר להפנות אותו">
+        <div class="task__check"></div>
+        <div class="task__body">
+          <div class="task__title">אם Wix לא מאפשר להפנות את דף הבית — לרוקן אותו</div>
+          <div class="task__desc">להשאיר רק הודעה + קישור בולט ותגית <code class="inline">canonical</code> לאתר החדש, ולהפנות את כל שאר העמודים.</div>
+          <div class="who-note who-note--me">בוצע על ידי אילן</div><div class="who-note who-note--claude">בוצע על ידי Claude</div>
+        </div>
+        <div class="task__marks"><button class="mark" data-who="me">אני</button><button class="mark" data-who="claude">Claude</button></div>
+      </div>
+      <div class="task" data-task="a3" data-label="בירור מי מחזיק בדומיין הישן ווידוא שלא יפוג 12 חודשים">
+        <div class="task__check"></div>
+        <div class="task__body">
+          <div class="task__title">לברר מי מחזיק בדומיין הישן ולוודא שלא ייפול</div>
+          <div class="task__desc">לא לסגור את חשבון ה־Wix ולא לתת לדומיין לפוג <b>לפחות 12 חודשים</b> — ההפניות חייבות להישאר חיות כדי שגוגל יעביר את הסמכות (link equity).</div>
+          <div class="who-note who-note--me">בוצע על ידי אילן</div><div class="who-note who-note--claude">בוצע על ידי Claude</div>
+        </div>
+        <div class="task__marks"><button class="mark" data-who="me">אני</button><button class="mark" data-who="claude">Claude</button></div>
+      </div>
+    </div>
+
+    <div class="callout callout--warn">
+      <div class="callout__title">סיכון שצריך לטפל בו</div>
+      <p>הדומיין <code class="inline">globaledtechawards.org</code> <b>לא בשליטתכם</b>. אם הדומיין ייפול — כל ההפניות והדירוג הישן נעלמים. אידיאלית: להעביר את ניהול הדומיין אליכם, ואז אפשר להפנות אותו ישירות ל־Vercel — הקוד כבר כולל הפניית 301 מוכנה לכל הנתיבים.</p>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec__head"><span class="sec__num">A·2</span><h2>אימות שני האתרים ב־Google Search Console</h2><span class="rule"></span></div>
+    <div class="tasks">
+      <div class="task" data-task="a4" data-label="אימות property לאתר הישן ב-Search Console">
+        <div class="task__check"></div>
+        <div class="task__body">
+          <div class="task__title">להוסיף Property לאתר הישן</div>
+          <div class="task__desc">✅ בוצע — האתר הישן מאומת בשני URL-prefix properties: <code class="inline">https://globaledtechawards.org/</code> ו־<code class="inline">https://www.globaledtechawards.org/</code>. זה מספיק ל־Change of Address (יש גם Domain property לא מאומת — אפשר להתעלם ממנו או למחוק).</div>
+          <div class="who-note who-note--me">בוצע על ידי אילן</div><div class="who-note who-note--claude">בוצע על ידי Claude</div>
+        </div>
+        <div class="task__marks"><button class="mark" data-who="me">אני</button><button class="mark" data-who="claude">Claude</button></div>
+      </div>
+      <div class="task" data-task="a5" data-label="אימות property לאתר החדש gesawards.io">
+        <div class="task__check"></div>
+        <div class="task__body">
+          <div class="task__title">להוסיף Property לאתר החדש <code class="inline">https://www.gesawards.io</code></div>
+          <div class="task__desc">✅ בוצע — <code class="inline">gesawards.io</code> מאומת כ־Domain property (DNS). בנוסף נוספה תגית <code class="inline">google-site-verification</code> ל־<code class="inline">app/layout.tsx</code> כגיבוי (דורש deploy).</div>
+          <div class="who-note who-note--me">בוצע על ידי אילן</div><div class="who-note who-note--claude">בוצע על ידי Claude</div>
+        </div>
+        <div class="task__marks"><button class="mark" data-who="me">אני</button><button class="mark" data-who="claude">Claude</button></div>
+      </div>
+      <div class="task" data-task="a6" data-label="הגשת sitemap.xml לאתר החדש">
+        <div class="task__check"></div>
+        <div class="task__body">
+          <div class="task__title">להגיש את ה־sitemap של האתר החדש</div>
+          <div class="task__desc"><b>Sitemaps →</b> להגיש <code class="inline">https://www.gesawards.io/sitemap.xml</code> — כבר מצביע נכון אחרי התיקון בקוד.</div>
+          <div class="who-note who-note--me">בוצע על ידי אילן</div><div class="who-note who-note--claude">בוצע על ידי Claude</div>
+        </div>
+        <div class="task__marks"><button class="mark" data-who="me">אני</button><button class="mark" data-who="claude">Claude</button></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec__head"><span class="sec__num">A·3</span><h2>Change of Address</h2><span class="rule"></span></div>
+    <div class="tasks">
+      <div class="task" data-task="a7" data-label="ביצוע Change of Address ב-Search Console של האתר הישן">
+        <div class="task__check"></div>
+        <div class="task__body">
+          <div class="task__title">להריץ Change of Address מהאתר הישן לחדש</div>
+          <div class="task__desc">רק אחרי שההפניות מ־Wix פעילות ושני האתרים מאומתים: ב־Search Console של האתר <b>הישן</b> → <b>Settings → Change of Address</b> → לבחור את gesawards.io. גוגל יעביר את הדירוג בהדרגה (2–12 שבועות); חיפושי מותג עוברים ראשונים.</div>
+          <div class="who-note who-note--me">בוצע על ידי אילן</div><div class="who-note who-note--claude">בוצע על ידי Claude</div>
+        </div>
+        <div class="task__marks"><button class="mark" data-who="me">אני</button><button class="mark" data-who="claude">Claude</button></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec__head"><span class="sec__num">A·4</span><h2>עדכון כל הנכסים החיצוניים</h2><span class="rule"></span></div>
+    <p class="intro">להחליף את הקישור הישן בכל מקום שבשליטתכם — זה גם SEO וגם מונע אובדן תנועה. <b>קישורים נכנסים לדומיין החדש מאיצים את ההעברה יותר מכל דבר אחר.</b></p>
+    <div class="tasks">
+      <div class="task" data-task="a8" data-label="עדכון קישורים בפרופילי סושיאל של GESA">
+        <div class="task__check"></div>
+        <div class="task__body">
+          <div class="task__title">פרופילי LinkedIn / Facebook / YouTube של GESA</div>
+          <div class="who-note who-note--me">בוצע על ידי אילן</div><div class="who-note who-note--claude">בוצע על ידי Claude</div>
+        </div>
+        <div class="task__marks"><button class="mark" data-who="me">אני</button><button class="mark" data-who="claude">Claude</button></div>
+      </div>
+      <div class="task" data-task="a9" data-label="עדכון חתימות מייל, ניוזלטרים ועמודי שותפים">
+        <div class="task__check"></div>
+        <div class="task__body">
+          <div class="task__title">חתימות מייל, ניוזלטרים, עמודי שותפים</div>
+          <div class="task__desc">כולל semifinals hosts!</div>
+          <div class="who-note who-note--me">בוצע על ידי אילן</div><div class="who-note who-note--claude">בוצע על ידי Claude</div>
+        </div>
+        <div class="task__marks"><button class="mark" data-who="me">אני</button><button class="mark" data-who="claude">Claude</button></div>
+      </div>
+      <div class="task" data-task="a10" data-label="עדכון ויקיפדיה/Crunchbase ואתרי MindCET/CET">
+        <div class="task__check"></div>
+        <div class="task__body">
+          <div class="task__title">ויקיפדיה / Crunchbase אם קיימים, ואתרי MindCET / CET</div>
+          <div class="task__desc">כל אתר שמקשר לתחרות.</div>
+          <div class="who-note who-note--me">בוצע על ידי אילן</div><div class="who-note who-note--claude">בוצע על ידי Claude</div>
+        </div>
+        <div class="task__marks"><button class="mark" data-who="me">אני</button><button class="mark" data-who="claude">Claude</button></div>
+      </div>
+      <div class="task" data-task="a11" data-label="בקשה מהשותפים האזוריים לעדכן קישורים באתרים שלהם">
+        <div class="task__check"></div>
+        <div class="task__body">
+          <div class="task__title">לבקש מהשותפים האזוריים לעדכן קישורים באתרים שלהם</div>
+          <div class="who-note who-note--me">בוצע על ידי אילן</div><div class="who-note who-note--claude">בוצע על ידי Claude</div>
+        </div>
+        <div class="task__marks"><button class="mark" data-who="me">אני</button><button class="mark" data-who="claude">Claude</button></div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ======================== STAGE B ======================== -->
+<section class="tab" id="tab-stage-b" data-title="שלב ב׳ · Ad Grants">
+
+  <div class="sec">
+    <div class="sec__head"><span class="sec__num">B</span><h2>Google Ad Grants <span class="tag tag--free">פרסום חינם · אם יש זכאות</span></h2><span class="rule"></span></div>
+
+    <div class="decide">
+      <div class="decide__q">GESA פועל תחת ארגון ללא מטרות רווח?</div>
+      <div class="decide__branches">
+        <div class="decide__b decide__b--yes">
+          <span class="ans">כן — מלכ״ר / עמותה רשומה</span>
+          <h4>Ad Grants: עד $10,000/חודש</h4>
+          <p>פרסום חיפוש חינם. למשל דרך המרכז לטכנולוגיה חינוכית. ממשיכים לצעדים למטה.</p>
+        </div>
+        <div class="decide__b decide__b--no">
+          <span class="ans">לא / לא מתאים</span>
+          <h4>קמפיין בתשלום</h4>
+          <p>מדלגים לשלב ג׳ — אותו מבנה קמפיין, רק עם תקציב.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="tasks">
+      <div class="task" data-task="b1" data-label="בדיקת זכאות מלכ&quot;ר ל-Ad Grants">
+        <div class="task__check"></div>
+        <div class="task__body">
+          <div class="task__title">לבדוק זכאות — האם GESA פועל תחת מלכ״ר / עמותה רשומה</div>
+          <div class="task__desc">בישראל הזכאות נבדקת דרך Percent; דרוש מספר עמותה / חל״צ.</div>
+          <div class="who-note who-note--me">בוצע על ידי אילן</div><div class="who-note who-note--claude">בוצע על ידי Claude</div>
+        </div>
+        <div class="task__marks"><button class="mark" data-who="me">אני</button><button class="mark" data-who="claude">Claude</button></div>
+      </div>
+      <div class="task" data-task="b2" data-label="הרשמה ל-Google for Nonprofits">
+        <div class="task__check"></div>
+        <div class="task__body">
+          <div class="task__title">להירשם ל־Google for Nonprofits</div>
+          <div class="task__desc"><span class="ltr" style="font-family:var(--font-mono);font-size:.82rem">google.com/nonprofits</span></div>
+          <div class="who-note who-note--me">בוצע על ידי אילן</div><div class="who-note who-note--claude">בוצע על ידי Claude</div>
+        </div>
+        <div class="task__marks"><button class="mark" data-who="me">אני</button><button class="mark" data-who="claude">Claude</button></div>
+      </div>
+      <div class="task" data-task="b3" data-label="הפעלת Ad Grants ותהליך activation">
+        <div class="task__check"></div>
+        <div class="task__body">
+          <div class="task__title">להפעיל Google Ad Grants ולעבור את תהליך ה־activation</div>
+          <div class="task__desc">מתוך חשבון ה־Nonprofits, אחרי האישור.</div>
+          <div class="who-note who-note--me">בוצע על ידי אילן</div><div class="who-note who-note--claude">בוצע על ידי Claude</div>
+        </div>
+        <div class="task__marks"><button class="mark" data-who="me">אני</button><button class="mark" data-who="claude">Claude</button></div>
+      </div>
+      <div class="task" data-task="b4" data-label="הקמת הקמפיין לפי מגבלות Grants">
+        <div class="task__check"></div>
+        <div class="task__body">
+          <div class="task__title">להקים את הקמפיין לפי מגבלות ה־Grants</div>
+          <div class="task__desc">מבנה הקמפיין זהה לשלב ג׳ — ראו הטאב הבא.</div>
+          <div class="who-note who-note--me">בוצע על ידי אילן</div><div class="who-note who-note--claude">בוצע על ידי Claude</div>
+        </div>
+        <div class="task__marks"><button class="mark" data-who="me">אני</button><button class="mark" data-who="claude">Claude</button></div>
+      </div>
+    </div>
+
+    <div class="sec__head" style="margin-top:30px"><span class="sec__num">B·2</span><h2>מגבלות חשובות של Grants</h2><span class="rule"></span></div>
+    <div class="cards">
+      <div class="card"><h4>מודעות חיפוש בלבד</h4><p>לא Display ולא YouTube.</p></div>
+      <div class="card"><h4>תקרת CPC של $2</h4><p>בהצעת מחיר ידנית — לכן משתמשים ב־<b>Maximize Conversions</b> שעוקפת את התקרה. זו עוד סיבה שאירועי ההמרה שהוכנו בקוד קריטיים.</p></div>
+      <div class="card"><h4>CTR של 5% ומעלה</h4><p>חובה לשמור. מילות מפתח באיכות סבירה (לא מילה בודדת גנרית) וחשבון פעיל.</p></div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ======================== STAGE C ======================== -->
+<section class="tab" id="tab-stage-c" data-title="שלב ג׳ · קמפיין חיפוש">
+
+  <div class="sec">
+    <div class="sec__head"><span class="sec__num">C</span><h2>קמפיין חיפוש <span class="tag tag--paid">Grants או בתשלום</span></h2><span class="rule"></span></div>
+
+    <div class="tree">
+      <div class="tree__root">חשבון Google Ads</div>
+      <div class="tree__vline"></div>
+      <div class="tree__campaigns">
+        <div class="tree__c">
+          <h4>קמפיין 1 — Brand</h4>
+          <p class="sub">הגנה על המותג · תקציב קטן, החזר עצום. תופס את מי שכבר מחפש אתכם ומגיע היום לאתר הישן / למתחרים.</p>
+          <div class="adgroups">
+            <div class="adg"><b>מילות מפתח (Exact + Phrase)</b>
+              <div class="chips" style="margin:6px 0 4px">
+                <span class="chip">[gesa]</span><span class="chip">[gesa awards]</span><span class="chip">[gesawards]</span>
+                <span class="chip">[global edtech startup awards]</span><span class="chip">[global edtech awards]</span>
+                <span class="chip">"edtech startup awards"</span>
+              </div>
+              <span class="land">← https://www.gesawards.io/</span>
+            </div>
+          </div>
+        </div>
+        <div class="tree__c">
+          <h4>קמפיין 2 — Category</h4>
+          <p class="sub">ביקוש גנרי · תופס מחפשים שלא מכירים אתכם.</p>
+          <div class="adgroups">
+            <div class="adg"><b>Ad Group A — תחרות</b>
+              <div class="chips" style="margin:6px 0 4px"><span class="chip">"edtech startup competition"</span><span class="chip">"edtech competition"</span><span class="chip">"education startup competition"</span></div>
+              <span class="land">← /apply</span>
+            </div>
+            <div class="adg"><b>Ad Group B — פרסים</b>
+              <div class="chips" style="margin:6px 0 4px"><span class="chip">"edtech awards"</span><span class="chip">"edtech startup award"</span><span class="chip">"education technology awards"</span></div>
+              <span class="land">← /</span>
+            </div>
+            <div class="adg"><b>Ad Group C — לפי track (אופציונלי)</b>
+              <div class="chips" style="margin:6px 0 4px"><span class="chip">AI in education</span><span class="chip">workforce skills…</span></div>
+              <span class="land">← /tracks/[slug]</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec__head"><span class="sec__num">C·1</span><h2>משימות הקמה</h2><span class="rule"></span></div>
+    <div class="tasks">
+      <div class="task" data-task="c1" data-label="הקמת קמפיין Brand">
+        <div class="task__check"></div>
+        <div class="task__body">
+          <div class="task__title">להקים את קמפיין 1 — Brand</div>
+          <div class="task__desc">מילות המפתח מהתרשים למעלה, Exact + Phrase. עמוד נחיתה: דף הבית.</div>
+          <div class="who-note who-note--me">בוצע על ידי אילן</div><div class="who-note who-note--claude">בוצע על ידי Claude</div>
+        </div>
+        <div class="task__marks"><button class="mark" data-who="me">אני</button><button class="mark" data-who="claude">Claude</button></div>
+      </div>
+      <div class="task" data-task="c2" data-label="הקמת קמפיין Category עם Ad Groups">
+        <div class="task__check"></div>
+        <div class="task__body">
+          <div class="task__title">להקים את קמפיין 2 — Category עם Ad Groups A / B (ו־C אופציונלי)</div>
+          <div class="who-note who-note--me">בוצע על ידי אילן</div><div class="who-note who-note--claude">בוצע על ידי Claude</div>
+        </div>
+        <div class="task__marks"><button class="mark" data-who="me">אני</button><button class="mark" data-who="claude">Claude</button></div>
+      </div>
+      <div class="task" data-task="c3" data-label="הגדרות קמפיין: גיאוגרפיה, שפה, Search בלבד">
+        <div class="task__check"></div>
+        <div class="task__body">
+          <div class="task__title">הגדרות: גיאוגרפיה עולמית · שפה אנגלית · Search בלבד</div>
+          <div class="task__desc">גיאוגרפיה עולמית (או לפי אזורי הסמיפיינל). לכבות Display Network ו־Search Partners בהתחלה.</div>
+          <div class="who-note who-note--me">בוצע על ידי אילן</div><div class="who-note who-note--claude">בוצע על ידי Claude</div>
+        </div>
+        <div class="task__marks"><button class="mark" data-who="me">אני</button><button class="mark" data-who="claude">Claude</button></div>
+      </div>
+      <div class="task" data-task="c4" data-label="הוספת Negative keywords">
+        <div class="task__check"></div>
+        <div class="task__body">
+          <div class="task__title">להוסיף Negative keywords</div>
+          <div class="task__desc">כל מה שמנפח קליקים לא רלוונטיים:</div>
+          <div class="chips"><span class="chip chip--neg">jobs</span><span class="chip chip--neg">salary</span><span class="chip chip--neg">course</span><span class="chip chip--neg">degree</span><span class="chip chip--neg">certification</span><span class="chip chip--neg">mba</span><span class="chip chip--neg">teacher training</span></div>
+          <div class="who-note who-note--me">בוצע על ידי אילן</div><div class="who-note who-note--claude">בוצע על ידי Claude</div>
+        </div>
+        <div class="task__marks"><button class="mark" data-who="me">אני</button><button class="mark" data-who="claude">Claude</button></div>
+      </div>
+      <div class="task" data-task="c5" data-label="הגדרת Sitelinks ו-Callouts">
+        <div class="task__check"></div>
+        <div class="task__body">
+          <div class="task__title">להגדיר Sitelinks ו־Callouts</div>
+          <div class="task__desc"><b>Sitelinks:</b> Apply · Tracks · Winners · Semifinals &nbsp;·&nbsp; <b>Callouts:</b> "9,000+ startups" · "155 countries" · "Free to apply"</div>
+          <div class="who-note who-note--me">בוצע על ידי אילן</div><div class="who-note who-note--claude">בוצע על ידי Claude</div>
+        </div>
+        <div class="task__marks"><button class="mark" data-who="me">אני</button><button class="mark" data-who="claude">Claude</button></div>
+      </div>
+      <div class="task" data-task="c6" data-label="כתיבת טקסט מודעות">
+        <div class="task__check"></div>
+        <div class="task__body">
+          <div class="task__title">לכתוב את המודעות</div>
+          <pre class="block"><span class="cm">Headlines:</span>
+Global EdTech Startup Awards
+The World's Largest EdTech Competition
+Apply for the 2026 Edition
+
+<span class="cm">Description:</span>
+Join 9,000+ startups from 155 countries. Pitch on the
+global EdTech stage — applications are open.</pre>
+          <div class="who-note who-note--me">בוצע על ידי אילן</div><div class="who-note who-note--claude">בוצע על ידי Claude</div>
+        </div>
+        <div class="task__marks"><button class="mark" data-who="me">אני</button><button class="mark" data-who="claude">Claude</button></div>
+      </div>
+      <div class="task" data-task="c7" data-label="אסטרטגיית Bidding: Maximize Clicks ואז Maximize Conversions">
+        <div class="task__check"></div>
+        <div class="task__body">
+          <div class="task__title">Bidding: להתחיל Maximize Clicks → לעבור ל־Maximize Conversions</div>
+          <div class="task__desc">שבועיים לאיסוף דאטה עם Maximize Clicks, ואז לעבור ברגע שיש ~15–30 המרות (<code class="inline">apply_form_open</code> / <code class="inline">apply_submitted</code>).</div>
+          <div class="who-note who-note--me">בוצע על ידי אילן</div><div class="who-note who-note--claude">בוצע על ידי Claude</div>
+        </div>
+        <div class="task__marks"><button class="mark" data-who="me">אני</button><button class="mark" data-who="claude">Claude</button></div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ======================== MEASURE ======================== -->
+<section class="tab" id="tab-measure" data-title="חיבור המדידה">
+
+  <div class="sec">
+    <div class="sec__head"><span class="sec__num">M</span><h2>חיבור המדידה <span class="tag tag--star">חד־פעמי · ~חצי שעה</span></h2><span class="rule"></span></div>
+    <p class="intro">משפך ההמרה שכבר מוטמע בקוד — המטרה של כל הצעדים כאן היא שגוגל יראה אותו:</p>
+
+    <div class="funnel">
+      <div class="funnel__bar f1"><span class="lbl">ביקור בעמוד ההגשה</span><span class="ev">page_view /apply</span></div>
+      <div class="funnel__bar f2"><span class="lbl">שהייה של 15 שניות ומעלה</span><span class="ev">apply_engaged</span></div>
+      <div class="funnel__bar f3"><span class="lbl">פתיחת טופס ההגשה</span><span class="ev">apply_form_open</span></div>
+      <div class="funnel__bar f4"><span class="lbl">הגשת מועמדות בפועל — ההמרה הראשית</span><span class="ev">apply_submitted ★</span></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec__head"><span class="sec__num">M·1</span><h2>ארבעה חיבורים</h2><span class="rule"></span></div>
+    <div class="tasks">
+      <div class="task" data-task="m1" data-label="Airtable: הפניית הטופס לעמוד התודה">
+        <div class="task__check"></div>
+        <div class="task__body">
+          <div class="task__title">Airtable — להפנות את הטופס לעמוד התודה</div>
+          <div class="task__desc">ב־form settings להפעיל <b>"Redirect to URL after the form is submitted"</b> ולכוון ל־<code class="inline">https://www.gesawards.io/apply/thank-you</code>. עמוד התודה כבר קיים בקוד, יורה <code class="inline">apply_submitted</code>, לא נכנס לאינדקס, ויודע „לפרוץ" מה־iframe.</div>
+          <div class="who-note who-note--me">בוצע על ידי אילן</div><div class="who-note who-note--claude">בוצע על ידי Claude</div>
+        </div>
+        <div class="task__marks"><button class="mark" data-who="me">אני</button><button class="mark" data-who="claude">Claude</button></div>
+      </div>
+      <div class="task" data-task="m2" data-label="Vercel: הגדרת משתני סביבה + Redeploy">
+        <div class="task__check"></div>
+        <div class="task__body">
+          <div class="task__title">Vercel — משתני סביבה + Redeploy</div>
+          <div class="task__desc">Project → Settings → Environment Variables, ואז <b>Redeploy</b> (הערכים נאפים בזמן build):</div>
+          <div class="tbl-wrap"><table>
+            <thead><tr><th>משתנה</th><th>ערך</th></tr></thead>
+            <tbody>
+              <tr><td><span class="ltr">NEXT_PUBLIC_SITE_URL</span></td><td><span class="ltr">https://www.gesawards.io</span></td></tr>
+              <tr><td><span class="ltr">NEXT_PUBLIC_GA_ID</span></td><td><span class="ltr">G-4JBT3Y2KMR</span></td></tr>
+              <tr><td><span class="ltr">NEXT_PUBLIC_GOOGLE_ADS_ID</span></td><td><span class="ltr">AW-XXXXXXXXXX</span> — מתוך Ads → Tools → Data manager → Google tag</td></tr>
+            </tbody>
+          </table></div>
+          <div class="who-note who-note--me">בוצע על ידי אילן</div><div class="who-note who-note--claude">בוצע על ידי Claude</div>
+        </div>
+        <div class="task__marks"><button class="mark" data-who="me">אני</button><button class="mark" data-who="claude">Claude</button></div>
+      </div>
+      <div class="task" data-task="m3" data-label="GA4: סימון האירועים כ-Key events">
+        <div class="task__check"></div>
+        <div class="task__body">
+          <div class="task__title">GA4 — לסמן את האירועים כ־Key events</div>
+          <div class="task__desc">Admin → Events, אחרי שהאירועים מופיעים (24–48 שעות מהדיפלוי): <code class="inline">apply_submitted</code> ★ · <code class="inline">apply_form_open</code> · <code class="inline">apply_engaged</code> · <code class="inline">newsletter_signup</code></div>
+          <div class="who-note who-note--me">בוצע על ידי אילן</div><div class="who-note who-note--claude">בוצע על ידי Claude</div>
+        </div>
+        <div class="task__marks"><button class="mark" data-who="me">אני</button><button class="mark" data-who="claude">Claude</button></div>
+      </div>
+      <div class="task" data-task="m4" data-label="קישור GA4 ל-Google Ads">
+        <div class="task__check"></div>
+        <div class="task__body">
+          <div class="task__title">לקשר GA4 ↔ Google Ads</div>
+          <div class="task__desc">GA4: Admin → Product links → Google Ads Links → לקשר את החשבון.</div>
+          <div class="who-note who-note--me">בוצע על ידי אילן</div><div class="who-note who-note--claude">בוצע על ידי Claude</div>
+        </div>
+        <div class="task__marks"><button class="mark" data-who="me">אני</button><button class="mark" data-who="claude">Claude</button></div>
+      </div>
+      <div class="task" data-task="m5" data-label="ייבוא ההמרות מ-GA4 ל-Google Ads">
+        <div class="task__check"></div>
+        <div class="task__body">
+          <div class="task__title">לייבא את ההמרות ל־Google Ads</div>
+          <div class="task__desc">Goals → Conversions → New conversion action → Import → GA4 → לייבא את <code class="inline">apply_submitted</code> (Primary) ואת <code class="inline">apply_form_open</code> (Secondary).</div>
+          <div class="who-note who-note--me">בוצע על ידי אילן</div><div class="who-note who-note--claude">בוצע על ידי Claude</div>
+        </div>
+        <div class="task__marks"><button class="mark" data-who="me">אני</button><button class="mark" data-who="claude">Claude</button></div>
+      </div>
+      <div class="task" data-task="m6" data-label="וידוא זיהוי Consent mode ב-Google Ads">
+        <div class="task__check"></div>
+        <div class="task__body">
+          <div class="task__title">לוודא ש־Consent mode מזוהה ב־Google Ads</div>
+          <div class="task__desc">Data manager → diagnostics. הקוד כבר משדר Consent Mode v2.</div>
+          <div class="who-note who-note--me">בוצע על ידי אילן</div><div class="who-note who-note--claude">בוצע על ידי Claude</div>
+        </div>
+        <div class="task__marks"><button class="mark" data-who="me">אני</button><button class="mark" data-who="claude">Claude</button></div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ======================== MONITOR ======================== -->
+<section class="tab" id="tab-monitor" data-title="מעקב שוטף">
+
+  <div class="sec">
+    <div class="sec__head"><span class="sec__num">D</span><h2>איך עוקבים — שגרת מעקב</h2><span class="rule"></span></div>
+
+    <div class="chart-card">
+      <h3>מה אמור לקרות אחרי ה־Change of Address</h3>
+      <p class="sub">Impressions ב־Search Console: באתר הישן יורדים בהדרגה, בחדש עולים. חיפושי מותג עוברים ראשונים.</p>
+      <svg class="chart-svg" viewBox="0 0 640 230" role="img" aria-label="גרף: חשיפות האתר הישן יורדות והחדש עולות לאורך 12 שבועות">
+        <line x1="40" y1="190" x2="620" y2="190" stroke="var(--border)" stroke-width="1.5"/>
+        <line x1="40" y1="20"  x2="40"  y2="190" stroke="var(--border)" stroke-width="1.5"/>
+        <text x="620" y="212" font-size="12" fill="var(--text-dim)" text-anchor="end" font-family="IBM Plex Sans Hebrew,sans-serif">שבועות מה־Change of Address →</text>
+        <text x="46" y="34" font-size="12" fill="var(--text-dim)" font-family="IBM Plex Sans Hebrew,sans-serif">Impressions</text>
+        <path d="M40,50 C160,55 260,90 380,140 C470,175 560,182 620,184" fill="none" stroke="var(--text-dim)" stroke-width="2.5" stroke-dasharray="7 5" opacity=".7"/>
+        <path d="M40,183 C160,178 260,145 380,95 C470,60 560,42 620,36" fill="none" stroke="var(--gold)" stroke-width="3"/>
+        <circle cx="620" cy="36" r="4.5" fill="var(--gold)"/>
+        <circle cx="620" cy="184" r="4" fill="var(--text-dim)" opacity=".7"/>
+        <text x="120" y="42" font-size="12.5" fill="var(--text-dim)" font-family="IBM Plex Sans Hebrew,sans-serif">globaledtechawards.org (הישן)</text>
+        <text x="455" y="30" font-size="13" font-weight="700" fill="var(--gold)" font-family="IBM Plex Sans Hebrew,sans-serif">gesawards.io (החדש)</text>
+      </svg>
+    </div>
+
+    <div class="cards">
+      <div class="card"><h4><span class="where">GA4 → Reports → Acquisition</span>Traffic acquisition</h4><p>כמה תנועה מגיעה מ־<b>google / organic</b> ומ־<b>google / cpc</b>, וכמה מהם מסיימים ב־Key events.</p></div>
+      <div class="card"><h4><span class="where">GA4 → Advertising</span>ביצועי המרות</h4><p>ביצועי ההמרות לפי ערוץ.</p></div>
+      <div class="card"><h4><span class="where">Search Console × 2</span>שני ה־Properties</h4><p>בישן — Impressions/Clicks אמורים <b>לרדת</b>; בחדש — <b>לעלות</b>. לחפש „gesa", „global edtech startup awards" ולוודא שהחדש מחליף את הישן בתוצאות.</p></div>
+      <div class="card"><h4><span class="where">Google Ads → Campaigns</span>מדדי קמפיין</h4><p>CTR (יעד: <b>5%+</b> ב־brand, <b>2%+</b> ב־category), CPC, Conversions, Search impression share.</p></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec__head"><span class="sec__num">D·2</span><h2>צ׳קליסט שבועי — 5 דקות</h2><span class="rule"></span>
+      <button class="btn btn--ghost" id="reset-weekly" title="מאפס רק את הצ׳קליסט השבועי">איפוס שבועי</button>
+    </div>
+    <div class="tasks">
+      <div class="task" data-task="w1" data-label="[שבועי] Search Console חדש: impressions במגמת עלייה">
+        <div class="task__check"></div>
+        <div class="task__body">
+          <div class="task__title">Search Console חדש: impressions במגמת עלייה? שאילתות מותג מגיעות לאתר החדש?</div>
+          <div class="who-note who-note--me">בוצע על ידי אילן</div><div class="who-note who-note--claude">בוצע על ידי Claude</div>
+        </div>
+        <div class="task__marks"><button class="mark" data-who="me">אני</button><button class="mark" data-who="claude">Claude</button></div>
+      </div>
+      <div class="task" data-task="w2" data-label="[שבועי] GA4: יש apply_submitted השבוע ומאיזה ערוץ">
+        <div class="task__check"></div>
+        <div class="task__body">
+          <div class="task__title">GA4: יש <code class="inline">apply_submitted</code> השבוע? מאיזה ערוץ?</div>
+          <div class="who-note who-note--me">בוצע על ידי אילן</div><div class="who-note who-note--claude">בוצע על ידי Claude</div>
+        </div>
+        <div class="task__marks"><button class="mark" data-who="me">אני</button><button class="mark" data-who="claude">Claude</button></div>
+      </div>
+      <div class="task" data-task="w3" data-label="[שבועי] Ads: בדיקת Search terms והוספת negatives">
+        <div class="task__check"></div>
+        <div class="task__body">
+          <div class="task__title">Ads: יש מילות חיפוש לא רלוונטיות בדוח Search terms? → להוסיף כ־negative</div>
+          <div class="who-note who-note--me">בוצע על ידי אילן</div><div class="who-note who-note--claude">בוצע על ידי Claude</div>
+        </div>
+        <div class="task__marks"><button class="mark" data-who="me">אני</button><button class="mark" data-who="claude">Claude</button></div>
+      </div>
+      <div class="task" data-task="w4" data-label="[שבועי] בדיקה שהדומיין הישן חי ומפנה">
+        <div class="task__check"></div>
+        <div class="task__body">
+          <div class="task__title">הדומיין הישן עדיין חי ומפנה?</div>
+          <div class="task__desc">לגלוש ל־<code class="inline">globaledtechawards.org</code> ולוודא הפניה.</div>
+          <div class="who-note who-note--me">בוצע על ידי אילן</div><div class="who-note who-note--claude">בוצע על ידי Claude</div>
+        </div>
+        <div class="task__marks"><button class="mark" data-who="me">אני</button><button class="mark" data-who="claude">Claude</button></div>
+      </div>
+    </div>
+
+    <div class="callout callout--gold">
+      <div class="callout__title">UTM לערוצים אחרים</div>
+      <p>כדי שגם ניוזלטר / סושיאל יימדדו נכון, לכל קישור שמתפרסם מחוץ לגוגל להוסיף פרמטרים:</p>
+      <pre class="block" style="margin-bottom:0">https://www.gesawards.io/apply?utm_source=linkedin&amp;utm_medium=social&amp;utm_campaign=apply2026</pre>
+    </div>
+  </div>
+
+</section>
+
+<!-- ======================== CODE ======================== -->
+<section class="tab" id="tab-code" data-title="מה בקוד">
+
+  <div class="sec">
+    <div class="sec__head"><span class="sec__num">R</span><h2>מה הוכן בקוד — רפרנס</h2><span class="rule"></span></div>
+    <p class="intro">התשתית הטכנית כבר קיימת בריפו. אלה סומנו מראש כ„בוצע על ידי Claude".</p>
+    <div class="tasks">
+      <div class="task" data-task="k1" data-label="Consent Mode v2 + תג Google Ads בקוד">
+        <div class="task__check"></div>
+        <div class="task__body">
+          <div class="task__title">Consent Mode v2 + תג Google Ads</div>
+          <div class="task__desc"><code class="inline">components/analytics/GtagInit.tsx</code> — ברירת מחדל של consent לפני טעינת גוגל, <code class="inline">url_passthrough</code> לשימור מזהה הקליק (gclid) גם בלי הסכמה, ותג <code class="inline">AW-</code> שנטען רק כש־<code class="inline">NEXT_PUBLIC_GOOGLE_ADS_ID</code> מוגדר. באנר הקוקיז מעניק גם הסכמת פרסום ב־Accept.</div>
+          <div class="who-note who-note--me">בוצע על ידי אילן</div><div class="who-note who-note--claude">בוצע על ידי Claude</div>
+        </div>
+        <div class="task__marks"><button class="mark" data-who="me">אני</button><button class="mark" data-who="claude">Claude</button></div>
+      </div>
+      <div class="task" data-task="k2" data-label="אירועי המרה ועמוד תודה בקוד">
+        <div class="task__check"></div>
+        <div class="task__body">
+          <div class="task__title">אירועי המרה + עמוד תודה</div>
+          <div class="task__desc"><code class="inline">lib/analytics.ts</code> + <code class="inline">components/apply/*</code> + עמוד <code class="inline">/apply/thank-you</code>.</div>
+          <div class="who-note who-note--me">בוצע על ידי אילן</div><div class="who-note who-note--claude">בוצע על ידי Claude</div>
+        </div>
+        <div class="task__marks"><button class="mark" data-who="me">אני</button><button class="mark" data-who="claude">Claude</button></div>
+      </div>
+      <div class="task" data-task="k3" data-label="תיקוני SEO: sitemap, robots, JSON-LD, הפניית 301">
+        <div class="task__check"></div>
+        <div class="task__body">
+          <div class="task__title">SEO</div>
+          <div class="task__desc"><code class="inline">sitemap.xml</code> ו־<code class="inline">robots.txt</code> תוקנו לדומיין החדש; JSON-LD של Organization (layout) ו־Event (דף הבית — להוסיף תאריכים כשיהיו); הפניית 301 ברמת host מוכנה ב־<code class="inline">next.config.ts</code> ליום שבו הדומיין הישן יופנה ל־Vercel.</div>
+          <div class="who-note who-note--me">בוצע על ידי אילן</div><div class="who-note who-note--claude">בוצע על ידי Claude</div>
+        </div>
+        <div class="task__marks"><button class="mark" data-who="me">אני</button><button class="mark" data-who="claude">Claude</button></div>
+      </div>
+      <div class="task" data-task="k4" data-label="עדכון Privacy Policy: פסקה על קוקיז פרסום/המרות">
+        <div class="task__check"></div>
+        <div class="task__body">
+          <div class="task__title">משימת תוכן פתוחה: עדכון Privacy Policy</div>
+          <div class="task__desc">עמוד <b>Privacy Policy</b> צריך פסקה על שימוש בקוקיז של פרסום / המרות (Google Ads) בנוסף לאנליטיקס — <b>לעדכן לפני הפעלת קמפיין</b>.</div>
+          <div class="who-note who-note--me">בוצע על ידי אילן</div><div class="who-note who-note--claude">בוצע על ידי Claude</div>
+        </div>
+        <div class="task__marks"><button class="mark" data-who="me">אני</button><button class="mark" data-who="claude">Claude</button></div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+</main>
+
+<footer class="wrap">
+  <span>הסימונים נשמרים מקומית בדפדפן זה בלבד · מבוסס על <span class="ltr" style="font-family:var(--font-mono)">docs/marketing/google-campaign-playbook.md</span></span>
+  <button class="btn btn--ghost" id="reset-all">איפוס כל הסימונים</button>
+</footer>
+
+<div id="toast"></div>
+
+<script>
+(function(){
+  "use strict";
+  /* משימות שכבר בוצעו בקוד — ברירת מחדל "claude". localStorage גובר על זה. */
+  var DEFAULTS = { k1:"claude", k2:"claude", k3:"claude", a1:"me", a2:"me", a4:"me", a5:"me" };
+  var KEY = "gesa-playbook-v1";
+  var TABKEY = "gesa-playbook-tab";
+  var overrides = {};
+  try { overrides = JSON.parse(localStorage.getItem(KEY) || "{}"); } catch(e){ overrides = {}; }
+
+  function stateOf(id){ return overrides[id] || DEFAULTS[id] || "open"; }
+  function save(){ try { localStorage.setItem(KEY, JSON.stringify(overrides)); } catch(e){} }
+
+  var tasks = Array.prototype.slice.call(document.querySelectorAll(".task"));
+  var sections = Array.prototype.slice.call(document.querySelectorAll(".tab"));
+  var tabButtons = Array.prototype.slice.call(document.querySelectorAll("#tabbar button"));
+
+  function render(){
+    var me=0, claude=0;
+    tasks.forEach(function(t){
+      var s = stateOf(t.dataset.task);
+      t.dataset.state = s;
+      if(s==="me") me++; else if(s==="claude") claude++;
+      Array.prototype.forEach.call(t.querySelectorAll(".mark"), function(b){
+        b.setAttribute("aria-pressed", String(s===b.dataset.who));
+      });
+    });
+    var total = tasks.length, done = me+claude;
+    var pct = total ? Math.round(done/total*100) : 0;
+    document.getElementById("pct").textContent = pct;
+    document.getElementById("cnt-me").textContent = me;
+    document.getElementById("cnt-claude").textContent = claude;
+    document.getElementById("cnt-open").textContent = total-done;
+    document.getElementById("seg-me").style.width = (total? me/total*100 :0) + "%";
+    document.getElementById("seg-claude").style.width = (total? claude/total*100 :0) + "%";
+
+    tabButtons.forEach(function(btn){
+      var badge = btn.querySelector(".badge");
+      if(!badge) return;
+      var sec = document.getElementById("tab-"+btn.dataset.tab);
+      var secTasks = sec ? sec.querySelectorAll(".task") : [];
+      var d=0;
+      Array.prototype.forEach.call(secTasks, function(t){ if(stateOf(t.dataset.task)!=="open") d++; });
+      badge.textContent = d + "/" + secTasks.length;
+      badge.classList.toggle("done", secTasks.length>0 && d===secTasks.length);
+    });
+  }
+
+  document.addEventListener("click", function(ev){
+    var btn = ev.target.closest(".mark");
+    if(!btn) return;
+    var task = btn.closest(".task");
+    var id = task.dataset.task;
+    var who = btn.dataset.who;
+    overrides[id] = (stateOf(id)===who) ? "open" : who;
+    save(); render();
+  });
+
+  /* --- tabs --- */
+  function showTab(name){
+    sections.forEach(function(s){ s.classList.toggle("active", s.id === "tab-"+name); });
+    tabButtons.forEach(function(b){ b.classList.toggle("active", b.dataset.tab===name); });
+    try { localStorage.setItem(TABKEY, name); } catch(e){}
+  }
+  tabButtons.forEach(function(b){ b.addEventListener("click", function(){ showTab(b.dataset.tab); }); });
+  var initial = "overview";
+  try { initial = localStorage.getItem(TABKEY) || "overview"; } catch(e){}
+  if(!document.getElementById("tab-"+initial)) initial = "overview";
+  showTab(initial);
+
+  /* --- toast --- */
+  var toastTimer;
+  function toast(msg){
+    var el = document.getElementById("toast");
+    el.textContent = msg; el.classList.add("show");
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function(){ el.classList.remove("show"); }, 2200);
+  }
+
+  /* --- copy status --- */
+  document.getElementById("copy-status").addEventListener("click", function(){
+    var groups = { me:[], claude:[], open:[] };
+    sections.forEach(function(sec){
+      var title = sec.dataset.title || sec.id;
+      Array.prototype.forEach.call(sec.querySelectorAll(".task"), function(t){
+        var s = stateOf(t.dataset.task);
+        var label = t.dataset.label || t.querySelector(".task__title").textContent.trim();
+        groups[s].push("- [" + title + "] " + label);
+      });
+    });
+    var total = tasks.length, done = groups.me.length + groups.claude.length;
+    var lines = [];
+    lines.push("סטטוס משימות — מדריך קמפיין גוגל gesawards.io (" + new Date().toLocaleDateString("he-IL") + ")");
+    lines.push("התקדמות: " + done + "/" + total + " (" + Math.round(done/total*100) + "%)");
+    lines.push("");
+    lines.push("בוצעו על ידי המשתמש (" + groups.me.length + "):");
+    lines = lines.concat(groups.me.length ? groups.me : ["- (אין)"]);
+    lines.push("");
+    lines.push("בוצעו על ידי Claude (" + groups.claude.length + "):");
+    lines = lines.concat(groups.claude.length ? groups.claude : ["- (אין)"]);
+    lines.push("");
+    lines.push("פתוחות (" + groups.open.length + "):");
+    lines = lines.concat(groups.open.length ? groups.open : ["- (אין)"]);
+    var text = lines.join("\n");
+
+    function fallbackCopy(){
+      var ta = document.createElement("textarea");
+      ta.value = text; ta.style.position="fixed"; ta.style.opacity="0";
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand("copy"); toast("הסטטוס הועתק ✓"); }
+      catch(e){ toast("ההעתקה נכשלה"); }
+      document.body.removeChild(ta);
+    }
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(function(){ toast("הסטטוס הועתק ✓"); }, fallbackCopy);
+    } else { fallbackCopy(); }
+  });
+
+  /* --- resets --- */
+  document.getElementById("reset-weekly").addEventListener("click", function(){
+    tasks.forEach(function(t){
+      var id = t.dataset.task;
+      if(id.charAt(0)==="w") delete overrides[id];
+    });
+    save(); render(); toast("הצ׳קליסט השבועי אופס");
+  });
+  document.getElementById("reset-all").addEventListener("click", function(){
+    if(!confirm("לאפס את כל הסימונים? (משימות הקוד יחזרו להיות מסומנות כ-Claude)")) return;
+    overrides = {}; save(); render(); toast("כל הסימונים אופסו");
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>
