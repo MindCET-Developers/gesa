@@ -1,11 +1,12 @@
 // lib/content/regional-semifinals-source.ts
 //
-// Raw data pulled once from the GESAwards Airtable base (appyTu8uOPQUVXD4x):
+// Raw data pulled from the GESAwards Airtable base (appyTu8uOPQUVXD4x):
 // - Table "Partners" (tblAfv3rYs6GyXQEF): partner name + linked countries + logo attachment.
 // - Table "all countries" (tbl7wFk8g0AbGx7ee): each country's real "Geographic Area".
 //
-// This file is the single source of truth for scripts/build-regional-semifinals.ts.
+// This file is the single source of truth for scripts/build-regional-semifinals.mjs.
 // To refresh: re-pull the two tables and update the arrays below by hand.
+// Last refreshed: 2026-07-15.
 
 export type RawPartner = {
   /** Exact Airtable record name. */
@@ -18,10 +19,11 @@ export type RawPartner = {
 
 export const RAW_PARTNERS: RawPartner[] = [
   {
-    name: "Rest of the World",
+    // Airtable renamed "Rest of the World" → "Tyme Education"; Turkey moved to DOHE.
+    name: "Tyme Education",
     countries: [
       "Australia", "Bangladesh", "Iraq", "Jordan", "Kuwait", "Lebanon", "Nepal",
-      "Pakistan", "Papua New Guinea", "Saudi Arabia", "Turkey",
+      "Pakistan", "Papua New Guinea", "Saudi Arabia",
       "United Arab Emirates (UAE)",
     ],
   },
@@ -29,7 +31,7 @@ export const RAW_PARTNERS: RawPartner[] = [
     name: "Esperanza",
     countries: ["Hong Kong", "China"],
     logoUrl:
-      "https://v5.airtableusercontent.com/v3/u/55/55/1783864800000/a2zVnhmeLi9jj_JkYpfzmw/Z7mnvq7RBBFknSUHvKClVNdu0PKV0FVZqCWk5jjg0nKlc514MBdICcI3hQYbVG5FFUEGG91O4Q1JI6xQQTYrKfo8_eOzYk6PIm0tmigkM9org7h9IEZ_nEYx7O6M3pgpdbiUHKTH6QvFTWG_m7jVzQ/pMGOOfJT8vNw1uxB3VUrHUsVZdiSYf6JeRc4gmdZpjE",
+      "https://v5.airtableusercontent.com/v3/u/55/55/1784131200000/Nq0MZimaVc1kp3OPbR_hKA/LFO6bvo1_XTBfzLxXfO6Cl7eBxRp1NUcbLHbPaT0Mus4Y3HvYkbdgL-9rqOUxNJx1z9mzUseQVBUYympm7FJwiYXsgdBbimYU0Kfu8dyfQWf-Kb6EkbJr27ncn8xhHj1oRGYftHYmstuuSfWezTYVQ/MBLGkruUfutu1Jt5faA5jQ6UO2kva_S6NOAL0L41rtY",
   },
   {
     name: "StartEdAccelerator",
@@ -38,20 +40,22 @@ export const RAW_PARTNERS: RawPartner[] = [
       "USA - Montana", "USA - Wyoming",
     ],
     logoUrl:
-      "https://v5.airtableusercontent.com/v3/u/55/55/1783864800000/SHQGYSfy5t39Mh8saIbvzg/BG9BlY-WckzxP_xICgIYbF9bahXfBlMLw6BraICvwrJU-nAV3CTvwYgfeu4G-oGgmxfFB1kAgmiy1TPKGwLWsQ9CRMveTN9S28PyBuKmFVeRGdCyLXJaxYkTaIslSh7MjAmyNDR05_utoZGn3368sA/AcvbBrxYYjP0bXyNUOmRUkIGQVG-eTY_knn2lASwieY",
+      "https://v5.airtableusercontent.com/v3/u/55/55/1784131200000/LiyXZtrb_JOHX1AzJaEqHA/KL3-iBo_5oxflaUykE1-qE-uxVEdDW4sgPCDhpzC-DLsTvkXRNC7H-tl7KZEAtgha-Mni39Y5Mp6n17mfz_kUI2W7Pn_vIthBUwyCiFz5SVybYSuUlx4c7P38pmX5Bk9d636i9DM-a5TDiSJsrejBA/ydZBxKy32jEzWnK-Vejb6ycCztDLUc3s4NLesreXgW0",
   },
   { name: "EdTech France", countries: ["France"] },
+  { name: "Afinef", countries: ["France"] },
   {
     name: "Ingenious Faces",
     countries: ["India"],
     logoUrl:
-      "https://v5.airtableusercontent.com/v3/u/55/55/1783864800000/6B2_mr9-MhdunMqausyKww/4AjZjiA2ZrSrEvq2KvowNa4P8DZoBMu8gy1Bn7MUxOR5gf6XfzbVp-0Lo855-91-TPMZm4bFOQwp56vVOdEruUWj0v7HkoPcxRXQ6j8t8SYTEd5oOitW9LEBKqa4dYcKXHWrKicCzdRe2cVwGrut_g/bVWzzH3t074QeT4Jyhzvn2d8wAhK93mBsQNXHDevtFU",
+      "https://v5.airtableusercontent.com/v3/u/55/55/1784131200000/kpjUErYCyAAyPj4087g09Q/1zFoca7LhFlc_3-wMW8c_kDgmp1vtJmvg4nSSrar3ov8WCmPqvdHq1KYMuO-GNg498PtrMLt8qCmko_Bgkul_JvJYrPzqbOEPj73yLgHt55kLNSfstlt0Huhw1BtQXEQAcNCbDQgAdNrg8tH20XveA/4kiDAvLPA756RpSXzFGla8nfOylcn6HKw2cI6du5yDQ",
   },
   {
+    // Airtable record is currently named "SEK Lab/ ?" — kept as "SEK Lab" for display.
     name: "SEK Lab",
-    countries: ["Spain", "Portugal"],
+    countries: ["Portugal", "Spain"],
     logoUrl:
-      "https://v5.airtableusercontent.com/v3/u/55/55/1783864800000/VjUZTmnWDZBnkLh_NLqPZw/vxjLUnFpO8ZfLw_E4otI9jEGVoO8kFUQXzrpyp2hBvqGndvuFDCA3cPWx_y9-bUUuQGoh8IBgQGR2XZ4eSwsSGJcu_J4y5wbkt83Ude6Ei5EY26vYBjwgrnwghOf17ebQwppEKk93W5ozwOsWD0rCw/CND5SFqi17wXQzTzDCfM9XkOgRoYIoy-hIf896yrxQs",
+      "https://v5.airtableusercontent.com/v3/u/55/55/1784131200000/UH-bdUJ9jkRYfcQeEGdP7w/IZiIIJFHWPTKWp3pNw1yobqZ-P6BvB3FvWLokhgpW1EeK53M1lH8ERBDUqle7DN-Lrnpg2LlTGkksJwCQ9MQoFDjYfjmb2vYA0xja0DPbkt2GA09yF4xaYvm3IbMdknQbKwYxuTXneQ6aYlUS-nfCw/pTVtobuQrLnGtOei4xZyooLt3kq4-idAh5A-SadDSNQ",
   },
   {
     name: "Learnlaunch",
@@ -59,15 +63,16 @@ export const RAW_PARTNERS: RawPartner[] = [
       "USA - Alabama", "USA - Arkansas", "USA - Illinois", "USA - New Jersey",
       "USA - Pennsylvania", "USA - Washington D.C", "Canada",
     ],
-    // NOTE: Airtable attachment for this partner is mistyped (text/html, not an image) —
-    // the upload is broken. Flagged for the user to re-upload in Airtable. Omit logoUrl
-    // here so the generator falls back to the initials badge until it's fixed.
+    // NOTE: Airtable attachment for this partner is still mistyped (text/html, not an
+    // image) — the upload is broken. Flagged for the user to re-upload in Airtable.
+    // Omit logoUrl here so the generator falls back to the initials badge until fixed.
   },
   {
-    name: "Japan",
+    // Airtable renamed "Japan" → "METI Japan".
+    name: "METI Japan",
     countries: ["Japan"],
     logoUrl:
-      "https://v5.airtableusercontent.com/v3/u/55/55/1783864800000/cDEY8fUWRtjuzPLcBuDmMw/8XWieJ15l8Z9sUvndnD3t04F8mLbTq6xkDyUROuZha1ckV7wCHLhFrCfDWYu6aj1xhUIzqu907Ky7U5_bDsnMpxNL_dy17oztWVGG28vdoJLkfTmmcBlH1X_olbTw_iSrW4Gy4YMaBVehhF0Uye5mA/rKu8EMRMVyCa-hA8ck4b_l2dCmFHz-uZ7nBHpXWyN4M",
+      "https://v5.airtableusercontent.com/v3/u/55/55/1784131200000/ivZYUgifwXLRX68JRNNAxQ/EOk21fkuvoVkfdbZGAf4tfsOQmU4Jr3-A7juW3BdNv0AZDCpMrux9IrpuuREfmSPQFmuAS5eKEG5Iu6a_sTMfT0uqbTym2tKBeheloi3FkIGXdVS2pfj0z_PGtW_bceTTmpqmeoVGE6lxqnCblkZVw/pqV4ahIh89GfCvz-YZul8OhjK8c2TN9OOjJU-oA1C9I",
   },
   {
     name: "Tech Monterrey",
@@ -79,12 +84,11 @@ export const RAW_PARTNERS: RawPartner[] = [
       "Barbados", "Trinidad and Tobago",
     ],
   },
-  { name: "Tyme Education/Open Education Challenge", countries: [] },
   {
     name: "BR Founder Institute/ SchoolGuardian",
     countries: ["Brazil"],
     logoUrl:
-      "https://v5.airtableusercontent.com/v3/u/55/55/1783864800000/XgVt8oE8GOq5zg200C_MAg/tWSH5akVPEWNfe_xlsGeru0yW_BzCgT7cVZOB9QuAI10c-TTFeYVbINcRrIv4pat-6CKEA8yBA-MJQ3LosnSSj_MaT2FpLZWTyqCTjzpajxSAbgBXqqBzjloMLz9OELlpwYYYECj90xD-X-rOfh8YQ/ajOe2Op0Idu6shv7arC4Z7LheI4EYSXEI3jgjUgGVVI",
+      "https://v5.airtableusercontent.com/v3/u/55/55/1784131200000/Fs558ScfYNlGdm1eluOkOA/iksVzJ_4RMFKNKPFGxSFgf0DfwINhjpzsyjLCpI0lfky5UsRLFr495W9i-nktRUzd_iRGYdH0Z-tQMQzs0dZYYPnq2Fq5u8AkKf2iXKq3JJHPAfrTZkcRnaTfZnitzij_TGMVhSS_DumjNqR3_waMg/VB02VpGZjLRLtVLLYyoHTkc3TX4JNiZosYK-ebzDtjk",
   },
   {
     name: "Edcrunch",
@@ -93,7 +97,7 @@ export const RAW_PARTNERS: RawPartner[] = [
       "Tajikistan", "Turkmenistan", "Mongolia", "Georgia",
     ],
     logoUrl:
-      "https://v5.airtableusercontent.com/v3/u/55/55/1783864800000/Zx8pKD-mpaZaub-iXmrLAA/zWwAtXDhOsiGSJGjtsipz_-1laoh8uiL4bZWyE38gnA9Xo5U2vzOkufG9U-uEn-CGV32DnHIGHzhowJkPkDKnl0SwM9mzo4S3JpUfNixKyGak-zTxrK3ByuOT4PWPNOHZaUHlA-67vDiayjhop_8Vg/Jo9Z8oTBXBXkToKxTSZ-OvbshCjwecOKGBW3gw4mVdo",
+      "https://v5.airtableusercontent.com/v3/u/55/55/1784131200000/3wMATFg3kjc78Rfcc4RIyQ/X5r-OSJPk0fQszVcuFZmAirDjtUZRUmRO9BrVxV_uDZjSGWrUGQ7m8VrM2dKQOgve-13z4AuwAuLc24b5E7Y-FLUBAudSS8g3xR1d2V0ouowXQrKAeTuGiJwkLxejdeWc16s8ecxGHT9Wxa1oURXhw/ZcVMIgwdmtaezBVRfCM077SZpMxmsYzFhvt-xP211TQ",
   },
   {
     name: "Eduspaze",
@@ -102,17 +106,17 @@ export const RAW_PARTNERS: RawPartner[] = [
       "Philippines", "Thailand", "East Timor", "Vietnam", "Myanmar (formerly Burma)",
     ],
     logoUrl:
-      "https://v5.airtableusercontent.com/v3/u/55/55/1783864800000/TM4Eibwx_7oj8TAPDQS3JQ/drJChBtMn_QBrBFYxmSfSiizFLEh1KTBeReAqAErQK5Z1T4QIopK5eQoXw4FGDVQNAUeWJLDvlTXoz08vRO7jcQUx3XbjZJj8DyDCxynLVzipZw9lvC1MJp1Y8AlTgglefAD5jBA1JWILj3000T1zg/iW03XGv82Cl8ltmIBEzFkAnfA3i5g__ZqXW7nGXnnDQ",
+      "https://v5.airtableusercontent.com/v3/u/55/55/1784131200000/BMByf4keAOmOOtfqorkIgw/92L8Dww2e40xYjWi8hFxSyiipEL-Mo5a4sWO7Jpit1HPJTV5Xn4hhnN3Gt0IENlqpJYE_qGjtBDhLNJSuuS-j65WCY4_JVMw0Mm5RC3_bWs4kq4YHir0IpF16V9MaENMy6PWyj8ilT0oZLSWvyC7iQ/ZYBrbqrUexX25OBz0fI8-BedQ6KOxGEA65epskmxzLg",
   },
   { name: "UCL EdTech Labs", countries: ["United Kingdom (UK)"] },
   {
     name: "Dutch EdTech",
     countries: ["Netherlands"],
     logoUrl:
-      "https://v5.airtableusercontent.com/v3/u/55/55/1783864800000/eex-mBgolL5aa9Q3fdL5YA/6ZEvFsTS4Axw71PAVbfhIWTC-d7YdlKh286WIAPJv4uHAUtImS3wsNyLUdMKR-GFGQJYgB5dC66sMd8xcHB73YRmpjR3ZILQKIgjuSbcFJjiPX7AeetQtdMbys6WYoezG4029jVCaOCuBM-Lz_Td0A/Jcyl6o2J3nQBIy3fHOjIlfX-djgdcFLgBanimVeLmFI",
+      "https://v5.airtableusercontent.com/v3/u/55/55/1784131200000/saSR-_IU1ZJUJxDSphRuvA/8zEqSTxiSWVanxqNOHnLQc6ribOzLap4C-tHlpycjZkXoiCg2ojAcYu0KMnsB29SEY47xqA7OjZhsh_kEATENqwMyGzP4eiHjQqbJ77DlG8fj1w9lKeD_-bzJ4dSaLccAeFgQjo4VRE9VeIAwcYLRA/1Ua2BpC4NzfiLtwqCx6tPLb-rjr9UZo4rvue6XV1Ku4",
   },
   { name: "Taipei Computer Association (TCA)", countries: ["Taiwan"] },
-  { name: "Learning Spark", countries: ["South Korea"] },
+  { name: "Learning Spark", countries: ["South Korea", "North Korea"] },
   {
     name: "Prismapar",
     countries: [
@@ -123,14 +127,13 @@ export const RAW_PARTNERS: RawPartner[] = [
       "Barbados", "Trinidad and Tobago",
     ],
     logoUrl:
-      "https://v5.airtableusercontent.com/v3/u/55/55/1783864800000/h_9XR--WX0SDMleqiYH0lQ/qFChV5jG0RHsRh7_z7EnO8RtoVfOAW7XvSc9Ps_2_Zb90s0UyL3P2S6bJRf1UebI9vePGjtG0AsvI5v7f0_pamwaRNYtwyEQO1dDCOuBMn04zmDjG7BJWJgDIX63v-VqMcv8ylCR2XmWQZaZvm0-6A/pQaT7CThz6_-p-c9Kit2sdqvnsB1Wk0fmJhnSk2ZakM",
+      "https://v5.airtableusercontent.com/v3/u/55/55/1784131200000/y0NAhL1mvSCnwgzOQyxoxg/6W9uqarYBakPIX4NDNZ00Jx443izXdKMx_dfwaBNxflZfL1YygmTIx8yPIpBYX2mnGWkRli2HpEvvoWIDR7FWK_L_1rpo8rvem1ves-Pn1THi4sM5wIGLdw2H5-Er_nFNhbt1E_-V6lcMb9KGJPmyg/cXqiTRBFBiDoQMbxPvT8r63GLIREriedahlFJKvL3L4",
   },
-  { name: "Startup Braga", countries: ["Portugal"] },
   {
-    name: "Future Education Modena",
-    countries: ["Italy"],
+    name: "Startup Braga",
+    countries: ["Portugal"],
     logoUrl:
-      "https://v5.airtableusercontent.com/v3/u/55/55/1783864800000/B0uLUfK4-O79jSilMvl9OA/oVDNwHE6HV7EWXLozEiADhcrlVmSaGR2XfecDMZi89YLpQTAmagxNpuLyc-CU7IBi_vp-hCSYk3GfUoDPuDsX27F7tif3YJ0F-TOe7hwo-Or2uEZlSZei06sQ2qIeMiLNmb2nqmHMwce5UpTPnjutA/zyapl-6D6dK_-QCoy0pou8v32YxX7caONXtnEf5KzRA",
+      "https://v5.airtableusercontent.com/v3/u/55/55/1784131200000/unUHGUOyJCd0E5PU_De8Bw/CJRIWKHKnx73_Gfl7iqTZaHlJVD1pofZYM0TDjfQBlkvfHsfUF7bubkNvVx8mQpKO6rTgKTV8tC2OWLdX1cs6Gf5V7YFQg2diLqjhWKAs6o1kCmvmVoSnuyxkDeQes-ATprQdDfnfLr1f5uE3ttO8Q/40VKne_vVxen0dL0c-GoWWHc65C02CJgJrxoHhXiA3s",
   },
   {
     name: "XEdu",
@@ -139,13 +142,13 @@ export const RAW_PARTNERS: RawPartner[] = [
       "Norway",
     ],
     logoUrl:
-      "https://v5.airtableusercontent.com/v3/u/55/55/1783864800000/XASGcw-Fm6BAB6jWBE2VwQ/LJjKn97GBzTpD0ppiBGCZD6AeY9L01bSk6bdFcown_N_D4be2t8r7oDsWdUXd2O1mOqlnYyGDiBlza1YB2vIxUCzUwobkghH4uesecFrUq3frlcBbzgEEofe1tUgLUVOhHAePuMLaaa7yHksXrDdgw/WI-KBut6PwAOJkSSa6TwnB29lXjgO4bWDEEiZ7HpOmc",
+      "https://v5.airtableusercontent.com/v3/u/55/55/1784131200000/G06_FnUADQGncd-lSeNtsw/ko-eXUKbHijEOFsa-Z7t0AA-tvByCpyi9PAu_fDApflkxjqxCEGbz0T5ykk6CmPDXrY0DU593K8lnnFVYMhObheH23r6F7txq7RmhUGesP99b3KKgDvG9YIrx9WYenZe28WQ69UtQi2ZFJdWaFKBqA/-yGuUXllK7tTQ2iwpf7GCIdcp8JlXV9B0sTehZBOTS0",
   },
   {
     name: "Positivo",
     countries: ["Brazil"],
     logoUrl:
-      "https://v5.airtableusercontent.com/v3/u/55/55/1783864800000/e5GqKNwCZKwZUwmeJpL4EA/0SOePW9Hk5KQ1QgALgFj7VMGrkWz9ST8jX7nqLdG4iOkIFRIO44PimpETjDRPV2bI4Mqdy-TOKUWHiDoJ_uR5n5krxf5pWH-40p8iChltRrHcvToe_AyTIFGGkQB9NobnOOiUxpVRQmD1K4uzLg43g/5vOzjULEHL9kVAXIaRAWrx_Gh-DQgiyQXeKgZFRXIx8",
+      "https://v5.airtableusercontent.com/v3/u/55/55/1784131200000/qWYYMp0TCrVjaNWrwFnUnA/wX5b3SrNok9l89iKXBoUFQ7RxHiotOCe-nyodb7mukI5sQKdAtZe7NQ-d-QbieNGs2zFH1C74C9kRabo-OEjsUixUO38FJy0ENOHIL86uuFbRA0LMQj69yzosykpNmdnIar4vKlhUBqrwiGGA0DFpw/fnU5k2dgRiVvV94ddC7-LxVzlZ7A1biWxekFkCOdK3M",
   },
   { name: "Eduvation", countries: ["Germany"] },
   {
@@ -157,13 +160,40 @@ export const RAW_PARTNERS: RawPartner[] = [
       "Cuba", "Dominican Republic", "Haiti", "Jamaica", "Bahamas", "Barbados",
       "Trinidad and Tobago",
     ],
+    logoUrl:
+      "https://v5.airtableusercontent.com/v3/u/55/55/1784131200000/ER8xvPBWHzszGq4rx4-JYg/mdgQh1_jmtNqBZ3IZf5MyPeDNHdldkBZ_VkfLOoBX3EdSoCaoChz0fq0CsT5ZxThs4Vrr3Tjmv19bLxlZjzqyU4ke1NShoa4piYPGA7U8H4BOlP0qUQshH79cn84C9gBRUoP16TvRCdwKRFFeQPBFA/iGh42eZgZzfIqZR-uSU6_bQG20vodprTZSOszV0Xv_Q",
   },
-  { name: "EdTech Austria - Innovation Salzburg", countries: ["Austria"] },
-  { name: "DOHE", countries: [] },
-  { name: "EdTech Italy", countries: ["Italy"] },
   {
-    name: "GSET ghana society for education technology",
+    name: "EdTech Austria - Innovation Salzburg",
+    countries: ["Austria"],
+    logoUrl:
+      "https://v5.airtableusercontent.com/v3/u/55/55/1784131200000/rLCtWwfuQi_8BAE_0988BA/9Z56VrMepjjuPIWpCWwvo1bafHpEVDuLGcp3LDrVbnTiX7Cp5B2uEoFCsxpXzkls_0iVwVEz9xz3CCXlCKVVS7kXbCGx_wsYicWWwTZYmzrqvpWEvU9IR-KfacqliY990CUUZ1n1JpVBSD2yYZ5CWg/4PpPpnysjfDTbvNEc4wM38ixUWUbzEW6mwbiTjAyhHU",
+  },
+  {
+    // Was empty on the previous pull — now covers wider Europe (plus Turkey, which
+    // Airtable tags as Middle East, so it splits into its own Middle East entry).
+    name: "DOHE",
     countries: [
+      "Albania", "Belgium", "Croatia", "Cyprus", "Czech Republic", "Greece",
+      "Hungary", "Malta", "Moldova", "Monaco", "Serbia", "Slovenia",
+      "Switzerland", "Turkey", "Ukraine", "Andorra", "Belarus",
+      "Bosnia and Herzegovina", "Bulgaria", "Kosovo", "Liechtenstein",
+      "Luxembourg", "Macedonia (FYROM)", "Montenegro", "Netherlands", "Poland",
+      "Romania", "San Marino", "Slovakia", "France", "Austria", "Germany",
+      "Italy", "Spain", "United Kingdom (UK)",
+    ],
+  },
+  {
+    name: "EdTech Italy",
+    countries: ["Italy"],
+    logoUrl:
+      "https://v5.airtableusercontent.com/v3/u/55/55/1784131200000/uPP1Plum_fQ4vSWy3zga4w/rtq1yPXeC0VCI24JiqcCPBVliwKJX5_umAcFQlskMdh1hRHmmLNwuDJwCGJClkl52gZ-LogZtUdy8acg0HKynZuX-13uOfoUHoVFVUWtMiSNPRWHeEEZSDgqWyrqrr8jjWEYaF-f10aqiR1QfHlX2w/YFt4QDeFATe0ZctEphnfBK-8rzjzvVDYzGpdS1vnP7w",
+  },
+  {
+    name: "GSET Ghana Society for Education Technology",
+    countries: [
+      // Airtable links both "Eswatini (formerly Swaziland)" and the legacy
+      // "Swaziland (renamed to Eswatini)" record — collapsed here to "Eswatini".
       "Nigeria", "Ethiopia", "Egypt", "Democratic Republic of the Congo",
       "Republic of the Congo", "Tanzania", "South Africa", "Kenya", "Sudan",
       "Uganda", "Algeria", "Morocco", "Angola", "Ghana", "Mozambique",
@@ -176,7 +206,7 @@ export const RAW_PARTNERS: RawPartner[] = [
       "Djibouti", "Comoros", "Cape Verde", "Sao Tome and Principe", "Seychelles",
     ],
     logoUrl:
-      "https://v5.airtableusercontent.com/v3/u/55/55/1783864800000/4gpG81cOtbg0ZmrQxbB4ew/mLv4thTFRm1BwNF5542oG-8HQ5WwXypKhOVxklqAnRK6m0RdEwSZRcgEqaLm5EEUDc0SdWtsoGE6ZP0bHIae4FVEAW0Etv9-xjnBt2ceQt3uCIlUI8Et6Iw589wHKEOO7kd2c77gbkJZQO9rw4ERbA/cL-1sbfGIcgk5BpH2QLxRTvbQjrb8ptKczGN9UsCQiA",
+      "https://v5.airtableusercontent.com/v3/u/55/55/1784131200000/yUVrQjXcTfMEb3bf4Z2YUg/WjxF6XgRlItqauMwUfR_muEExZMfh3WGyZ2j0mS8q5jrct2G98-OvF1FXRMhVEKGpBjLXWgzZyr7tTGSa0g3ASt10YV3PDJ9nTjBGHtDCACK5fWamyQQI58iGS6KNyEAnBcFkd5phmKDZfq-IIZtHw/JBkdphkrvEnagCzDgQKMMFL-3dPqZrCVhXxLDL7H4yw",
   },
 ];
 
@@ -193,7 +223,15 @@ export const COUNTRY_TO_CONTINENT: Record<string, ContinentKeyRaw> = {
   Italy: "europe", Denmark: "europe", Sweden: "europe", Estonia: "europe",
   Finland: "europe", Iceland: "europe", Latvia: "europe", Lithuania: "europe",
   Norway: "europe", "United Kingdom (UK)": "europe", Austria: "europe",
-  Germany: "europe",
+  Germany: "europe", Albania: "europe", Belgium: "europe", Croatia: "europe",
+  Cyprus: "europe", "Czech Republic": "europe", Greece: "europe",
+  Hungary: "europe", Malta: "europe", Moldova: "europe", Monaco: "europe",
+  Serbia: "europe", Slovenia: "europe", Switzerland: "europe",
+  Ukraine: "europe", Andorra: "europe", Belarus: "europe",
+  "Bosnia and Herzegovina": "europe", Bulgaria: "europe", Kosovo: "europe",
+  Liechtenstein: "europe", Luxembourg: "europe", "Macedonia (FYROM)": "europe",
+  Montenegro: "europe", Poland: "europe", Romania: "europe",
+  "San Marino": "europe", Slovakia: "europe",
   // Asia
   Japan: "asia", "South Korea": "asia", India: "asia", China: "asia",
   Singapore: "asia", Brunei: "asia", Cambodia: "asia", Indonesia: "asia",
@@ -202,6 +240,7 @@ export const COUNTRY_TO_CONTINENT: Record<string, ContinentKeyRaw> = {
   Taiwan: "asia", Bangladesh: "asia", Nepal: "asia", Pakistan: "asia",
   // Rest of the world (per Airtable's actual tagging — includes Oceania)
   Australia: "rest-of-world", "Papua New Guinea": "rest-of-world",
+  "North Korea": "rest-of-world", // Airtable tags it "Rest of the world"
   "Hong Kong": "rest-of-world", // no Geographic Area in Airtable; treated as Rest of World
   // Middle East
   Iraq: "middle-east", Jordan: "middle-east", Kuwait: "middle-east",
@@ -236,7 +275,7 @@ export const COUNTRY_TO_CONTINENT: Record<string, ContinentKeyRaw> = {
   "Guinea-Bissau": "africa", "Equatorial Guinea": "africa", Mauritius: "africa",
   Eswatini: "africa", Djibouti: "africa", Comoros: "africa",
   "Cape Verde": "africa", "Sao Tome and Principe": "africa", Seychelles: "africa",
-  // "Rest of the World" partner's Central Asia / other leftovers
+  // Central Asia / other leftovers
   Russia: "europe", Azerbaijan: "asia", Kazakhstan: "asia", Armenia: "asia",
   Kyrgyzstan: "asia", Uzbekistan: "asia", Tajikistan: "asia",
   Turkmenistan: "asia", Mongolia: "asia", Georgia: "asia",
@@ -253,8 +292,16 @@ export const COUNTRY_TO_ISO2: Record<string, string> = {
   "United States": "us", Canada: "ca", Spain: "es", Portugal: "pt", France: "fr",
   Netherlands: "nl", Italy: "it", Denmark: "dk", Sweden: "se", Estonia: "ee",
   Finland: "fi", Iceland: "is", Latvia: "lv", Lithuania: "lt", Norway: "no",
-  "United Kingdom (UK)": "gb", Austria: "at", Germany: "de", Japan: "jp",
-  "South Korea": "kr", India: "in", China: "cn", "Hong Kong": "hk",
+  "United Kingdom (UK)": "gb", Austria: "at", Germany: "de", Albania: "al",
+  Belgium: "be", Croatia: "hr", Cyprus: "cy", "Czech Republic": "cz",
+  Greece: "gr", Hungary: "hu", Malta: "mt", Moldova: "md", Monaco: "mc",
+  Serbia: "rs", Slovenia: "si", Switzerland: "ch", Ukraine: "ua",
+  Andorra: "ad", Belarus: "by", "Bosnia and Herzegovina": "ba", Bulgaria: "bg",
+  Kosovo: "xk", Liechtenstein: "li", Luxembourg: "lu",
+  "Macedonia (FYROM)": "mk", Montenegro: "me", Poland: "pl", Romania: "ro",
+  "San Marino": "sm", Slovakia: "sk", Japan: "jp",
+  "South Korea": "kr", "North Korea": "kp", India: "in", China: "cn",
+  "Hong Kong": "hk",
   Singapore: "sg", Brunei: "bn", Cambodia: "kh", Indonesia: "id", Laos: "la",
   Malaysia: "my", Philippines: "ph", Thailand: "th", "East Timor": "tl",
   Vietnam: "vn", "Myanmar (formerly Burma)": "mm", Taiwan: "tw",

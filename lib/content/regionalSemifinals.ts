@@ -31,6 +31,158 @@ export const regionalSemifinals: RegionalSemifinalEntry[] = [
     "logo": "/brand/partners/startedaccelerator.png"
   },
   {
+    "partner": "Afinef",
+    "continent": "europe",
+    "countries": [
+      {
+        "name": "France",
+        "code": "fr"
+      }
+    ]
+  },
+  {
+    "partner": "DOHE",
+    "continent": "europe",
+    "countries": [
+      {
+        "name": "Albania",
+        "code": "al"
+      },
+      {
+        "name": "Belgium",
+        "code": "be"
+      },
+      {
+        "name": "Croatia",
+        "code": "hr"
+      },
+      {
+        "name": "Cyprus",
+        "code": "cy"
+      },
+      {
+        "name": "Czech Republic",
+        "code": "cz"
+      },
+      {
+        "name": "Greece",
+        "code": "gr"
+      },
+      {
+        "name": "Hungary",
+        "code": "hu"
+      },
+      {
+        "name": "Malta",
+        "code": "mt"
+      },
+      {
+        "name": "Moldova",
+        "code": "md"
+      },
+      {
+        "name": "Monaco",
+        "code": "mc"
+      },
+      {
+        "name": "Serbia",
+        "code": "rs"
+      },
+      {
+        "name": "Slovenia",
+        "code": "si"
+      },
+      {
+        "name": "Switzerland",
+        "code": "ch"
+      },
+      {
+        "name": "Ukraine",
+        "code": "ua"
+      },
+      {
+        "name": "Andorra",
+        "code": "ad"
+      },
+      {
+        "name": "Belarus",
+        "code": "by"
+      },
+      {
+        "name": "Bosnia and Herzegovina",
+        "code": "ba"
+      },
+      {
+        "name": "Bulgaria",
+        "code": "bg"
+      },
+      {
+        "name": "Kosovo",
+        "code": "xk"
+      },
+      {
+        "name": "Liechtenstein",
+        "code": "li"
+      },
+      {
+        "name": "Luxembourg",
+        "code": "lu"
+      },
+      {
+        "name": "Macedonia (FYROM)",
+        "code": "mk"
+      },
+      {
+        "name": "Montenegro",
+        "code": "me"
+      },
+      {
+        "name": "Netherlands",
+        "code": "nl"
+      },
+      {
+        "name": "Poland",
+        "code": "pl"
+      },
+      {
+        "name": "Romania",
+        "code": "ro"
+      },
+      {
+        "name": "San Marino",
+        "code": "sm"
+      },
+      {
+        "name": "Slovakia",
+        "code": "sk"
+      },
+      {
+        "name": "France",
+        "code": "fr"
+      },
+      {
+        "name": "Austria",
+        "code": "at"
+      },
+      {
+        "name": "Germany",
+        "code": "de"
+      },
+      {
+        "name": "Italy",
+        "code": "it"
+      },
+      {
+        "name": "Spain",
+        "code": "es"
+      },
+      {
+        "name": "United Kingdom (UK)",
+        "code": "gb"
+      }
+    ]
+  },
+  {
     "partner": "Dutch EdTech",
     "continent": "europe",
     "countries": [
@@ -60,7 +212,8 @@ export const regionalSemifinals: RegionalSemifinalEntry[] = [
         "name": "Austria",
         "code": "at"
       }
-    ]
+    ],
+    "logo": "/brand/partners/edtech-austria-innovation-salzburg.png"
   },
   {
     "partner": "EdTech France",
@@ -80,7 +233,8 @@ export const regionalSemifinals: RegionalSemifinalEntry[] = [
         "name": "Italy",
         "code": "it"
       }
-    ]
+    ],
+    "logo": "/brand/partners/edtech-italy.svg"
   },
   {
     "partner": "Eduvation",
@@ -93,27 +247,16 @@ export const regionalSemifinals: RegionalSemifinalEntry[] = [
     ]
   },
   {
-    "partner": "Future Education Modena",
-    "continent": "europe",
-    "countries": [
-      {
-        "name": "Italy",
-        "code": "it"
-      }
-    ],
-    "logo": "/brand/partners/future-education-modena.png"
-  },
-  {
     "partner": "SEK Lab",
     "continent": "europe",
     "countries": [
       {
-        "name": "Spain",
-        "code": "es"
-      },
-      {
         "name": "Portugal",
         "code": "pt"
+      },
+      {
+        "name": "Spain",
+        "code": "es"
       }
     ],
     "logo": "/brand/partners/sek-lab.png"
@@ -126,7 +269,8 @@ export const regionalSemifinals: RegionalSemifinalEntry[] = [
         "name": "Portugal",
         "code": "pt"
       }
-    ]
+    ],
+    "logo": "/brand/partners/startup-braga.svg"
   },
   {
     "partner": "UCL EdTech Labs",
@@ -178,7 +322,17 @@ export const regionalSemifinals: RegionalSemifinalEntry[] = [
     "logo": "/brand/partners/xedu.png"
   },
   {
-    "partner": "Rest of the World",
+    "partner": "DOHE",
+    "continent": "middle-east",
+    "countries": [
+      {
+        "name": "Turkey",
+        "code": "tr"
+      }
+    ]
+  },
+  {
+    "partner": "Tyme Education",
     "continent": "middle-east",
     "countries": [
       {
@@ -200,10 +354,6 @@ export const regionalSemifinals: RegionalSemifinalEntry[] = [
       {
         "name": "Saudi Arabia",
         "code": "sa"
-      },
-      {
-        "name": "Turkey",
-        "code": "tr"
       },
       {
         "name": "United Arab Emirates (UAE)",
@@ -328,17 +478,6 @@ export const regionalSemifinals: RegionalSemifinalEntry[] = [
     "logo": "/brand/partners/ingenious-faces.png"
   },
   {
-    "partner": "Japan",
-    "continent": "asia",
-    "countries": [
-      {
-        "name": "Japan",
-        "code": "jp"
-      }
-    ],
-    "logo": "/brand/partners/japan.png"
-  },
-  {
     "partner": "Learning Spark",
     "continent": "asia",
     "countries": [
@@ -349,7 +488,28 @@ export const regionalSemifinals: RegionalSemifinalEntry[] = [
     ]
   },
   {
-    "partner": "Rest of the World",
+    "partner": "METI Japan",
+    "continent": "asia",
+    "countries": [
+      {
+        "name": "Japan",
+        "code": "jp"
+      }
+    ],
+    "logo": "/brand/partners/meti-japan.png"
+  },
+  {
+    "partner": "Taipei Computer Association (TCA)",
+    "continent": "asia",
+    "countries": [
+      {
+        "name": "Taiwan",
+        "code": "tw"
+      }
+    ]
+  },
+  {
+    "partner": "Tyme Education",
     "continent": "asia",
     "countries": [
       {
@@ -363,16 +523,6 @@ export const regionalSemifinals: RegionalSemifinalEntry[] = [
       {
         "name": "Pakistan",
         "code": "pk"
-      }
-    ]
-  },
-  {
-    "partner": "Taipei Computer Association (TCA)",
-    "continent": "asia",
-    "countries": [
-      {
-        "name": "Taiwan",
-        "code": "tw"
       }
     ]
   },
@@ -495,7 +645,8 @@ export const regionalSemifinals: RegionalSemifinalEntry[] = [
         "name": "Trinidad and Tobago",
         "code": "tt"
       }
-    ]
+    ],
+    "logo": "/brand/partners/edlatam-alliance.png"
   },
   {
     "partner": "Positivo",
@@ -730,7 +881,7 @@ export const regionalSemifinals: RegionalSemifinalEntry[] = [
     ]
   },
   {
-    "partner": "GSET ghana society for education technology",
+    "partner": "GSET Ghana Society for Education Technology",
     "continent": "africa",
     "countries": [
       {
@@ -985,7 +1136,17 @@ export const regionalSemifinals: RegionalSemifinalEntry[] = [
     "logo": "/brand/partners/esperanza.png"
   },
   {
-    "partner": "Rest of the World",
+    "partner": "Learning Spark",
+    "continent": "rest-of-world",
+    "countries": [
+      {
+        "name": "North Korea",
+        "code": "kp"
+      }
+    ]
+  },
+  {
+    "partner": "Tyme Education",
     "continent": "rest-of-world",
     "countries": [
       {
