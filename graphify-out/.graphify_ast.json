@@ -1,0 +1,1827 @@
+{
+  "nodes": [
+    {
+      "id": "app_actions_subscribe_subscribestate",
+      "label": "SubscribeState",
+      "file_type": "code",
+      "source_file": "app/actions/subscribe.ts",
+      "source_location": "L3",
+      "_origin": "ast"
+    },
+    {
+      "id": "app_actions_subscribe_subscribe",
+      "label": "subscribe",
+      "file_type": "code",
+      "source_file": "app/actions/subscribe.ts",
+      "source_location": "L18",
+      "_origin": "ast"
+    },
+    {
+      "id": "app_api_revalidate_route_post",
+      "label": "POST",
+      "file_type": "code",
+      "source_file": "app/api/revalidate/route.ts",
+      "source_location": "L11",
+      "_origin": "ast"
+    },
+    {
+      "id": "app_apply_page_applypage",
+      "label": "ApplyPage",
+      "file_type": "code",
+      "source_file": "app/apply/page.tsx",
+      "source_location": "L12",
+      "_origin": "ast"
+    },
+    {
+      "id": "app_embed_semifinals_page_embeddedsemifinalspage",
+      "label": "EmbeddedSemifinalsPage",
+      "file_type": "code",
+      "source_file": "app/embed/semifinals/page.tsx",
+      "source_location": "L11",
+      "_origin": "ast"
+    },
+    {
+      "id": "app_layout_rootlayout",
+      "label": "RootLayout",
+      "file_type": "code",
+      "source_file": "app/layout.tsx",
+      "source_location": "L53",
+      "_origin": "ast"
+    },
+    {
+      "id": "app_not_found_notfound",
+      "label": "NotFound",
+      "file_type": "code",
+      "source_file": "app/not-found.tsx",
+      "source_location": "L5",
+      "_origin": "ast"
+    },
+    {
+      "id": "app_page_homepage",
+      "label": "HomePage",
+      "file_type": "code",
+      "source_file": "app/page.tsx",
+      "source_location": "L21",
+      "_origin": "ast"
+    },
+    {
+      "id": "app_robots_robots",
+      "label": "robots",
+      "file_type": "code",
+      "source_file": "app/robots.ts",
+      "source_location": "L4",
+      "_origin": "ast"
+    },
+    {
+      "id": "app_semifinals_page_semifinalspage",
+      "label": "SemifinalsPage",
+      "file_type": "code",
+      "source_file": "app/semifinals/page.tsx",
+      "source_location": "L11",
+      "_origin": "ast"
+    },
+    {
+      "id": "app_sitemap_sitemap",
+      "label": "sitemap",
+      "file_type": "code",
+      "source_file": "app/sitemap.ts",
+      "source_location": "L7",
+      "_origin": "ast"
+    },
+    {
+      "id": "app_studio_tool_page_studiopage",
+      "label": "StudioPage",
+      "file_type": "code",
+      "source_file": "app/studio/[[...tool]]/page.tsx",
+      "source_location": "L6",
+      "_origin": "ast"
+    },
+    {
+      "id": "app_terms_and_condition_page_termspage",
+      "label": "TermsPage",
+      "file_type": "code",
+      "source_file": "app/terms-and-condition/page.tsx",
+      "source_location": "L12",
+      "_origin": "ast"
+    },
+    {
+      "id": "app_tracks_slug_page_generatestaticparams",
+      "label": "generateStaticParams",
+      "file_type": "code",
+      "source_file": "app/tracks/[slug]/page.tsx",
+      "source_location": "L23",
+      "_origin": "ast"
+    },
+    {
+      "id": "app_tracks_slug_page_generatemetadata",
+      "label": "generateMetadata",
+      "file_type": "code",
+      "source_file": "app/tracks/[slug]/page.tsx",
+      "source_location": "L29",
+      "_origin": "ast"
+    },
+    {
+      "id": "components_analytics_gtaginit_gtaginit",
+      "label": "GtagInit",
+      "file_type": "code",
+      "source_file": "components/analytics/GtagInit.tsx",
+      "source_location": "L13",
+      "_origin": "ast"
+    },
+    {
+      "id": "components_apply_applyformlink_applyformlink",
+      "label": "ApplyFormLink",
+      "file_type": "code",
+      "source_file": "components/apply/ApplyFormLink.tsx",
+      "source_location": "L7",
+      "_origin": "ast"
+    },
+    {
+      "id": "components_apply_applytracking_applytracking",
+      "label": "ApplyTracking",
+      "file_type": "code",
+      "source_file": "components/apply/ApplyTracking.tsx",
+      "source_location": "L10",
+      "_origin": "ast"
+    },
+    {
+      "id": "components_apply_thankyoutracking_thankyoutracking",
+      "label": "ThankYouTracking",
+      "file_type": "code",
+      "source_file": "components/apply/ThankYouTracking.tsx",
+      "source_location": "L8",
+      "_origin": "ast"
+    },
+    {
+      "id": "components_cookies_cookieconsentbanner_cookieconsentbanner",
+      "label": "CookieConsentBanner",
+      "file_type": "code",
+      "source_file": "components/cookies/CookieConsentBanner.tsx",
+      "source_location": "L9",
+      "_origin": "ast"
+    },
+    {
+      "id": "components_cookies_cookiesettingsbutton_cookiesettingsbutton",
+      "label": "CookieSettingsButton",
+      "file_type": "code",
+      "source_file": "components/cookies/CookieSettingsButton.tsx",
+      "source_location": "L5",
+      "_origin": "ast"
+    },
+    {
+      "id": "components_embed_embedframe_embedframe",
+      "label": "EmbedFrame",
+      "file_type": "code",
+      "source_file": "components/embed/EmbedFrame.tsx",
+      "source_location": "L7",
+      "_origin": "ast"
+    },
+    {
+      "id": "components_home_hero_hero",
+      "label": "Hero",
+      "file_type": "code",
+      "source_file": "components/home/Hero.tsx",
+      "source_location": "L8",
+      "_origin": "ast"
+    },
+    {
+      "id": "components_home_prizecategories_prizecategories",
+      "label": "PrizeCategories",
+      "file_type": "code",
+      "source_file": "components/home/PrizeCategories.tsx",
+      "source_location": "L12",
+      "_origin": "ast"
+    },
+    {
+      "id": "components_layout_siteshell_siteshell",
+      "label": "SiteShell",
+      "file_type": "code",
+      "source_file": "components/layout/SiteShell.tsx",
+      "source_location": "L6",
+      "_origin": "ast"
+    },
+    {
+      "id": "components_semifinals_partnerlogo_partnerlogo",
+      "label": "PartnerLogo",
+      "file_type": "code",
+      "source_file": "components/semifinals/PartnerLogo.tsx",
+      "source_location": "L36",
+      "_origin": "ast"
+    },
+    {
+      "id": "components_semifinals_continents_continentmeta",
+      "label": "ContinentMeta",
+      "file_type": "code",
+      "source_file": "components/semifinals/continents.ts",
+      "source_location": "L3",
+      "_origin": "ast"
+    },
+    {
+      "id": "components_ui_button_buttonclasses",
+      "label": "buttonClasses",
+      "file_type": "code",
+      "source_file": "components/ui/button.tsx",
+      "source_location": "L26",
+      "_origin": "ast"
+    },
+    {
+      "id": "components_ui_rich_body_richbody",
+      "label": "RichBody",
+      "file_type": "code",
+      "source_file": "components/ui/rich-body.tsx",
+      "source_location": "L5",
+      "_origin": "ast"
+    },
+    {
+      "id": "lib_analytics_analyticseventname",
+      "label": "AnalyticsEventName",
+      "file_type": "code",
+      "source_file": "lib/analytics.ts",
+      "source_location": "L16",
+      "_origin": "ast"
+    },
+    {
+      "id": "lib_analytics_trackevent",
+      "label": "trackEvent",
+      "file_type": "code",
+      "source_file": "lib/analytics.ts",
+      "source_location": "L22",
+      "_origin": "ast"
+    },
+    {
+      "id": "lib_analytics_updategoogleconsent",
+      "label": "updateGoogleConsent",
+      "file_type": "code",
+      "source_file": "lib/analytics.ts",
+      "source_location": "L30",
+      "_origin": "ast"
+    },
+    {
+      "id": "lib_content_index_getsitesettings",
+      "label": "getSiteSettings",
+      "file_type": "code",
+      "source_file": "lib/content/index.ts",
+      "source_location": "L50",
+      "_origin": "ast"
+    },
+    {
+      "id": "lib_content_index_gethomecontent",
+      "label": "getHomeContent",
+      "file_type": "code",
+      "source_file": "lib/content/index.ts",
+      "source_location": "L55",
+      "_origin": "ast"
+    },
+    {
+      "id": "lib_content_index_getprizecategories",
+      "label": "getPrizeCategories",
+      "file_type": "code",
+      "source_file": "lib/content/index.ts",
+      "source_location": "L67",
+      "_origin": "ast"
+    },
+    {
+      "id": "lib_content_index_getjudges",
+      "label": "getJudges",
+      "file_type": "code",
+      "source_file": "lib/content/index.ts",
+      "source_location": "L72",
+      "_origin": "ast"
+    },
+    {
+      "id": "lib_content_index_getpartners",
+      "label": "getPartners",
+      "file_type": "code",
+      "source_file": "lib/content/index.ts",
+      "source_location": "L82",
+      "_origin": "ast"
+    },
+    {
+      "id": "lib_content_index_getregionalsemifinals",
+      "label": "getRegionalSemifinals",
+      "file_type": "code",
+      "source_file": "lib/content/index.ts",
+      "source_location": "L94",
+      "_origin": "ast"
+    },
+    {
+      "id": "lib_content_index_gettracks",
+      "label": "getTracks",
+      "file_type": "code",
+      "source_file": "lib/content/index.ts",
+      "source_location": "L98",
+      "_origin": "ast"
+    },
+    {
+      "id": "lib_content_index_gettrackbyslug",
+      "label": "getTrackBySlug",
+      "file_type": "code",
+      "source_file": "lib/content/index.ts",
+      "source_location": "L104",
+      "_origin": "ast"
+    },
+    {
+      "id": "lib_content_index_getwinneryears",
+      "label": "getWinnerYears",
+      "file_type": "code",
+      "source_file": "lib/content/index.ts",
+      "source_location": "L109",
+      "_origin": "ast"
+    },
+    {
+      "id": "lib_content_index_getwinnersbyyear",
+      "label": "getWinnersByYear",
+      "file_type": "code",
+      "source_file": "lib/content/index.ts",
+      "source_location": "L116",
+      "_origin": "ast"
+    },
+    {
+      "id": "lib_content_index_getpage",
+      "label": "getPage",
+      "file_type": "code",
+      "source_file": "lib/content/index.ts",
+      "source_location": "L121",
+      "_origin": "ast"
+    },
+    {
+      "id": "lib_content_regional_semifinals_source_rawpartner",
+      "label": "RawPartner",
+      "file_type": "code",
+      "source_file": "lib/content/regional-semifinals-source.ts",
+      "source_location": "L12",
+      "_origin": "ast"
+    },
+    {
+      "id": "lib_content_types_navitem",
+      "label": "NavItem",
+      "file_type": "code",
+      "source_file": "lib/content/types.ts",
+      "source_location": "L5",
+      "_origin": "ast"
+    },
+    {
+      "id": "lib_content_types_sociallink",
+      "label": "SocialLink",
+      "file_type": "code",
+      "source_file": "lib/content/types.ts",
+      "source_location": "L10",
+      "_origin": "ast"
+    },
+    {
+      "id": "lib_content_types_sitesettings",
+      "label": "SiteSettings",
+      "file_type": "code",
+      "source_file": "lib/content/types.ts",
+      "source_location": "L15",
+      "_origin": "ast"
+    },
+    {
+      "id": "lib_content_types_stat",
+      "label": "Stat",
+      "file_type": "code",
+      "source_file": "lib/content/types.ts",
+      "source_location": "L26",
+      "_origin": "ast"
+    },
+    {
+      "id": "lib_content_types_criterion",
+      "label": "Criterion",
+      "file_type": "code",
+      "source_file": "lib/content/types.ts",
+      "source_location": "L31",
+      "_origin": "ast"
+    },
+    {
+      "id": "lib_content_types_timelineevent",
+      "label": "TimelineEvent",
+      "file_type": "code",
+      "source_file": "lib/content/types.ts",
+      "source_location": "L36",
+      "_origin": "ast"
+    },
+    {
+      "id": "lib_content_types_galleryimage",
+      "label": "GalleryImage",
+      "file_type": "code",
+      "source_file": "lib/content/types.ts",
+      "source_location": "L41",
+      "_origin": "ast"
+    },
+    {
+      "id": "lib_content_types_homecontent",
+      "label": "HomeContent",
+      "file_type": "code",
+      "source_file": "lib/content/types.ts",
+      "source_location": "L46",
+      "_origin": "ast"
+    },
+    {
+      "id": "lib_content_types_prizecategory",
+      "label": "PrizeCategory",
+      "file_type": "code",
+      "source_file": "lib/content/types.ts",
+      "source_location": "L67",
+      "_origin": "ast"
+    },
+    {
+      "id": "lib_content_types_judge",
+      "label": "Judge",
+      "file_type": "code",
+      "source_file": "lib/content/types.ts",
+      "source_location": "L74",
+      "_origin": "ast"
+    },
+    {
+      "id": "lib_content_types_partner",
+      "label": "Partner",
+      "file_type": "code",
+      "source_file": "lib/content/types.ts",
+      "source_location": "L82",
+      "_origin": "ast"
+    },
+    {
+      "id": "lib_content_types_continentkey",
+      "label": "ContinentKey",
+      "file_type": "code",
+      "source_file": "lib/content/types.ts",
+      "source_location": "L89",
+      "_origin": "ast"
+    },
+    {
+      "id": "lib_content_types_semifinalcountry",
+      "label": "SemifinalCountry",
+      "file_type": "code",
+      "source_file": "lib/content/types.ts",
+      "source_location": "L98",
+      "_origin": "ast"
+    },
+    {
+      "id": "lib_content_types_regionalsemifinalentry",
+      "label": "RegionalSemifinalEntry",
+      "file_type": "code",
+      "source_file": "lib/content/types.ts",
+      "source_location": "L105",
+      "_origin": "ast"
+    },
+    {
+      "id": "lib_content_types_track",
+      "label": "Track",
+      "file_type": "code",
+      "source_file": "lib/content/types.ts",
+      "source_location": "L114",
+      "_origin": "ast"
+    },
+    {
+      "id": "lib_content_types_tracklogo",
+      "label": "TrackLogo",
+      "file_type": "code",
+      "source_file": "lib/content/types.ts",
+      "source_location": "L128",
+      "_origin": "ast"
+    },
+    {
+      "id": "lib_content_types_winner",
+      "label": "Winner",
+      "file_type": "code",
+      "source_file": "lib/content/types.ts",
+      "source_location": "L135",
+      "_origin": "ast"
+    },
+    {
+      "id": "lib_content_types_richpage",
+      "label": "RichPage",
+      "file_type": "code",
+      "source_file": "lib/content/types.ts",
+      "source_location": "L145",
+      "_origin": "ast"
+    },
+    {
+      "id": "lib_cookies_consentvalue",
+      "label": "ConsentValue",
+      "file_type": "code",
+      "source_file": "lib/cookies.ts",
+      "source_location": "L5",
+      "_origin": "ast"
+    },
+    {
+      "id": "lib_cookies_cookieconsentstate",
+      "label": "CookieConsentState",
+      "file_type": "code",
+      "source_file": "lib/cookies.ts",
+      "source_location": "L7",
+      "_origin": "ast"
+    },
+    {
+      "id": "lib_cookies_getcookieconsent",
+      "label": "getCookieConsent",
+      "file_type": "code",
+      "source_file": "lib/cookies.ts",
+      "source_location": "L25",
+      "_origin": "ast"
+    },
+    {
+      "id": "lib_cookies_setcookieconsent",
+      "label": "setCookieConsent",
+      "file_type": "code",
+      "source_file": "lib/cookies.ts",
+      "source_location": "L42",
+      "_origin": "ast"
+    },
+    {
+      "id": "lib_cookies_acceptall",
+      "label": "acceptAll",
+      "file_type": "code",
+      "source_file": "lib/cookies.ts",
+      "source_location": "L54",
+      "_origin": "ast"
+    },
+    {
+      "id": "lib_cookies_rejectconsent",
+      "label": "rejectConsent",
+      "file_type": "code",
+      "source_file": "lib/cookies.ts",
+      "source_location": "L67",
+      "_origin": "ast"
+    },
+    {
+      "id": "lib_cookies_revokeconsent",
+      "label": "revokeConsent",
+      "file_type": "code",
+      "source_file": "lib/cookies.ts",
+      "source_location": "L80",
+      "_origin": "ast"
+    },
+    {
+      "id": "lib_cookies_hasuserconsented",
+      "label": "hasUserConsented",
+      "file_type": "code",
+      "source_file": "lib/cookies.ts",
+      "source_location": "L84",
+      "_origin": "ast"
+    },
+    {
+      "id": "lib_site_jsonldstring",
+      "label": "jsonLdString",
+      "file_type": "code",
+      "source_file": "lib/site.ts",
+      "source_location": "L9",
+      "_origin": "ast"
+    },
+    {
+      "id": "lib_utils_cn",
+      "label": "cn",
+      "file_type": "code",
+      "source_file": "lib/utils.ts",
+      "source_location": "L2",
+      "_origin": "ast"
+    }
+  ],
+  "edges": [
+    {
+      "source": "lib_content_index",
+      "target": "lib_content_types",
+      "relation": "re_exports",
+      "context": "export",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/content/index.ts",
+      "source_location": "L141",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "app_about_page",
+      "target": "components_ui_rich_body_richbody",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/about/page.tsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "app_about_page",
+      "target": "components_ui_button_buttonclasses",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/about/page.tsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "app_about_page",
+      "target": "lib_content_index_getpage",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/about/page.tsx",
+      "source_location": "L10",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "app_about_page",
+      "target": "lib_content_index_gethomecontent",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/about/page.tsx",
+      "source_location": "L10",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "app_about_page",
+      "target": "lib_content_index_getsitesettings",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/about/page.tsx",
+      "source_location": "L10",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "app_about_page",
+      "target": "lib_content_index_getpartners",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/about/page.tsx",
+      "source_location": "L10",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "app_about_page",
+      "target": "lib_content_index_getregionalsemifinals",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/about/page.tsx",
+      "source_location": "L10",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "app_apply_page",
+      "target": "components_apply_applyformlink_applyformlink",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/apply/page.tsx",
+      "source_location": "L2",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "app_apply_page",
+      "target": "components_apply_applytracking_applytracking",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/apply/page.tsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "app_apply_page",
+      "target": "lib_content_index_getsitesettings",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/apply/page.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "app_apply_thank_you_page",
+      "target": "components_ui_button_buttonclasses",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/apply/thank-you/page.tsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "app_apply_thank_you_page",
+      "target": "components_apply_thankyoutracking_thankyoutracking",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/apply/thank-you/page.tsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "app_embed_semifinals_page",
+      "target": "components_embed_embedframe_embedframe",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/embed/semifinals/page.tsx",
+      "source_location": "L2",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "app_embed_semifinals_page",
+      "target": "lib_content_index_getregionalsemifinals",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/embed/semifinals/page.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "app_layout",
+      "target": "components_layout_siteshell_siteshell",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/layout.tsx",
+      "source_location": "L9",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "app_layout",
+      "target": "components_analytics_gtaginit_gtaginit",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/layout.tsx",
+      "source_location": "L10",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "app_layout",
+      "target": "components_cookies_cookieconsentbanner_cookieconsentbanner",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/layout.tsx",
+      "source_location": "L11",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "app_layout",
+      "target": "lib_content_index_getsitesettings",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/layout.tsx",
+      "source_location": "L12",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "app_layout",
+      "target": "lib_site_jsonldstring",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/layout.tsx",
+      "source_location": "L13",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "app_not_found",
+      "target": "components_ui_button_buttonclasses",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/not-found.tsx",
+      "source_location": "L2",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "app_page",
+      "target": "components_home_hero_hero",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/page.tsx",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "app_page",
+      "target": "components_home_prizecategories_prizecategories",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/page.tsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "app_page",
+      "target": "lib_content_index_gethomecontent",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/page.tsx",
+      "source_location": "L11",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "app_page",
+      "target": "lib_content_index_getjudges",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/page.tsx",
+      "source_location": "L11",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "app_page",
+      "target": "lib_content_index_getpartners",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/page.tsx",
+      "source_location": "L11",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "app_page",
+      "target": "lib_content_index_getprizecategories",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/page.tsx",
+      "source_location": "L11",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "app_page",
+      "target": "lib_content_index_getsitesettings",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/page.tsx",
+      "source_location": "L11",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "app_page",
+      "target": "lib_content_index_getregionalsemifinals",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/page.tsx",
+      "source_location": "L11",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "app_page",
+      "target": "lib_site_jsonldstring",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/page.tsx",
+      "source_location": "L19",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "app_semifinals_page",
+      "target": "lib_content_index_gethomecontent",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/semifinals/page.tsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "app_semifinals_page",
+      "target": "lib_content_index_getregionalsemifinals",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/semifinals/page.tsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "app_sitemap",
+      "target": "lib_content_index_gethomecontent",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/sitemap.ts",
+      "source_location": "L2",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "app_sitemap",
+      "target": "lib_content_index_gettracks",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/sitemap.ts",
+      "source_location": "L2",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "app_sitemap",
+      "target": "lib_content_index_getwinneryears",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/sitemap.ts",
+      "source_location": "L2",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "app_terms_and_condition_page",
+      "target": "components_ui_rich_body_richbody",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/terms-and-condition/page.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "app_terms_and_condition_page",
+      "target": "lib_content_index_getpage",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/terms-and-condition/page.tsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "app_tracks_slug_page",
+      "target": "components_ui_button_buttonclasses",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/tracks/[slug]/page.tsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "app_tracks_slug_page",
+      "target": "lib_content_index_gethomecontent",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/tracks/[slug]/page.tsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "app_tracks_slug_page",
+      "target": "lib_content_index_getsitesettings",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/tracks/[slug]/page.tsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "app_tracks_slug_page",
+      "target": "lib_content_index_gettrackbyslug",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/tracks/[slug]/page.tsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "app_tracks_slug_page",
+      "target": "lib_content_index_gettracks",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/tracks/[slug]/page.tsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "app_tracks_page",
+      "target": "components_ui_button_buttonclasses",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/tracks/page.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "app_tracks_page",
+      "target": "lib_content_index_gethomecontent",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/tracks/page.tsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "app_tracks_page",
+      "target": "lib_content_index_getsitesettings",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/tracks/page.tsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "app_tracks_page",
+      "target": "lib_content_index_gettracks",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/tracks/page.tsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "app_winners_year_page",
+      "target": "lib_content_index_getwinnersbyyear",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/winners/[year]/page.tsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "app_winners_year_page",
+      "target": "lib_content_index_getwinneryears",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/winners/[year]/page.tsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "app_winners_year_page",
+      "target": "lib_content_types_winner",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/winners/[year]/page.tsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "app_winners_page",
+      "target": "lib_content_index_getwinneryears",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/winners/page.tsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "components_apply_applyformlink",
+      "target": "components_ui_button_buttonclasses",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "components/apply/ApplyFormLink.tsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "components_apply_applyformlink",
+      "target": "lib_analytics_trackevent",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "components/apply/ApplyFormLink.tsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "components_apply_applytracking",
+      "target": "lib_analytics_trackevent",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "components/apply/ApplyTracking.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "components_apply_thankyoutracking",
+      "target": "lib_analytics_trackevent",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "components/apply/ThankYouTracking.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "components_cookies_cookieconsentbanner",
+      "target": "lib_cookies_acceptall",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "components/cookies/CookieConsentBanner.tsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "components_cookies_cookieconsentbanner",
+      "target": "lib_cookies_rejectconsent",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "components/cookies/CookieConsentBanner.tsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "components_cookies_cookieconsentbanner",
+      "target": "lib_cookies_hasuserconsented",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "components/cookies/CookieConsentBanner.tsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "components_cookies_cookieconsentbanner",
+      "target": "lib_analytics_updategoogleconsent",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "components/cookies/CookieConsentBanner.tsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "components_home_criteria",
+      "target": "lib_content_types_homecontent",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "components/home/Criteria.tsx",
+      "source_location": "L2",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "components_home_gallerymarquee",
+      "target": "lib_content_types_galleryimage",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "components/home/GalleryMarquee.tsx",
+      "source_location": "L2",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "components_home_hero",
+      "target": "components_ui_button_buttonclasses",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "components/home/Hero.tsx",
+      "source_location": "L2",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "components_home_hero",
+      "target": "lib_utils_cn",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "components/home/Hero.tsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "components_home_hero",
+      "target": "lib_content_types_homecontent",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "components/home/Hero.tsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "components_home_hero",
+      "target": "lib_content_types_sitesettings",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "components/home/Hero.tsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "components_home_introstats",
+      "target": "lib_content_types_homecontent",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "components/home/IntroStats.tsx",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "components_home_journey",
+      "target": "components_ui_button_buttonclasses",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "components/home/Journey.tsx",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "components_home_journey",
+      "target": "lib_content_types_homecontent",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "components/home/Journey.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "components_home_journey",
+      "target": "lib_content_types_sitesettings",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "components/home/Journey.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "components_home_judgesgrid",
+      "target": "lib_content_types_judge",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "components/home/JudgesGrid.tsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "components_home_newslettersignup",
+      "target": "app_actions_subscribe_subscribe",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "components/home/NewsletterSignup.tsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "components_home_newslettersignup",
+      "target": "app_actions_subscribe_subscribestate",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "components/home/NewsletterSignup.tsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "components_home_newslettersignup",
+      "target": "lib_analytics_trackevent",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "components/home/NewsletterSignup.tsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "components_home_newslettersignup",
+      "target": "lib_content_types_homecontent",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "components/home/NewsletterSignup.tsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "components_home_partners",
+      "target": "lib_content_types_homecontent",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "components/home/Partners.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "components_home_partners",
+      "target": "lib_content_types_partner",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "components/home/Partners.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "components_home_prizecategories",
+      "target": "lib_content_types_prizecategory",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "components/home/PrizeCategories.tsx",
+      "source_location": "L2",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "components_home_regionalsemifinalsgrid",
+      "target": "lib_content_types_homecontent",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "components/home/RegionalSemifinalsGrid.tsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "components_home_regionalsemifinalsgrid",
+      "target": "lib_content_types_regionalsemifinalentry",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "components/home/RegionalSemifinalsGrid.tsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "components_layout_footer",
+      "target": "lib_content_index_getpartners",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "components/layout/Footer.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "components_layout_footer",
+      "target": "lib_content_index_getsitesettings",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "components/layout/Footer.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "components_layout_footer",
+      "target": "components_cookies_cookiesettingsbutton_cookiesettingsbutton",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "components/layout/Footer.tsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "components_layout_header",
+      "target": "components_ui_button_buttonclasses",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "components/layout/Header.tsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "components_layout_header",
+      "target": "lib_utils_cn",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "components/layout/Header.tsx",
+      "source_location": "L9",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "components_layout_header",
+      "target": "lib_content_types_navitem",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "components/layout/Header.tsx",
+      "source_location": "L10",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "components_semifinals_continentsection",
+      "target": "lib_content_types_regionalsemifinalentry",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "components/semifinals/ContinentSection.tsx",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "components_semifinals_continentsection",
+      "target": "components_semifinals_continents_continentmeta",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "components/semifinals/ContinentSection.tsx",
+      "source_location": "L2",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "components_semifinals_flagcluster",
+      "target": "lib_content_types_semifinalcountry",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "components/semifinals/FlagCluster.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "components_semifinals_partnerrow",
+      "target": "lib_content_types_regionalsemifinalentry",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "components/semifinals/PartnerRow.tsx",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "components_semifinals_partnerrow",
+      "target": "components_semifinals_partnerlogo_partnerlogo",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "components/semifinals/PartnerRow.tsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "components_semifinals_semifinalsexplorer",
+      "target": "lib_content_types_regionalsemifinalentry",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "components/semifinals/SemifinalsExplorer.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "components_semifinals_continents",
+      "target": "lib_content_types_continentkey",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "components/semifinals/continents.ts",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "components_ui_button",
+      "target": "lib_utils_cn",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "components/ui/button.tsx",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "components_ui_rich_body",
+      "target": "lib_content_types_richpage",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "components/ui/rich-body.tsx",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "components_ui_section_heading",
+      "target": "lib_utils_cn",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "components/ui/section-heading.tsx",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "components_ui_video_dialog",
+      "target": "lib_utils_cn",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "components/ui/video-dialog.tsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "lib_analytics",
+      "target": "lib_cookies_consentvalue",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/analytics.ts",
+      "source_location": "L2",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "lib_content_index",
+      "target": "lib_content_types_homecontent",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/content/index.ts",
+      "source_location": "L25",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "lib_content_index",
+      "target": "lib_content_types_judge",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/content/index.ts",
+      "source_location": "L25",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "lib_content_index",
+      "target": "lib_content_types_partner",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/content/index.ts",
+      "source_location": "L25",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "lib_content_index",
+      "target": "lib_content_types_prizecategory",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/content/index.ts",
+      "source_location": "L25",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "lib_content_index",
+      "target": "lib_content_types_richpage",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/content/index.ts",
+      "source_location": "L25",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "lib_content_index",
+      "target": "lib_content_types_sitesettings",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/content/index.ts",
+      "source_location": "L25",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "lib_content_index",
+      "target": "lib_content_types_track",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/content/index.ts",
+      "source_location": "L25",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "lib_content_index",
+      "target": "lib_content_types_winner",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/content/index.ts",
+      "source_location": "L25",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "lib_content_regionalsemifinals",
+      "target": "lib_content_types_regionalsemifinalentry",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/content/regionalSemifinals.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "lib_content_seed",
+      "target": "lib_content_types_homecontent",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/content/seed.ts",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "lib_content_seed",
+      "target": "lib_content_types_judge",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/content/seed.ts",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "lib_content_seed",
+      "target": "lib_content_types_partner",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/content/seed.ts",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "lib_content_seed",
+      "target": "lib_content_types_prizecategory",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/content/seed.ts",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "lib_content_seed",
+      "target": "lib_content_types_richpage",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/content/seed.ts",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "lib_content_seed",
+      "target": "lib_content_types_sitesettings",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/content/seed.ts",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "lib_content_seed",
+      "target": "lib_content_types_track",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/content/seed.ts",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "lib_content_seed",
+      "target": "lib_content_types_winner",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/content/seed.ts",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast"
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}
