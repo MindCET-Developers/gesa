@@ -41,7 +41,7 @@ export function PartnerLogo({ partner, logo }: { partner: string; logo?: string 
         alt={`${partner} logo`}
         width={48}
         height={48}
-        className="h-12 w-12 shrink-0 rounded-full border-2 border-navy bg-white object-contain"
+        className="h-12 w-12 shrink-0 rounded-full border border-gray-300 bg-gray-100 object-contain"
       />
     );
   }
