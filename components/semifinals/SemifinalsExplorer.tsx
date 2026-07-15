@@ -81,6 +81,7 @@ export function SemifinalsExplorer({ entries }: { entries: RegionalSemifinalEntr
         </button>
         {CONTINENTS.map((meta) => {
           const count = entries.filter((entry) => entry.continent === meta.key).length;
+          if (count === 0) return null; // hide continents with no semifinals
           const isActive = active === meta.key;
 
           return (
