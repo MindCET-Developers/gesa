@@ -1,15 +1,34 @@
 import Image from "next/image";
 import Link from "next/link";
 import { socialIcons } from "@/components/ui/icons";
-import { getPartners, getSiteSettings } from "@/lib/content";
+import { getPartners, getSiteSettings, getRegionalSemifinals } from "@/lib/content";
 import { CookieSettingsButton } from "@/components/cookies/CookieSettingsButton";
 
 export async function Footer() {
-  const [settings, partners] = await Promise.all([
+  const [settings, partners, regionalSemifinals] = await Promise.all([
     getSiteSettings(),
     getPartners(),
+    getRegionalSemifinals(),
   ]);
   const worldwide = partners.filter((p) => p.type === "worldwide");
+
+  // הוסף שותפים מחצאי הגמר, מסנן כפילויות (בסניטי וגם בחצאי גמר)
+  const sanityPartnerNames = new Set(worldwide.map((p) => p.name));
+  const seenRegionalNames = new Set<string>();
+  const regionalPartners = [];
+
+  for (const entry of regionalSemifinals) {
+    if (!sanityPartnerNames.has(entry.partner) && !seenRegionalNames.has(entry.partner)) {
+      seenRegionalNames.add(entry.partner);
+      regionalPartners.push({
+        name: entry.partner,
+        logo: entry.logo || "",
+        url: undefined,
+      });
+    }
+  }
+
+  const allPartners = [...worldwide, ...regionalPartners];
   const year = new Date().getFullYear();
 
   return (
@@ -89,14 +108,14 @@ export async function Footer() {
         </div>
       </div>
 
-      {worldwide.length > 0 && (
+      {allPartners.length > 0 && (
         <div className="border-t border-white/10">
           <div className="container-page py-10">
             <h2 className="text-center font-display text-xs font-bold uppercase tracking-[0.2em] text-white/50">
-              Worldwide partners
+              Partners
             </h2>
             <div className="mt-6 flex flex-wrap items-center justify-center gap-x-8 gap-y-5">
-              {worldwide.map((p, i) => {
+              {allPartners.map((p, i) => {
                 const content = p.logo ? (
                   <Image
                     src={p.logo}
