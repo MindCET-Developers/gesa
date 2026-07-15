@@ -26,7 +26,7 @@ export const RAW_PARTNERS: RawPartner[] = [
       "France",
     ],
     logoUrl:
-      "https://v5.airtableusercontent.com/v3/u/55/55/1784138400000/YZ8VwffSNU_NxTgh8DABoA/-uh0YrgGgehrIsUM1X2Rm_KB8G4AdtsBnHSbyyCuqw3McvNitqnr5dY-1pScQJCe282r9CF7RqrfzgziWzHeCAh4KjnEGIYQN0760G0smRszcoyltqyrfrCwYda_SI4gD0W95qJPZjLUH62PLYX5bpb-hJ8A1H723uDXdVjP1rA/aU2EcD6a9WTyRnAHSvnRsK--T965wv27yuz4hnQW8sM",
+      "https://v5.airtableusercontent.com/v3/u/55/55/1784152800000/DJrHohiDu2PoYZFFl_4duA/bEL1TPr9UMvaOVRmxy9cjddXnkRtm6O0iil3fPjy5v2EmqKh37JsJ2KBOmKxG2AHUXiXUUl3hr5Cw2iYFBR4OwSuiQgMFMYO5bu4WMtP4iTMz5yE9L3l8gwyEc-Yevrk6R_NjWPOXbMlMNf6E61de0YRRUgrjNRkgUBhunplfbk/pEjQfsddMP0V_t72o4mPd4cCF0enDWvYDTBI7JP5eH8",
   },
   {
     name: "BR Founder Institute/ SchoolGuardian",
@@ -34,7 +34,7 @@ export const RAW_PARTNERS: RawPartner[] = [
       "Brazil",
     ],
     logoUrl:
-      "https://v5.airtableusercontent.com/v3/u/55/55/1784138400000/nfFzqEOSZrQHlG7rLXN6gA/CjrKLoHE_QJtQIxM3IX1Vss_ypMv97ne_DvFUQFVfmxvtM5YTMv5VXbE2YfMQq_CYRnWp4w3FA844xz3_-YLXprOsOvp4ICjzYtzVsnWN-6P2zs8FYeXASRpDKmq1xeVziIAOolib-9J9rDtTIu-fA/5THzEyYgKcMgVA9O9R1nSGGQImQrW08UpklHaiFNpdo",
+      "https://v5.airtableusercontent.com/v3/u/55/55/1784152800000/KMkIRCb8tOPD6YrUptF9Pg/6COgJaZYkJGSH-ENP1lyLWLjK1wwCop34k6-RXujzVr7s9rxjRC5RUXtA0kLMdyg9xbAaeF8XcKmaoxZugiD0B51tpuUWHCxDEdiGAKniaGkHBO1Jm16k8oQlxpubtKHf_MzuHOjcPy7RG4dh1StCA/gw_lav7MHXyrnlwUWg_P-1o9BVtgfWbKMCMsCr7Bkog",
   },
   {
     name: "DOHE",
@@ -47,7 +47,7 @@ export const RAW_PARTNERS: RawPartner[] = [
       "United Kingdom (UK)",
     ],
     logoUrl:
-      "https://v5.airtableusercontent.com/v3/u/55/55/1784138400000/kW2TBFlGqj2yjbvKYwvOWQ/Y7Y7b76wjaOWHH_lapHainptuNIWhdmpIwHRoCIufYmqP2DXr-ktT4m4VeH34moR70zo7_NBKXgN-mGUAvPQKaYfJGX-NEdufq_XkD3wIaT1qyfeAEbA0-vLwb2T00za4iWEgWpf-aG2Hohh2nYEIQ_pO8JuotEY-SGEIWhbzJY/q6m2NW1zAC694qygZv-T1BAcXH3A8o8Yz94nB9EeZcM",
+      "https://v5.airtableusercontent.com/v3/u/55/55/1784152800000/vx6jGfoMV29AKC19zlbgQg/5HbuNPYDeGLcyNiYBabOnKyjqWA8buA2ktX2TkReRrtkgt_5lYr3Lls5OStmEYRJ1d57M1VQIzgtryfnDPbBYdELKkIIFlB4lbq8yWL9e8gWtLT_nv8jKQY3VEhGStQH7le5_zRJ0x4Yaw71oZh-2BYtTJs8ZI8I3cqtb9gUH3o/IqTW7kbIvWNCDTpCsennGGl9jgDs9NdXAMnu3bg_NKw",
   },
   {
     name: "Dutch EdTech",
@@ -55,7 +55,7 @@ export const RAW_PARTNERS: RawPartner[] = [
       "Netherlands",
     ],
     logoUrl:
-      "https://v5.airtableusercontent.com/v3/u/55/55/1784138400000/WG3s2XYD_Peef6O6yb0xGQ/fqNZ78rCPHNe0AmzwAgFMZLX4A0jP1qc0QBzDopg91VCdqZ8luH9xHozu-d4UEL39ZWpvE9lp6fu9ACVW_tcGIsVqApkfLCei8EXSZeqkFuVzKSNYv1zo6ulOYOVTa9q65ohAIy5C1U49XbMamX8cw/TtNdmVtD1qo3IiOgq_WuSHyZMl_5rRpU1WmehOM0j04",
+      "https://v5.airtableusercontent.com/v3/u/55/55/1784152800000/vbTPIGegptaVgKdLfKz9WA/8DAFXlOPnSpjIvxmo7N-CPKKCEj61aDpXb3upHY_4WbP7CcZAUWZ35MRHrHfRxEaFAYKfwbM6npxvfCAFvy7h3UngdvK6hfOxEQsXbNwoZa7dl6uoNQinBL94JgdoIiyYKMbG8NleSDdaSeEpFpelA/CWqe6tgoRxCX7U9nvH7weEYnPsEi0K4XiMm7ioPRfcE",
   },
   {
     name: "Edcrunch",
@@ -64,7 +64,7 @@ export const RAW_PARTNERS: RawPartner[] = [
       "Tajikistan", "Turkmenistan", "Mongolia", "Georgia",
     ],
     logoUrl:
-      "https://v5.airtableusercontent.com/v3/u/55/55/1784138400000/-J7WDLEsCRPQMxrCjb9t3w/tdjs-Dt4WBZKoWi08h86E17iTW10DrHoncjMP_WAEHBcnBY9SKLOIYJJwnul5H_fnrrgKvnKwqKZoHWQw3uUqwiZgd1WjIDTBZ8gRhuDRT4uetnGVGtZyq5-gzDdF2JNihqxRK8lCj4CUZQQwuTDNw/nNUPpq8OYxquTPboDB1UgvtgPHV7MZpKxuLPyIQceJ8",
+      "https://v5.airtableusercontent.com/v3/u/55/55/1784152800000/8JUd4lvdgHRXtQR6bIqubA/6vgtbTdAwhtxJe2Dm6tZqjX1flBFASgs7FMIHBUMITSTnr_qLnKehgh3dV9lVHOHIanbmEYjqRIIFBskto9ae1r9C_aytkfG1qhDBAN5YosRcr4Ev7oQXKqSupS-InkC845g0EmAha2hiSiqKYnx3w/RSV0fxXQjrCqrysEI4bxVayd46kHe7J9Mz17I0izfs8",
   },
   {
     name: "EdLATAM Alliance",
@@ -75,7 +75,7 @@ export const RAW_PARTNERS: RawPartner[] = [
       "Jamaica", "Bahamas", "Barbados", "Trinidad and Tobago",
     ],
     logoUrl:
-      "https://v5.airtableusercontent.com/v3/u/55/55/1784138400000/UFnKYaxFjUoStFQvgUwePw/JjilXudmb38NyATt7BOML0j_Q6WU2McsrmZQYUXNm7FOPTD0zAbARlmBCvfwySSQXndVl2tpcG-E4a6uYwND9l-Z8C6t5YgpKXDLcNvTOxjBIHCFFRVI9HMJVB1OMxuByMC_7djnDKBihIM4RnFx2w/9C1FoBdqu-DEOC44UXfFXYtJi84aa2_ru2I03rqYYH0",
+      "https://v5.airtableusercontent.com/v3/u/55/55/1784152800000/qRQs5nDtG9X8Z5kFRbFoBg/c1wF4Lp6K0Vks7Ij_sazKUXSGbSDGRpFQPThjsdZZs5_5INfkfuO9rbbwAMNds7jFzJVrCKQ3BW86-2yAlgP_I0UTevClDW1F8Xbr8PHcL4AP6fUBJGHGfgPwbfyU8usViXj7OA1Y8eqHRz9geJ6IA/6ysPnO62GLPh4i38wnquNh6KD63Abg_o7CN3j8nljAg",
   },
   {
     name: "EdTech Austria - Innovation Salzburg",
@@ -83,7 +83,7 @@ export const RAW_PARTNERS: RawPartner[] = [
       "Austria",
     ],
     logoUrl:
-      "https://v5.airtableusercontent.com/v3/u/55/55/1784138400000/EvEXe_Hha8brCuaMb7R-1g/1hUd2vd5i0YXZgJSwQ2ZHuGM-pxQiUxtFVdO8n_IfYFLYBgtERRAILGnj8YC9LoQ18JcGITVY6H_Nq_zCvXBrWZYIomqZq0VpmfDosUMlYKAzsmvXpWKScodx2x1ZlXcBsAUFv6YZIMnbyeNXjodQA/o-eARcXp8U28LeNCcnbjNsRIpkPvVxElYkyWtiNIvdQ",
+      "https://v5.airtableusercontent.com/v3/u/55/55/1784152800000/J0gpvgZwRYywSdN_AMpRiw/S5bvlu3l1tux1TPyUfK67RezgqDt71ljF15Azd-lkoQHFNqd9Rs6FQNNnx8eMlxk_CS54d0B7ZG9_QOm2idMAwo5q7Fmv4cmx0egCWNutcE3ZEq74kBLVGKI8jFJaxzvm2R_YWwm_RLzRFsNk-Qqdw/Bx-jb-1UMVXh7ifjwFZtY7Twq6VHB6ofsCEevdHzX9I",
   },
   {
     name: "EdTech France",
@@ -91,7 +91,7 @@ export const RAW_PARTNERS: RawPartner[] = [
       "France",
     ],
     logoUrl:
-      "https://v5.airtableusercontent.com/v3/u/55/55/1784138400000/hAaExT_8QFtHNfjRKOtMpA/4Kkq6asApwP2r8Tuk5S8icc6jCs0zit5rR-1Z231MCt5QPY2okKxObKur5gHmzgIZRo15uSOjRhfhNtfJ8E8-iI3Bk8efEqaaok_UdU5SqiV3Gz-d0W69hqnti00yfWCMMEMeUzWIvE_VVYf7V7dhtgMkcooc0N9SXu2WmkPfxw/PAlYLWvtQMRM9p7ZFzrgpPbPFvxj9d-TQwHt-0GkXUE",
+      "https://v5.airtableusercontent.com/v3/u/55/55/1784152800000/ptqPhRMya07STzMsaZU-NQ/Vcl6bVhy3YvImyIhhshL6flfinFIwRarNWg4rqCkZCNcwUThRUCDEgWrC3x61bbZcg7o3LQeVZSaXlIIxsZtwBuy3DuqpgnvsuQhPt4yU09Mc0yPvnALEVVtqtnTmsXMQmzyXS1MPHfNYa3dXAOkVnMnygxcj2QwNdArtIhrwsk/45AQSxKBeTkZUiyPIhbPqYGkbx3c66FU3vE4ZFOXNsE",
   },
   {
     name: "EdTech Italy",
@@ -99,7 +99,7 @@ export const RAW_PARTNERS: RawPartner[] = [
       "Italy",
     ],
     logoUrl:
-      "https://v5.airtableusercontent.com/v3/u/55/55/1784138400000/kHd70hiadk-2Ek6YdfO2Mg/QoPrm6LxezNyHkehR9wExAAGuP_WmI-DlhqP1oEvMbQT-XfjcjD2zr1vyarv0t2j7_onTnO0PYLoxE0BWtMGf6VvWEfjHmkl_b2lSXSKI5aFhjrAtOlo5DlrC6LoJ0qmDGmkAQ3zpcCqh8VDZVVX0A/Lll0lDrdBpfUmZJtFD0KAvb6DEWRb-y4o1o_foTypDQ",
+      "https://v5.airtableusercontent.com/v3/u/55/55/1784152800000/lTCvlmHjcVnLZhE5oWNIGg/csR3SpygOfylmX7nRJzBZi_jVLt5jY8U6Q9XdQxRC0JaEq9V0lqhUnWBe_Kc1Aw_GyTxdkXtnVz3AVuLqO86pac_iVW2ha8o9tXp-1tJyYILJnGxcG0VDMWFWzxzKpEmR8zDODfMFM9nPfpsKE-Xsg/N9r7yOjixzn8QJmB5o_k9sftGz7MXAXZqT5P6eplLN4",
   },
   {
     name: "Eduspaze",
@@ -108,7 +108,7 @@ export const RAW_PARTNERS: RawPartner[] = [
       "Thailand", "East Timor", "Vietnam", "Myanmar (formerly Burma)",
     ],
     logoUrl:
-      "https://v5.airtableusercontent.com/v3/u/55/55/1784138400000/dIXtagtzwndfKWYYP_uVwA/KWJxCs39YfqIGaEc_BpKIq-IO31wYvhganVkHmvIrAYGcT6VvJFGgPDEnnuzszjaETgwbBsJJgUCEX5mk-ZkUe2WERQjwR2gbyv6afjoIHI7cqKCHtqz9ASr8RyxmnlHiBxwfEqyOWJQ2a5pI7Bkqg/SwCuy3KsyzMOuznhiEdyO4Mj4jjhXfJEFgAhrSCddj0",
+      "https://v5.airtableusercontent.com/v3/u/55/55/1784152800000/4pYGMkvav7-idfzezeZH2Q/vkPT-6YpAaeTOJS6huq-9N46c-0WGn3eS_Vtp6gJgmMDkP1waAPDOz3uBctMlxZrUMLr-Ff9G1j6fm10rCpVFFd1WDj3lJIsIXsajVLBg6A7HbVTTUMH8OdOTlUQiMOFFrG8CfRX-zRGViTpanRt6w/vXr8-GvIiR2oNKYWDaGVd6p-yOJorh70Vn8adnta4_w",
   },
   {
     name: "Eduvation",
@@ -116,7 +116,7 @@ export const RAW_PARTNERS: RawPartner[] = [
       "Germany",
     ],
     logoUrl:
-      "https://v5.airtableusercontent.com/v3/u/55/55/1784138400000/SVAegJpbPQaThL03NucsnA/0aE0cf4ZKpwEHKw13vXDNfBhYHaWWmak0IfNW4AT8YKIrY8ThBrgr29UwNgn4UnHdN468L9-qkDD9J6TYdB2zrd6_fxxhc_CVbqucT6ofQjJbFEfyWq7_tfp1L4xZcc_BJW6Pc9_k7Pn8UGlN7f5cBkbBeLsYb-jRqJf26pYPho/tyyq99DYGZiiMO_aCDUb_SzU9bdPdyFv5QqZo5qbZB0",
+      "https://v5.airtableusercontent.com/v3/u/55/55/1784152800000/fMTiQlosgde0KY0iJD1jpw/Be4aNIaeokHMgA7rMPPh5qFMcwknJhHqRL7LZCAEPe-UUizcT8bahnNRcN2CvOTS1_9Qd3c7UmBbydBanzb6VmG1LMU5YJfpwi4KQ6MFlKRCrdyb3Eub4S_vTL1Iva6BhyMIkU03HqUZHW-nfu79Ivmt4Cw_1SjQ9ZtCS5FmOEw/OEa8zZzA1tLZDcDt96ITxJDn717eH3Egx0KDsqYUoEI",
   },
   {
     name: "Esperanza",
@@ -124,7 +124,7 @@ export const RAW_PARTNERS: RawPartner[] = [
       "Hong Kong", "China",
     ],
     logoUrl:
-      "https://v5.airtableusercontent.com/v3/u/55/55/1784138400000/vtdaZiE1WIvcSuEyh7E5MQ/OyAngxt7kUuZ-kiOnIDgyMBYAj_XQyFjIxyTixCi6vZw1Kou82xDd0I7vPkYQut7FkdbrZag18DXwJOMaqeGdMb8guJdFWtBWCbK84nzSE1VORoH2RsjkSXcGh4-MBzLutflCRWu_j61SfLSkJSd7w/9rXbh1ed5Ml85e-Dd4prwditxYgDG-ujbOd81iunCYw",
+      "https://v5.airtableusercontent.com/v3/u/55/55/1784152800000/iM-KqvP5r0ceVYBdMRaE3A/qPPwfDWlD-J372qGm9gaSfCsyQu0F3Nft_FiHDXVqUTkJ8g6mbxUhT6NbQJcM7DepPXzOc2Ya85isoUyMuMVqOPt05Ga1J6naBHJCjZhW2x-c7qgQh1zpZ_czBz6eKyq4E3hzfD9WVaRvdoz1TwQLw/ZPsYAF1ofAUXFIgC9jrjroPYgbkbNh-Cu2EhuXY66mc",
   },
   {
     name: "GSET Ghana Society for Education Technology",
@@ -140,7 +140,7 @@ export const RAW_PARTNERS: RawPartner[] = [
       "Cape Verde", "Sao Tome and Principe", "Seychelles",
     ],
     logoUrl:
-      "https://v5.airtableusercontent.com/v3/u/55/55/1784138400000/aW598LTXFKmmJ4d48E2kxg/lyFRwtuBvIAAY-WVawNHtGAuJsE7FAYMq1c4fMn2te1SQ-GJ3DFlUsIU27EvzAqmD8LxHziulg521oZUiG10meTOze6x_B93nYhcuNIuWdmOuvs6DJO0t4ghnz-eljiAzXJoyqU0diJTei96XfaXOA/3Lgcq1rKWFAu53370AZxHDi3cCPuNQzUfdD4MOY3L5k",
+      "https://v5.airtableusercontent.com/v3/u/55/55/1784152800000/zYXaJozVqK27Y3IJ8wA5BA/NSJtQ4boEwa80z9UJgrYgkw6GFsoBuwtN8QnF7zNASJAc2kw4El-jBOlzmmELzrdcXlaxJb5sqadvPAPfkw0D1z4qdwt_vH_QxcFd49pz4420DUDBeyE42eWGwcYUjRjSAFXd6WxgFJxL8-m7tJDog/4qzqF3Ffu9Rop2300K51hgkvz_0-SdHZiIjdHaGhe3o",
   },
   {
     name: "Ingenious Faces",
@@ -148,7 +148,7 @@ export const RAW_PARTNERS: RawPartner[] = [
       "India",
     ],
     logoUrl:
-      "https://v5.airtableusercontent.com/v3/u/55/55/1784138400000/fdT93PI-zPbsPG00PVKynw/gvONaRmISH3DLoL5HxMVc5mXNGA5ePTSztusQ_L7ojbNzAL1lquMvP9fl0f3ZQNCXsHGlW_VP1filvStExp6OC9Ni97VBOMts-9cNQfV9RYzq5RdxQ_x2cnTQxy-5h2vEjtnbHMf-00vep_02bvGWA/k4zJ6qp3nuflpgNxMh7iUleyufLCSAbIRtiPMgheZqg",
+      "https://v5.airtableusercontent.com/v3/u/55/55/1784152800000/byftzlaWbsg4odfZn4nKfg/kf75u3XCKVwGvvEcXq_W2Ge1Pxesy7ka7Ihgo9EYtirnWZpH9enPZknzASNv1WLz-4GxKWb5iL0m-Vb_wplhFA0h-NoWwSYj4GUy9KDMq3m0iYCOVpj2R4ZAoI7eFRiWP6EHuFvQq-BWJRN69LxX4w/AMEirAUlFCLhhG3deO7AxLHzxKXtRLvc4HawyK0BHiM",
   },
   {
     name: "Learning Spark",
@@ -156,7 +156,7 @@ export const RAW_PARTNERS: RawPartner[] = [
       "South Korea", "North Korea",
     ],
     logoUrl:
-      "https://v5.airtableusercontent.com/v3/u/55/55/1784138400000/r_J94JHNS4-dPEyS-k5XaQ/h08pnoFWnGjrQtkFaC22VvA5dY1W-9PwinBL0cjwdLiOR9OUEczxD0Y2lFGiPwx9fULZ6PqPTZ7jBgm2RmRXcEmtT3eEAjZNejCHCxwMQmJqiwgx-C3KWODknlCjCChi7Pb9Hx_kw47NpEGA6AmtrQ/zo24u3cx0sjy29rVnGmNnRXBZ6rim-U3eyd2sF5u1O8",
+      "https://v5.airtableusercontent.com/v3/u/55/55/1784152800000/bX2MFfN2OdRmIqrYgTVVLw/6ZYKYrcqgUJqAeZwUn62Qi7N4_UlQCMe_S73ouepj-gtafZ-nIim85pmydBcUk7WZ_2ZTRevpefgu15S2OsTxNlEtK17uFBzeCs8uYB6M-DQdwAOs8L7KD9EeDttfUr3-0pmd1dpI2oPVyQSAa3wwQ/N372x1LD1HzPFDAGEX-HnJS_DOYTFGPadvEhszzz-3U",
   },
   {
     name: "Learnlaunch",
@@ -165,7 +165,7 @@ export const RAW_PARTNERS: RawPartner[] = [
       "USA - Pennsylvania", "USA - Washington D.C", "Canada",
     ],
     logoUrl:
-      "https://v5.airtableusercontent.com/v3/u/55/55/1784138400000/p1N4tC16qjjHdYZtsq_fGQ/QN-J07_aEHNAfZLIy1E5DXbDqvfhNoXbZx2GiQrlP1LZp3joRrFDed6ymH_YW6J6llEUDlL56KGVI5z46_9Usivgc-mMVfW-QGGPz1pTTZ-BCZs1IAkFP07Qk0foLS-pSawPMzfP61FAhLdoBZV8RYxCRDVu3duAc-2TqRU1zFs/UkWg6Ct-GT4oN6bOfkdHGcsB0H_ukJd0uPX5-2gYTM8",
+      "https://v5.airtableusercontent.com/v3/u/55/55/1784152800000/HZpixr0pcJLkqbKOy-pWzA/KSPeez9J1CuPioKbUslutJQaXRd3bWcwPqLF2y0nWr33mBnAsI5ChH5wBbm_WjMWBxMTvvYUuhngENJ1Vjpr1641FeHZz0wRMvlw9CGzKesfX2ZQBfLdU2_C_Hwie8k1iYrsmGAQkJtzC_1r3H7d9VuVs0klKY9IfwfSdObXjmE/SDhTgigkidt38_UMuoCvV3OZHnHKkCHikcZHipGrSGc",
   },
   {
     name: "METI Japan",
@@ -173,7 +173,13 @@ export const RAW_PARTNERS: RawPartner[] = [
       "Japan",
     ],
     logoUrl:
-      "https://v5.airtableusercontent.com/v3/u/55/55/1784138400000/2t8x1THfQya34bKs8mPoTw/5xzkmzq0wPX7FdP7NQJ9IZCw93fNAGJ0W-k6cITUUmEmJMElCS7ciTQmRu1orI5M88kXQa5DNfyAEiAu4CeYc7af1wM0bQCd46gkycWKwJWn3KlTkV_xH4Wl0et71WTGtRH6LkGcTEI5dNAXoN0VpQ/4WVZReVDrMRjnnhNtVzPB84bXRInl2f9Ylsp6EFPL3o",
+      "https://v5.airtableusercontent.com/v3/u/55/55/1784152800000/QfinvwFs6B0LmuEbp8QEXw/0lLKKsrXE8UPmrASPDnTeSIbF8YqO9ZAw8vaRcJVZ-glkwyg73e5vYuOcxbk-jiNOuqz504-M19IqrnXrsopWqt32ZstIMK2AztNn4Xr326R2u73UlEhfoaMXYCbcyy4i0vmEoMU92eeQRcja0xxxA/UZeCTv5SxTW2N8ewvqurZtqk68g5HQwUkmvSGHgGIv8",
+  },
+  {
+    name: "MindCET",
+    countries: [
+      "Israel",
+    ],
   },
   {
     name: "Positivo",
@@ -181,7 +187,7 @@ export const RAW_PARTNERS: RawPartner[] = [
       "Brazil",
     ],
     logoUrl:
-      "https://v5.airtableusercontent.com/v3/u/55/55/1784138400000/6akwowubjFUi6iThiCQiXw/vf_ATScKlfTzEwI7AHFr0ygLdCvcMn_94DnPz3yfTJs6B8C9JsEO1zzNrvNIELPbf9827W3QDuOsH-uaToYKUEjbPLJ4UX4Lm2Wh7yADDmCl9bDpJ-isAtFF6QN_uzkbpF9EQyyiQQWgoBnq0LQNiA/7__9V6KqOjcym_wgZ4NJXIC2YjINZl2ca-WHpSlv6QM",
+      "https://v5.airtableusercontent.com/v3/u/55/55/1784152800000/LnMFKbuCaeimUSIGEYoFCQ/T7ojEl7Do-FVpApAy2PRpEyIzjtCwx9q4h4ZZVMoeTQNNHRtfQIKTfLrpWou6GZixah9A85wA6M4LNxB3oHDxJEeITrybo4mj5eX6FHzWi0IQetjKFC5KRv1-0s8EIy3BsZ7PzkWI6Qtl0IV9AoiyA/BP-OXgPBybVRJm0wU0qQlZWiK69m-VjqXcAjkH9bDjk",
   },
   {
     name: "Prismapar",
@@ -193,7 +199,7 @@ export const RAW_PARTNERS: RawPartner[] = [
       "Trinidad and Tobago",
     ],
     logoUrl:
-      "https://v5.airtableusercontent.com/v3/u/55/55/1784138400000/zrj133maYHRvXcyoSbVZTA/ffhbmFJqC2BuhM9wLhcMrTeqhZz0pHXm8-bDuhY77UwsWgBz5auLqvu9bxiun5FNaQ5vPGH3mYQOnK3-AIW1hrVp-6wbfYTco14Z6Eyd7DL98GKwlqegT5OxmNIWxUQki5DchyjRv9X__waNsmZzfg/o-wQ7MknWyNwu65l1yvzwS-GtMJWTilp8fBRbYVQJao",
+      "https://v5.airtableusercontent.com/v3/u/55/55/1784152800000/IfSyczPPmetdzDC-3_8YSA/m06so7KO5j485j2J62YceTnJN1tLaQGm1iirQ8nf5_OSm23R1k1WiDGV_DZ5M6KPyLjJCjqahDFYGczu_Hd4TaDqu_dIntjH62u3k5_dd2ZlLCsDy4b-8pubYjpHIqyECmuKbWEmzz1sYA_6zvVl7A/Bd5hHp9JgEJqPD3LeEd1gG0ayMWGXOhrHvpb-gZ_g_Q",
   },
   {
     name: "SEK Lab",
@@ -201,7 +207,7 @@ export const RAW_PARTNERS: RawPartner[] = [
       "Portugal", "Spain",
     ],
     logoUrl:
-      "https://v5.airtableusercontent.com/v3/u/55/55/1784138400000/e0ywjD0qYRQOcTztrbbsMQ/mWGhp-4FEEBPO-UYBdgZBuam8y1EkeY48gDdP11_eTAcwYjWO3M8349v4KcPIX5_v15w3U965y0URC5U1JHp5eZtPrftLg4eVtj9MOGeDpsZdR_dO4mn7RebKZUy57ObtQHPM5unrAy9je4d4IIVQA/VF3tb_5EGre1fEEPFTYFt5_D3NTFl9LjAdKmr14EzWE",
+      "https://v5.airtableusercontent.com/v3/u/55/55/1784152800000/FirxjH7nSJm2TeJYSDOuzw/sdj6Y3mkrvsvo597kMkXGaL0dlQPf8_Qxl8FyBRyG9TvvtevEPM6uWUXJSNGuxPGmSDyAIJ6oVDBKjgXf_QdsBMfYLJgIMPdf8WYROJZowVopc9P5SupxQsU16qx2frMEfaYLDrkhHLvzKVOyz5BWg/G5dfVQ19S80HKA4L112tE2HjAijslXm1evftKdhH9gY",
   },
   {
     name: "StartEdAccelerator",
@@ -210,7 +216,7 @@ export const RAW_PARTNERS: RawPartner[] = [
       "USA - Wyoming",
     ],
     logoUrl:
-      "https://v5.airtableusercontent.com/v3/u/55/55/1784138400000/7aHzM9KxiccOC7U2xlawqg/z061QHdUe8c7eoLpHLnuSZBaXl4GYZh6lkbHOVdrBnmgXDnYkDVHHZCrkfhMtWMPNiA8qzYoaArhODQzpyGuRutukP4VuNeyl2cfXRkr4e7h0iV2ZyR8KEF6LiubMVCzk7_imQuHQ_Ip6znj1NDc7A/YxxX_usOEbgZ1N8s0kVo-DaRER8rGFyt6LG19b500wE",
+      "https://v5.airtableusercontent.com/v3/u/55/55/1784152800000/cHMjrfR4WXkln6fyFuiA-A/m2f3QBvWWn3aiqWr6lqd5cqapxI1Lilua0WYtEG8akg-Vj04nI8rRlnfc-ZgyusrPOT9s9_Y1b-K5KqD54IGMblaXOWa4EGMB8cLbLfAh4BXqIrw8tXd_lKHw91-x5L6XTofHTfxn_p2tDgbb1zXzA/7OKOKy1t6ZBMjgksFpapWSp2iTLJpc6UfuPXk-ZYzmc",
   },
   {
     name: "Startup Braga",
@@ -218,7 +224,7 @@ export const RAW_PARTNERS: RawPartner[] = [
       "Portugal",
     ],
     logoUrl:
-      "https://v5.airtableusercontent.com/v3/u/55/55/1784138400000/GPnv0mKiPCI2_YfSJHs0Rg/fio_JTQ07tp_V5-NJp78i1ikRaHyCFZ7EXllYmRxVYCoM7F76EYc4igKffWKjkfbU0wbgX3i5LMn_i4E9bBq0Q6QpIen88xG0Qf1iNkvepUy60d6ldXb3xkt8mdkGFksUDaxKjig_KO9oSMGvaL4IQ/0RkaA_bKLk1tq_8-pxfFvAn3BzOdxgbw6b7hSwqMux0",
+      "https://v5.airtableusercontent.com/v3/u/55/55/1784152800000/aRUukVGnyMn_iZmc7gA1Ug/9WNDyXyELl8nfdLsAXTfZZg5Cft-mzIwhm9RzdQL6zoGlHYe4b8PjrNko9xQLnmI3EBc7bZzLPMpGvRZVwA4bYk8y7UV5w3vcDgbKU0bx8SEIhZDZ4AGq4D_Ri8kaSWQEz3UtZnhU4LRfmEjOK4_xA/rg3W9pJ95MYPWnbzUZg8JwS1HIQBo2jJPUIuH_2Y058",
   },
   {
     name: "Taipei Computer Association (TCA)",
@@ -226,7 +232,7 @@ export const RAW_PARTNERS: RawPartner[] = [
       "Taiwan",
     ],
     logoUrl:
-      "https://v5.airtableusercontent.com/v3/u/55/55/1784138400000/4VglxWa5NNK1DlsJB6RMhQ/3EEvE_qiSmD-bPNZ1CXTktP89KZekx7BPiV-0FKvl5JazMj-yfyzlagJqKQu_mYqO7PCLUTjcEbUwFiL0lId4XaL_x09OBJhDEw5VKaQlAuHZsy9kecfoBfmILUKnNEgcNzTalOweHCHrBjnC0GXGCqrkKp_Epv76bfraTREWEA/QkYkImJmEvN4odMztKbi7XzpAhMsBIQLeeNEfbNpkYc",
+      "https://v5.airtableusercontent.com/v3/u/55/55/1784152800000/BCNi9jbKEiiLf4pVMj_3Vw/lAQ5nbMhwOVwb8aqjkr6JQxmpDXot8Cgk8wE6V-VUPSLUuIb3OUdZ76K5WVC-ijAaFdCGTzx2y7FFJDKor3kOsTXQ_2KD-tJwIX4krx_iyO97-nX5Sta3oE9bGxBi132vKvWpoFQp8hm0cPW0PnoM42z-vZhBsSN10O3iDOnGKw/R6M7fK5pQFe0h1IATTPebY5k0YBIURDmmeR0K-7SRQs",
   },
   {
     name: "Tech Monterrey",
@@ -238,7 +244,7 @@ export const RAW_PARTNERS: RawPartner[] = [
       "Trinidad and Tobago",
     ],
     logoUrl:
-      "https://v5.airtableusercontent.com/v3/u/55/55/1784138400000/u5V_FgbXYkvlLeachtcCbg/-VudV78Dj8Zjr3hr7gKthdwRQJeogJ3ueuRMiqKRVoDyiX0KFD0kSAHhs8gWuPwtW7OSfoRR9WUG6PYwtGBclueAiJaBAqvP7AqWxInuKtKIi2xi6DedYVmeDWKxs8x11V6pDay90OY84n05kUqcNcc5G4zTMj2nPczpWCQYZ2M/CSeN-K856slAx8HfeIaSeUJTWNfLIuc9lbm2iflPIvs",
+      "https://v5.airtableusercontent.com/v3/u/55/55/1784152800000/RXydBZFY5_8LvCYpSdfFbA/DOq1vByyfyLUhBaxT5WAnhBv0JU1aNxLusRM9y3bSqGQIdyxVuXADW5jekk8L81tvili5SnwpgJWXTICcMxV8jHrMcXw-AzcgarXQ2VDFqH_sXLp3hy36n7b4lpJdZt1mtnh9FIpXP5Je_ON9UD-SKK34P3xxx14NyHo18q9Cdc/sO_gwbErPMNXDi385zZvmAR1VDmxnf0LMyl56kXFg5o",
   },
   {
     name: "Tyme Education",
@@ -247,7 +253,7 @@ export const RAW_PARTNERS: RawPartner[] = [
       "Papua New Guinea", "Saudi Arabia", "United Arab Emirates (UAE)",
     ],
     logoUrl:
-      "https://v5.airtableusercontent.com/v3/u/55/55/1784138400000/d9mt899Ljq7k-x57SRPE3Q/rhvdDxiI5MloiRXlVBur6PPNc9R0UD9tbYRAji7l4n7_EV5V7959iMQfie0YRjHTC6T9B8dqzMTuCuGNjjSlGQyeqemeH_Ku_OSeKvIQYWJR5NKEFPwuGlZKeUujuBH0ctBFyDLolx9PO0Z5lzvd8FXKoz4S4luLNaYoGFBV_zU/Nkm34WU8sV1vf80OKTiQeYxrb8xF7oY79gaQqMPbFco",
+      "https://v5.airtableusercontent.com/v3/u/55/55/1784152800000/Ztv6-QVWB4r-to0tVEjegg/eGvV6oE6YXsXdAv3SblcEKGIFGcCuVf6dXKwIrRHeQCyr_sYNpGYl-KozOhTRZ31XT9XEPMnTPxBWESuqSKmNvTu-htHN-AfhA7GPWn5Rhm7ECjNjTUchBSSok9Xmn90Z6xo_YGEPCZKAPeyDNaHbmwdSF4mOJ81KpzEi51Rznk/nnIIU_-mV3UbK9699v8VOBZ098RjLFsjIe7d6utbO-Y",
   },
   {
     name: "UCL EdTech Labs",
@@ -255,7 +261,7 @@ export const RAW_PARTNERS: RawPartner[] = [
       "United Kingdom (UK)",
     ],
     logoUrl:
-      "https://v5.airtableusercontent.com/v3/u/55/55/1784138400000/17dKYu71d8kByPAAEQR5Xw/1yWfEUxojQ_zO5qfRN68ZZMvGqLSyWVqIguw0SaE8UL0m4FtDCZTbDy-F6T3DpRwRaFF10Imj_HkURv2kkcQsT8-hrmBakRu0Tcav5-1II09f6R4M95jxAJs19-12FVVzgpxFGLQdUWR4jwFsml8NQ/poSMfZVWj-4a0mG1VR0Zvbgd8w4u2pTbawSHshbe0cQ",
+      "https://v5.airtableusercontent.com/v3/u/55/55/1784152800000/khf355Kh3eU0NwcMeSuu6Q/gEQ4RA7IO8WL3LCjx-qd6KJhTYfHBhcXxiZzKBziw1GbiiCVaZ9P6ZL2BvC0YwpU8g2tahlyC51Az0IwASU-SkPoGhBxCsFxOWXqxsyOLIS_sDFMcUgvonpm4S4OTXfT1mEAVHuG0GJxMteI_uRqgA/VZ4LI7OKDzN-qTIDf5RENQw6_MctyUMR7MLJBk8SNZo",
   },
   {
     name: "XEdu",
@@ -263,7 +269,7 @@ export const RAW_PARTNERS: RawPartner[] = [
       "Denmark", "Sweden", "Estonia", "Finland", "Iceland", "Latvia", "Lithuania", "Norway",
     ],
     logoUrl:
-      "https://v5.airtableusercontent.com/v3/u/55/55/1784138400000/S0eMN9KD7xVcZ4hi5Wd5lg/RtQEnzxjghCmwmltORkkMiX8tnavVYGJCESebsEubycNX93QZYWOj8Sz-uLkd0L7Jj2KMZV9lbDcacvbDk5TMcHWGJhK6vPloYEZOQy9OF8rhEzbLDZJ-rnEtcB9UCNsiznIYnC0OHOsiGNYp-mXmw/ARCK8TEf1fRzqN1bKJPH0NCSlLD_7zogKIVVH7g5WHE",
+      "https://v5.airtableusercontent.com/v3/u/55/55/1784152800000/JJGw9RvvO-GT6hvscCiv5w/57SCpZxbS18HorrorRxqVyqDz-SuWQ-u0ApEzX2NYIb70Yue1Iqolq76_EupV68H_J7bJnj5pOHTqcYRs_KVQ8H6yLpllrD6le751pwEFYdJK5DZyZ0Mq98RaXOynFR5v64gJZg1KZhtG0n_0vXPxg/xIaHSJe6yd5rIu67zLZp1IpGYR7lORq8TFCM7-tpOMs",
   },
 ];
 
@@ -345,6 +351,7 @@ export const COUNTRY_TO_CONTINENT: Record<string, ContinentKeyRaw> = {
   "India": "asia",
   "Indonesia": "asia",
   "Iraq": "middle-east",
+  "Israel": "middle-east",
   "Italy": "europe",
   "Ivory Coast": "africa",
   "Jamaica": "latin-america",
@@ -522,6 +529,7 @@ export const COUNTRY_TO_ISO2: Record<string, string> = {
   "India": "in",
   "Indonesia": "id",
   "Iraq": "iq",
+  "Israel": "il",
   "Italy": "it",
   "Ivory Coast": "ci",
   "Jamaica": "jm",

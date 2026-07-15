@@ -18,13 +18,15 @@ export async function Footer() {
   const regionalPartners = [];
 
   for (const entry of regionalSemifinals) {
-    if (!sanityPartnerNames.has(entry.partner) && !seenRegionalNames.has(entry.partner)) {
-      seenRegionalNames.add(entry.partner);
-      regionalPartners.push({
-        name: entry.partner,
-        logo: entry.logo || "",
-        url: undefined,
-      });
+    for (const partner of entry.partners) {
+      if (!sanityPartnerNames.has(partner.name) && !seenRegionalNames.has(partner.name)) {
+        seenRegionalNames.add(partner.name);
+        regionalPartners.push({
+          name: partner.name,
+          logo: partner.logo || "",
+          url: undefined,
+        });
+      }
     }
   }
 

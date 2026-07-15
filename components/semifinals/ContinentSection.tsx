@@ -26,12 +26,12 @@ export function ContinentSection({
           style={{ background: `var(${meta.colorVar})`, opacity: 0.35 }}
         />
         <span className="whitespace-nowrap text-xs text-muted">
-          {entries.length} partner{entries.length === 1 ? "" : "s"} · {countryCount} countries
+          {entries.length} semifinal{entries.length === 1 ? "" : "s"} · {countryCount} countries
         </span>
       </div>
       <div>
         {entries.map((entry, index) => (
-          <PartnerRow key={`${entry.partner}-${entry.continent}`} entry={entry} index={index} />
+          <PartnerRow key={`${entry.name}-${entry.continent}`} entry={entry} index={index} />
         ))}
       </div>
     </div>

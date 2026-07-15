@@ -42,7 +42,7 @@ export function RegionalSemifinalsGrid({
         {!showAll && (
           <div className="mx-auto max-w-2xl rounded-2xl border border-line bg-white p-2">
             {teaser.map((entry, index) => (
-              <PartnerRow key={`${entry.partner}-${entry.continent}`} entry={entry} index={index} />
+              <PartnerRow key={`${entry.name}-${entry.continent}`} entry={entry} index={index} />
             ))}
           </div>
         )}

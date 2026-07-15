@@ -66,32 +66,73 @@ function normalizeCountryName(name) {
   return name;
 }
 
+// Priority order used both for picking a semifinal's primary continent (tie-break) and
+// for the final stable sort.
+const continentOrder = [
+  "north-america", "europe", "middle-east", "asia", "latin-america", "africa",
+  "rest-of-world",
+];
+
 const missingContinent = new Set();
 const missingIso = new Set();
 const entries = [];
 
-// Process new semifinals data (multiple partners per entry)
+// Process new semifinals data (a named semifinal with one or more partners).
 if (RAW_SEMIFINALS.length > 0) {
-  console.log(`Processing ${RAW_SEMIFINALS.length} semifinal entries with multiple partners…`);
+  console.log(`Processing ${RAW_SEMIFINALS.length} named semifinals (multiple partners each)…`);
 
   for (const semifinal of RAW_SEMIFINALS) {
-    const countries = semifinal.countries.map((name) => {
+    // Normalize + dedupe countries (collapse US states), preserving first-seen order.
+    const seen = new Set();
+    const normalized = [];
+    for (const raw of semifinal.countries) {
+      const name = normalizeCountryName(raw);
+      if (seen.has(name)) continue;
+      seen.add(name);
+      normalized.push(name);
+    }
+
+    // Tally countries per continent to pick a single primary continent for this semifinal.
+    const perContinent = new Map();
+    for (const name of normalized) {
+      const continent = COUNTRY_TO_CONTINENT[name];
+      if (!continent) {
+        missingContinent.add(name);
+        continue;
+      }
+      perContinent.set(continent, (perContinent.get(continent) ?? 0) + 1);
+    }
+
+    // Primary continent = most countries; ties broken by continentOrder priority.
+    let continent = "rest-of-world";
+    let best = -1;
+    for (const [key, count] of perContinent) {
+      if (
+        count > best ||
+        (count === best && continentOrder.indexOf(key) < continentOrder.indexOf(continent))
+      ) {
+        best = count;
+        continent = key;
+      }
+    }
+
+    const countries = normalized.map((name) => {
       const code = COUNTRY_TO_ISO2[name];
       if (!code) missingIso.add(name);
       return { name, code: code ?? "" };
     });
 
-    const partners = semifinal.partners.map((p) => ({
-      name: p.name.trim(),
-      logo: logoManifest[p.name] ?? undefined,
+    const partners = semifinal.partners.map((name) => ({
+      name: name.trim(),
+      logo: logoManifest[name] ?? undefined,
     }));
 
     entries.push({
+      name: semifinal.name,
       partners,
-      continent: semifinal.continent,
+      continent,
       countries,
-      date: semifinal.date,
-      winner: semifinal.winner,
+      ...(semifinal.date ? { date: semifinal.date } : {}),
     });
   }
 } else {
@@ -131,6 +172,7 @@ if (RAW_SEMIFINALS.length > 0) {
       });
 
       entries.push({
+        name: partner.name.trim(),
         partners: [{ name: partner.name.trim(), logo: logoManifest[partner.name] ?? undefined }],
         continent,
         countries,
@@ -152,23 +194,17 @@ if (missingIso.size > 0) {
   );
 }
 
-// Stable ordering: continent, then first partner name.
-const continentOrder = [
-  "north-america", "europe", "middle-east", "asia", "latin-america", "africa",
-  "rest-of-world",
-];
+// Stable ordering: primary continent, then semifinal name.
 entries.sort((a, b) => {
   const c = continentOrder.indexOf(a.continent) - continentOrder.indexOf(b.continent);
   if (c !== 0) return c;
-  // Sort by first partner name for stability
-  const aFirst = a.partners[0]?.name ?? "";
-  const bFirst = b.partners[0]?.name ?? "";
-  return aFirst.localeCompare(bFirst);
+  return (a.name ?? "").localeCompare(b.name ?? "");
 });
 
 const header = `// GENERATED FILE — do not edit by hand.
 // Produced by scripts/build-regional-semifinals.mjs from
-// lib/content/regional-semifinals-source.ts. Re-run that script to regenerate.
+// lib/content/semifinals-source.ts (falls back to regional-semifinals-source.ts).
+// Re-run \`npm run refresh:semifinals\` to regenerate.
 
 import type { RegionalSemifinalEntry } from "./types";
 

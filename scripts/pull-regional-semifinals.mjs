@@ -23,7 +23,7 @@ const root = path.join(__dirname, "..");
 const BASE_ID = "appyTu8uOPQUVXD4x";
 const PARTNERS_TABLE = "tblAfv3rYs6GyXQEF";
 const COUNTRIES_TABLE = "tbl7wFk8g0AbGx7ee";
-const SEMIFINALS_TABLE = "??"; // TODO: Update with actual table ID from Airtable
+const SEMIFINALS_TABLE = "tblAJHZRBQyfPOySc";
 const SEMIFINALS_TABLE_NAME = "Semifinals"; // fallback for error messages
 
 // Field IDs (stable even if columns are renamed in Airtable).
@@ -33,11 +33,11 @@ const F_PARTNER_LOGO = "fldjzYaS859kIMA5q";
 const F_COUNTRY_NAME = "fld2EoxYQJ14Sb1Y4";
 const F_COUNTRY_AREA = "fld1A4UPsFR1Bji3N";
 
-// Semifinals table field IDs (TODO: Update with actual IDs from Airtable)
-const F_SEMIFINAL_NAME = "??"; // Name/Title field
-const F_SEMIFINAL_PARTNERS = "??"; // Linked records to Partners table
-const F_SEMIFINAL_DATE = "??"; // Date field
-const F_SEMIFINAL_WINNER = "??"; // Winner field (optional, for future use)
+// Semifinals table field IDs.
+const F_SEMIFINAL_NAME = "fldp0VsrprsjrJbLS"; // region title, e.g. "Germany & Austria & Netherlands"
+const F_SEMIFINAL_PARTNERS = "fldYjUfAY9BclTPuD"; // linked records -> Partners table
+const F_SEMIFINAL_DATE = "fldQBCREpbQqI6KXD"; // date field (ISO string, may be empty)
+const F_SEMIFINAL_WINNER = "fld1Z8I5xeFrt7kCm"; // "1st place" — links to Registration; empty for now
 
 // Airtable record names that need canonicalizing before display.
 const PARTNER_NAME_OVERRIDES = {
@@ -245,91 +245,77 @@ for (const country of usedCountries) {
 }
 
 // ---------------------------------------------------------------------------
-// Process Semifinals table (if configured)
+// Process Semifinals table. Each record is ONE named semifinal that can link several
+// partners. We keep it as a single entry (never split by continent — the semifinal has
+// its own name) and merge the countries of all its partners. The build script assigns a
+// single primary continent and resolves ISO codes + logos.
 
-let semifinalEntries = [];
-const partnerByName = new Map(partners.map(p => [p.name, p]));
+const partnerRecById = new Map(partnerRecords.map((rec) => [rec.id, rec]));
+const semifinalEntries = [];
 
-if (SEMIFINALS_TABLE !== "??" && semifinalRecords.length > 0) {
+if (semifinalRecords.length > 0) {
   console.log(`\nProcessing ${semifinalRecords.length} semifinals…`);
 
   for (const rec of semifinalRecords) {
-    const linkedPartnerIds = rec.fields[F_SEMIFINAL_PARTNERS] ?? [];
-    if (linkedPartnerIds.length === 0) {
-      console.warn(`Semifinal record ${rec.id} has no linked partners — skipped.`);
+    const rawName = rec.fields[F_SEMIFINAL_NAME];
+    const name = rawName ? cleanName(rawName) : "";
+    if (!name) {
+      warnings.push(`Semifinal record ${rec.id} has no name — skipped.`);
       continue;
     }
 
-    // Collect all linked partners' data
+    const linkedPartnerIds = rec.fields[F_SEMIFINAL_PARTNERS] ?? [];
+    if (linkedPartnerIds.length === 0) {
+      warnings.push(`Semifinal "${name}" has no linked partners — skipped.`);
+      continue;
+    }
+
     const semifinalPartners = [];
-    const semifinalCountries = new Set();
-    const continentSet = new Set();
+    const countrySeen = new Set();
+    const semifinalCountries = [];
 
     for (const partnerId of linkedPartnerIds) {
-      const partnerRec = partnerRecords.find(p => p.id === partnerId);
+      const partnerRec = partnerRecById.get(partnerId);
       if (!partnerRec) {
-        console.warn(`Semifinal references unknown partner record ${partnerId}.`);
+        warnings.push(`Semifinal "${name}" links unknown partner record ${partnerId} — skipped.`);
         continue;
       }
 
-      const partnerName = PARTNER_NAME_OVERRIDES[cleanName(partnerRec.fields[F_PARTNER_NAME])]
-        ?? cleanName(partnerRec.fields[F_PARTNER_NAME]);
+      const partnerName =
+        PARTNER_NAME_OVERRIDES[cleanName(partnerRec.fields[F_PARTNER_NAME])] ??
+        cleanName(partnerRec.fields[F_PARTNER_NAME]);
+      semifinalPartners.push({ name: partnerName });
 
-      const attachment = (partnerRec.fields[F_PARTNER_LOGO] ?? [])[0];
-      let logoUrl;
-      if (attachment?.type?.startsWith("image/")) {
-        logoUrl = attachment.url;
-      }
-
-      semifinalPartners.push({ name: partnerName, logoUrl });
-
-      // Collect countries and continents from this partner
+      // Merge this partner's countries into the semifinal's country list (deduped).
       for (const linkedCountryId of partnerRec.fields[F_PARTNER_COUNTRIES] ?? []) {
         const country = countryById.get(linkedCountryId);
         if (!country) continue;
-
         const countryName = COUNTRY_NAME_OVERRIDES[country.name] ?? country.name;
-        semifinalCountries.add(countryName);
-
-        const canonical = countryName.startsWith("USA - ") ? "United States" : countryName;
-        if (country.area) {
-          const key = areaToContinentKey(country.area);
-          if (KNOWN_CONTINENTS.has(key)) continentSet.add(key);
-        }
+        if (countrySeen.has(countryName)) continue;
+        countrySeen.add(countryName);
+        semifinalCountries.push(countryName);
       }
     }
 
-    // If no continents determined, default to rest-of-world
-    if (continentSet.size === 0) continentSet.add("rest-of-world");
+    if (semifinalPartners.length === 0) continue;
 
-    // Split by continent (a semifinal with partners spanning multiple continents gets split)
-    for (const continent of continentSet) {
-      const continentCountries = [];
-      for (const countryName of semifinalCountries) {
-        const canonical = countryName.startsWith("USA - ") ? "United States" : countryName;
-        const countryContinent = continentByCountry.get(canonical);
-        if (countryContinent === continent) {
-          continentCountries.push(countryName);
-        }
-      }
+    const dateRaw = rec.fields[F_SEMIFINAL_DATE];
+    const date = typeof dateRaw === "string" && dateRaw.trim() ? dateRaw.trim() : undefined;
 
-      if (continentCountries.length > 0) {
-        semifinalEntries.push({
-          partners: semifinalPartners.map(p => ({ name: p.name, logoUrl: p.logoUrl })),
-          continent,
-          countries: continentCountries,
-          date: rec.fields[F_SEMIFINAL_DATE] ?? undefined,
-          winner: rec.fields[F_SEMIFINAL_WINNER] ?? undefined,
-        });
-      }
-    }
+    // Winner (1st place) links to the Registration table — left empty for now, added later.
+    // We intentionally do not resolve the winner name yet (all records are empty).
+
+    semifinalEntries.push({
+      name,
+      partners: semifinalPartners,
+      countries: semifinalCountries,
+      date,
+    });
   }
 
-  console.log(`Generated ${semifinalEntries.length} semifinal entries (after splitting by continent).`);
-} else if (SEMIFINALS_TABLE === "??") {
-  console.log("Semifinals table not yet configured. Using legacy Partners-based data structure.");
-  // For now, fall back to the old structure if Semifinals table isn't configured
-  // This will be removed once the transition is complete
+  // Stable ordering by name so diffs stay readable.
+  semifinalEntries.sort((a, b) => a.name.localeCompare(b.name));
+  console.log(`Generated ${semifinalEntries.length} semifinal entries.`);
 }
 
 // ---------------------------------------------------------------------------
@@ -429,18 +415,10 @@ console.log(`Wrote lib/content/regional-semifinals-source.ts (${partners.length}
 if (semifinalEntries.length > 0) {
   const semifinalPartnerBlocks = semifinalEntries.map((entry) => {
     const lines = [`  {`];
-    lines.push(`    partners: [`);
-    for (const partner of entry.partners) {
-      lines.push(`      {`);
-      lines.push(`        name: ${q(partner.name)},`);
-      if (partner.logoUrl) lines.push(`        logoUrl: ${q(partner.logoUrl)},`);
-      lines.push(`      },`);
-    }
-    lines.push(`    ],`);
-    lines.push(`    continent: ${q(entry.continent)},`);
+    lines.push(`    name: ${q(entry.name)},`);
+    lines.push(`    partners: [${entry.partners.map((p) => q(p.name)).join(", ")}],`);
     lines.push(`    countries: ${formatStringArray(entry.countries, 6)},`);
     if (entry.date) lines.push(`    date: ${q(entry.date)},`);
-    if (entry.winner) lines.push(`    winner: ${q(entry.winner)},`);
     lines.push(`  },`);
     return lines.join("\n");
   });
@@ -449,33 +427,25 @@ if (semifinalEntries.length > 0) {
 //
 // GENERATED FILE — do not edit by hand. Regenerate with: npm run refresh:semifinals
 // (scripts/pull-regional-semifinals.mjs pulls the GESAwards Airtable base ${BASE_ID}
-// Semifinals table and rewrites this file.)
+// Semifinals table and rewrites this file, then build-regional-semifinals.mjs consumes it.)
 //
 // Source:
-// - Table "Semifinals" (${SEMIFINALS_TABLE}): each semifinal with linked partners.
+// - Table "Semifinals" (${SEMIFINALS_TABLE}): each named semifinal + linked partners + date.
 // - Partners linked from table "Partners" (${PARTNERS_TABLE}): partner names + logo attachments.
 // - Table "all countries" (${COUNTRIES_TABLE}): each country's real "Geographic Area".
 // Last refreshed: ${today}.
-
-export type RawSemifinalPartner = {
-  /** Partner name from the Partners table. */
-  name: string;
-  /** Airtable attachment URL for the Logo field, if an image was uploaded. Expires —
-   * scripts/download-partner-logos.mjs mirrors it locally. */
-  logoUrl?: string;
-};
+//
+// Winners (1st/2nd/3rd place) exist in Airtable but are empty for now — add later.
 
 export type RawSemifinalEntry = {
-  /** Multiple partners per semifinal. */
-  partners: RawSemifinalPartner[];
-  /** Geographic continent. */
-  continent: string;
-  /** Country names (US states not yet deduped). */
+  /** Region title, e.g. "Germany & Austria & Netherlands". */
+  name: string;
+  /** Partner names (logos resolved from the download manifest by name at build time). */
+  partners: string[];
+  /** Merged country names across all partners (US states not yet deduped). */
   countries: string[];
-  /** Optional: date of the semifinal event. */
+  /** Optional: date of the semifinal event (ISO string). */
   date?: string;
-  /** Optional: winner name. */
-  winner?: string;
 };
 
 export const RAW_SEMIFINALS: RawSemifinalEntry[] = [

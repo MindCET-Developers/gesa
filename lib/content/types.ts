@@ -109,14 +109,17 @@ export type SemifinalPartner = {
 };
 
 export type RegionalSemifinalEntry = {
-  /** Multiple partners per semifinal, each with their own logo. */
+  /** Region title from the Airtable Semifinals table, e.g. "Germany & Austria & Netherlands". */
+  name: string;
+  /** One or more partners running this semifinal, each with their own logo. */
   partners: SemifinalPartner[];
+  /** Primary continent this semifinal is grouped under (for the tab filter). */
   continent: ContinentKey;
-  /** Only the countries belonging to *this* continent. Merged from all partners' countries. */
+  /** All countries covered by this semifinal, merged from every partner. */
   countries: SemifinalCountry[];
-  /** Optional: date of the semifinal event (for future use). */
+  /** Optional: date of the semifinal event (ISO string). */
   date?: string;
-  /** Optional: winner name (for future use). */
+  /** Optional: winner name (added later — Airtable field exists but is empty for now). */
   winner?: string;
 };
 
