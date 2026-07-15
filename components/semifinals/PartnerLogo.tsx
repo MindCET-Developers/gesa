@@ -39,14 +39,9 @@ export function PartnerLogo({ partner, logo }: { partner: string; logo?: string 
       <Image
         src={logo}
         alt={`${partner} logo`}
-        width={56}
-        height={56}
-        className="h-14 w-14 shrink-0 object-contain rounded-lg"
-        style={{
-          filter: "drop-shadow(0 1px 3px rgba(0,0,0,0.15)) drop-shadow(0 0 4px rgba(0,0,0,0.1))",
-          background: "rgba(255,255,255,0.5)",
-          padding: "4px",
-        }}
+        width={48}
+        height={48}
+        className="h-12 w-12 shrink-0 rounded-full border-2 border-navy bg-white object-contain"
       />
     );
   }
