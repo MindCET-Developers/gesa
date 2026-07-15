@@ -6,6 +6,9 @@ const nextConfig: NextConfig = {
     root: path.resolve(__dirname),
   },
   images: {
+    // Some partner logos synced from Airtable are SVGs (see public/brand/partners/).
+    dangerouslyAllowSVG: true,
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
     remotePatterns: [
       // Existing Wix-hosted assets, used until images are migrated into the CMS.
       { protocol: "https", hostname: "static.wixstatic.com" },
