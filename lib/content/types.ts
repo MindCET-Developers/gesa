@@ -102,13 +102,22 @@ export type SemifinalCountry = {
   code: string;
 };
 
-export type RegionalSemifinalEntry = {
-  partner: string;
-  continent: ContinentKey;
-  /** Only the countries belonging to *this* continent (a partner can span several). */
-  countries: SemifinalCountry[];
+export type SemifinalPartner = {
+  name: string;
   /** Path under /public, e.g. "/brand/partners/sek-lab.png". Absent = initials fallback. */
   logo?: string;
+};
+
+export type RegionalSemifinalEntry = {
+  /** Multiple partners per semifinal, each with their own logo. */
+  partners: SemifinalPartner[];
+  continent: ContinentKey;
+  /** Only the countries belonging to *this* continent. Merged from all partners' countries. */
+  countries: SemifinalCountry[];
+  /** Optional: date of the semifinal event (for future use). */
+  date?: string;
+  /** Optional: winner name (for future use). */
+  winner?: string;
 };
 
 export type Track = {

@@ -23,6 +23,8 @@ const root = path.join(__dirname, "..");
 const BASE_ID = "appyTu8uOPQUVXD4x";
 const PARTNERS_TABLE = "tblAfv3rYs6GyXQEF";
 const COUNTRIES_TABLE = "tbl7wFk8g0AbGx7ee";
+const SEMIFINALS_TABLE = "??"; // TODO: Update with actual table ID from Airtable
+const SEMIFINALS_TABLE_NAME = "Semifinals"; // fallback for error messages
 
 // Field IDs (stable even if columns are renamed in Airtable).
 const F_PARTNER_NAME = "fldGtodmZwz4tEIL1";
@@ -30,6 +32,12 @@ const F_PARTNER_COUNTRIES = "fldPhyaaNW13gcztm"; // linked records -> array of c
 const F_PARTNER_LOGO = "fldjzYaS859kIMA5q";
 const F_COUNTRY_NAME = "fld2EoxYQJ14Sb1Y4";
 const F_COUNTRY_AREA = "fld1A4UPsFR1Bji3N";
+
+// Semifinals table field IDs (TODO: Update with actual IDs from Airtable)
+const F_SEMIFINAL_NAME = "??"; // Name/Title field
+const F_SEMIFINAL_PARTNERS = "??"; // Linked records to Partners table
+const F_SEMIFINAL_DATE = "??"; // Date field
+const F_SEMIFINAL_WINNER = "??"; // Winner field (optional, for future use)
 
 // Airtable record names that need canonicalizing before display.
 const PARTNER_NAME_OVERRIDES = {
@@ -139,11 +147,17 @@ async function fetchAllRecords(tableId) {
 }
 
 console.log("Pulling Airtable tables…");
-const [countryRecords, partnerRecords] = await Promise.all([
+const [countryRecords, partnerRecords, semifinalRecords] = await Promise.all([
   fetchAllRecords(COUNTRIES_TABLE),
   fetchAllRecords(PARTNERS_TABLE),
+  SEMIFINALS_TABLE === "??"
+    ? Promise.resolve([])
+    : fetchAllRecords(SEMIFINALS_TABLE).catch(err => {
+        console.warn(`Could not fetch ${SEMIFINALS_TABLE_NAME} table (not yet configured): ${err.message}`);
+        return [];
+      }),
 ]);
-console.log(`Fetched ${partnerRecords.length} partners, ${countryRecords.length} countries.`);
+console.log(`Fetched ${partnerRecords.length} partners, ${semifinalRecords.length} semifinals, ${countryRecords.length} countries.`);
 
 // Country record ID -> { name, area } (area = Airtable "Geographic Area" select name).
 const countryById = new Map();
@@ -228,6 +242,94 @@ for (const country of usedCountries) {
       `Country "${country}" has no ISO2 code — add it to COUNTRY_TO_ISO2 in scripts/pull-regional-semifinals.mjs.`
     );
   }
+}
+
+// ---------------------------------------------------------------------------
+// Process Semifinals table (if configured)
+
+let semifinalEntries = [];
+const partnerByName = new Map(partners.map(p => [p.name, p]));
+
+if (SEMIFINALS_TABLE !== "??" && semifinalRecords.length > 0) {
+  console.log(`\nProcessing ${semifinalRecords.length} semifinals…`);
+
+  for (const rec of semifinalRecords) {
+    const linkedPartnerIds = rec.fields[F_SEMIFINAL_PARTNERS] ?? [];
+    if (linkedPartnerIds.length === 0) {
+      console.warn(`Semifinal record ${rec.id} has no linked partners — skipped.`);
+      continue;
+    }
+
+    // Collect all linked partners' data
+    const semifinalPartners = [];
+    const semifinalCountries = new Set();
+    const continentSet = new Set();
+
+    for (const partnerId of linkedPartnerIds) {
+      const partnerRec = partnerRecords.find(p => p.id === partnerId);
+      if (!partnerRec) {
+        console.warn(`Semifinal references unknown partner record ${partnerId}.`);
+        continue;
+      }
+
+      const partnerName = PARTNER_NAME_OVERRIDES[cleanName(partnerRec.fields[F_PARTNER_NAME])]
+        ?? cleanName(partnerRec.fields[F_PARTNER_NAME]);
+
+      const attachment = (partnerRec.fields[F_PARTNER_LOGO] ?? [])[0];
+      let logoUrl;
+      if (attachment?.type?.startsWith("image/")) {
+        logoUrl = attachment.url;
+      }
+
+      semifinalPartners.push({ name: partnerName, logoUrl });
+
+      // Collect countries and continents from this partner
+      for (const linkedCountryId of partnerRec.fields[F_PARTNER_COUNTRIES] ?? []) {
+        const country = countryById.get(linkedCountryId);
+        if (!country) continue;
+
+        const countryName = COUNTRY_NAME_OVERRIDES[country.name] ?? country.name;
+        semifinalCountries.add(countryName);
+
+        const canonical = countryName.startsWith("USA - ") ? "United States" : countryName;
+        if (country.area) {
+          const key = areaToContinentKey(country.area);
+          if (KNOWN_CONTINENTS.has(key)) continentSet.add(key);
+        }
+      }
+    }
+
+    // If no continents determined, default to rest-of-world
+    if (continentSet.size === 0) continentSet.add("rest-of-world");
+
+    // Split by continent (a semifinal with partners spanning multiple continents gets split)
+    for (const continent of continentSet) {
+      const continentCountries = [];
+      for (const countryName of semifinalCountries) {
+        const canonical = countryName.startsWith("USA - ") ? "United States" : countryName;
+        const countryContinent = continentByCountry.get(canonical);
+        if (countryContinent === continent) {
+          continentCountries.push(countryName);
+        }
+      }
+
+      if (continentCountries.length > 0) {
+        semifinalEntries.push({
+          partners: semifinalPartners.map(p => ({ name: p.name, logoUrl: p.logoUrl })),
+          continent,
+          countries: continentCountries,
+          date: rec.fields[F_SEMIFINAL_DATE] ?? undefined,
+          winner: rec.fields[F_SEMIFINAL_WINNER] ?? undefined,
+        });
+      }
+    }
+  }
+
+  console.log(`Generated ${semifinalEntries.length} semifinal entries (after splitting by continent).`);
+} else if (SEMIFINALS_TABLE === "??") {
+  console.log("Semifinals table not yet configured. Using legacy Partners-based data structure.");
+  // For now, fall back to the old structure if Semifinals table isn't configured
+  // This will be removed once the transition is complete
 }
 
 // ---------------------------------------------------------------------------
@@ -320,6 +422,91 @@ ${isoEntries}
 
 writeFileSync(path.join(root, "lib/content/regional-semifinals-source.ts"), output);
 console.log(`Wrote lib/content/regional-semifinals-source.ts (${partners.length} partners).`);
+
+// ---------------------------------------------------------------------------
+// Generate lib/content/semifinals-source.ts (if semifinals data is available)
+
+if (semifinalEntries.length > 0) {
+  const semifinalPartnerBlocks = semifinalEntries.map((entry) => {
+    const lines = [`  {`];
+    lines.push(`    partners: [`);
+    for (const partner of entry.partners) {
+      lines.push(`      {`);
+      lines.push(`        name: ${q(partner.name)},`);
+      if (partner.logoUrl) lines.push(`        logoUrl: ${q(partner.logoUrl)},`);
+      lines.push(`      },`);
+    }
+    lines.push(`    ],`);
+    lines.push(`    continent: ${q(entry.continent)},`);
+    lines.push(`    countries: ${formatStringArray(entry.countries, 6)},`);
+    if (entry.date) lines.push(`    date: ${q(entry.date)},`);
+    if (entry.winner) lines.push(`    winner: ${q(entry.winner)},`);
+    lines.push(`  },`);
+    return lines.join("\n");
+  });
+
+  const semifinalsOutput = `// lib/content/semifinals-source.ts
+//
+// GENERATED FILE — do not edit by hand. Regenerate with: npm run refresh:semifinals
+// (scripts/pull-regional-semifinals.mjs pulls the GESAwards Airtable base ${BASE_ID}
+// Semifinals table and rewrites this file.)
+//
+// Source:
+// - Table "Semifinals" (${SEMIFINALS_TABLE}): each semifinal with linked partners.
+// - Partners linked from table "Partners" (${PARTNERS_TABLE}): partner names + logo attachments.
+// - Table "all countries" (${COUNTRIES_TABLE}): each country's real "Geographic Area".
+// Last refreshed: ${today}.
+
+export type RawSemifinalPartner = {
+  /** Partner name from the Partners table. */
+  name: string;
+  /** Airtable attachment URL for the Logo field, if an image was uploaded. Expires —
+   * scripts/download-partner-logos.mjs mirrors it locally. */
+  logoUrl?: string;
+};
+
+export type RawSemifinalEntry = {
+  /** Multiple partners per semifinal. */
+  partners: RawSemifinalPartner[];
+  /** Geographic continent. */
+  continent: string;
+  /** Country names (US states not yet deduped). */
+  countries: string[];
+  /** Optional: date of the semifinal event. */
+  date?: string;
+  /** Optional: winner name. */
+  winner?: string;
+};
+
+export const RAW_SEMIFINALS: RawSemifinalEntry[] = [
+${semifinalPartnerBlocks.join("\n")}
+];
+
+/**
+ * "Geographic Area" from Airtable's "all countries" table, keyed by country name after
+ * US-state collapsing. Countries without an area in Airtable (mainly Hong Kong) default
+ * to "rest-of-world".
+ */
+export const COUNTRY_TO_CONTINENT: Record<string, ContinentKeyRaw> = {
+${continentEntries}
+};
+type ContinentKeyRaw =
+  | "europe" | "asia" | "middle-east" | "north-america"
+  | "latin-america" | "africa" | "rest-of-world";
+
+/**
+ * ISO 3166-1 alpha-2 (lowercase) for every country name used above, after US-state
+ * collapsing. flag-icons keys its classes by this code (e.g. "fi-us").
+ * Maintained in scripts/pull-regional-semifinals.mjs — add new codes there.
+ */
+export const COUNTRY_TO_ISO2: Record<string, string> = {
+${isoEntries}
+};
+`;
+
+  writeFileSync(path.join(root, "lib/content/semifinals-source.ts"), semifinalsOutput);
+  console.log(`Wrote lib/content/semifinals-source.ts (${semifinalEntries.length} entries).`);
+}
 
 if (warnings.length) {
   console.log("\nWarnings:");

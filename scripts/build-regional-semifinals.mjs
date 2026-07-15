@@ -26,11 +26,28 @@ const root = path.join(__dirname, "..");
 // (Node 22.6+ ships --experimental-strip-types; the repo's Next.js 16 / React 19 stack
 // already requires a current Node LTS, so this is available.)
 
-const {
-  RAW_PARTNERS,
-  COUNTRY_TO_CONTINENT,
-  COUNTRY_TO_ISO2,
-} = await import("../lib/content/regional-semifinals-source.ts");
+// Try to load semifinals-source first; fall back to regional-semifinals-source for legacy partners
+let RAW_SEMIFINALS = [];
+let RAW_PARTNERS = [];
+let COUNTRY_TO_CONTINENT = {};
+let COUNTRY_TO_ISO2 = {};
+
+try {
+  const semifinalsData = await import("../lib/content/semifinals-source.ts");
+  RAW_SEMIFINALS = semifinalsData.RAW_SEMIFINALS || [];
+  COUNTRY_TO_CONTINENT = semifinalsData.COUNTRY_TO_CONTINENT || {};
+  COUNTRY_TO_ISO2 = semifinalsData.COUNTRY_TO_ISO2 || {};
+} catch {
+  console.log("No semifinals-source.ts found, loading legacy regional-semifinals-source.ts");
+}
+
+// If no semifinals data, load legacy partners data
+if (RAW_SEMIFINALS.length === 0) {
+  const legacyData = await import("../lib/content/regional-semifinals-source.ts");
+  RAW_PARTNERS = legacyData.RAW_PARTNERS || [];
+  COUNTRY_TO_CONTINENT = legacyData.COUNTRY_TO_CONTINENT || {};
+  COUNTRY_TO_ISO2 = legacyData.COUNTRY_TO_ISO2 || {};
+}
 
 const logoManifestPath = path.join(root, "public/brand/partners/manifest.json");
 let logoManifest = {};
@@ -53,44 +70,72 @@ const missingContinent = new Set();
 const missingIso = new Set();
 const entries = [];
 
-for (const partner of RAW_PARTNERS) {
-  if (partner.countries.length === 0) continue; // no linked countries yet — skip for now
+// Process new semifinals data (multiple partners per entry)
+if (RAW_SEMIFINALS.length > 0) {
+  console.log(`Processing ${RAW_SEMIFINALS.length} semifinal entries with multiple partners…`);
 
-  // Dedupe + normalize, preserving first-seen order.
-  const seen = new Set();
-  const normalized = [];
-  for (const raw of partner.countries) {
-    const name = normalizeCountryName(raw);
-    if (seen.has(name)) continue;
-    seen.add(name);
-    normalized.push(name);
-  }
-
-  // Group by continent.
-  const byContinent = new Map();
-  for (const name of normalized) {
-    const continent = COUNTRY_TO_CONTINENT[name];
-    if (!continent) {
-      missingContinent.add(name);
-      continue;
-    }
-    if (!byContinent.has(continent)) byContinent.set(continent, []);
-    byContinent.get(continent).push(name);
-  }
-
-  for (const [continent, names] of byContinent) {
-    const countries = names.map((name) => {
+  for (const semifinal of RAW_SEMIFINALS) {
+    const countries = semifinal.countries.map((name) => {
       const code = COUNTRY_TO_ISO2[name];
       if (!code) missingIso.add(name);
       return { name, code: code ?? "" };
     });
 
+    const partners = semifinal.partners.map((p) => ({
+      name: p.name.trim(),
+      logo: logoManifest[p.name] ?? undefined,
+    }));
+
     entries.push({
-      partner: partner.name.trim(),
-      continent,
+      partners,
+      continent: semifinal.continent,
       countries,
-      logo: logoManifest[partner.name] ?? undefined,
+      date: semifinal.date,
+      winner: semifinal.winner,
     });
+  }
+} else {
+  // Legacy: process individual partners (single partner per entry)
+  console.log(`Processing ${RAW_PARTNERS.length} legacy partner entries…`);
+
+  for (const partner of RAW_PARTNERS) {
+    if (partner.countries.length === 0) continue; // no linked countries yet — skip for now
+
+    // Dedupe + normalize, preserving first-seen order.
+    const seen = new Set();
+    const normalized = [];
+    for (const raw of partner.countries) {
+      const name = normalizeCountryName(raw);
+      if (seen.has(name)) continue;
+      seen.add(name);
+      normalized.push(name);
+    }
+
+    // Group by continent.
+    const byContinent = new Map();
+    for (const name of normalized) {
+      const continent = COUNTRY_TO_CONTINENT[name];
+      if (!continent) {
+        missingContinent.add(name);
+        continue;
+      }
+      if (!byContinent.has(continent)) byContinent.set(continent, []);
+      byContinent.get(continent).push(name);
+    }
+
+    for (const [continent, names] of byContinent) {
+      const countries = names.map((name) => {
+        const code = COUNTRY_TO_ISO2[name];
+        if (!code) missingIso.add(name);
+        return { name, code: code ?? "" };
+      });
+
+      entries.push({
+        partners: [{ name: partner.name.trim(), logo: logoManifest[partner.name] ?? undefined }],
+        continent,
+        countries,
+      });
+    }
   }
 }
 
@@ -107,7 +152,7 @@ if (missingIso.size > 0) {
   );
 }
 
-// Stable ordering: continent, then partner name.
+// Stable ordering: continent, then first partner name.
 const continentOrder = [
   "north-america", "europe", "middle-east", "asia", "latin-america", "africa",
   "rest-of-world",
@@ -115,7 +160,10 @@ const continentOrder = [
 entries.sort((a, b) => {
   const c = continentOrder.indexOf(a.continent) - continentOrder.indexOf(b.continent);
   if (c !== 0) return c;
-  return a.partner.localeCompare(b.partner);
+  // Sort by first partner name for stability
+  const aFirst = a.partners[0]?.name ?? "";
+  const bFirst = b.partners[0]?.name ?? "";
+  return aFirst.localeCompare(bFirst);
 });
 
 const header = `// GENERATED FILE — do not edit by hand.
