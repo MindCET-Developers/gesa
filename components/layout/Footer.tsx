@@ -122,7 +122,7 @@ export async function Footer() {
                     alt={p.name}
                     width={120}
                     height={48}
-                    className="max-h-10 w-auto object-contain brightness-0 invert"
+                    className="max-h-10 w-auto object-contain brightness-150"
                   />
                 ) : (
                   <span className="text-sm font-semibold">{p.name}</span>
