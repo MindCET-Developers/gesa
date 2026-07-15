@@ -25,6 +25,8 @@ export const RAW_PARTNERS: RawPartner[] = [
     countries: [
       "France",
     ],
+    logoUrl:
+      "https://v5.airtableusercontent.com/v3/u/55/55/1784131200000/I4QzJueSpjBawax4lBM-Lg/KwOjy6TCB0Da8U4qnVG1wGekbAx3YgHdxD4FIuamJeDz8JaneiqXV1gMT_izrpHqJDl9QzH5pPXE48F6fEJg9EK56UI72v3fNDAFWmNEBOURiPrRcR9Zt4SqhzHAjVYz5gSnlw4DoD9fKaDHdzDIdwE1aha4BUd1yLR98cevAwY/mBYVmyPtwNpaGKRPsA3BbDrISuqyJATGFf_UNp2evlY",
   },
   {
     name: "BR Founder Institute/ SchoolGuardian",
@@ -44,6 +46,8 @@ export const RAW_PARTNERS: RawPartner[] = [
       "San Marino", "Slovakia", "France", "Austria", "Germany", "Italy", "Spain",
       "United Kingdom (UK)",
     ],
+    logoUrl:
+      "https://v5.airtableusercontent.com/v3/u/55/55/1784131200000/2iSDvAYVhemRZB8QLW6psw/bHT7v6WNnCcYdW9-jjC5EKGHt9JcP-VnxQhRjNJlTHm0EGAXBhETfvevBgSxRdOhYYPnw9an7ARq4m26yBvXu4CXPdLaWWIK69RKeGGUi3NADgI6O59Y5uNE8NN7rJwY6exVbyHTLjDTErdBYVLY97qRSeFPiH_VtgsjKW5qgig/WoiPEc8wfap2FhCnhrNHLG2VwnsAI9LJWAq3VGuXCeA",
   },
   {
     name: "Dutch EdTech",
@@ -86,6 +90,8 @@ export const RAW_PARTNERS: RawPartner[] = [
     countries: [
       "France",
     ],
+    logoUrl:
+      "https://v5.airtableusercontent.com/v3/u/55/55/1784131200000/tdcu7xGLJqfBDL4vvwNVYA/ktUn9kWS6i79yKQBwX8LXlDFRkeE5IC5yHl6jat_6UAx2rM0vBlCu8LdMtTKl1rtcVjsvy9BLaOJFx6Az3jrzE1jtjJ0kc_NvDc_1_fLBypRWasqagBwYVF7VEOM85foQhbEuYBYO1FD0gDINVeyXAuq6q_qstBa6NwFamj2AxQ/Fc6Yg08AE-hPXR9x6M7gPu9bowIFv09jt6g-YMf00gE",
   },
   {
     name: "EdTech Italy",
@@ -109,6 +115,8 @@ export const RAW_PARTNERS: RawPartner[] = [
     countries: [
       "Germany",
     ],
+    logoUrl:
+      "https://v5.airtableusercontent.com/v3/u/55/55/1784131200000/DHUjKnUi52_qQCwNUTdtBw/xqFGgoS39xbtb3-0CFPkWdmlS7YMzZoM9dwfVefZ36hMwJB9EJhNFagYzwjBeGiAivFmILRMao5MkNZ88g0jOk8_0ZjT3L4Sw3tXlpWsi-jRzDWWBCzA71Oy5jFXR9cM-d61O7m4OSIGuJ9U4xbfhtdeZSHZAaBgKanr0vB1Lfk/Wc1-WZbUeAxzMis2qOykbq7eU17JzpJV67pVTj1aun0",
   },
   {
     name: "Esperanza",
@@ -154,6 +162,8 @@ export const RAW_PARTNERS: RawPartner[] = [
       "USA - Alabama", "USA - Arkansas", "USA - Illinois", "USA - New Jersey",
       "USA - Pennsylvania", "USA - Washington D.C", "Canada",
     ],
+    logoUrl:
+      "https://v5.airtableusercontent.com/v3/u/55/55/1784131200000/TCpxHckfIDjVeWwdwqe-Kw/0wNzEwpWwbzT9vkEOBsQnFeTUfmxTXTuGoNEAjDdYPPnheGaHMd4p4lT6oeoLbVbOuoaQvuGpPvQQl0KiR1wbummSRjOnr-DiuEAqTts6q4GRTemRsHe8ARdOBYJ6bbM_kpt8RmTp5h6WNkmhvgTFQLF4U7xOukw7-ytb4fz_Zw/BOEWtmcDAltRk5c6WsDVWnMgDNZxSlOlBu7EzWgWNAo",
   },
   {
     name: "METI Japan",
@@ -213,6 +223,8 @@ export const RAW_PARTNERS: RawPartner[] = [
     countries: [
       "Taiwan",
     ],
+    logoUrl:
+      "https://v5.airtableusercontent.com/v3/u/55/55/1784131200000/GdsntSujwAHJsfl6D_-Z2Q/21xU-QtiPnvWTXmyRd4_baHlToKNF4QdzkH_dE7MMs8_8MSPukELXJ-5L0O5SOJ2REMItch02trGsDi-QCsA4bjsgI8zcU3eeNjyby3KjS9YRKY_1dcS3mRkBEYDcCuwNuKQEp89tRpgGm4QIu9lru2qSTg8n6MgYr5JaXH7TuM/Bj5SSEY7nJAragFsYVLG7oE3Lemh73dJNAh5_bwt3i4",
   },
   {
     name: "Tech Monterrey",
@@ -223,6 +235,8 @@ export const RAW_PARTNERS: RawPartner[] = [
       "Cuba", "Dominican Republic", "Haiti", "Jamaica", "Bahamas", "Barbados",
       "Trinidad and Tobago",
     ],
+    logoUrl:
+      "https://v5.airtableusercontent.com/v3/u/55/55/1784131200000/Aq-R3sidB9Rt7nHaWvBefA/iWQ4zaBlJBtosWdZCCt1SA4DmtTHf8jTkpCVGnQGyF5mSGJn_sIvTxAXhmBorhzm2Q_2ItwIpxWwI4hA6Z8wSv1Ct6WK7-BbuUdwulYS0B_NJOYHr8TqAkzYEbGV6E1AVm9oHC4xi4S10IgwoHtaRtgt7CehXx9eC6A6sooUKqM/_UzSiD4RC8BcTYDS6Lv0vtHTPVCy_ik6AgqCwHyIROg",
   },
   {
     name: "Tyme Education",
@@ -230,6 +244,8 @@ export const RAW_PARTNERS: RawPartner[] = [
       "Australia", "Bangladesh", "Iraq", "Jordan", "Kuwait", "Lebanon", "Nepal", "Pakistan",
       "Papua New Guinea", "Saudi Arabia", "United Arab Emirates (UAE)",
     ],
+    logoUrl:
+      "https://v5.airtableusercontent.com/v3/u/55/55/1784131200000/Vwpe5TdmoH1girfkBh3emw/sjua8EPKwdc9ks94OypANeHjmhYsZiktEBXLTMPodcotSiEQk5Y-5JSWMiazAK63vS-JeKdbBfo48c-RFTeqSmascF6ieAQrSBOZ7AjxxWYgqmrLGkXsodBUpCRXXJhuRyoSwdpKCUc8XUpZ_9zFDAcS9d52lqHe9izae2Cv9YM/KTp-e3QpE8pTlMy5U25QWGzNevG8gs0KM_baDT0tPbM",
   },
   {
     name: "UCL EdTech Labs",
