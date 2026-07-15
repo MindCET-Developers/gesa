@@ -74,7 +74,7 @@ Standalone privacy policy page.
 - Google Analytics explanation
 - Cookies and tracking disclosure
 - User choice and revocation rights
-- Contact information (mindcetdev@gmail.com)
+- Contact information (gesa@mindcet.io)
 - Last updated timestamp
 
 **Styling:**

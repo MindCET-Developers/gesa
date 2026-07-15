@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "@/components/ui/icons";
-import type { HomeContent, Partner, RegionalSemifinalEntry } from "@/lib/content/types";
+import type { HomeContent, Partner } from "@/lib/content/types";
 
 function LogoGroup({ title, items }: { title: string; items: Partner[] }) {
   if (items.length === 0) return null;
@@ -51,30 +51,13 @@ function LogoGroup({ title, items }: { title: string; items: Partner[] }) {
   );
 }
 
-/** Dedupe semifinal entries into one Partner per organization that has a logo. */
-function semifinalPartners(entries: RegionalSemifinalEntry[]): Partner[] {
-  const seen = new Map<string, Partner>();
-  for (const entry of entries) {
-    if (!entry.logo || seen.has(entry.partner)) continue;
-    seen.set(entry.partner, {
-      name: entry.partner,
-      logo: entry.logo,
-      type: "worldwide",
-    });
-  }
-  return [...seen.values()];
-}
-
 export function Partners({
   home,
   partners,
-  semifinals = [],
 }: {
   home: HomeContent;
   partners: Partner[];
-  semifinals?: RegionalSemifinalEntry[];
 }) {
-  const regional = semifinalPartners(semifinals);
   const poweredBy = partners.filter(
     (p) => p.type === "powered-by" && !p.name.trim().toLowerCase().startsWith("cet")
   );
@@ -100,7 +83,6 @@ export function Partners({
       <div className="mt-16 space-y-12 border-t border-line pt-14">
         <LogoGroup title="Powered by" items={poweredBy} />
         <LogoGroup title="Worldwide partners" items={worldwide} />
-        <LogoGroup title="Regional semifinal partners" items={regional} />
         <LogoGroup title="Prizes offered by our partners" items={sponsors} />
       </div>
     </section>

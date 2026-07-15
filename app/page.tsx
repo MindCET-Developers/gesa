@@ -57,7 +57,7 @@ export default async function HomePage() {
       <JudgesGrid judges={judges} />
       <Journey home={home} settings={settings} />
       <RegionalSemifinalsGrid home={home} semifinals={seminfinals} showAll />
-      <Partners home={home} partners={partners} semifinals={seminfinals} />
+      <Partners home={home} partners={partners} />
       <NewsletterSignup home={home} />
     </>
   );
