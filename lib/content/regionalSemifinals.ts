@@ -286,7 +286,7 @@ export const regionalSemifinals: RegionalSemifinalEntry[] = [
         "code": "gb"
       }
     ],
-    "logo": "/brand/partners/ucl-edtech-labs.svg"
+    "logo": "/brand/partners/ucl-edtech-labs.png"
   },
   {
     "partner": "XEdu",
@@ -500,7 +500,8 @@ export const regionalSemifinals: RegionalSemifinalEntry[] = [
         "name": "South Korea",
         "code": "kr"
       }
-    ]
+    ],
+    "logo": "/brand/partners/learning-spark.png"
   },
   {
     "partner": "METI Japan",
@@ -1139,7 +1140,8 @@ export const regionalSemifinals: RegionalSemifinalEntry[] = [
         "name": "North Korea",
         "code": "kp"
       }
-    ]
+    ],
+    "logo": "/brand/partners/learning-spark.png"
   },
   {
     "partner": "Taipei Computer Association (TCA)",
