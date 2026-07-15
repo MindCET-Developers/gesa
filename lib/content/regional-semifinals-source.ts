@@ -276,7 +276,7 @@ export const COUNTRY_TO_CONTINENT: Record<string, ContinentKeyRaw> = {
   Eswatini: "africa", Djibouti: "africa", Comoros: "africa",
   "Cape Verde": "africa", "Sao Tome and Principe": "africa", Seychelles: "africa",
   // Central Asia / other leftovers
-  Russia: "europe", Azerbaijan: "asia", Kazakhstan: "asia", Armenia: "asia",
+  Russia: "asia", Azerbaijan: "asia", Kazakhstan: "asia", Armenia: "asia",
   Kyrgyzstan: "asia", Uzbekistan: "asia", Tajikistan: "asia",
   Turkmenistan: "asia", Mongolia: "asia", Georgia: "asia",
 };

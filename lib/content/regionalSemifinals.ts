@@ -194,17 +194,6 @@ export const regionalSemifinals: RegionalSemifinalEntry[] = [
     "logo": "/brand/partners/dutch-edtech.png"
   },
   {
-    "partner": "Edcrunch",
-    "continent": "europe",
-    "countries": [
-      {
-        "name": "Russia",
-        "code": "ru"
-      }
-    ],
-    "logo": "/brand/partners/edcrunch.svg"
-  },
-  {
     "partner": "EdTech Austria - Innovation Salzburg",
     "continent": "europe",
     "countries": [
@@ -365,6 +354,10 @@ export const regionalSemifinals: RegionalSemifinalEntry[] = [
     "partner": "Edcrunch",
     "continent": "asia",
     "countries": [
+      {
+        "name": "Russia",
+        "code": "ru"
+      },
       {
         "name": "Azerbaijan",
         "code": "az"
