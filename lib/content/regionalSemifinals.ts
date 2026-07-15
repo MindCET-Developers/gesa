@@ -194,6 +194,17 @@ export const regionalSemifinals: RegionalSemifinalEntry[] = [
     "logo": "/brand/partners/dutch-edtech.png"
   },
   {
+    "partner": "Edcrunch",
+    "continent": "europe",
+    "countries": [
+      {
+        "name": "Russia",
+        "code": "ru"
+      }
+    ],
+    "logo": "/brand/partners/edcrunch.svg"
+  },
+  {
     "partner": "EdTech Austria - Innovation Salzburg",
     "continent": "europe",
     "countries": [
@@ -321,6 +332,17 @@ export const regionalSemifinals: RegionalSemifinalEntry[] = [
     ]
   },
   {
+    "partner": "GSET Ghana Society for Education Technology",
+    "continent": "middle-east",
+    "countries": [
+      {
+        "name": "Egypt",
+        "code": "eg"
+      }
+    ],
+    "logo": "/brand/partners/gset-ghana-society-for-education-technology.png"
+  },
+  {
     "partner": "Tyme Education",
     "continent": "middle-east",
     "countries": [
@@ -355,10 +377,6 @@ export const regionalSemifinals: RegionalSemifinalEntry[] = [
     "continent": "asia",
     "countries": [
       {
-        "name": "Russia",
-        "code": "ru"
-      },
-      {
         "name": "Azerbaijan",
         "code": "az"
       },
@@ -381,10 +399,6 @@ export const regionalSemifinals: RegionalSemifinalEntry[] = [
       {
         "name": "Tajikistan",
         "code": "tj"
-      },
-      {
-        "name": "Turkmenistan",
-        "code": "tm"
       },
       {
         "name": "Mongolia",
@@ -490,34 +504,6 @@ export const regionalSemifinals: RegionalSemifinalEntry[] = [
       }
     ],
     "logo": "/brand/partners/meti-japan.png"
-  },
-  {
-    "partner": "Taipei Computer Association (TCA)",
-    "continent": "asia",
-    "countries": [
-      {
-        "name": "Taiwan",
-        "code": "tw"
-      }
-    ]
-  },
-  {
-    "partner": "Tyme Education",
-    "continent": "asia",
-    "countries": [
-      {
-        "name": "Bangladesh",
-        "code": "bd"
-      },
-      {
-        "name": "Nepal",
-        "code": "np"
-      },
-      {
-        "name": "Pakistan",
-        "code": "pk"
-      }
-    ]
   },
   {
     "partner": "BR Founder Institute/ SchoolGuardian",
@@ -886,10 +872,6 @@ export const regionalSemifinals: RegionalSemifinalEntry[] = [
         "code": "et"
       },
       {
-        "name": "Egypt",
-        "code": "eg"
-      },
-      {
         "name": "Democratic Republic of the Congo",
         "code": "cd"
       },
@@ -1118,6 +1100,17 @@ export const regionalSemifinals: RegionalSemifinalEntry[] = [
     ]
   },
   {
+    "partner": "Edcrunch",
+    "continent": "rest-of-world",
+    "countries": [
+      {
+        "name": "Turkmenistan",
+        "code": "tm"
+      }
+    ],
+    "logo": "/brand/partners/edcrunch.svg"
+  },
+  {
     "partner": "Esperanza",
     "continent": "rest-of-world",
     "countries": [
@@ -1139,12 +1132,34 @@ export const regionalSemifinals: RegionalSemifinalEntry[] = [
     ]
   },
   {
+    "partner": "Taipei Computer Association (TCA)",
+    "continent": "rest-of-world",
+    "countries": [
+      {
+        "name": "Taiwan",
+        "code": "tw"
+      }
+    ]
+  },
+  {
     "partner": "Tyme Education",
     "continent": "rest-of-world",
     "countries": [
       {
         "name": "Australia",
         "code": "au"
+      },
+      {
+        "name": "Bangladesh",
+        "code": "bd"
+      },
+      {
+        "name": "Nepal",
+        "code": "np"
+      },
+      {
+        "name": "Pakistan",
+        "code": "pk"
       },
       {
         "name": "Papua New Guinea",

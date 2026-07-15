@@ -113,6 +113,11 @@ function loadApiKey() {
 
 const API_KEY = loadApiKey();
 
+// Some Airtable names contain non-breaking spaces (U+00A0) — normalize to plain spaces.
+function cleanName(name) {
+  return name.replace(/ /g, " ").replace(/\s+/g, " ").trim();
+}
+
 async function fetchAllRecords(tableId) {
   const records = [];
   let offset;
@@ -145,7 +150,7 @@ const countryById = new Map();
 for (const rec of countryRecords) {
   const name = rec.fields[F_COUNTRY_NAME];
   if (!name) continue;
-  countryById.set(rec.id, { name: name.trim(), area: rec.fields[F_COUNTRY_AREA] ?? null });
+  countryById.set(rec.id, { name: cleanName(name), area: rec.fields[F_COUNTRY_AREA] ?? null });
 }
 
 function areaToContinentKey(area) {
@@ -165,7 +170,7 @@ for (const rec of partnerRecords) {
   const rawName = rec.fields[F_PARTNER_NAME];
   if (!rawName || !rawName.trim()) continue; // empty/stub Airtable record
 
-  const name = PARTNER_NAME_OVERRIDES[rawName.trim()] ?? rawName.trim();
+  const name = PARTNER_NAME_OVERRIDES[cleanName(rawName)] ?? cleanName(rawName);
 
   const seen = new Set();
   const countries = [];
