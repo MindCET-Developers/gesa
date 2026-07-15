@@ -17,7 +17,8 @@ export const regionalSemifinals: RegionalSemifinalEntry[] = [
         "name": "Canada",
         "code": "ca"
       }
-    ]
+    ],
+    "logo": "/brand/partners/learnlaunch.png"
   },
   {
     "partner": "StartEdAccelerator",
@@ -38,7 +39,8 @@ export const regionalSemifinals: RegionalSemifinalEntry[] = [
         "name": "France",
         "code": "fr"
       }
-    ]
+    ],
+    "logo": "/brand/partners/afinef.svg"
   },
   {
     "partner": "DOHE",
@@ -180,7 +182,8 @@ export const regionalSemifinals: RegionalSemifinalEntry[] = [
         "name": "United Kingdom (UK)",
         "code": "gb"
       }
-    ]
+    ],
+    "logo": "/brand/partners/dohe.svg"
   },
   {
     "partner": "Dutch EdTech",
@@ -223,7 +226,8 @@ export const regionalSemifinals: RegionalSemifinalEntry[] = [
         "name": "France",
         "code": "fr"
       }
-    ]
+    ],
+    "logo": "/brand/partners/edtech-france.png"
   },
   {
     "partner": "EdTech Italy",
@@ -244,7 +248,8 @@ export const regionalSemifinals: RegionalSemifinalEntry[] = [
         "name": "Germany",
         "code": "de"
       }
-    ]
+    ],
+    "logo": "/brand/partners/eduvation.png"
   },
   {
     "partner": "SEK Lab",
@@ -280,7 +285,8 @@ export const regionalSemifinals: RegionalSemifinalEntry[] = [
         "name": "United Kingdom (UK)",
         "code": "gb"
       }
-    ]
+    ],
+    "logo": "/brand/partners/ucl-edtech-labs.svg"
   },
   {
     "partner": "XEdu",
@@ -329,7 +335,8 @@ export const regionalSemifinals: RegionalSemifinalEntry[] = [
         "name": "Turkey",
         "code": "tr"
       }
-    ]
+    ],
+    "logo": "/brand/partners/dohe.svg"
   },
   {
     "partner": "GSET Ghana Society for Education Technology",
@@ -370,7 +377,8 @@ export const regionalSemifinals: RegionalSemifinalEntry[] = [
         "name": "United Arab Emirates (UAE)",
         "code": "ae"
       }
-    ]
+    ],
+    "logo": "/brand/partners/tyme-education.png"
   },
   {
     "partner": "Edcrunch",
@@ -857,7 +865,8 @@ export const regionalSemifinals: RegionalSemifinalEntry[] = [
         "name": "Trinidad and Tobago",
         "code": "tt"
       }
-    ]
+    ],
+    "logo": "/brand/partners/tech-monterrey.jpg"
   },
   {
     "partner": "GSET Ghana Society for Education Technology",
@@ -1097,7 +1106,8 @@ export const regionalSemifinals: RegionalSemifinalEntry[] = [
         "name": "Equatorial Guinea",
         "code": "gq"
       }
-    ]
+    ],
+    "logo": "/brand/partners/tech-monterrey.jpg"
   },
   {
     "partner": "Edcrunch",
@@ -1139,7 +1149,8 @@ export const regionalSemifinals: RegionalSemifinalEntry[] = [
         "name": "Taiwan",
         "code": "tw"
       }
-    ]
+    ],
+    "logo": "/brand/partners/taipei-computer-association-tca.png"
   },
   {
     "partner": "Tyme Education",
@@ -1165,6 +1176,7 @@ export const regionalSemifinals: RegionalSemifinalEntry[] = [
         "name": "Papua New Guinea",
         "code": "pg"
       }
-    ]
+    ],
+    "logo": "/brand/partners/tyme-education.png"
   }
 ];

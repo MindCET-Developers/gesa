@@ -4,8 +4,13 @@
 // public/brand/partners/, writing a manifest.json (partner name -> local path) that
 // scripts/build-regional-semifinals.mjs reads. Airtable attachment URLs are signed and
 // expire — always re-run this BEFORE build-regional-semifinals.mjs when refreshing data.
+//
+// Partners with no logo attachment in Airtable can still get a logo by adding an entry to
+// scripts/manual-partner-logos.json (partner name -> direct image URL on their own site).
+// Those are downloaded here too and merged into the manifest, so they survive re-running
+// npm run refresh:semifinals. Remove the entry once the partner uploads a logo to Airtable.
 
-import { writeFileSync, mkdirSync } from "node:fs";
+import { writeFileSync, mkdirSync, readFileSync, existsSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
 
@@ -15,6 +20,11 @@ const outDir = path.join(root, "public/brand/partners");
 mkdirSync(outDir, { recursive: true });
 
 const { RAW_PARTNERS } = await import("../lib/content/regional-semifinals-source.ts");
+
+const manualLogosPath = path.join(__dirname, "manual-partner-logos.json");
+const manualLogos = existsSync(manualLogosPath)
+  ? JSON.parse(readFileSync(manualLogosPath, "utf8"))
+  : {};
 
 function slugify(name) {
   return name
@@ -61,6 +71,40 @@ for (const partner of RAW_PARTNERS) {
 
   manifest[partner.name] = `/brand/partners/${filename}`;
   console.log(`Saved ${partner.name} -> public/brand/partners/${filename}`);
+}
+
+const airtableNames = new Set(RAW_PARTNERS.filter((p) => p.logoUrl).map((p) => p.name));
+
+for (const [name, url] of Object.entries(manualLogos)) {
+  if (airtableNames.has(name)) continue; // Airtable logo takes precedence
+
+  let res;
+  try {
+    res = await fetch(url, {
+      headers: { "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36" },
+      signal: AbortSignal.timeout(15_000),
+    });
+  } catch (err) {
+    console.warn(`Failed to download manual logo for "${name}": ${err.message}`);
+    continue;
+  }
+  if (!res.ok) {
+    console.warn(`Failed to download manual logo for "${name}": HTTP ${res.status}`);
+    continue;
+  }
+  const contentType = res.headers.get("content-type") ?? "image/png";
+  if (!contentType.startsWith("image/")) {
+    console.warn(`Skipping manual logo for "${name}": content-type is "${contentType}", not an image.`);
+    continue;
+  }
+
+  const ext = extFromContentType(contentType);
+  const filename = `${slugify(name)}.${ext}`;
+  const buffer = Buffer.from(await res.arrayBuffer());
+  writeFileSync(path.join(outDir, filename), buffer);
+
+  manifest[name] = `/brand/partners/${filename}`;
+  console.log(`Saved ${name} (manual override) -> public/brand/partners/${filename}`);
 }
 
 writeFileSync(
