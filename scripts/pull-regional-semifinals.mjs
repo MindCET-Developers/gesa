@@ -47,6 +47,11 @@ const COUNTRY_NAME_OVERRIDES = {
   "Eswatini (formerly Swaziland)": "Eswatini",
   "Swaziland (renamed to Eswatini)": "Eswatini",
 };
+// Continent overrides — take precedence over Airtable's "Geographic Area" for countries
+// mis-tagged there. Keyed by canonical country name.
+const CONTINENT_OVERRIDES = {
+  Taiwan: "asia", // Airtable tags it "Rest of the world"; belongs in Asia.
+};
 
 /**
  * ISO 3166-1 alpha-2 (lowercase) per canonical country name — maintained here, the
@@ -233,7 +238,9 @@ partners.sort((a, b) => a.name.localeCompare(b.name));
 // Countries with no Geographic Area in Airtable (mainly Hong Kong) fall back to
 // rest-of-world, matching the previous hand-maintained behavior.
 for (const country of usedCountries) {
-  if (!continentByCountry.has(country)) {
+  if (CONTINENT_OVERRIDES[country]) {
+    continentByCountry.set(country, CONTINENT_OVERRIDES[country]);
+  } else if (!continentByCountry.has(country)) {
     continentByCountry.set(country, "rest-of-world");
     warnings.push(`Country "${country}" has no Geographic Area in Airtable — treated as Rest of World.`);
   }

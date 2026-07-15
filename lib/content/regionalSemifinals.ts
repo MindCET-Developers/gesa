@@ -601,6 +601,23 @@ export const regionalSemifinals: RegionalSemifinalEntry[] = [
     ]
   },
   {
+    "name": "Taiwan",
+    "partners": [
+      {
+        "name": "Taipei Computer Association (TCA)",
+        "logo": "/brand/partners/taipei-computer-association-tca.png"
+      }
+    ],
+    "continent": "asia",
+    "countries": [
+      {
+        "name": "Taiwan",
+        "code": "tw"
+      }
+    ],
+    "date": "2026-11-13"
+  },
+  {
     "name": "Brazil",
     "partners": [
       {
@@ -975,22 +992,5 @@ export const regionalSemifinals: RegionalSemifinalEntry[] = [
         "code": "sc"
       }
     ]
-  },
-  {
-    "name": "Taiwan",
-    "partners": [
-      {
-        "name": "Taipei Computer Association (TCA)",
-        "logo": "/brand/partners/taipei-computer-association-tca.png"
-      }
-    ],
-    "continent": "rest-of-world",
-    "countries": [
-      {
-        "name": "Taiwan",
-        "code": "tw"
-      }
-    ],
-    "date": "2026-11-13"
   }
 ];

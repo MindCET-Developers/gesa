@@ -351,7 +351,7 @@ export const COUNTRY_TO_CONTINENT: Record<string, ContinentKeyRaw> = {
   "Suriname": "latin-america",
   "Sweden": "europe",
   "Switzerland": "europe",
-  "Taiwan": "rest-of-world",
+  "Taiwan": "asia",
   "Tajikistan": "asia",
   "Tanzania": "africa",
   "Thailand": "asia",
