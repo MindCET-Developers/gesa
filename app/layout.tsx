@@ -77,6 +77,7 @@ export default async function RootLayout({
             <Header
               logoText={settings.logoText}
               nav={settings.nav}
+              applyUrl={settings.applyUrl}
             />
           }
           footer={<Footer />}
