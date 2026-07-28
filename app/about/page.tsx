@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { notFound } from "next/navigation";
 import { RegionalSemifinalsGrid } from "@/components/home/RegionalSemifinalsGrid";
 import { PageHero } from "@/components/layout/PageHero";
+import { PartnerLogoTile } from "@/components/partners/PartnerLogoTile";
 import { RichBody } from "@/components/ui/rich-body";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { buttonClasses } from "@/components/ui/button";
@@ -98,17 +98,10 @@ export default async function AboutPage() {
                         href={p.url ?? "#"}
                         target={p.url ? "_blank" : undefined}
                         rel="noopener noreferrer"
-                        className="grid h-14 w-40 place-items-center transition hover:opacity-80"
+                        className="inline-flex"
                         title={p.name}
                       >
-                        <Image
-                          src={p.logo}
-                          alt={p.name}
-                          width={320}
-                          height={128}
-                          loading="eager"
-                          className="max-h-14 max-w-full h-auto w-auto object-contain"
-                        />
+                        <PartnerLogoTile name={p.name} logo={p.logo} />
                       </a>
                     ) : null
                   )}

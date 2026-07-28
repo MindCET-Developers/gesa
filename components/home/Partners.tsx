@@ -1,5 +1,5 @@
-import Image from "next/image";
 import Link from "next/link";
+import { PartnerLogoTile } from "@/components/partners/PartnerLogoTile";
 import { ArrowRight } from "@/components/ui/icons";
 import type { HomeContent, Partner } from "@/lib/content/types";
 
@@ -13,21 +13,12 @@ function LogoGroup({ title, items }: { title: string; items: Partner[] }) {
       <div className="mt-6 flex flex-wrap items-center justify-center gap-x-10 gap-y-6">
         {items.map((p, i) => {
           const content = p.logo ? (
-            <Image
-              src={p.logo}
-              alt={p.name}
-              width={320}
-              height={128}
-              // h-auto/w-auto lets each logo keep its own aspect ratio, capped by the box;
-              // eager loading avoids the 0x0-until-loaded deadlock that lazy loading hits here.
-              loading="eager"
-              className="max-h-14 max-w-full h-auto w-auto object-contain"
-            />
+            <PartnerLogoTile name={p.name} logo={p.logo} />
           ) : (
             p.name
           );
           const className = p.logo
-            ? "grid h-14 w-40 place-items-center transition hover:opacity-80"
+            ? "inline-flex"
             : "font-display text-xl font-extrabold tracking-tight text-navy/70 transition hover:text-navy";
 
           return p.url ? (
