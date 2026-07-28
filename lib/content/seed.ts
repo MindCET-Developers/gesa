@@ -52,7 +52,7 @@ export const siteSettings: SiteSettings = {
     },
     { platform: "youtube", href: "https://youtu.be/PlPOyNYeVR4" },
   ],
-  poweredByUrl: "http://www.mindcet.org",
+  poweredByUrl: "https://mindcet.io",
 };
 
 export const homeContent: HomeContent = {
@@ -487,7 +487,7 @@ export const partners: Partner[] = [
   {
     name: "MindCET Labs",
     logo: "/brand/partners/mindcet-labs.png",
-    url: "http://www.mindcet.org",
+    url: "https://mindcet.io",
     type: "powered-by",
   },
   {
