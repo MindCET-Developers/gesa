@@ -12,6 +12,7 @@ import {
   winnersByYearQuery,
 } from "@/sanity/queries";
 import { regionalSemifinals } from "./regionalSemifinals";
+import { fetchRegionalSemifinals } from "./semifinals-airtable";
 import {
   homeContent,
   judges,
@@ -92,7 +93,10 @@ export async function getPartners(type?: Partner["type"]): Promise<Partner[]> {
 }
 
 export async function getRegionalSemifinals() {
-  return regionalSemifinals;
+  // Live from Airtable (cached/revalidated); falls back to the committed snapshot when the
+  // API key is missing or Airtable is unreachable, so the page never breaks.
+  const live = await fetchRegionalSemifinals();
+  return live && live.length ? live : regionalSemifinals;
 }
 
 export async function getTracks(year?: number): Promise<Track[]> {

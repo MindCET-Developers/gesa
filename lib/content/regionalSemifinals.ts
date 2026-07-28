@@ -311,7 +311,8 @@ export const regionalSemifinals: RegionalSemifinalEntry[] = [
     "name": "Spain & Portugal",
     "partners": [
       {
-        "name": "EduTech Cluster"
+        "name": "EduTech Cluster",
+        "logo": "/brand/partners/edutech-cluster.png"
       },
       {
         "name": "Startup Braga",
@@ -328,7 +329,8 @@ export const regionalSemifinals: RegionalSemifinalEntry[] = [
         "name": "Spain",
         "code": "es"
       }
-    ]
+    ],
+    "date": "2026-10-14"
   },
   {
     "name": "U.K.",
@@ -350,8 +352,8 @@ export const regionalSemifinals: RegionalSemifinalEntry[] = [
     "name": "Israel",
     "partners": [
       {
-        "name": "MindCET",
-        "logo": "/brand/partners/mindcet.png"
+        "name": "Mindcet Labs",
+        "logo": "/brand/partners/mindcet-labs.png"
       }
     ],
     "continent": "middle-east",
@@ -603,8 +605,8 @@ export const regionalSemifinals: RegionalSemifinalEntry[] = [
     "name": "Taiwan",
     "partners": [
       {
-        "name": "Taipei Computer Association (TCA)",
-        "logo": "/brand/partners/taipei-computer-association-tca.png"
+        "name": "HiEdu",
+        "logo": "/brand/partners/hiedu.png"
       }
     ],
     "continent": "asia",

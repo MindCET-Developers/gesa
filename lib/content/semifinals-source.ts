@@ -97,7 +97,7 @@ export const RAW_SEMIFINALS: RawSemifinalEntry[] = [
   },
   {
     name: "Israel",
-    partners: ["MindCET"],
+    partners: ["Mindcet Labs"],
     countries: [
       "Israel",
     ],
@@ -164,10 +164,11 @@ export const RAW_SEMIFINALS: RawSemifinalEntry[] = [
     countries: [
       "Portugal", "Spain",
     ],
+    date: "2026-10-14",
   },
   {
     name: "Taiwan",
-    partners: ["Taipei Computer Association (TCA)"],
+    partners: ["HiEdu"],
     countries: [
       "Taiwan",
     ],
