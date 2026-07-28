@@ -61,14 +61,9 @@ export function Partners({
   home: HomeContent;
   partners: Partner[];
 }) {
-  const poweredBy = partners
-    .filter((p) => p.type === "powered-by" && !p.name.trim().toLowerCase().startsWith("cet"))
-    // The CMS still carries the retired MindCET mark; the current brand is MindCET Labs.
-    .map((p) =>
-      p.name.trim().toLowerCase() === "mindcet"
-        ? { ...p, name: "MindCET Labs", logo: "/brand/partners/mindcet-labs.png" }
-        : p
-    );
+  const poweredBy = partners.filter(
+    (p) => p.type === "powered-by" && !p.name.trim().toLowerCase().startsWith("cet")
+  );
   const worldwide = partners.filter((p) => p.type === "worldwide");
   const sponsors = partners.filter((p) => p.type === "prize-sponsor");
 
