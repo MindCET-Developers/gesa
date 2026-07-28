@@ -479,12 +479,6 @@ export const judges: Judge[] = [
 
 export const partners: Partner[] = [
   {
-    name: "CET — Center for Educational Technology",
-    logo: wixLogo("69f6a1_d6535a0845064baf838fe4018f816e16", "jpg", 360, 150),
-    url: "https://home.cet.ac.il/",
-    type: "powered-by",
-  },
-  {
     name: "MindCET Labs",
     logo: "/brand/partners/mindcet-labs.png",
     url: "https://mindcet.io",
