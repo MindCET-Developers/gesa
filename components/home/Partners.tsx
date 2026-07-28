@@ -61,6 +61,8 @@ export function Partners({
   home: HomeContent;
   partners: Partner[];
 }) {
+  // CET is no longer credited on the site; its partner record is still in the CMS,
+  // so filter it out here until that document is removed there.
   const poweredBy = partners.filter(
     (p) => p.type === "powered-by" && !p.name.trim().toLowerCase().startsWith("cet")
   );

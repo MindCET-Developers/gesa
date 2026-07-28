@@ -18,7 +18,7 @@ import {
 export const metadata: Metadata = {
   title: "About",
   description:
-    "About the Global EdTech Startup Awards — the largest EdTech startup competition and community in the world, powered by CET and MindCET.",
+    "About the Global EdTech Startup Awards — the largest EdTech startup competition and community in the world, powered by MindCET Labs.",
 };
 
 export default async function AboutPage() {

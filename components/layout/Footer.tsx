@@ -103,7 +103,7 @@ export async function Footer() {
                 rel="noopener noreferrer"
                 className="text-white/80 hover:text-white"
               >
-                Powered by MindCET
+                Powered by MindCET Labs
               </a>
             </li>
           </ul>

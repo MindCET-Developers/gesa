@@ -629,10 +629,10 @@ export const pages: RichPage[] = [
         type: "p",
         text: "We exist to surface and champion the EdTech ventures shaping the future of learning — giving founders a global stage, a trusted network, and the visibility to grow.",
       },
-      { type: "h2", text: "Powered by CET & MindCET" },
+      { type: "h2", text: "Powered by MindCET Labs" },
       {
         type: "p",
-        text: "GESAwards is powered by CET (the Center for Educational Technology) and organised by MindCET, its EdTech innovation centre, alongside a worldwide network of regional partners.",
+        text: "GESAwards is powered and organised by MindCET Labs, alongside a worldwide network of regional partners.",
       },
     ],
   },
