@@ -485,8 +485,8 @@ export const partners: Partner[] = [
     type: "powered-by",
   },
   {
-    name: "MindCET",
-    logo: "/brand/mindcet.png",
+    name: "MindCET Labs",
+    logo: "/brand/partners/mindcet-labs.png",
     url: "http://www.mindcet.org",
     type: "powered-by",
   },

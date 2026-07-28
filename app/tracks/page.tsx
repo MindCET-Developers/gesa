@@ -14,8 +14,8 @@ const trackStyles = [
 
 const originalTrackLogos: Record<string, { src: string; alt: string }> = {
   "hacking-education-with-vibe-coding": {
-    src: "/brand/mindcet.png",
-    alt: "MindCET",
+    src: "/brand/partners/mindcet-labs.png",
+    alt: "MindCET Labs",
   },
   "learning-by-creating": {
     src: "/brand/novodia-wordmark.png",

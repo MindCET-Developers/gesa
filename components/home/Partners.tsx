@@ -16,15 +16,18 @@ function LogoGroup({ title, items }: { title: string; items: Partner[] }) {
             <Image
               src={p.logo}
               alt={p.name}
-              width={160}
-              height={64}
-              className="max-h-16 w-auto object-contain"
+              width={320}
+              height={128}
+              // h-auto/w-auto lets each logo keep its own aspect ratio, capped by the box;
+              // eager loading avoids the 0x0-until-loaded deadlock that lazy loading hits here.
+              loading="eager"
+              className="max-h-14 max-w-full h-auto w-auto object-contain"
             />
           ) : (
             p.name
           );
           const className = p.logo
-            ? "grid h-16 w-40 place-items-center grayscale brightness-75 contrast-125 transition hover:grayscale-0"
+            ? "grid h-14 w-40 place-items-center transition hover:opacity-80"
             : "font-display text-xl font-extrabold tracking-tight text-navy/70 transition hover:text-navy";
 
           return p.url ? (
@@ -58,9 +61,14 @@ export function Partners({
   home: HomeContent;
   partners: Partner[];
 }) {
-  const poweredBy = partners.filter(
-    (p) => p.type === "powered-by" && !p.name.trim().toLowerCase().startsWith("cet")
-  );
+  const poweredBy = partners
+    .filter((p) => p.type === "powered-by" && !p.name.trim().toLowerCase().startsWith("cet"))
+    // The CMS still carries the retired MindCET mark; the current brand is MindCET Labs.
+    .map((p) =>
+      p.name.trim().toLowerCase() === "mindcet"
+        ? { ...p, name: "MindCET Labs", logo: "/brand/partners/mindcet-labs.png" }
+        : p
+    );
   const worldwide = partners.filter((p) => p.type === "worldwide");
   const sponsors = partners.filter((p) => p.type === "prize-sponsor");
 

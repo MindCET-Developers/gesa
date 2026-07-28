@@ -98,15 +98,16 @@ export default async function AboutPage() {
                         href={p.url ?? "#"}
                         target={p.url ? "_blank" : undefined}
                         rel="noopener noreferrer"
-                        className="grid h-16 w-40 place-items-center grayscale transition hover:grayscale-0"
+                        className="grid h-14 w-40 place-items-center transition hover:opacity-80"
                         title={p.name}
                       >
                         <Image
                           src={p.logo}
                           alt={p.name}
-                          width={160}
-                          height={64}
-                          className="max-h-16 w-auto object-contain"
+                          width={320}
+                          height={128}
+                          loading="eager"
+                          className="max-h-14 max-w-full h-auto w-auto object-contain"
                         />
                       </a>
                     ) : null
