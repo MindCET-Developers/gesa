@@ -6,10 +6,11 @@
 //
 // Hybrid model (see [[semifinals-refresh-pipeline]]):
 // - DATA (semifinal names, linked partners, merged countries, dates) is pulled LIVE here.
-// - LOGOS stay committed under public/brand/partners/ and are matched by partner name via
-//   the generated manifest.json. A new partner with no committed logo falls back to an
-//   initials badge until someone drops a logo in and commits it. This sidesteps the fact
-//   that Airtable attachment URLs are signed and expire within hours.
+// - LOGOS are pulled LIVE from the Partners table's "Logo" attachment field. Airtable
+//   attachment URLs are signed and expire within hours, but since this data is refetched
+//   every SEMIFINALS_REVALIDATE_SECONDS the URL baked into a page is never stale by more
+//   than that window. Falls back to the committed public/brand/partners/ manifest (matched
+//   by partner name) for partners with no Logo attachment, then to an initials badge.
 //
 // Requires AIRTABLE_API_KEY (PAT, data.records:read on base appyTu8uOPQUVXD4x) in the
 // server environment — set it in Vercel Project → Settings → Environment Variables, and in
@@ -28,6 +29,7 @@ const COUNTRIES_TABLE = "tbl7wFk8g0AbGx7ee";
 const SEMIFINALS_TABLE = "tblAJHZRBQyfPOySc";
 
 const F_PARTNER_NAME = "fldGtodmZwz4tEIL1";
+const F_PARTNER_LOGO = "fldjzYaS859kIMA5q";
 const F_PARTNER_COUNTRIES = "fldPhyaaNW13gcztm";
 const F_COUNTRY_NAME = "fld2EoxYQJ14Sb1Y4";
 const F_COUNTRY_AREA = "fld1A4UPsFR1Bji3N";
@@ -225,7 +227,11 @@ export async function fetchRegionalSemifinals(): Promise<RegionalSemifinalEntry[
       const rawPartnerName = cleanName((partnerRec.fields[F_PARTNER_NAME] as string | undefined) ?? "");
       if (!rawPartnerName) continue;
       const partnerName = PARTNER_NAME_OVERRIDES[rawPartnerName] ?? rawPartnerName;
-      partners.push({ name: partnerName, logo: manifest[partnerName] });
+      const attachments = partnerRec.fields[F_PARTNER_LOGO] as
+        | { url: string }[]
+        | undefined;
+      const logo = attachments?.[0]?.url ?? manifest[partnerName];
+      partners.push({ name: partnerName, logo });
 
       const linkedCountries = (partnerRec.fields[F_PARTNER_COUNTRIES] as string[] | undefined) ?? [];
       for (const countryId of linkedCountries) {

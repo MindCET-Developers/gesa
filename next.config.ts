@@ -14,6 +14,8 @@ const nextConfig: NextConfig = {
       { protocol: "https", hostname: "static.wixstatic.com" },
       // Sanity CDN, for when the CMS is connected.
       { protocol: "https", hostname: "cdn.sanity.io" },
+      // Airtable attachment CDN, for partner logos synced live from the Partners table.
+      { protocol: "https", hostname: "v5.airtableusercontent.com" },
     ],
   },
   async headers() {
