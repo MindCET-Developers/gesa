@@ -126,7 +126,7 @@ export const RAW_SEMIFINALS: RawSemifinalEntry[] = [
   },
   {
     name: "LATAM",
-    partners: ["Tech Monterrey", "EdLATAM Alliance", "Prismapar"],
+    partners: ["Tech Monterrey"],
     countries: [
       "Argentina", "Peru", "Chile", "Colombia", "Uruguay", "Paraguay", "Bolivia",
       "Equatorial Guinea", "Ecuador", "Guyana", "Suriname", "Venezuela", "Belize",

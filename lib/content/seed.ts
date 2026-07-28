@@ -236,12 +236,6 @@ export const judges: Judge[] = [
     photo: wixSquare("69f6a1_c71463222d5e45249c11a0d6e4815a16", "png"),
   },
   {
-    name: "Irit Touitou",
-    title: "CEO",
-    company: "CET",
-    photo: wixSquare("69f6a1_c3183cccbf8e4fa8b3e2e09bdcf11567"),
-  },
-  {
     name: "Patrick Hayes",
     title: "Chief Development Officer",
     company: "Times Higher Education",
