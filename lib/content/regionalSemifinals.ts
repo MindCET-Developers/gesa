@@ -311,8 +311,7 @@ export const regionalSemifinals: RegionalSemifinalEntry[] = [
     "name": "Spain & Portugal",
     "partners": [
       {
-        "name": "SEK Lab",
-        "logo": "/brand/partners/sek-lab.png"
+        "name": "EduTech Cluster"
       },
       {
         "name": "Startup Braga",
