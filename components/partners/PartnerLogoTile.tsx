@@ -30,7 +30,7 @@ export function PartnerLogoTile({
 
   return (
     <span
-      className={`grid h-14 w-40 place-items-center transition hover:opacity-80 ${
+      className={`grid h-16 w-40 place-items-center transition hover:opacity-80 ${
         knockout ? "rounded-md bg-navy px-3 py-2" : ""
       } ${className}`}
     >
@@ -42,7 +42,7 @@ export function PartnerLogoTile({
         /* h-auto/w-auto lets each logo keep its own aspect ratio, capped by the
          * tile; eager loading avoids the 0x0-until-loaded lazy-loading deadlock. */
         loading="eager"
-        className={`max-w-full h-auto w-auto object-contain ${knockout ? "max-h-10" : "max-h-14"}`}
+        className={`max-w-full h-auto w-auto object-contain ${knockout ? "max-h-12" : "max-h-16"}`}
       />
     </span>
   );
