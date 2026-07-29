@@ -26,7 +26,7 @@ export const prizeCategoriesQuery = /* groq */ `
   *[_type == "prizeCategory"] | order(order asc){ title, description, color, "image": image.asset->url }`;
 
 export const judgesQuery = /* groq */ `
-  *[_type == "judge"] | order(order asc){ name, title, company, linkedin, "photo": photo.asset->url }`;
+  *[_type == "judge" && hidden != true] | order(order asc){ name, title, company, linkedin, "photo": photo.asset->url }`;
 
 export const partnersQuery = /* groq */ `
   *[_type == "partner"] | order(order asc){ name, url, type, "logo": logo.asset->url }`;

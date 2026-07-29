@@ -139,6 +139,14 @@ const judge = {
     { name: "linkedin", title: "LinkedIn URL", type: "url" },
     { name: "edition", title: "Edition year", type: "number" },
     { name: "order", title: "Sort order", type: "number" },
+    {
+      name: "hidden",
+      title: "Hide from the site",
+      description:
+        "Keeps the record but leaves the judge out of the published list. Use this instead of deleting.",
+      type: "boolean",
+      initialValue: false,
+    },
   ],
   preview: { select: { title: "name", subtitle: "company", media: "photo" } },
 };

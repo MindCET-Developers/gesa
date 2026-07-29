@@ -356,12 +356,6 @@ export const judges: Judge[] = [
     photo: wixSquare("69f6a1_b371ae567a04426db9d6cae14f358088"),
   },
   {
-    name: "Niv Gross",
-    title: "VP Technology",
-    company: "CET",
-    photo: wixSquare("69f6a1_853bd1cf27ca4f8c9e105e875331233d"),
-  },
-  {
     name: "Stephen Jull",
     title: "Founder and Investor",
     company: "",
