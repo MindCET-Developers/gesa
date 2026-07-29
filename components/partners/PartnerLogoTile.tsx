@@ -1,33 +1,20 @@
 import Image from "next/image";
 
-/* Some partners only supply a white/knockout version of their mark, which is
- * invisible on our white logo strip. Those get a dark tile so the logo reads
- * the way its designers intended. Verified by sampling every partner asset:
- * in these four, the wordmark is near-white and only an accent shape has colour.
- * TODO: promote this to a `knockout` boolean on the partner schema in Sanity so
- * editors can flag it themselves instead of editing this list. */
-const KNOCKOUT_PARTNERS = new Set([
-  "xedu",
-  "edcrunch",
-  "edtech italy",
-  "prize sponsor",
-]);
-
-export function isKnockoutLogo(name: string): boolean {
-  return KNOCKOUT_PARTNERS.has(name.trim().toLowerCase());
-}
-
+/* Some partners only supply a white/knockout version of their mark, which would
+ * be invisible on our white logo strip. Those render on a dark tile instead, so
+ * the logo reads the way its designers intended. Editors control this with the
+ * "White logo — show on a dark tile" checkbox on the partner in Sanity. */
 export function PartnerLogoTile({
   name,
   logo,
+  knockout = false,
   className = "",
 }: {
   name: string;
   logo: string;
+  knockout?: boolean;
   className?: string;
 }) {
-  const knockout = isKnockoutLogo(name);
-
   return (
     <span
       className={`grid h-16 w-40 place-items-center transition hover:opacity-80 ${

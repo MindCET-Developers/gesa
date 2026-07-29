@@ -84,6 +84,8 @@ export type Partner = {
   logo: string;
   url?: string;
   type: "powered-by" | "worldwide" | "prize-sponsor";
+  /** Logo file is white, so it needs a dark tile to be visible. */
+  knockout?: boolean;
 };
 
 export type ContinentKey =

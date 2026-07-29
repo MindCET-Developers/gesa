@@ -8,7 +8,7 @@
 // - Table "Semifinals" (tblAJHZRBQyfPOySc): each named semifinal + linked partners + date.
 // - Partners linked from table "Partners" (tblAfv3rYs6GyXQEF): partner names + logo attachments.
 // - Table "all countries" (tbl7wFk8g0AbGx7ee): each country's real "Geographic Area".
-// Last refreshed: 2026-07-28.
+// Last refreshed: 2026-07-29.
 //
 // Winners (1st/2nd/3rd place) exist in Airtable but are empty for now — add later.
 
@@ -126,7 +126,7 @@ export const RAW_SEMIFINALS: RawSemifinalEntry[] = [
   },
   {
     name: "LATAM",
-    partners: ["Tech Monterrey"],
+    partners: ["Tech Monterrey", "EdLATAM Alliance", "Prismapar"],
     countries: [
       "Argentina", "Peru", "Chile", "Colombia", "Uruguay", "Paraguay", "Bolivia",
       "Equatorial Guinea", "Ecuador", "Guyana", "Suriname", "Venezuela", "Belize",
@@ -179,6 +179,13 @@ export const RAW_SEMIFINALS: RawSemifinalEntry[] = [
     partners: ["UCL EdTech Labs"],
     countries: [
       "United Kingdom (UK)",
+    ],
+  },
+  {
+    name: "Ukraine",
+    partners: ["EdTech Ukraine"],
+    countries: [
+      "Ukraine",
     ],
   },
   {

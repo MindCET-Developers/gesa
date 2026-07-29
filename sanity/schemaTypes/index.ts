@@ -253,6 +253,14 @@ const partner = {
       options: { list: ["powered-by", "worldwide", "prize-sponsor"] },
     },
     { name: "order", title: "Sort order", type: "number" },
+    {
+      name: "knockout",
+      title: "White logo — show on a dark tile",
+      description:
+        "Tick this when the logo file is white, so it would be invisible on our white background.",
+      type: "boolean",
+      initialValue: false,
+    },
   ],
 };
 

@@ -349,6 +349,22 @@ export const regionalSemifinals: RegionalSemifinalEntry[] = [
     ]
   },
   {
+    "name": "Ukraine",
+    "partners": [
+      {
+        "name": "EdTech Ukraine",
+        "logo": "/brand/partners/edtech-ukraine.png"
+      }
+    ],
+    "continent": "europe",
+    "countries": [
+      {
+        "name": "Ukraine",
+        "code": "ua"
+      }
+    ]
+  },
+  {
     "name": "Israel",
     "partners": [
       {
@@ -644,6 +660,14 @@ export const regionalSemifinals: RegionalSemifinalEntry[] = [
       {
         "name": "Tech Monterrey",
         "logo": "/brand/partners/tech-monterrey.jpg"
+      },
+      {
+        "name": "EdLATAM Alliance",
+        "logo": "/brand/partners/edlatam-alliance.png"
+      },
+      {
+        "name": "Prismapar",
+        "logo": "/brand/partners/prismapar.png"
       }
     ],
     "continent": "latin-america",

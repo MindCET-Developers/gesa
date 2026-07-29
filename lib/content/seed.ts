@@ -489,9 +489,10 @@ export const partners: Partner[] = [
     type: "worldwide",
   },
   {
-    name: "Prize Sponsor",
+    name: "Amazon Web Services",
     logo: wixLogo("7d9067_880910682e4246148af96f5a8a360efb", "png", 280, 160),
     type: "prize-sponsor",
+    knockout: true,
   },
 ];
 

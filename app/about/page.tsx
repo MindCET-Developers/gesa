@@ -101,7 +101,7 @@ export default async function AboutPage() {
                         className="inline-flex"
                         title={p.name}
                       >
-                        <PartnerLogoTile name={p.name} logo={p.logo} />
+                        <PartnerLogoTile name={p.name} logo={p.logo} knockout={p.knockout} />
                       </a>
                     ) : null
                   )}

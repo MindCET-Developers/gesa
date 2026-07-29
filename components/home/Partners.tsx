@@ -13,7 +13,7 @@ function LogoGroup({ title, items }: { title: string; items: Partner[] }) {
       <div className="mt-6 flex flex-wrap items-center justify-center gap-x-10 gap-y-6">
         {items.map((p, i) => {
           const content = p.logo ? (
-            <PartnerLogoTile name={p.name} logo={p.logo} />
+            <PartnerLogoTile name={p.name} logo={p.logo} knockout={p.knockout} />
           ) : (
             p.name
           );

@@ -29,7 +29,7 @@ export const judgesQuery = /* groq */ `
   *[_type == "judge" && hidden != true] | order(order asc){ name, title, company, linkedin, "photo": photo.asset->url }`;
 
 export const partnersQuery = /* groq */ `
-  *[_type == "partner"] | order(order asc){ name, url, type, "logo": logo.asset->url }`;
+  *[_type == "partner"] | order(order asc){ name, url, type, knockout, "logo": logo.asset->url }`;
 
 export const tracksQuery = /* groq */ `
   *[_type == "track" && ($year == null || year == $year)] | order(order asc, title asc){
