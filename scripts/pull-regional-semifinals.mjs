@@ -217,7 +217,10 @@ for (const rec of partnerRecords) {
     }
   }
 
-  const attachment = (rec.fields[F_PARTNER_LOGO] ?? [])[0];
+  // Airtable appends new uploads to the end of the attachment list, so the last one is
+  // the partner's most recent logo — that's the one an editor means when they re-upload.
+  const attachments = rec.fields[F_PARTNER_LOGO] ?? [];
+  const attachment = attachments[attachments.length - 1];
   let logoUrl;
   if (attachment) {
     if (attachment.type?.startsWith("image/")) {

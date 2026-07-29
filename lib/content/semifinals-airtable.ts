@@ -230,7 +230,10 @@ export async function fetchRegionalSemifinals(): Promise<RegionalSemifinalEntry[
       const attachments = partnerRec.fields[F_PARTNER_LOGO] as
         | { url: string }[]
         | undefined;
-      const logo = attachments?.[0]?.url ?? manifest[partnerName];
+      // Airtable appends new uploads, so the last attachment is the partner's most recent
+      // logo — that's the one an editor means when they re-upload. Mirrors the same rule in
+      // scripts/pull-regional-semifinals.mjs.
+      const logo = attachments?.[attachments.length - 1]?.url ?? manifest[partnerName];
       partners.push({ name: partnerName, logo });
 
       const linkedCountries = (partnerRec.fields[F_PARTNER_COUNTRIES] as string[] | undefined) ?? [];

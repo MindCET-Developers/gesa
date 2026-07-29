@@ -35,14 +35,23 @@ function monogramColor(name: string): string {
 
 export function PartnerLogo({ partner, logo }: { partner: string; logo?: string }) {
   if (logo) {
+    /* The tile keeps a fixed height and lets its width follow the logo's aspect ratio:
+     * square marks stay the same 48px circle as before, while wide wordmarks (e.g. Tech
+     * Monterrey at 800x211) widen into a pill instead of being squeezed into a circle,
+     * where they'd render only ~12px tall and become unreadable. */
     return (
-      <Image
-        src={logo}
-        alt={`${partner} logo`}
-        width={48}
-        height={48}
-        className="h-12 w-12 shrink-0 rounded-full border border-gray-300 object-contain"
-      />
+      <span className="inline-flex h-12 w-auto min-w-12 max-w-[7.5rem] shrink-0 items-center justify-center overflow-hidden rounded-full border border-gray-300 bg-white">
+        <Image
+          src={logo}
+          alt={`${partner} logo`}
+          width={240}
+          height={96}
+          /* Eager: the intrinsic ratio only settles once the file loads, and a lazy image
+           * inside an auto-width tile would sit at the placeholder ratio until scrolled to. */
+          loading="eager"
+          className="h-12 w-auto max-w-full object-contain"
+        />
+      </span>
     );
   }
 

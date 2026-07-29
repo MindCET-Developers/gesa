@@ -107,7 +107,7 @@ export const RAW_PARTNERS: RawPartner[] = [
       "Ukraine",
     ],
     logoUrl:
-      "https://v5.airtableusercontent.com/v3/u/55/55/1785319200000/mLfV1RnXSHDbFxIl7TxOQg/7kwiCX8jD7kLnAsdsFBVrIeHO_pM_Vna3FCGt5Hm5LAHSUdmycqXBehsqrVAkPMHRfCowKCVmh49GOQXGz5Q33H4yryyQK_2alxtdVX1U2shmhAN33PP11IpBcv41T1-CWO4Hy4KHsQemx3ThrY1QszlWKb7kKD9tVf-cFC32PY/kO0RhLjurEzqIdF6_REM9qf8AHEPq1LMH_Juc9Y6Bz8",
+      "https://v5.airtableusercontent.com/v3/u/55/55/1785319200000/2CynA9hV3Ri7aPNmWP5gwA/TtJ9pacxNmlk24lCm_c54PPEe92zxgX_nv_FTVuO7dW_r4lxtWfdo361otylBbyKd-WYcjnmAqKAqm3j-_QdMyJk1PArDkoUnIVgyEhx2IiUwyBpJ87B5fZ3BPI_p95vgqfpKpciMy6QWPha97VVN_IVD0eUcY-3IsR3r0QqsLw/oSyGT_0HkJoY6mVBEtxyps6Tpm6KorxYJmusQT0Z3lI",
   },
   {
     name: "Eduspaze",
@@ -254,7 +254,7 @@ export const RAW_PARTNERS: RawPartner[] = [
       "Trinidad and Tobago",
     ],
     logoUrl:
-      "https://v5.airtableusercontent.com/v3/u/55/55/1785319200000/YfltfXqZ3d3nH5lCyxqMuA/OckbDWnCGrMVZmVroAtweDi3u4NpTICSiP2oPYhp1OzFOis4RDHGiE2lkKtE91WB5_P8cDCsQTXm96v-IlwALlMG7nHzWk8HQ2U1z0kETCFOJQjH1ZOzfMnzZI1WNVaglaegAEZOE_ZoxorA2oJNuIaanEMJlHQFtRIiME9bhxM/CPdWqXYdcFiW_leWmjLTnXFbuYqcxgIHSs9Fofyw_FQ",
+      "https://v5.airtableusercontent.com/v3/u/55/55/1785319200000/0vsk7Vv30NcsdwoJMjmxMg/HqUG2t2eV0jLTHlXgzNwvOiEkfGKZmhoQ9SQAdfBqHYIHKTS5_kVRej57F95DwXTVBPgtLPj8zIrIrkp2U25vYe9WJ4csYcr5FEkE4Qp_MQBTvkhlEYKFtxPx6U4BHiV79Vu9LoXAEGqx8YjlmSGbCEzu7MkyAePZWFcTRxxqvgAc-lyAPDgxAOP4dx0j84n/EMHsuh8--zP9VYXge7ZuvZxN7IYTEl9pFh8Ps0fLF98",
   },
   {
     name: "Tyme Education",

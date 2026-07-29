@@ -659,7 +659,7 @@ export const regionalSemifinals: RegionalSemifinalEntry[] = [
     "partners": [
       {
         "name": "Tech Monterrey",
-        "logo": "/brand/partners/tech-monterrey.jpg"
+        "logo": "/brand/partners/tech-monterrey.png"
       },
       {
         "name": "EdLATAM Alliance",
