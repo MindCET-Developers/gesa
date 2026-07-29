@@ -107,7 +107,7 @@ export const RAW_PARTNERS: RawPartner[] = [
       "Ukraine",
     ],
     logoUrl:
-      "https://v5.airtableusercontent.com/v3/u/55/55/1785319200000/2CynA9hV3Ri7aPNmWP5gwA/TtJ9pacxNmlk24lCm_c54PPEe92zxgX_nv_FTVuO7dW_r4lxtWfdo361otylBbyKd-WYcjnmAqKAqm3j-_QdMyJk1PArDkoUnIVgyEhx2IiUwyBpJ87B5fZ3BPI_p95vgqfpKpciMy6QWPha97VVN_IVD0eUcY-3IsR3r0QqsLw/oSyGT_0HkJoY6mVBEtxyps6Tpm6KorxYJmusQT0Z3lI",
+      "https://v5.airtableusercontent.com/v3/u/55/55/1785319200000/mLfV1RnXSHDbFxIl7TxOQg/7kwiCX8jD7kLnAsdsFBVrIeHO_pM_Vna3FCGt5Hm5LAHSUdmycqXBehsqrVAkPMHRfCowKCVmh49GOQXGz5Q33H4yryyQK_2alxtdVX1U2shmhAN33PP11IpBcv41T1-CWO4Hy4KHsQemx3ThrY1QszlWKb7kKD9tVf-cFC32PY/kO0RhLjurEzqIdF6_REM9qf8AHEPq1LMH_Juc9Y6Bz8",
   },
   {
     name: "Eduspaze",

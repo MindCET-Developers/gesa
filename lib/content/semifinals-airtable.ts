@@ -114,6 +114,31 @@ const COUNTRY_TO_ISO2: Record<string, string> = {
 
 const manifest = logoManifest as Record<string, string>;
 
+/**
+ * Partners whose Logo field holds several variants and whose newest upload isn't the one
+ * we want. Keyed by partner name -> Airtable attachment filename. Without an entry the
+ * last (most recent) attachment wins. Mirrored in scripts/pull-regional-semifinals.mjs.
+ */
+const LOGO_FILENAME_OVERRIDES: Record<string, string> = {
+  // The wide -02 variant is the newest upload, but the semifinals tiles read better with
+  // the square lockup.
+  "EdTech Ukraine": "LOGO_RGB_EDTECH-04.png",
+};
+
+/** Airtable appends new uploads, so the last attachment is the partner's current logo. */
+function pickLogoAttachment<T extends { url: string; filename?: string }>(
+  partnerName: string,
+  attachments: T[] | undefined
+): T | undefined {
+  if (!attachments?.length) return undefined;
+  const preferred = LOGO_FILENAME_OVERRIDES[partnerName];
+  if (preferred) {
+    const match = attachments.find((a) => a.filename === preferred);
+    if (match) return match;
+  }
+  return attachments[attachments.length - 1];
+}
+
 // U+00A0 (non-breaking space) sneaks into some Airtable names — normalize to plain spaces.
 function cleanName(name: string): string {
   return name.replace(/ /g, " ").replace(/\s+/g, " ").trim();
@@ -228,12 +253,9 @@ export async function fetchRegionalSemifinals(): Promise<RegionalSemifinalEntry[
       if (!rawPartnerName) continue;
       const partnerName = PARTNER_NAME_OVERRIDES[rawPartnerName] ?? rawPartnerName;
       const attachments = partnerRec.fields[F_PARTNER_LOGO] as
-        | { url: string }[]
+        | { url: string; filename?: string }[]
         | undefined;
-      // Airtable appends new uploads, so the last attachment is the partner's most recent
-      // logo — that's the one an editor means when they re-upload. Mirrors the same rule in
-      // scripts/pull-regional-semifinals.mjs.
-      const logo = attachments?.[attachments.length - 1]?.url ?? manifest[partnerName];
+      const logo = pickLogoAttachment(partnerName, attachments)?.url ?? manifest[partnerName];
       partners.push({ name: partnerName, logo });
 
       const linkedCountries = (partnerRec.fields[F_PARTNER_COUNTRIES] as string[] | undefined) ?? [];
