@@ -2,6 +2,10 @@
 // (Consent Mode v2), so previously-consented visitors are asked again.
 export const COOKIE_CONSENT_KEY = "gesa_cookie_consent_v2";
 
+/* The "storage" event only fires in OTHER tabs, so the tab that records a choice needs its
+ * own notification for the banner to react to it. */
+export const COOKIE_CONSENT_EVENT = "gesa:cookie-consent";
+
 export type ConsentValue = "granted" | "denied";
 
 export interface CookieConsentState {
@@ -49,6 +53,8 @@ export function setCookieConsent(consent: CookieConsentState): void {
   } catch {
     // Silently fail if localStorage is unavailable
   }
+
+  window.dispatchEvent(new Event(COOKIE_CONSENT_EVENT));
 }
 
 export function acceptAll(): CookieConsentState {

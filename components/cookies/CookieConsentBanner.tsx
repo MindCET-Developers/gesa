@@ -1,40 +1,46 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
 import Link from "next/link";
 import { X } from "lucide-react";
-import { acceptAll, rejectConsent, hasUserConsented } from "@/lib/cookies";
+import {
+  acceptAll,
+  rejectConsent,
+  hasUserConsented,
+  COOKIE_CONSENT_EVENT,
+} from "@/lib/cookies";
 import { updateGoogleConsent } from "@/lib/analytics";
 
+/* Consent lives in localStorage, which is an external store rather than React state — so
+ * read it with useSyncExternalStore instead of copying it into state from an effect. That
+ * kept the two in sync at the cost of an extra render pass on every visit, and rendered the
+ * banner during SSR only to hide it again on mount, flashing it at visitors who had already
+ * chosen. Reporting "consented" as the server snapshot keeps the banner out of the HTML;
+ * it appears on hydration for anyone who has yet to decide. */
+function subscribe(onStoreChange: () => void) {
+  // "storage" covers a choice made in another tab; the custom event covers this one.
+  window.addEventListener("storage", onStoreChange);
+  window.addEventListener(COOKIE_CONSENT_EVENT, onStoreChange);
+  return () => {
+    window.removeEventListener("storage", onStoreChange);
+    window.removeEventListener(COOKIE_CONSENT_EVENT, onStoreChange);
+  };
+}
+
 export function CookieConsentBanner() {
-  const [isVisible, setIsVisible] = useState(true);
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-    setIsVisible(!hasUserConsented());
-
-    const handleStorageChange = () => {
-      setIsVisible(!hasUserConsented());
-    };
-
-    window.addEventListener("storage", handleStorageChange);
-    return () => window.removeEventListener("storage", handleStorageChange);
-  }, []);
+  const consented = useSyncExternalStore(subscribe, hasUserConsented, () => true);
 
   const handleAccept = () => {
     acceptAll();
     updateGoogleConsent("granted", "granted");
-    setIsVisible(false);
   };
 
   const handleReject = () => {
     rejectConsent();
     updateGoogleConsent("denied", "denied");
-    setIsVisible(false);
   };
 
-  if (!isVisible) {
+  if (consented) {
     return null;
   }
 
