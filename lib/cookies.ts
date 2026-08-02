@@ -57,6 +57,22 @@ export function setCookieConsent(consent: CookieConsentState): void {
   window.dispatchEvent(new Event(COOKIE_CONSENT_EVENT));
 }
 
+/* Forget the visitor's choice entirely, which brings the banner back so they can make a new
+ * one. Distinct from rejectConsent, which records a decision to decline. */
+export function clearCookieConsent(): void {
+  if (typeof document === "undefined") {
+    return;
+  }
+
+  try {
+    localStorage.removeItem(COOKIE_CONSENT_KEY);
+  } catch {
+    // Silently fail if localStorage is unavailable
+  }
+
+  window.dispatchEvent(new Event(COOKIE_CONSENT_EVENT));
+}
+
 export function acceptAll(): CookieConsentState {
   const state: CookieConsentState = {
     accepted: true,
