@@ -338,13 +338,30 @@
       </div>
       <div style="font-size:.85rem">
         <strong style="display:block;margin-bottom:.4rem">Images</strong>
-        <span style="color:var(--muted)">Currently pointing at Wix CDN (static.wixstatic.com). Migration to Sanity assets is step 5 of CMS setup.</span>
+        <span style="color:var(--muted)">Core imagery now lives in Sanity; a handful of legacy Wix CDN assets remain. Resizing is done by each source CDN through a custom <code>next/image</code> loader, not by Vercel's optimizer — see the 2 August update.</span>
       </div>
     </div>
   </div>
 
   <div class="card">
-    <div class="card-title">🆕 Latest Development Update — 12 July 2026</div>
+    <div class="card-title">🆕 Latest Development Update — 2 August 2026</div>
+    <div style="font-size:.85rem;line-height:1.8">
+      <div>🚨 <strong>Resolved a Vercel Image Transformations overage</strong> (5,269 of the 5,000 Hobby-plan quota, climbing by hundreds every 12 hours with nobody editing images).</div>
+      <div>✅ Root cause: semifinal partner logos were rendered straight from Airtable attachment URLs, which Airtable re-signs on every fetch. With the data revalidating every 60 seconds, the same 27 logos arrived under 27 brand-new URLs each minute, so the optimizer treated every one as a new source and re-transformed it.</div>
+      <div>✅ Partner logos now resolve from the checked-in copies under <code>public/brand/partners/</code>, with the Airtable URL kept only as a fallback for a partner who has no local file; the logo tiles are marked <code>unoptimized</code>.</div>
+      <div>✅ Fixed <code>scripts/download-partner-logos.mjs</code>, which rebuilt <code>manifest.json</code> from scratch each run and therefore wiped all 30 entries whenever the snapshot's signed URLs had expired. It now seeds from the existing manifest and drops only entries whose file is genuinely gone.</div>
+      <div>✅ Removed Vercel's optimizer from the path entirely via a custom loader (<code>lib/images/loader.ts</code>): Sanity resizes its own images through its CDN parameters, and <code>next/image</code> still builds the responsive srcset from those URLs. Our own static files are served untouched.</div>
+      <div>✅ Verified across all 21 sitemap routes — whole-document scans, not just <code>&lt;img&gt;</code> tags — that nothing references <code>/_next/image</code>, <code>/_vercel/image</code>, or <code>airtableusercontent.com</code>. 262 unique images were force-loaded and every one resolved. Quota confirmed flat on the Vercel dashboard afterwards.</div>
+      <div>✅ Cookie banner: replaced the effect that mirrored <code>localStorage</code> into state (an ESLint cascading-render error) with <code>useSyncExternalStore</code>. This also fixed an unreported bug where the banner was rendered server-side and hidden on mount, flashing at visitors who had already chosen.</div>
+      <div>✅ Consolidated consent notifications behind a single <code>clearCookieConsent()</code> helper, so the footer's "Cookie settings" button no longer fabricates a <code>StorageEvent</code> that the browser only ever fires for other tabs.</div>
+      <div>✅ Removed a dead partner list from the footer that ran a <code>getPartners()</code> and an Airtable-backed <code>getRegionalSemifinals()</code> call on every page render and rendered none of it. ESLint now reports zero errors and zero warnings.</div>
+      <div>⚠️ Open item: the optimizer endpoint is still deployed. Blocking it outright would mean <code>images.unoptimized</code>, which bypasses the loader and would ship full-size Sanity originals — trading a quota problem for a performance one. Nothing references the endpoint, so it sits idle.</div>
+      <div>⚠️ Open item: Airtable attachment URLs expire within days. Adding a partner requires <code>npm run refresh:semifinals</code>, which refreshes the URLs and chains the logo download; running the download script alone against a stale snapshot fetches nothing.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Development Update — 12 July 2026</div>
     <div style="font-size:.85rem;line-height:1.8">
       <div>✅ Redesigned <code>/tracks</code> as a bold, responsive editorial experience with alternating track panels, per-track application CTAs, and an updated page hero.</div>
       <div>✅ Kept track content and application URLs connected to the existing content abstraction and Sanity-backed settings.</div>
