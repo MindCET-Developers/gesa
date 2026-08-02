@@ -6,6 +6,10 @@ const nextConfig: NextConfig = {
     root: path.resolve(__dirname),
   },
   images: {
+    // Images are resized by their own source CDN rather than by Vercel's optimizer —
+    // see lib/images/loader.ts for why.
+    loader: "custom",
+    loaderFile: "./lib/images/loader.ts",
     // Some partner logos synced from Airtable are SVGs (see public/brand/partners/).
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
