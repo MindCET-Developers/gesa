@@ -1,36 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import { socialIcons } from "@/components/ui/icons";
-import { getPartners, getSiteSettings, getRegionalSemifinals } from "@/lib/content";
+import { getSiteSettings } from "@/lib/content";
 import { CookieSettingsButton } from "@/components/cookies/CookieSettingsButton";
 
 export async function Footer() {
-  const [settings, partners, regionalSemifinals] = await Promise.all([
-    getSiteSettings(),
-    getPartners(),
-    getRegionalSemifinals(),
-  ]);
-  const worldwide = partners.filter((p) => p.type === "worldwide");
-
-  // הוסף שותפים מחצאי הגמר, מסנן כפילויות (בסניטי וגם בחצאי גמר)
-  const sanityPartnerNames = new Set(worldwide.map((p) => p.name));
-  const seenRegionalNames = new Set<string>();
-  const regionalPartners = [];
-
-  for (const entry of regionalSemifinals) {
-    for (const partner of entry.partners) {
-      if (!sanityPartnerNames.has(partner.name) && !seenRegionalNames.has(partner.name)) {
-        seenRegionalNames.add(partner.name);
-        regionalPartners.push({
-          name: partner.name,
-          logo: partner.logo || "",
-          url: undefined,
-        });
-      }
-    }
-  }
-
-  const allPartners = [...worldwide, ...regionalPartners];
+  const settings = await getSiteSettings();
   const year = new Date().getFullYear();
 
   return (

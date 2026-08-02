@@ -37,7 +37,11 @@ const F_COUNTRY_AREA = "fld1A4UPsFR1Bji3N";
 const F_SEMIFINAL_NAME = "fldp0VsrprsjrJbLS"; // region title, e.g. "Germany & Austria & Netherlands"
 const F_SEMIFINAL_PARTNERS = "fldYjUfAY9BclTPuD"; // linked records -> Partners table
 const F_SEMIFINAL_DATE = "fldQBCREpbQqI6KXD"; // date field (ISO string, may be empty)
-const F_SEMIFINAL_WINNER = "fld1Z8I5xeFrt7kCm"; // "1st place" — links to Registration; empty for now
+// Deliberately unread: "1st place" links to the Registration table and every record is
+// still empty (see the winner notes further down). Kept so the field ID is on hand when
+// winners are added rather than having to be looked up in Airtable again.
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const F_SEMIFINAL_WINNER = "fld1Z8I5xeFrt7kCm";
 
 // Airtable record names that need canonicalizing before display.
 const PARTNER_NAME_OVERRIDES = {
