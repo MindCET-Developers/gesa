@@ -255,7 +255,13 @@ export async function fetchRegionalSemifinals(): Promise<RegionalSemifinalEntry[
       const attachments = partnerRec.fields[F_PARTNER_LOGO] as
         | { url: string; filename?: string }[]
         | undefined;
-      const logo = pickLogoAttachment(partnerName, attachments)?.url ?? manifest[partnerName];
+      /* The locally hosted copy wins over the Airtable attachment. Airtable signs every
+       * attachment URL afresh on each fetch, so linking it directly gave the same logo a
+       * new URL every revalidation — the image optimizer saw a new source each minute and
+       * re-transformed all of them, and the links broke once the signature expired. Only
+       * partners with no file under public/brand/partners/ fall back to Airtable. */
+      const logo =
+        manifest[partnerName] ?? pickLogoAttachment(partnerName, attachments)?.url;
       partners.push({ name: partnerName, logo });
 
       const linkedCountries = (partnerRec.fields[F_PARTNER_COUNTRIES] as string[] | undefined) ?? [];

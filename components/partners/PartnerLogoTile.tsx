@@ -29,6 +29,9 @@ export function PartnerLogoTile({
         /* h-auto/w-auto lets each logo keep its own aspect ratio, capped by the
          * tile; eager loading avoids the 0x0-until-loaded lazy-loading deadlock. */
         loading="eager"
+        /* Capped at a 160px-wide tile from a small logo file — optimizing adds transform
+         * cost without a meaningful size win. */
+        unoptimized
         className={`max-w-full h-auto w-auto object-contain ${knockout ? "max-h-12" : "max-h-16"}`}
       />
     </span>

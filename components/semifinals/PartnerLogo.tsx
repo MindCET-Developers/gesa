@@ -49,6 +49,10 @@ export function PartnerLogo({ partner, logo }: { partner: string; logo?: string 
           /* Eager: the intrinsic ratio only settles once the file loads, and a lazy image
            * inside an auto-width tile would sit at the placeholder ratio until scrolled to. */
           loading="eager"
+          /* Rendered at most 120px wide from an already-small logo file, so optimizing
+           * buys nothing — and it keeps any Airtable-hosted fallback (whose URL changes
+           * on every fetch) out of the image optimizer entirely. */
+          unoptimized
           className="h-12 w-auto max-w-full object-contain"
         />
       </span>
