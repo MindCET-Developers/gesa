@@ -39,7 +39,31 @@ function extFromContentType(contentType) {
   return "png";
 }
 
+const manifestPath = path.join(outDir, "manifest.json");
+
+/* Start from the manifest already on disk rather than from scratch. Airtable attachment
+ * URLs expire, so a snapshot that has gone stale downloads nothing at all — rebuilding the
+ * manifest from those results would wipe every logo we had already saved, even though the
+ * files are still sitting in this directory. Entries whose file has since been deleted are
+ * dropped; everything else survives a failed run and is simply overwritten by a good one. */
 const manifest = {};
+let carriedOver = 0;
+if (existsSync(manifestPath)) {
+  const previous = JSON.parse(readFileSync(manifestPath, "utf8"));
+  for (const [name, url] of Object.entries(previous)) {
+    if (!existsSync(path.join(root, "public", url.replace(/^\//, "")))) {
+      console.warn(`Dropping "${name}" from the manifest: ${url} no longer exists.`);
+      continue;
+    }
+    manifest[name] = url;
+    carriedOver++;
+  }
+}
+
+// Partners whose Airtable logo downloaded successfully *this run* — see the manual-override
+// loop below, which fills in for anyone whose download failed.
+const savedFromAirtable = new Set();
+let failed = 0;
 
 for (const partner of RAW_PARTNERS) {
   if (!partner.logoUrl) continue;
@@ -49,10 +73,12 @@ for (const partner of RAW_PARTNERS) {
     res = await fetch(partner.logoUrl, { signal: AbortSignal.timeout(15_000) });
   } catch (err) {
     console.warn(`Failed to download logo for "${partner.name}": ${err.message}`);
+    failed++;
     continue;
   }
   if (!res.ok) {
     console.warn(`Failed to download logo for "${partner.name}": HTTP ${res.status}`);
+    failed++;
     continue;
   }
   const contentType = res.headers.get("content-type") ?? "image/png";
@@ -70,13 +96,16 @@ for (const partner of RAW_PARTNERS) {
   writeFileSync(path.join(outDir, filename), buffer);
 
   manifest[partner.name] = `/brand/partners/${filename}`;
+  savedFromAirtable.add(partner.name);
   console.log(`Saved ${partner.name} -> public/brand/partners/${filename}`);
 }
 
-const airtableNames = new Set(RAW_PARTNERS.filter((p) => p.logoUrl).map((p) => p.name));
-
 for (const [name, url] of Object.entries(manualLogos)) {
-  if (airtableNames.has(name)) continue; // Airtable logo takes precedence
+  // A manual override only ever FILLS A GAP: it never displaces a logo we downloaded from
+  // Airtable this run, nor one already carried over from disk. These sources are usually
+  // weaker (a favicon, a scaled-down site asset), so letting them win whenever an Airtable
+  // link happens to be expired would quietly downgrade good logos on every failed run.
+  if (savedFromAirtable.has(name) || manifest[name]) continue;
 
   // A value that isn't an http(s) URL is treated as a local path already under public/
   // (e.g. a logo dropped in by hand that has no download source). Just register it in the
@@ -121,8 +150,13 @@ for (const [name, url] of Object.entries(manualLogos)) {
   console.log(`Saved ${name} (manual override) -> public/brand/partners/${filename}`);
 }
 
-writeFileSync(
-  path.join(outDir, "manifest.json"),
-  JSON.stringify(manifest, null, 2) + "\n"
-);
-console.log(`\nWrote manifest with ${Object.keys(manifest).length} logos.`);
+writeFileSync(manifestPath, JSON.stringify(manifest, null, 2) + "\n");
+console.log(`\nWrote manifest with ${Object.keys(manifest).length} logos (${carriedOver} already on disk).`);
+
+if (failed) {
+  console.warn(
+    `\n${failed} Airtable download(s) failed. HTTP 410 means the snapshot's signed URLs have\n` +
+      `expired — run "npm run refresh:semifinals" for a fresh snapshot, then re-run this script.\n` +
+      `Logos already saved were kept, so the site is unaffected either way.`
+  );
+}
