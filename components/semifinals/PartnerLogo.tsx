@@ -33,15 +33,27 @@ function monogramColor(name: string): string {
   return MONOGRAM_COLORS[hash % MONOGRAM_COLORS.length]!;
 }
 
+/* Partners whose mark is white/knockout, which would be invisible on the white circle. They
+ * get a navy one instead. These are the same partners as the "White logo — show on a dark
+ * tile" checkbox in Sanity, but the semifinals path reads Airtable and the committed snapshot
+ * — never Sanity — so the flag can't be joined in and is kept here, next to the tile it
+ * affects. Add a name here when a partner's logo turns out to be knockout. */
+const KNOCKOUT_PARTNERS = new Set(["Edcrunch", "EdTech Italy", "XEdu"]);
+
 export function PartnerLogo({ partner, logo }: { partner: string; logo?: string }) {
   if (logo) {
+    const knockout = KNOCKOUT_PARTNERS.has(partner);
     /* Every tile is the same 48px circle, whatever the logo's aspect ratio, so the rows
      * read as one clean column of avatars — a mix of circles and wide pills made the
      * column look ragged. object-contain shrinks a wide wordmark to fit, which does cost
      * legibility on the widest marks (Tech Monterrey is 800x211, so it lands around 45x12);
      * the partners strip at the bottom of the home page is where those get to be readable. */
     return (
-      <span className="inline-flex size-12 shrink-0 items-center justify-center overflow-hidden rounded-full border border-gray-300 bg-white">
+      <span
+        className={`inline-flex size-12 shrink-0 items-center justify-center overflow-hidden rounded-full border ${
+          knockout ? "border-navy bg-navy" : "border-gray-300 bg-white"
+        }`}
+      >
         <Image
           src={logo}
           alt={`${partner} logo`}
