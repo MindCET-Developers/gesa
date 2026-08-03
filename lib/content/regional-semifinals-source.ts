@@ -17,6 +17,9 @@ export type RawPartner = {
   /** Airtable attachment URL for the Logo field, if an image was uploaded. Expires —
    * scripts/download-partner-logos.mjs mirrors it locally. */
   logoUrl?: string;
+  /** Wide lockup of the same mark, for partners who supply one — used on solo tiles.
+   * Expires like logoUrl and is mirrored locally alongside it. */
+  wideLogoUrl?: string;
 };
 
 export const RAW_PARTNERS: RawPartner[] = [
@@ -108,6 +111,8 @@ export const RAW_PARTNERS: RawPartner[] = [
     ],
     logoUrl:
       "https://v5.airtableusercontent.com/v3/u/55/55/1785758400000/MtGk2Hm1_ecCCrgjS0Axfw/GWL2CCRBvo1ZRpWPN3BmwRovJC0kL96emXGVVFwny9N0LKGHXGnf9-owLJjxzUItlznmc1erAbe7wD_OVwdyrpXOKWDyhrHv8HhXPTTtvaVeo73GemoXmAbNK200sDOwUW2d99l6XI0HtTaTgP5a7h-dKbAqPskorZdJOC8N0Sg/Po9P3bYejfxKbid_OLC1czNgynlzagg2HuhYslBg_7w",
+    wideLogoUrl:
+      "https://v5.airtableusercontent.com/v3/u/55/55/1785758400000/1cW0xTOGQX0m-dGyDd4Lwg/qnQ7OG4C663ROkfo9run_iA_3xTjX248bw03bn407mb9KQK3cb3ENZDTVh0_nhO-kWYE08WExWkl1_z3hiep2wsB6mUJ9WeXnXgTbp3_L4uHN48QBGh7_xEIoTCvyd9k2M9nS-UIhCC9PnZ7Bk6Yab5lc9zr8CjOeRfD-Ajgd1U/S9ofq5oXIZHD94iPJuTRNYAJLBjqa6WGaTlBVYRRs0I",
   },
   {
     name: "Eduspaze",

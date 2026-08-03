@@ -353,7 +353,8 @@ export const regionalSemifinals: RegionalSemifinalEntry[] = [
     "partners": [
       {
         "name": "EdTech Ukraine",
-        "logo": "/brand/partners/edtech-ukraine.png"
+        "logo": "/brand/partners/edtech-ukraine.png",
+        "wideLogo": "/brand/partners/edtech-ukraine-wide.png"
       }
     ],
     "continent": "europe",

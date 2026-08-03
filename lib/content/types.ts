@@ -108,6 +108,9 @@ export type SemifinalPartner = {
   name: string;
   /** Path under /public, e.g. "/brand/partners/sek-lab.png". Absent = initials fallback. */
   logo?: string;
+  /** Wide lockup of the same mark, for the few partners who supply one. Used where the logo
+   * gets a tile to itself; rows that stack several partners stay on the square `logo`. */
+  wideLogo?: string;
 };
 
 export type RegionalSemifinalEntry = {

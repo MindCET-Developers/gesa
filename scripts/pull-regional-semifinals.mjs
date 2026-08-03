@@ -55,9 +55,18 @@ const COUNTRY_NAME_OVERRIDES = {
 // want. Keyed by partner name -> Airtable attachment filename. Without an entry the last
 // (most recent) attachment wins. Mirrored in lib/content/semifinals-airtable.ts.
 const LOGO_FILENAME_OVERRIDES = {
-  // The wide -02 variant is the newest upload, but the semifinals tiles read better with
-  // the square lockup.
+  // The wide -02 variant is the newest upload, but the shared semifinals tiles read better
+  // with the square lockup. The wide one is picked up as the alternate below.
   "EdTech Ukraine": "LOGO_RGB_EDTECH-04.png",
+};
+
+/* Partners whose Logo field also holds a WIDE lockup of the same mark. A semifinal run by a
+ * single partner gives its logo a tile of its own, so the wide version fits there and reads
+ * better than a square mark floating in it; rows where partners overlap into a stack stay on
+ * the square logo above. Keyed by partner name -> Airtable attachment filename.
+ * Mirrored in lib/content/semifinals-airtable.ts. */
+const WIDE_LOGO_FILENAME_OVERRIDES = {
+  "EdTech Ukraine": "LOGO_RGB_EDTECH-02.png",
 };
 
 /** Airtable appends new uploads, so the last attachment is the partner's current logo. */
@@ -69,6 +78,13 @@ function pickLogoAttachment(partnerName, attachments) {
     if (match) return match;
   }
   return attachments[attachments.length - 1];
+}
+
+/** The wide alternate, if this partner has one and it's still in the Logo field. */
+function pickWideLogoAttachment(partnerName, attachments) {
+  const preferred = WIDE_LOGO_FILENAME_OVERRIDES[partnerName];
+  if (!preferred || !attachments?.length) return undefined;
+  return attachments.find((a) => a.filename === preferred);
 }
 
 // Continent overrides — take precedence over Airtable's "Geographic Area" for countries
@@ -254,7 +270,19 @@ for (const rec of partnerRecords) {
     }
   }
 
-  partners.push({ name, countries, logoUrl });
+  const wideAttachment = pickWideLogoAttachment(name, rec.fields[F_PARTNER_LOGO]);
+  const wideLogoUrl = wideAttachment?.type?.startsWith("image/")
+    ? wideAttachment.url
+    : undefined;
+  if (WIDE_LOGO_FILENAME_OVERRIDES[name] && !wideLogoUrl) {
+    warnings.push(
+      `Partner "${name}" has no usable wide logo attachment ` +
+        `"${WIDE_LOGO_FILENAME_OVERRIDES[name]}" — its solo tile falls back to the square ` +
+        "logo. Drop the entry from WIDE_LOGO_FILENAME_OVERRIDES if the file is gone for good."
+    );
+  }
+
+  partners.push({ name, countries, logoUrl, wideLogoUrl });
 }
 
 partners.sort((a, b) => a.name.localeCompare(b.name));
@@ -375,6 +403,7 @@ const partnerBlocks = partners.map((p) => {
   const lines = [`  {`, `    name: ${q(p.name)},`];
   lines.push(`    countries: ${formatStringArray(p.countries, 6)},`);
   if (p.logoUrl) lines.push(`    logoUrl:\n      ${q(p.logoUrl)},`);
+  if (p.wideLogoUrl) lines.push(`    wideLogoUrl:\n      ${q(p.wideLogoUrl)},`);
   lines.push(`  },`);
   return lines.join("\n");
 });
@@ -409,6 +438,9 @@ export type RawPartner = {
   /** Airtable attachment URL for the Logo field, if an image was uploaded. Expires —
    * scripts/download-partner-logos.mjs mirrors it locally. */
   logoUrl?: string;
+  /** Wide lockup of the same mark, for partners who supply one — used on solo tiles.
+   * Expires like logoUrl and is mirrored locally alongside it. */
+  wideLogoUrl?: string;
 };
 
 export const RAW_PARTNERS: RawPartner[] = [

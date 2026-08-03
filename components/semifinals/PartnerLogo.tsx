@@ -33,14 +33,29 @@ function monogramColor(name: string): string {
   return MONOGRAM_COLORS[hash % MONOGRAM_COLORS.length]!;
 }
 
-export function PartnerLogo({ partner, logo }: { partner: string; logo?: string }) {
+export function PartnerLogo({
+  partner,
+  logo,
+  roomy = false,
+}: {
+  partner: string;
+  logo?: string;
+  /* Set on a logo that has its tile to itself, where nothing is overlapping it: the cap
+   * rises from 120px to 176px so a wide lockup renders at the tile's full 48px height
+   * instead of being letterboxed down to ~36px by object-contain. */
+  roomy?: boolean;
+}) {
   if (logo) {
     /* The tile keeps a fixed height and lets its width follow the logo's aspect ratio:
      * square marks stay the same 48px circle as before, while wide wordmarks (e.g. Tech
      * Monterrey at 800x211) widen into a pill instead of being squeezed into a circle,
      * where they'd render only ~12px tall and become unreadable. */
     return (
-      <span className="inline-flex h-12 w-auto min-w-12 max-w-[7.5rem] shrink-0 items-center justify-center overflow-hidden rounded-full border border-gray-300 bg-white">
+      <span
+        className={`inline-flex h-12 w-auto min-w-12 shrink-0 items-center justify-center overflow-hidden rounded-full border border-gray-300 bg-white ${
+          roomy ? "max-w-44" : "max-w-[7.5rem]"
+        }`}
+      >
         <Image
           src={logo}
           alt={`${partner} logo`}
