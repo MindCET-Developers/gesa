@@ -5,9 +5,6 @@
 // scripts/build-regional-semifinals.mjs reads. Airtable attachment URLs are signed and
 // expire — always re-run this BEFORE build-regional-semifinals.mjs when refreshing data.
 //
-// Partners who also supply a wide lockup (wideLogoUrl) get it saved as <slug>-wide.<ext> and
-// listed in wide-manifest.json — solo semifinal tiles use that version.
-//
 // Partners with no logo attachment in Airtable can still get a logo by adding an entry to
 // scripts/manual-partner-logos.json (partner name -> direct image URL on their own site).
 // Those are downloaded here too and merged into the manifest, so they survive re-running
@@ -43,30 +40,25 @@ function extFromContentType(contentType) {
 }
 
 const manifestPath = path.join(outDir, "manifest.json");
-// Wide lockups live in their own manifest so the primary one stays a plain name -> logo map.
-const wideManifestPath = path.join(outDir, "wide-manifest.json");
 
 /* Start from the manifest already on disk rather than from scratch. Airtable attachment
  * URLs expire, so a snapshot that has gone stale downloads nothing at all — rebuilding the
  * manifest from those results would wipe every logo we had already saved, even though the
  * files are still sitting in this directory. Entries whose file has since been deleted are
  * dropped; everything else survives a failed run and is simply overwritten by a good one. */
-function carryOverManifest(filePath, label) {
-  const carried = {};
-  if (!existsSync(filePath)) return carried;
-  for (const [name, url] of Object.entries(JSON.parse(readFileSync(filePath, "utf8")))) {
+const manifest = {};
+let carriedOver = 0;
+if (existsSync(manifestPath)) {
+  const previous = JSON.parse(readFileSync(manifestPath, "utf8"));
+  for (const [name, url] of Object.entries(previous)) {
     if (!existsSync(path.join(root, "public", url.replace(/^\//, "")))) {
-      console.warn(`Dropping "${name}" from the ${label}: ${url} no longer exists.`);
+      console.warn(`Dropping "${name}" from the manifest: ${url} no longer exists.`);
       continue;
     }
-    carried[name] = url;
+    manifest[name] = url;
+    carriedOver++;
   }
-  return carried;
 }
-
-const manifest = carryOverManifest(manifestPath, "manifest");
-const wideManifest = carryOverManifest(wideManifestPath, "wide manifest");
-const carriedOver = Object.keys(manifest).length;
 
 // Partners whose Airtable logo downloaded successfully *this run* — see the manual-override
 // loop below, which fills in for anyone whose download failed.
@@ -106,39 +98,6 @@ for (const partner of RAW_PARTNERS) {
   manifest[partner.name] = `/brand/partners/${filename}`;
   savedFromAirtable.add(partner.name);
   console.log(`Saved ${partner.name} -> public/brand/partners/${filename}`);
-}
-
-/* The wide lockup of a partner's mark, saved as <slug>-wide.<ext> next to the square one.
- * A failure here is never fatal: solo tiles just keep using the square logo. */
-for (const partner of RAW_PARTNERS) {
-  if (!partner.wideLogoUrl) continue;
-
-  let res;
-  try {
-    res = await fetch(partner.wideLogoUrl, { signal: AbortSignal.timeout(15_000) });
-  } catch (err) {
-    console.warn(`Failed to download wide logo for "${partner.name}": ${err.message}`);
-    failed++;
-    continue;
-  }
-  if (!res.ok) {
-    console.warn(`Failed to download wide logo for "${partner.name}": HTTP ${res.status}`);
-    failed++;
-    continue;
-  }
-  const contentType = res.headers.get("content-type") ?? "image/png";
-  if (!contentType.startsWith("image/")) {
-    console.warn(
-      `Skipping wide logo for "${partner.name}": content-type is "${contentType}", not an image.`
-    );
-    continue;
-  }
-
-  const filename = `${slugify(partner.name)}-wide.${extFromContentType(contentType)}`;
-  writeFileSync(path.join(outDir, filename), Buffer.from(await res.arrayBuffer()));
-
-  wideManifest[partner.name] = `/brand/partners/${filename}`;
-  console.log(`Saved ${partner.name} (wide) -> public/brand/partners/${filename}`);
 }
 
 for (const [name, url] of Object.entries(manualLogos)) {
@@ -193,9 +152,6 @@ for (const [name, url] of Object.entries(manualLogos)) {
 
 writeFileSync(manifestPath, JSON.stringify(manifest, null, 2) + "\n");
 console.log(`\nWrote manifest with ${Object.keys(manifest).length} logos (${carriedOver} already on disk).`);
-
-writeFileSync(wideManifestPath, JSON.stringify(wideManifest, null, 2) + "\n");
-console.log(`Wrote wide manifest with ${Object.keys(wideManifest).length} logo(s).`);
 
 if (failed) {
   console.warn(

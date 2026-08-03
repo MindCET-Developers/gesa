@@ -36,25 +36,15 @@ export function PartnerRow({
         </p>
       </div>
       <div className="flex items-center max-[520px]:col-start-2 max-[520px]:row-start-2">
-        {entry.partners.map((partner, partnerIndex) => {
-          /* A lone partner owns the whole tile, so it can show its wide lockup (if it has
-           * one) at full height. Stacked partners overlap by design and stay square — a
-           * wide mark there would be clipped by the logo in front of it. */
-          const solo = entry.partners.length === 1;
-          return (
-            <span
-              key={partner.name}
-              style={{ marginLeft: partnerIndex === 0 ? 0 : "-0.6rem", zIndex: entry.partners.length - partnerIndex }}
-              className="relative"
-            >
-              <PartnerLogo
-                partner={partner.name}
-                logo={solo ? (partner.wideLogo ?? partner.logo) : partner.logo}
-                roomy={solo && Boolean(partner.wideLogo)}
-              />
-            </span>
-          );
-        })}
+        {entry.partners.map((partner, partnerIndex) => (
+          <span
+            key={partner.name}
+            style={{ marginLeft: partnerIndex === 0 ? 0 : "-0.6rem", zIndex: entry.partners.length - partnerIndex }}
+            className="relative"
+          >
+            <PartnerLogo partner={partner.name} logo={partner.logo} />
+          </span>
+        ))}
       </div>
     </article>
   );

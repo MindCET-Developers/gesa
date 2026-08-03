@@ -9,8 +9,7 @@
 // 3. Split a partner's countries by continent — a partner with countries in N continents
 //    produces N entries, each holding only that continent's countries.
 // 4. Look up each country's ISO2 code; log (not throw) on any miss.
-// 5. Attach the local logo path from Task 6's download manifest, if present — plus the wide
-//    lockup from wide-manifest.json for the partners who have one.
+// 5. Attach the local logo path from Task 6's download manifest, if present.
 
 import { readFileSync, writeFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
@@ -60,16 +59,6 @@ try {
       "run scripts/download-partner-logos.mjs first if you want logos in the output. " +
       "Continuing with initials-only fallback for all partners."
   );
-}
-
-// Optional — only the handful of partners with a wide lockup appear here.
-let wideLogoManifest = {};
-try {
-  wideLogoManifest = JSON.parse(
-    readFileSync(path.join(root, "public/brand/partners/wide-manifest.json"), "utf8")
-  );
-} catch {
-  // No wide lockups mirrored yet: every tile uses the square logo.
 }
 
 function normalizeCountryName(name) {
@@ -136,7 +125,6 @@ if (RAW_SEMIFINALS.length > 0) {
     const partners = semifinal.partners.map((name) => ({
       name: name.trim(),
       logo: logoManifest[name] ?? undefined,
-      wideLogo: wideLogoManifest[name] ?? undefined,
     }));
 
     entries.push({
@@ -185,13 +173,7 @@ if (RAW_SEMIFINALS.length > 0) {
 
       entries.push({
         name: partner.name.trim(),
-        partners: [
-          {
-            name: partner.name.trim(),
-            logo: logoManifest[partner.name] ?? undefined,
-            wideLogo: wideLogoManifest[partner.name] ?? undefined,
-          },
-        ],
+        partners: [{ name: partner.name.trim(), logo: logoManifest[partner.name] ?? undefined }],
         continent,
         countries,
       });

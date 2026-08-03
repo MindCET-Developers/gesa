@@ -21,7 +21,6 @@
 // scripts/pull-regional-semifinals.mjs (which still generates the committed fallback).
 
 import logoManifest from "../../public/brand/partners/manifest.json";
-import wideLogoManifest from "../../public/brand/partners/wide-manifest.json";
 import type { ContinentKey, RegionalSemifinalEntry } from "./types";
 
 const BASE_ID = "appyTu8uOPQUVXD4x";
@@ -114,7 +113,6 @@ const COUNTRY_TO_ISO2: Record<string, string> = {
 };
 
 const manifest = logoManifest as Record<string, string>;
-const wideManifest = wideLogoManifest as Record<string, string>;
 
 /**
  * Partners whose Logo field holds several variants and whose newest upload isn't the one
@@ -122,19 +120,9 @@ const wideManifest = wideLogoManifest as Record<string, string>;
  * last (most recent) attachment wins. Mirrored in scripts/pull-regional-semifinals.mjs.
  */
 const LOGO_FILENAME_OVERRIDES: Record<string, string> = {
-  // The wide -02 variant is the newest upload, but the shared semifinals tiles read better
-  // with the square lockup. The wide one is picked up as the alternate below.
+  // The wide -02 variant is the newest upload, but the semifinals tiles read better with
+  // the square lockup.
   "EdTech Ukraine": "LOGO_RGB_EDTECH-04.png",
-};
-
-/**
- * Partners whose Logo field also holds a WIDE lockup of the same mark, keyed by partner name
- * -> Airtable attachment filename. A semifinal run by a single partner gives its logo a tile
- * of its own, so the wide version fits there; rows that stack several partners stay on the
- * square logo above. Mirrored in scripts/pull-regional-semifinals.mjs.
- */
-const WIDE_LOGO_FILENAME_OVERRIDES: Record<string, string> = {
-  "EdTech Ukraine": "LOGO_RGB_EDTECH-02.png",
 };
 
 /** Airtable appends new uploads, so the last attachment is the partner's current logo. */
@@ -149,16 +137,6 @@ function pickLogoAttachment<T extends { url: string; filename?: string }>(
     if (match) return match;
   }
   return attachments[attachments.length - 1];
-}
-
-/** The wide alternate, if this partner has one and it's still in the Logo field. */
-function pickWideLogoAttachment<T extends { url: string; filename?: string }>(
-  partnerName: string,
-  attachments: T[] | undefined
-): T | undefined {
-  const preferred = WIDE_LOGO_FILENAME_OVERRIDES[partnerName];
-  if (!preferred || !attachments?.length) return undefined;
-  return attachments.find((a) => a.filename === preferred);
 }
 
 // U+00A0 (non-breaking space) sneaks into some Airtable names — normalize to plain spaces.
@@ -263,7 +241,7 @@ export async function fetchRegionalSemifinals(): Promise<RegionalSemifinalEntry[
     const linkedPartnerIds = (rec.fields[F_SEMIFINAL_PARTNERS] as string[] | undefined) ?? [];
     if (linkedPartnerIds.length === 0) continue;
 
-    const partners: { name: string; logo?: string; wideLogo?: string }[] = [];
+    const partners: { name: string; logo?: string }[] = [];
     const countrySeen = new Set<string>();
     const countryNames: string[] = [];
 
@@ -284,9 +262,7 @@ export async function fetchRegionalSemifinals(): Promise<RegionalSemifinalEntry[
        * partners with no file under public/brand/partners/ fall back to Airtable. */
       const logo =
         manifest[partnerName] ?? pickLogoAttachment(partnerName, attachments)?.url;
-      const wideLogo =
-        wideManifest[partnerName] ?? pickWideLogoAttachment(partnerName, attachments)?.url;
-      partners.push({ name: partnerName, logo, wideLogo });
+      partners.push({ name: partnerName, logo });
 
       const linkedCountries = (partnerRec.fields[F_PARTNER_COUNTRIES] as string[] | undefined) ?? [];
       for (const countryId of linkedCountries) {
