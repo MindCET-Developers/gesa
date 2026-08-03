@@ -8,7 +8,7 @@
 // - Table "Semifinals" (tblAJHZRBQyfPOySc): each named semifinal + linked partners + date.
 // - Partners linked from table "Partners" (tblAfv3rYs6GyXQEF): partner names + logo attachments.
 // - Table "all countries" (tbl7wFk8g0AbGx7ee): each country's real "Geographic Area".
-// Last refreshed: 2026-08-02.
+// Last refreshed: 2026-08-03.
 //
 // Winners (1st/2nd/3rd place) exist in Airtable but are empty for now — add later.
 
@@ -45,6 +45,7 @@ export const RAW_SEMIFINALS: RawSemifinalEntry[] = [
     countries: [
       "Brazil",
     ],
+    date: "2026-11-18",
   },
   {
     name: "EuroAsia",

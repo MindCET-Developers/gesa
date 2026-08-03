@@ -47,7 +47,7 @@ export const regionalSemifinals: RegionalSemifinalEntry[] = [
     "partners": [
       {
         "name": "DOHE",
-        "logo": "/brand/partners/dohe.svg"
+        "logo": "/brand/partners/dohe.png"
       }
     ],
     "continent": "europe",
@@ -652,7 +652,8 @@ export const regionalSemifinals: RegionalSemifinalEntry[] = [
         "name": "Brazil",
         "code": "br"
       }
-    ]
+    ],
+    "date": "2026-11-18"
   },
   {
     "name": "LATAM",
