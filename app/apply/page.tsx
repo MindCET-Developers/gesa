@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { ApplyFormLink } from "@/components/apply/ApplyFormLink";
 import { ApplyTracking } from "@/components/apply/ApplyTracking";
 import { getSiteSettings } from "@/lib/content";
@@ -30,6 +31,17 @@ export default async function ApplyPage() {
 
       <section className="bg-surface px-4 py-8 sm:px-6 md:py-12">
         <div className="container-page">
+          <div className="mb-6 rounded-2xl border border-line bg-white p-5 text-sm leading-relaxed text-muted shadow-sm">
+            Before submitting your application, please read the{" "}
+            <Link
+              href="/terms-and-condition"
+              className="font-semibold text-navy underline underline-offset-4"
+            >
+              GESAwards 2026 Terms & Conditions
+            </Link>
+            . The application includes a Terms & Conditions acknowledgement.
+          </div>
+
           <div className="overflow-hidden rounded-2xl border border-line bg-white shadow-xl shadow-navy/10">
             <iframe
               src={settings.applyUrl}
