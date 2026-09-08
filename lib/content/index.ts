@@ -80,16 +80,51 @@ export async function getJudges(): Promise<Judge[]> {
   });
 }
 
+/* Sanity is the source of truth for the partner strip, but a partner whose
+ * document is still half-filled must never silently vanish from it — partners
+ * notice. A document with no "type" yet lands in the general worldwide group
+ * rather than dropping out of all three filters, and its logo falls back to the
+ * seed entry of the same name (never to whichever seed entry happens to sit at
+ * the same index, which used to leak unrelated names and dark tiles onto CMS
+ * partners). */
+function withPartnerFallbacks(content: Partial<Partner>[]): Partner[] {
+  const seedByName = new Map(partners.map((partner) => [partner.name, partner]));
+
+  return content.map((partner) => {
+    const fallback = partner.name ? seedByName.get(partner.name) : undefined;
+    return {
+      ...partner,
+      logo: partner.logo || fallback?.logo || "",
+      type: partner.type ?? fallback?.type ?? "worldwide",
+    } as Partner;
+  });
+}
+
+/* Editors order the strip with the "Sort order" field, but only once every
+ * partner in a group has one: a group where some documents are still missing it
+ * would otherwise show those in whatever order the CMS returned, stranded after
+ * the numbered ones. Until the group is complete it reads alphabetically, which
+ * is the order the numbers themselves were assigned in. */
+function sortPartnerGroup(group: Partner[]): Partner[] {
+  const byName = (a: Partner, b: Partner) => a.name.localeCompare(b.name);
+  const fullyOrdered = group.every((partner) => typeof partner.order === "number");
+
+  return [...group].sort((a, b) =>
+    fullyOrdered ? a.order! - b.order! || byName(a, b) : byName(a, b)
+  );
+}
+
 export async function getPartners(type?: Partner["type"]): Promise<Partner[]> {
   const content = await fetchCms<Partial<Partner>[]>(partnersQuery, []);
-  const allPartners = content.length
-    ? content.map((partner, index) => {
-        const fallback = partners[index];
-        return { ...fallback, ...partner, logo: partner.logo || fallback?.logo || "" } as Partner;
-      })
-    : partners;
+  const allPartners = content.length ? withPartnerFallbacks(content) : partners;
+  if (type) return sortPartnerGroup(allPartners.filter((partner) => partner.type === type));
 
-  return type ? allPartners.filter((partner) => partner.type === type) : allPartners;
+  /* Each group sorts on its own, then they come back in the order the strip
+   * renders them, so a caller taking the whole list still gets tidy groups. */
+  const groups: Partner["type"][] = ["powered-by", "worldwide", "prize-sponsor"];
+  return groups.flatMap((group) =>
+    sortPartnerGroup(allPartners.filter((partner) => partner.type === group))
+  );
 }
 
 export async function getRegionalSemifinals() {
