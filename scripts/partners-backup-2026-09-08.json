@@ -1,0 +1,703 @@
+[
+  {
+    "_createdAt": "2026-08-18T10:20:12Z",
+    "_id": "036b3749-1a58-47e3-8b84-fd96b2f61b45",
+    "_rev": "d8I56S4KO8BIqFqvdRpaAF",
+    "_type": "partner",
+    "_updatedAt": "2026-08-18T10:20:27Z",
+    "knockout": false,
+    "logo": {
+      "_type": "image",
+      "asset": {
+        "_ref": "image-533c3c5682b6006f100bc2146b6d64643f30cc32-1000x537-png",
+        "_type": "reference"
+      }
+    },
+    "name": "BETT",
+    "type": "worldwide",
+    "url": "https://www.bettshow.com/"
+  },
+  {
+    "_createdAt": "2026-08-18T10:22:15Z",
+    "_id": "64a4cc52-3fc9-42ce-9369-8ece40a187d4",
+    "_rev": "0F4vOA1ZrduARBuXxqBvO6",
+    "_system": {
+      "base": {
+        "id": "64a4cc52-3fc9-42ce-9369-8ece40a187d4",
+        "rev": "d8I56S4KO8BIqFqvdRqOM4"
+      }
+    },
+    "_type": "partner",
+    "_updatedAt": "2026-08-18T10:26:41Z",
+    "knockout": false,
+    "logo": {
+      "_type": "image",
+      "asset": {
+        "_ref": "image-a4eb21d9ccd8a39a3606e8dc4e9a50833483db76-1200x630-png",
+        "_type": "reference"
+      }
+    },
+    "name": "HolonIQ",
+    "type": "worldwide",
+    "url": "https://www.holoniq.com/"
+  },
+  {
+    "_createdAt": "2026-09-08T07:11:38Z",
+    "_id": "977d9e0f-c75e-4428-9836-6f884df72fdb",
+    "_rev": "mhtHEYKf0io2TsMcc7AlXl",
+    "_type": "partner",
+    "_updatedAt": "2026-09-08T07:12:30Z",
+    "knockout": false,
+    "logo": {
+      "_type": "image",
+      "asset": {
+        "_ref": "image-f0af79cf433a88f470600327d74a51c015d8f30c-1334x236-png",
+        "_type": "reference"
+      }
+    },
+    "name": "EdTech HUB"
+  },
+  {
+    "_createdAt": "2026-08-18T08:51:57Z",
+    "_id": "a146b6bb-0f16-4a43-b800-65e5b73c00b8",
+    "_rev": "u32fXzSceOkYTxhEeRgOY7",
+    "_type": "partner",
+    "_updatedAt": "2026-08-18T08:55:10Z",
+    "knockout": false,
+    "logo": {
+      "_type": "image",
+      "asset": {
+        "_ref": "image-b90b7f4360b5ed513e090724e41d945934d7f189-300x144-png",
+        "_type": "reference"
+      }
+    },
+    "name": "SXSWEDU",
+    "type": "worldwide",
+    "url": "https://sxswedu.com/"
+  },
+  {
+    "_createdAt": "2026-08-03T09:21:18Z",
+    "_id": "ba5c8e15-a22e-4299-b999-973ae8af60f1",
+    "_rev": "AbE0eRTxRWYSaELT1V7ydw",
+    "_type": "partner",
+    "_updatedAt": "2026-08-03T09:22:46Z",
+    "knockout": false,
+    "logo": {
+      "_type": "image",
+      "asset": {
+        "_ref": "image-e9cb5d82d25625dd50b55a8c16acfddad255930c-6855x2084-png",
+        "_type": "reference"
+      }
+    },
+    "name": "EdTech Ukraine",
+    "type": "worldwide",
+    "url": "https://edtech.net.ua/en"
+  },
+  {
+    "_createdAt": "2026-08-18T12:07:57Z",
+    "_id": "ed9c753e-a930-48af-82de-06d2d29cfa9a",
+    "_rev": "rjtjBPnLtKGX8AmOM3UQup",
+    "_type": "partner",
+    "_updatedAt": "2026-08-18T12:08:59Z",
+    "knockout": false,
+    "logo": {
+      "_type": "image",
+      "asset": {
+        "_ref": "image-c05a0b0487eedf55a37656fa766f4271bb6fb318-900x294-png",
+        "_type": "reference"
+      }
+    },
+    "name": "Colley",
+    "type": "worldwide",
+    "url": "https://www.cooley.com/"
+  },
+  {
+    "_createdAt": "2026-07-12T15:05:26Z",
+    "_id": "gesawards-partner-2",
+    "_rev": "NRohdOlVbmL1YMhaz9O8cl",
+    "_type": "partner",
+    "_updatedAt": "2026-07-28T23:05:26Z",
+    "logo": {
+      "_type": "image",
+      "asset": {
+        "_ref": "image-149ba5de00bb9f65c79db9730a5a79f134b107f9-1482x530-png",
+        "_type": "reference"
+      }
+    },
+    "name": "MindCET Labs",
+    "order": 2,
+    "type": "powered-by",
+    "url": "https://mindcet.io"
+  },
+  {
+    "_createdAt": "2026-07-12T15:05:26Z",
+    "_id": "gesawards-partner-3",
+    "_rev": "jAlsQmcs5UvOUCn3Hf1Ehk",
+    "_type": "partner",
+    "_updatedAt": "2026-07-28T12:11:24Z",
+    "logo": {
+      "_type": "image",
+      "asset": {
+        "_ref": "image-9200f908dcadb0f83ee0167ac903b4a987a8193d-512x87-png",
+        "_type": "reference"
+      }
+    },
+    "name": "Future Education Modena",
+    "order": 23,
+    "type": "worldwide"
+  },
+  {
+    "_createdAt": "2026-07-12T15:05:26Z",
+    "_id": "gesawards-partner-4",
+    "_rev": "NRohdOlVbmL1YMhaz9OAhf",
+    "_type": "partner",
+    "_updatedAt": "2026-07-28T23:05:44Z",
+    "logo": {
+      "_type": "image",
+      "asset": {
+        "_ref": "image-c5f3bf4a9bb15f9ca5c9840d073f321293e0272a-264x167-png",
+        "_type": "reference"
+      }
+    },
+    "name": "Global EdTech Impact Alliance",
+    "order": 24,
+    "type": "worldwide"
+  },
+  {
+    "_createdAt": "2026-07-12T15:05:26Z",
+    "_id": "gesawards-partner-5",
+    "_rev": "jAlsQmcs5UvOUCn3HhfrRK",
+    "_type": "partner",
+    "_updatedAt": "2026-07-29T07:04:07Z",
+    "knockout": true,
+    "logo": {
+      "_type": "image",
+      "asset": {
+        "_ref": "image-d394d03eab17249cbf82cdaed4b803ee09669958-3000x1800-png",
+        "_type": "reference"
+      }
+    },
+    "name": "Amazon Web Services",
+    "order": 5,
+    "type": "prize-sponsor"
+  },
+  {
+    "_createdAt": "2026-07-28T12:11:24Z",
+    "_id": "gesawards-partner-worldwide-afinef",
+    "_rev": "jAlsQmcs5UvOUCn3Hf1Ehk",
+    "_type": "partner",
+    "_updatedAt": "2026-07-28T12:11:24Z",
+    "logo": {
+      "_type": "image",
+      "asset": {
+        "_ref": "image-9b4623555165fca614d0f27922bc1a3bc597b3ae-1368x801-svg",
+        "_type": "reference"
+      }
+    },
+    "name": "Afinef",
+    "order": 10,
+    "type": "worldwide"
+  },
+  {
+    "_createdAt": "2026-07-15T13:08:26Z",
+    "_id": "gesawards-partner-worldwide-br-founder-institute-schoolguardian",
+    "_rev": "jAlsQmcs5UvOUCn3Hf1Ehk",
+    "_type": "partner",
+    "_updatedAt": "2026-07-28T12:11:24Z",
+    "logo": {
+      "_type": "image",
+      "asset": {
+        "_ref": "image-d1d6d59dca81093a159aa832fd5d580d28d3fe26-303x166-png",
+        "_type": "reference"
+      }
+    },
+    "name": "BR Founder Institute/ SchoolGuardian",
+    "order": 11,
+    "type": "worldwide"
+  },
+  {
+    "_createdAt": "2026-07-28T12:11:24Z",
+    "_id": "gesawards-partner-worldwide-dohe",
+    "_rev": "8PZUX3ShTf5214Jw1xa2mV",
+    "_system": {
+      "base": {
+        "id": "gesawards-partner-worldwide-dohe",
+        "rev": "jAlsQmcs5UvOUCn3Hf1Ehk"
+      }
+    },
+    "_type": "partner",
+    "_updatedAt": "2026-08-03T09:23:04Z",
+    "logo": {
+      "_type": "image",
+      "asset": {
+        "_ref": "image-8ead96d1ddc0ca3d070ee68ce7c4fc7391214d9e-858x482-png",
+        "_type": "reference"
+      }
+    },
+    "name": "DOHE",
+    "order": 12,
+    "type": "worldwide"
+  },
+  {
+    "_createdAt": "2026-07-15T13:08:26Z",
+    "_id": "gesawards-partner-worldwide-dutch-edtech",
+    "_rev": "MI7umc3rqVNw7BbgAuCmZv",
+    "_type": "partner",
+    "_updatedAt": "2026-07-28T23:05:28Z",
+    "logo": {
+      "_type": "image",
+      "asset": {
+        "_ref": "image-77a52c835ffc5a5a71397c6546bf94a8a49e20df-204x206-png",
+        "_type": "reference"
+      }
+    },
+    "name": "Dutch EdTech",
+    "order": 13,
+    "type": "worldwide"
+  },
+  {
+    "_createdAt": "2026-07-15T13:08:26Z",
+    "_id": "gesawards-partner-worldwide-edcrunch",
+    "_rev": "jAlsQmcs5UvOUCn3HhfrRK",
+    "_type": "partner",
+    "_updatedAt": "2026-07-29T07:04:07Z",
+    "knockout": true,
+    "logo": {
+      "_type": "image",
+      "asset": {
+        "_ref": "image-2ef28f746ed82620f297a314fcab51882732836f-834x253-svg",
+        "_type": "reference"
+      }
+    },
+    "name": "Edcrunch",
+    "order": 14,
+    "type": "worldwide"
+  },
+  {
+    "_createdAt": "2026-07-15T13:08:26Z",
+    "_id": "gesawards-partner-worldwide-edlatam-alliance",
+    "_rev": "jAlsQmcs5UvOUCn3Hh5rTY",
+    "_type": "partner",
+    "_updatedAt": "2026-07-28T23:05:33Z",
+    "logo": {
+      "_type": "image",
+      "asset": {
+        "_ref": "image-481eb298065cc48ce325d094e575a25d369f1a0e-817x282-png",
+        "_type": "reference"
+      }
+    },
+    "name": "EdLATAM Alliance",
+    "order": 15,
+    "type": "worldwide"
+  },
+  {
+    "_createdAt": "2026-07-15T13:08:26Z",
+    "_id": "gesawards-partner-worldwide-edtech-austria-innovation-salzburg",
+    "_rev": "jAlsQmcs5UvOUCn3HhdltY",
+    "_type": "partner",
+    "_updatedAt": "2026-07-29T06:42:22Z",
+    "logo": {
+      "_type": "image",
+      "asset": {
+        "_ref": "image-ec46db5488d7ed6ecc0f8fcdaf2db45a30854d91-270x255-png",
+        "_type": "reference"
+      }
+    },
+    "name": "EdTech Austria - Innovation Salzburg",
+    "order": 16,
+    "type": "worldwide"
+  },
+  {
+    "_createdAt": "2026-07-28T12:11:24Z",
+    "_id": "gesawards-partner-worldwide-edtech-france",
+    "_rev": "NRohdOlVbmL1YMhaz9O9M7",
+    "_type": "partner",
+    "_updatedAt": "2026-07-28T23:05:35Z",
+    "logo": {
+      "_type": "image",
+      "asset": {
+        "_ref": "image-e53083147b5ddda71979f03884ba8314fce995d1-458x452-png",
+        "_type": "reference"
+      }
+    },
+    "name": "EdTech France",
+    "order": 17,
+    "type": "worldwide"
+  },
+  {
+    "_createdAt": "2026-07-15T13:08:26Z",
+    "_id": "gesawards-partner-worldwide-edtech-italy",
+    "_rev": "jAlsQmcs5UvOUCn3HhfrRK",
+    "_type": "partner",
+    "_updatedAt": "2026-07-29T07:04:07Z",
+    "knockout": true,
+    "logo": {
+      "_type": "image",
+      "asset": {
+        "_ref": "image-1f088bf89640e35a2c3d03003353383983fe8fa9-363x42-svg",
+        "_type": "reference"
+      }
+    },
+    "name": "EdTech Italy",
+    "order": 18,
+    "type": "worldwide"
+  },
+  {
+    "_createdAt": "2026-07-15T13:08:26Z",
+    "_id": "gesawards-partner-worldwide-eduspaze",
+    "_rev": "jAlsQmcs5UvOUCn3Hf1Ehk",
+    "_type": "partner",
+    "_updatedAt": "2026-07-28T12:11:24Z",
+    "logo": {
+      "_type": "image",
+      "asset": {
+        "_ref": "image-5d0cd2b5258e4a98c9d01f456fa8d6ffd2aabfd1-300x83-jpg",
+        "_type": "reference"
+      }
+    },
+    "name": "Eduspaze",
+    "order": 19,
+    "type": "worldwide"
+  },
+  {
+    "_createdAt": "2026-07-28T12:11:24Z",
+    "_id": "gesawards-partner-worldwide-edutech-cluster",
+    "_rev": "NRohdOlVbmL1YMhaz9O9mN",
+    "_type": "partner",
+    "_updatedAt": "2026-07-28T23:05:39Z",
+    "logo": {
+      "_type": "image",
+      "asset": {
+        "_ref": "image-ced860f906eb0773f649758c17617345e56ce16c-2657x3016-png",
+        "_type": "reference"
+      }
+    },
+    "name": "EduTech Cluster",
+    "order": 20,
+    "type": "worldwide"
+  },
+  {
+    "_createdAt": "2026-07-28T12:11:24Z",
+    "_id": "gesawards-partner-worldwide-eduvation",
+    "_rev": "MI7umc3rqVNw7BbgAuCncV",
+    "_type": "partner",
+    "_updatedAt": "2026-07-28T23:05:41Z",
+    "logo": {
+      "_type": "image",
+      "asset": {
+        "_ref": "image-478dc68abd8cb996d91dbf7a3cd31dd3ea8122a8-242x52-png",
+        "_type": "reference"
+      }
+    },
+    "name": "Eduvation",
+    "order": 21,
+    "type": "worldwide"
+  },
+  {
+    "_createdAt": "2026-07-15T13:08:26Z",
+    "_id": "gesawards-partner-worldwide-esperanza",
+    "_rev": "jAlsQmcs5UvOUCn3Hf1Ehk",
+    "_type": "partner",
+    "_updatedAt": "2026-07-28T12:11:24Z",
+    "logo": {
+      "_type": "image",
+      "asset": {
+        "_ref": "image-c65838b3eb0a0ddf6c0195be941150aee77a6daa-1202x445-png",
+        "_type": "reference"
+      }
+    },
+    "name": "Esperanza",
+    "order": 22,
+    "type": "worldwide"
+  },
+  {
+    "_createdAt": "2026-07-15T13:08:26Z",
+    "_id": "gesawards-partner-worldwide-gset-ghana-society-for-education-technology",
+    "_rev": "jAlsQmcs5UvOUCn3Hf1Ehk",
+    "_type": "partner",
+    "_updatedAt": "2026-07-28T12:11:24Z",
+    "logo": {
+      "_type": "image",
+      "asset": {
+        "_ref": "image-939c56d71baaa685521696cd3a5a95df69a4b338-107x54-png",
+        "_type": "reference"
+      }
+    },
+    "name": "GSET Ghana Society for Education Technology",
+    "order": 25,
+    "type": "worldwide"
+  },
+  {
+    "_createdAt": "2026-07-28T12:11:24Z",
+    "_id": "gesawards-partner-worldwide-hiedu",
+    "_rev": "MI7umc3rqVNw7BbgAuCoB6",
+    "_type": "partner",
+    "_updatedAt": "2026-07-28T23:05:46Z",
+    "logo": {
+      "_type": "image",
+      "asset": {
+        "_ref": "image-8e60063a4de9a9bf5aceb4be02957ef77c3b305a-1024x308-png",
+        "_type": "reference"
+      }
+    },
+    "name": "HiEdu",
+    "order": 26,
+    "type": "worldwide"
+  },
+  {
+    "_createdAt": "2026-07-15T13:08:26Z",
+    "_id": "gesawards-partner-worldwide-ingenious-faces",
+    "_rev": "MI7umc3rqVNw7BbgAuCoI1",
+    "_type": "partner",
+    "_updatedAt": "2026-07-28T23:05:49Z",
+    "logo": {
+      "_type": "image",
+      "asset": {
+        "_ref": "image-83edf462592d02cca92dbdc7a7ce6da09d19fb4e-107x91-png",
+        "_type": "reference"
+      }
+    },
+    "name": "Ingenious Faces",
+    "order": 27,
+    "type": "worldwide"
+  },
+  {
+    "_createdAt": "2026-07-28T12:11:24Z",
+    "_id": "gesawards-partner-worldwide-learning-spark",
+    "_rev": "jAlsQmcs5UvOUCn3Hf1Ehk",
+    "_type": "partner",
+    "_updatedAt": "2026-07-28T12:11:24Z",
+    "logo": {
+      "_type": "image",
+      "asset": {
+        "_ref": "image-9206d39f438299c8d4c03214c2f71fd34d84f966-470x80-png",
+        "_type": "reference"
+      }
+    },
+    "name": "Learning Spark",
+    "order": 28,
+    "type": "worldwide"
+  },
+  {
+    "_createdAt": "2026-07-28T12:11:24Z",
+    "_id": "gesawards-partner-worldwide-learnlaunch",
+    "_rev": "NRohdOlVbmL1YMhaz9OBR1",
+    "_type": "partner",
+    "_updatedAt": "2026-07-28T23:05:51Z",
+    "logo": {
+      "_type": "image",
+      "asset": {
+        "_ref": "image-29e1938618cd06c254b4a4975f34297dec290c82-1858x370-png",
+        "_type": "reference"
+      }
+    },
+    "name": "Learnlaunch",
+    "order": 29,
+    "type": "worldwide"
+  },
+  {
+    "_createdAt": "2026-07-15T13:08:26Z",
+    "_id": "gesawards-partner-worldwide-meti-japan",
+    "_rev": "jAlsQmcs5UvOUCn3Hf1Ehk",
+    "_type": "partner",
+    "_updatedAt": "2026-07-28T12:11:24Z",
+    "logo": {
+      "_type": "image",
+      "asset": {
+        "_ref": "image-17a0fa009a2fdd825991844d9ed1da05c5ba9ad6-674x178-png",
+        "_type": "reference"
+      }
+    },
+    "name": "METI Japan",
+    "order": 30,
+    "type": "worldwide"
+  },
+  {
+    "_createdAt": "2026-07-28T12:11:24Z",
+    "_id": "gesawards-partner-worldwide-mindcet-labs",
+    "_rev": "NRohdOlVbmL1YMhaz9OBhj",
+    "_type": "partner",
+    "_updatedAt": "2026-07-28T23:05:55Z",
+    "logo": {
+      "_type": "image",
+      "asset": {
+        "_ref": "image-149ba5de00bb9f65c79db9730a5a79f134b107f9-1482x530-png",
+        "_type": "reference"
+      }
+    },
+    "name": "Mindcet Labs",
+    "order": 31,
+    "type": "worldwide"
+  },
+  {
+    "_createdAt": "2026-07-15T13:08:26Z",
+    "_id": "gesawards-partner-worldwide-positivo",
+    "_rev": "MI7umc3rqVNw7BbgAuCp94",
+    "_type": "partner",
+    "_updatedAt": "2026-07-28T23:05:57Z",
+    "logo": {
+      "_type": "image",
+      "asset": {
+        "_ref": "image-575ec63013baad0e103e59a9b4fbf4e945fde9a1-128x38-png",
+        "_type": "reference"
+      }
+    },
+    "name": "Positivo",
+    "order": 32,
+    "type": "worldwide"
+  },
+  {
+    "_createdAt": "2026-07-15T13:08:26Z",
+    "_id": "gesawards-partner-worldwide-prismapar",
+    "_rev": "jAlsQmcs5UvOUCn3Hf1Ehk",
+    "_type": "partner",
+    "_updatedAt": "2026-07-28T12:11:24Z",
+    "logo": {
+      "_type": "image",
+      "asset": {
+        "_ref": "image-1ef63de7ef743d7ed2b1d1688f1c8d230a8a5195-1492x550-png",
+        "_type": "reference"
+      }
+    },
+    "name": "Prismapar",
+    "order": 33,
+    "type": "worldwide"
+  },
+  {
+    "_createdAt": "2026-07-15T13:08:26Z",
+    "_id": "gesawards-partner-worldwide-sek-lab",
+    "_rev": "gvb15rYHBFgFq42eS8Yr9J",
+    "_type": "partner",
+    "_updatedAt": "2026-07-15T13:08:26Z",
+    "logo": {
+      "_type": "image",
+      "asset": {
+        "_ref": "image-02fa7cbb72735c99e05114384d52f141b6be500c-168x138-png",
+        "_type": "reference"
+      }
+    },
+    "name": "SEK Lab",
+    "order": 25,
+    "type": "worldwide"
+  },
+  {
+    "_createdAt": "2026-07-15T13:08:26Z",
+    "_id": "gesawards-partner-worldwide-startedaccelerator",
+    "_rev": "jAlsQmcs5UvOUCn3Hh5vAQ",
+    "_type": "partner",
+    "_updatedAt": "2026-07-28T23:06:00Z",
+    "logo": {
+      "_type": "image",
+      "asset": {
+        "_ref": "image-3bdc13730fe7f3158ea0591590ae96c82a3300f9-872x262-png",
+        "_type": "reference"
+      }
+    },
+    "name": "StartEdAccelerator",
+    "order": 34,
+    "type": "worldwide"
+  },
+  {
+    "_createdAt": "2026-07-15T13:08:26Z",
+    "_id": "gesawards-partner-worldwide-startup-braga",
+    "_rev": "jAlsQmcs5UvOUCn3Hf1Ehk",
+    "_type": "partner",
+    "_updatedAt": "2026-07-28T12:11:24Z",
+    "logo": {
+      "_type": "image",
+      "asset": {
+        "_ref": "image-f48671a5548812346ab945ae3d88380a213dd0e4-70x20-svg",
+        "_type": "reference"
+      }
+    },
+    "name": "Startup Braga",
+    "order": 35,
+    "type": "worldwide"
+  },
+  {
+    "_createdAt": "2026-07-28T12:11:24Z",
+    "_id": "gesawards-partner-worldwide-taipei-computer-association-tca",
+    "_rev": "NRohdOlVbmL1YMhaz9OCw7",
+    "_type": "partner",
+    "_updatedAt": "2026-07-28T23:06:02Z",
+    "logo": {
+      "_type": "image",
+      "asset": {
+        "_ref": "image-d41f067927a663c9fe4a08e0e472b69ec60095a4-154x75-png",
+        "_type": "reference"
+      }
+    },
+    "name": "Taipei Computer Association (TCA)",
+    "order": 36,
+    "type": "worldwide"
+  },
+  {
+    "_createdAt": "2026-07-28T12:11:24Z",
+    "_id": "gesawards-partner-worldwide-tech-monterrey",
+    "_rev": "jAlsQmcs5UvOUCn3Hhldlm",
+    "_type": "partner",
+    "_updatedAt": "2026-07-29T07:35:45Z",
+    "logo": {
+      "_type": "image",
+      "asset": {
+        "_ref": "image-dada4f252369ab4bde016e26929958c608a89724-800x211-png",
+        "_type": "reference"
+      }
+    },
+    "name": "Tech Monterrey",
+    "order": 37,
+    "type": "worldwide"
+  },
+  {
+    "_createdAt": "2026-07-28T12:11:24Z",
+    "_id": "gesawards-partner-worldwide-tyme-education",
+    "_rev": "MI7umc3rqVNw7BbgAuCpvV",
+    "_type": "partner",
+    "_updatedAt": "2026-07-28T23:06:04Z",
+    "logo": {
+      "_type": "image",
+      "asset": {
+        "_ref": "image-08b7d072bad38afb5a9f9a399ddf2a0a47abd7b3-243x72-png",
+        "_type": "reference"
+      }
+    },
+    "name": "Tyme Education",
+    "order": 38,
+    "type": "worldwide"
+  },
+  {
+    "_createdAt": "2026-07-28T12:11:24Z",
+    "_id": "gesawards-partner-worldwide-ucl-edtech-labs",
+    "_rev": "jAlsQmcs5UvOUCn3Hh5wMw",
+    "_type": "partner",
+    "_updatedAt": "2026-07-28T23:06:06Z",
+    "logo": {
+      "_type": "image",
+      "asset": {
+        "_ref": "image-3fcb08bd8bd5d7b111906a281d78e58698aaa580-1942x911-png",
+        "_type": "reference"
+      }
+    },
+    "name": "UCL EdTech Labs",
+    "order": 39,
+    "type": "worldwide"
+  },
+  {
+    "_createdAt": "2026-07-15T13:08:26Z",
+    "_id": "gesawards-partner-worldwide-xedu",
+    "_rev": "jAlsQmcs5UvOUCn3HhfrRK",
+    "_type": "partner",
+    "_updatedAt": "2026-07-29T07:04:07Z",
+    "knockout": true,
+    "logo": {
+      "_type": "image",
+      "asset": {
+        "_ref": "image-98e6caa4a8cb03ac4ffe520f69426a752718a631-849x451-png",
+        "_type": "reference"
+      }
+    },
+    "name": "XEdu",
+    "order": 40,
+    "type": "worldwide"
+  }
+]
