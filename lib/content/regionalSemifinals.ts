@@ -43,11 +43,39 @@ export const regionalSemifinals: RegionalSemifinalEntry[] = [
     ]
   },
   {
+    "name": "Baltics",
+    "partners": [
+      {
+        "name": "EdTech Lithuania",
+        "logo": "/brand/partners/edtech-lithuania.png"
+      }
+    ],
+    "continent": "europe",
+    "countries": [
+      {
+        "name": "Lithuania",
+        "code": "lt"
+      },
+      {
+        "name": "Estonia",
+        "code": "ee"
+      },
+      {
+        "name": "Latvia",
+        "code": "lv"
+      }
+    ]
+  },
+  {
     "name": "Europe",
     "partners": [
       {
-        "name": "DOHE",
-        "logo": "/brand/partners/dohe.png"
+        "name": "DOHE - EdTech HUB",
+        "logo": "/brand/partners/dohe-edtech-hub.png"
+      },
+      {
+        "name": "DOHE - EdTech HUB copy",
+        "logo": "/brand/partners/dohe-edtech-hub-copy.png"
       }
     ],
     "continent": "europe",
@@ -191,8 +219,21 @@ export const regionalSemifinals: RegionalSemifinalEntry[] = [
       {
         "name": "United Kingdom (UK)",
         "code": "gb"
+      },
+      {
+        "name": "Estonia",
+        "code": "ee"
+      },
+      {
+        "name": "Latvia",
+        "code": "lv"
+      },
+      {
+        "name": "Lithuania",
+        "code": "lt"
       }
-    ]
+    ],
+    "date": "2026-11-24"
   },
   {
     "name": "France",
@@ -251,8 +292,8 @@ export const regionalSemifinals: RegionalSemifinalEntry[] = [
     "name": "Italy",
     "partners": [
       {
-        "name": "EdTech Italy",
-        "logo": "/brand/partners/edtech-italy.svg"
+        "name": "EdTech Italia",
+        "logo": "/brand/partners/edtech-italia.svg"
       }
     ],
     "continent": "europe",
@@ -264,11 +305,11 @@ export const regionalSemifinals: RegionalSemifinalEntry[] = [
     ]
   },
   {
-    "name": "Nordic & Baltics",
+    "name": "Nordic",
     "partners": [
       {
-        "name": "XEdu",
-        "logo": "/brand/partners/xedu.png"
+        "name": "Nordic",
+        "logo": "/brand/partners/nordic.png"
       }
     ],
     "continent": "europe",
@@ -292,14 +333,6 @@ export const regionalSemifinals: RegionalSemifinalEntry[] = [
       {
         "name": "Iceland",
         "code": "is"
-      },
-      {
-        "name": "Latvia",
-        "code": "lv"
-      },
-      {
-        "name": "Lithuania",
-        "code": "lt"
       },
       {
         "name": "Norway",
@@ -493,8 +526,8 @@ export const regionalSemifinals: RegionalSemifinalEntry[] = [
     "name": "Hong Kong",
     "partners": [
       {
-        "name": "Esperanza",
-        "logo": "/brand/partners/esperanza.png"
+        "name": "Esperanza Life",
+        "logo": "/brand/partners/esperanza-life.png"
       }
     ],
     "continent": "asia",
@@ -507,7 +540,8 @@ export const regionalSemifinals: RegionalSemifinalEntry[] = [
         "name": "China",
         "code": "cn"
       }
-    ]
+    ],
+    "date": "2026-10-27"
   },
   {
     "name": "India",
@@ -539,7 +573,8 @@ export const regionalSemifinals: RegionalSemifinalEntry[] = [
         "name": "Japan",
         "code": "jp"
       }
-    ]
+    ],
+    "date": "2026-10-23"
   },
   {
     "name": "Korea",
@@ -632,7 +667,7 @@ export const regionalSemifinals: RegionalSemifinalEntry[] = [
         "code": "tw"
       }
     ],
-    "date": "2026-11-13"
+    "date": "2026-10-14"
   },
   {
     "name": "Brazil",

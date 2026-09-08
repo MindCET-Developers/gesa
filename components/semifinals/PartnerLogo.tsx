@@ -37,8 +37,12 @@ function monogramColor(name: string): string {
  * get a navy one instead. These are the same partners as the "White logo — show on a dark
  * tile" checkbox in Sanity, but the semifinals path reads Airtable and the committed snapshot
  * — never Sanity — so the flag can't be joined in and is kept here, next to the tile it
- * affects. Add a name here when a partner's logo turns out to be knockout. */
-const KNOCKOUT_PARTNERS = new Set(["Edcrunch", "EdTech Italy", "XEdu"]);
+ * affects. Add a name here when a partner's logo turns out to be knockout.
+ *
+ * These are Airtable record names, so renaming a partner there silently breaks the match and
+ * its tile goes back to being an invisible white-on-white mark — that is how "EdTech Italy"
+ * and "XEdu" became "EdTech Italia" and "Nordic". Check this list after a rename. */
+const KNOCKOUT_PARTNERS = new Set(["Edcrunch", "EdTech Italia", "Nordic"]);
 
 export function PartnerLogo({ partner, logo }: { partner: string; logo?: string }) {
   if (logo) {

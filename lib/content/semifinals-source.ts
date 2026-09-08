@@ -8,7 +8,7 @@
 // - Table "Semifinals" (tblAJHZRBQyfPOySc): each named semifinal + linked partners + date.
 // - Partners linked from table "Partners" (tblAfv3rYs6GyXQEF): partner names + logo attachments.
 // - Table "all countries" (tbl7wFk8g0AbGx7ee): each country's real "Geographic Area".
-// Last refreshed: 2026-08-03.
+// Last refreshed: 2026-09-08.
 //
 // Winners (1st/2nd/3rd place) exist in Airtable but are empty for now — add later.
 
@@ -40,6 +40,13 @@ export const RAW_SEMIFINALS: RawSemifinalEntry[] = [
     ],
   },
   {
+    name: "Baltics",
+    partners: ["EdTech Lithuania"],
+    countries: [
+      "Lithuania", "Estonia", "Latvia",
+    ],
+  },
+  {
     name: "Brazil",
     partners: ["Positivo", "BR Founder Institute/ SchoolGuardian"],
     countries: [
@@ -57,15 +64,16 @@ export const RAW_SEMIFINALS: RawSemifinalEntry[] = [
   },
   {
     name: "Europe",
-    partners: ["DOHE"],
+    partners: ["DOHE - EdTech HUB", "DOHE - EdTech HUB copy"],
     countries: [
       "Albania", "Belgium", "Croatia", "Cyprus", "Czech Republic", "Greece", "Hungary",
       "Malta", "Moldova", "Monaco", "Serbia", "Slovenia", "Switzerland", "Turkey", "Ukraine",
       "Andorra", "Belarus", "Bosnia and Herzegovina", "Bulgaria", "Kosovo", "Liechtenstein",
       "Luxembourg", "Macedonia (FYROM)", "Montenegro", "Netherlands", "Poland", "Romania",
       "San Marino", "Slovakia", "France", "Austria", "Germany", "Italy", "Spain",
-      "United Kingdom (UK)",
+      "United Kingdom (UK)", "Estonia", "Latvia", "Lithuania",
     ],
+    date: "2026-11-24",
   },
   {
     name: "France",
@@ -84,10 +92,11 @@ export const RAW_SEMIFINALS: RawSemifinalEntry[] = [
   },
   {
     name: "Hong Kong",
-    partners: ["Esperanza"],
+    partners: ["Esperanza Life"],
     countries: [
       "Hong Kong", "China",
     ],
+    date: "2026-10-27",
   },
   {
     name: "India",
@@ -106,7 +115,7 @@ export const RAW_SEMIFINALS: RawSemifinalEntry[] = [
   },
   {
     name: "Italy",
-    partners: ["EdTech Italy"],
+    partners: ["EdTech Italia"],
     countries: [
       "Italy",
     ],
@@ -117,6 +126,7 @@ export const RAW_SEMIFINALS: RawSemifinalEntry[] = [
     countries: [
       "Japan",
     ],
+    date: "2026-10-23",
   },
   {
     name: "Korea",
@@ -145,10 +155,10 @@ export const RAW_SEMIFINALS: RawSemifinalEntry[] = [
     ],
   },
   {
-    name: "Nordic & Baltics",
-    partners: ["XEdu"],
+    name: "Nordic",
+    partners: ["Nordic"],
     countries: [
-      "Denmark", "Sweden", "Estonia", "Finland", "Iceland", "Latvia", "Lithuania", "Norway",
+      "Denmark", "Sweden", "Estonia", "Finland", "Iceland", "Norway",
     ],
   },
   {
@@ -173,7 +183,7 @@ export const RAW_SEMIFINALS: RawSemifinalEntry[] = [
     countries: [
       "Taiwan",
     ],
-    date: "2026-11-13",
+    date: "2026-10-14",
   },
   {
     name: "U.K.",
@@ -194,7 +204,17 @@ export const RAW_SEMIFINALS: RawSemifinalEntry[] = [
     partners: ["Learnlaunch"],
     countries: [
       "USA - Alabama", "USA - Arkansas", "USA - Illinois", "USA - New Jersey",
-      "USA - Pennsylvania", "USA - Washington D.C", "Canada",
+      "USA - Pennsylvania", "USA - Washington D.C", "Canada", "USA - Virginia",
+      "USA - New York", "USA - Florida", "USA - Connecticut", "USA - West Virginia",
+      "USA - North Carolina", "USA - Michigan", "USA - Minnesota", "USA - Rhode Island",
+      "USA - Mississippi", "USA - Maine", "USA - Tennessee", "USA - Ohio", "USA - Louisiana",
+      "USA - Vermont", "USA - Kentucky", "USA - Wisconsin", "USA - Maryland", "USA - Iowa",
+      "USA - Georgia", "USA - South Carolina", "USA - Indiana", "USA - New Hampshire",
+      "USA - Massachusetts", "USA - Missouri", "USA - Delaware", "USA - Nebraska",
+      "USA - New Mexico", "USA - North Dakota", "USA - Hawaii", "USA - Kansas",
+      "USA - Arizona", "USA - Wyoming", "USA - Nevada", "USA - Idaho", "USA - Oregon",
+      "USA - Utah", "USA - South Dakota", "USA - California", "USA - Texas", "USA - Colorado",
+      "USA - Oklahoma", "USA - Montana", "USA - Alaska", "USA - Washington",
     ],
   },
   {
