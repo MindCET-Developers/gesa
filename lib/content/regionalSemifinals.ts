@@ -72,10 +72,6 @@ export const regionalSemifinals: RegionalSemifinalEntry[] = [
       {
         "name": "DOHE - EdTech HUB",
         "logo": "/brand/partners/dohe-edtech-hub.png"
-      },
-      {
-        "name": "DOHE - EdTech HUB copy",
-        "logo": "/brand/partners/dohe-edtech-hub-copy.png"
       }
     ],
     "continent": "europe",
@@ -240,7 +236,7 @@ export const regionalSemifinals: RegionalSemifinalEntry[] = [
     "partners": [
       {
         "name": "EdTech France",
-        "logo": "/brand/partners/edtech-france.png"
+        "logo": "/brand/partners/edtech-france-icon.png"
       },
       {
         "name": "Afinef",
@@ -695,7 +691,7 @@ export const regionalSemifinals: RegionalSemifinalEntry[] = [
     "partners": [
       {
         "name": "Tech Monterrey",
-        "logo": "/brand/partners/tech-monterrey.png"
+        "logo": "/brand/partners/tech-monterrey.jpg"
       },
       {
         "name": "EdLATAM Alliance",

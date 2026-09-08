@@ -64,7 +64,7 @@ export const RAW_SEMIFINALS: RawSemifinalEntry[] = [
   },
   {
     name: "Europe",
-    partners: ["DOHE - EdTech HUB", "DOHE - EdTech HUB copy"],
+    partners: ["DOHE - EdTech HUB"],
     countries: [
       "Albania", "Belgium", "Croatia", "Cyprus", "Czech Republic", "Greece", "Hungary",
       "Malta", "Moldova", "Monaco", "Serbia", "Slovenia", "Switzerland", "Turkey", "Ukraine",

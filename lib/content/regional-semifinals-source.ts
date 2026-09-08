@@ -50,7 +50,7 @@ export const RAW_PARTNERS: RawPartner[] = [
       "https://v5.airtableusercontent.com/v3/u/57/57/1788861600000/3ozA36sRZ6j9Bydoo06rhQ/IivUzfV3gz_0wYK6IF2Ao12rzjjtOHN-yQXTiUW9OihJ120d9WW4-PWxD1p3OlSMrok6Z0M7uONMGqOX2tSAVxpO1ITCr95-v-BUaQwqvPoEr9BY3dByV-I0KJKqhMLbatOR3U-a8cr9psH4a22aL_kUpk0bw6uRjxasohd1XdlXwTgjkjsKIv-hc-yQrnVJ/Ml6jl1fWuTbGKzZ8sscRts7u8ESla7Jn9oM2XiJ8DEQ",
   },
   {
-    name: "DOHE - EdTech HUB copy",
+    name: "DOHE - EdTech HUB",
     countries: [
       "Albania", "Belgium", "Croatia", "Cyprus", "Czech Republic", "Greece", "Hungary",
       "Malta", "Moldova", "Monaco", "Serbia", "Slovenia", "Switzerland", "Turkey", "Ukraine",
@@ -60,7 +60,7 @@ export const RAW_PARTNERS: RawPartner[] = [
       "United Kingdom (UK)", "Estonia", "Latvia", "Lithuania",
     ],
     logoUrl:
-      "https://v5.airtableusercontent.com/v3/u/57/57/1788861600000/3ozA36sRZ6j9Bydoo06rhQ/IivUzfV3gz_0wYK6IF2Ao12rzjjtOHN-yQXTiUW9OihJ120d9WW4-PWxD1p3OlSMrok6Z0M7uONMGqOX2tSAVxpO1ITCr95-v-BUaQwqvPoEr9BY3dByV-I0KJKqhMLbatOR3U-a8cr9psH4a22aL_kUpk0bw6uRjxasohd1XdlXwTgjkjsKIv-hc-yQrnVJ/Ml6jl1fWuTbGKzZ8sscRts7u8ESla7Jn9oM2XiJ8DEQ",
+      "https://v5.airtableusercontent.com/v3/u/57/57/1788861600000/m-potp8THb9ErQewaGS-tg/pPkZyHvhlbHU0zSoJHYyYCiesx38A3P4LR4I4-Wvy80VI7Xoh7Cb_I0h0-3-9FbUuFHfZU7-1SY1lpP2Q8PTtxvK6arHTJDsvcc2MwQwfWc9qXoM-nIdcVWgLWdMiA1srEAC7X0WOegCSZ5waiCmEcVvEQMORlF7PqmB8TQF8U9Wczm7AdfscxGYqHCwHAk6dZtdwSSe-C5DlHXQyhhFXw/2FHduH0AB4j7B3ibvXtjbOgToYG6KqBfoERwBpPkVbY",
   },
   {
     name: "Dutch EdTech",
@@ -293,7 +293,7 @@ export const RAW_PARTNERS: RawPartner[] = [
       "Trinidad and Tobago",
     ],
     logoUrl:
-      "https://v5.airtableusercontent.com/v3/u/57/57/1788861600000/ac2vSGXfy7KGkyKWScsuTA/efWe0NOao-oKSAXpFDZ2qfNgXs_TZI1aGnHAoEbodzXz_RicuWoPOWHHMpACrVPkfriCXeD-fuaF3U7_VdaGDIg_vZH3opjxio9vouG7YEvNhpYIid8An4I4aaHVsQiImDkwbaSvm5PdV6q79m6XZAnLit-ezk1zVpoQFBmCO-IvU6mpnZ-ctuhSAYLGMOFP/3JKR7U5Z58Lg6os8XtJb3OQrdkbcShhYdn6afScHafg",
+      "https://v5.airtableusercontent.com/v3/u/57/57/1788861600000/rbW0EdrfBqSYHgoebvXrqw/KnJ1fM2IsPzUZCidUYVb00R-bqDxvNxzvaspY2APm8O-Cff4Zxfojm0GqW_EBaM8mwBUjXVo7xzEazg7o8qM0fv-615eM2Vu0t5k2O64LyhxCtM60zgsdN91ChZI2QAZRu6xsgfTZ5i0RHCtwG8_SfWSzS3mkvXnc-I2_9fLdRw/iKqJGIAY5Fp6e5uxNfQMaTBVcBMSxlg8rYicIyZ3krg",
   },
   {
     name: "Tyme Education",

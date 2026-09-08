@@ -9,6 +9,11 @@
 // scripts/manual-partner-logos.json (partner name -> direct image URL on their own site).
 // Those are downloaded here too and merged into the manifest, so they survive re-running
 // npm run refresh:semifinals. Remove the entry once the partner uploads a logo to Airtable.
+//
+// Two override files sit on either side of the Airtable download:
+// - manual-partner-logos.json only FILLS A GAP — it never displaces an Airtable logo.
+// - circle-logo-overrides.json DISPLACES it, for a partner whose only Airtable asset is a
+//   wide wordmark while we host a squarer icon that actually reads in the 48px circle.
 
 import { writeFileSync, mkdirSync, readFileSync, existsSync } from "node:fs";
 import { fileURLToPath } from "node:url";
@@ -24,6 +29,11 @@ const { RAW_PARTNERS } = await import("../lib/content/regional-semifinals-source
 const manualLogosPath = path.join(__dirname, "manual-partner-logos.json");
 const manualLogos = existsSync(manualLogosPath)
   ? JSON.parse(readFileSync(manualLogosPath, "utf8"))
+  : {};
+
+const circleOverridesPath = path.join(__dirname, "circle-logo-overrides.json");
+const circleOverrides = existsSync(circleOverridesPath)
+  ? JSON.parse(readFileSync(circleOverridesPath, "utf8"))
   : {};
 
 function slugify(name) {
@@ -148,6 +158,22 @@ for (const [name, url] of Object.entries(manualLogos)) {
 
   manifest[name] = `/brand/partners/${filename}`;
   console.log(`Saved ${name} (manual override) -> public/brand/partners/${filename}`);
+}
+
+/* Applied last so it wins: the Airtable asset was still downloaded above (it is what the
+ * partners strip wants), but the manifest — which is what the semifinals circles read — is
+ * pointed at the squarer icon we host ourselves. */
+for (const [name, localPath] of Object.entries(circleOverrides)) {
+  const onDisk = path.join(root, "public", localPath.replace(/^[/]/, ""));
+  if (!existsSync(onDisk)) {
+    console.warn(
+      `Skipping circle override for "${name}": ${localPath} is not in public/. ` +
+        "The wide Airtable asset stays, so its circle will be a thin sliver."
+    );
+    continue;
+  }
+  manifest[name] = localPath;
+  console.log(`Circle override: ${name} -> ${localPath}`);
 }
 
 writeFileSync(manifestPath, JSON.stringify(manifest, null, 2) + "\n");

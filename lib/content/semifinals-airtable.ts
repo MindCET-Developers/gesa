@@ -44,6 +44,9 @@ export const SEMIFINALS_CACHE_TAG = "semifinals";
 
 const PARTNER_NAME_OVERRIDES: Record<string, string> = {
   "SEK Lab/ ?": "SEK Lab",
+  // A duplicated Airtable record (Airtable's own "copy" suffix). Same organization, so it
+  // collapses onto the original and the dedupe below drops the second copy from its row.
+  "DOHE - EdTech HUB copy": "DOHE - EdTech HUB",
 };
 const COUNTRY_NAME_OVERRIDES: Record<string, string> = {
   "Eswatini (formerly Swaziland)": "Eswatini",
@@ -115,28 +118,30 @@ const COUNTRY_TO_ISO2: Record<string, string> = {
 const manifest = logoManifest as Record<string, string>;
 
 /**
- * Partners whose Logo field holds several variants and whose newest upload isn't the one
- * we want. Keyed by partner name -> Airtable attachment filename. Without an entry the
- * last (most recent) attachment wins. Mirrored in scripts/pull-regional-semifinals.mjs.
+ * A partner's Logo field often holds several variants of the same mark — an icon, a wide
+ * wordmark, an older upload. The semifinals tile is a 48px circle, so the squarest variant
+ * is the one that reads: a 6:1 wordmark shrinks to about 46x8 in there and disappears.
+ * Aspect ratio decides, resolution breaks ties, and "newest upload" is only the last resort
+ * for attachments Airtable reports no dimensions for.
+ * Mirrored in scripts/pull-regional-semifinals.mjs.
  */
-const LOGO_FILENAME_OVERRIDES: Record<string, string> = {
-  // The wide -02 variant is the newest upload, but the semifinals tiles read better with
-  // the square lockup.
-  "EdTech Ukraine": "LOGO_RGB_EDTECH-04.png",
-};
+type LogoAttachment = { url: string; filename?: string; width?: number; height?: number };
 
-/** Airtable appends new uploads, so the last attachment is the partner's current logo. */
-function pickLogoAttachment<T extends { url: string; filename?: string }>(
-  partnerName: string,
-  attachments: T[] | undefined
-): T | undefined {
+function pickLogoAttachment<T extends LogoAttachment>(attachments: T[] | undefined): T | undefined {
   if (!attachments?.length) return undefined;
-  const preferred = LOGO_FILENAME_OVERRIDES[partnerName];
-  if (preferred) {
-    const match = attachments.find((a) => a.filename === preferred);
-    if (match) return match;
-  }
-  return attachments[attachments.length - 1];
+
+  const measured = attachments.filter((a): a is T & { width: number; height: number } =>
+    Boolean(a.width && a.height)
+  );
+  if (measured.length === 0) return attachments[attachments.length - 1];
+
+  // |log(ratio)| treats 1:2 and 2:1 as equally far from square.
+  const squareness = (a: { width: number; height: number }) => Math.abs(Math.log(a.width / a.height));
+  return measured.reduce((best, a) => {
+    const d = squareness(a) - squareness(best);
+    if (Math.abs(d) > 0.01) return d < 0 ? a : best;
+    return a.width * a.height > best.width * best.height ? a : best;
+  });
 }
 
 // U+00A0 (non-breaking space) sneaks into some Airtable names — normalize to plain spaces.
@@ -252,16 +257,17 @@ export async function fetchRegionalSemifinals(): Promise<RegionalSemifinalEntry[
       const rawPartnerName = cleanName((partnerRec.fields[F_PARTNER_NAME] as string | undefined) ?? "");
       if (!rawPartnerName) continue;
       const partnerName = PARTNER_NAME_OVERRIDES[rawPartnerName] ?? rawPartnerName;
-      const attachments = partnerRec.fields[F_PARTNER_LOGO] as
-        | { url: string; filename?: string }[]
-        | undefined;
+      const attachments = partnerRec.fields[F_PARTNER_LOGO] as LogoAttachment[] | undefined;
       /* The locally hosted copy wins over the Airtable attachment. Airtable signs every
        * attachment URL afresh on each fetch, so linking it directly gave the same logo a
        * new URL every revalidation — the image optimizer saw a new source each minute and
        * re-transformed all of them, and the links broke once the signature expired. Only
        * partners with no file under public/brand/partners/ fall back to Airtable. */
       const logo =
-        manifest[partnerName] ?? pickLogoAttachment(partnerName, attachments)?.url;
+        manifest[partnerName] ?? pickLogoAttachment(attachments)?.url;
+      /* Two records for one organization (see PARTNER_NAME_OVERRIDES) would otherwise render
+       * as two identical overlapping logos in the same row. */
+      if (partners.some((p) => p.name === partnerName)) continue;
       partners.push({ name: partnerName, logo });
 
       const linkedCountries = (partnerRec.fields[F_PARTNER_COUNTRIES] as string[] | undefined) ?? [];

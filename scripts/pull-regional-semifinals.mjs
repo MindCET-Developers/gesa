@@ -46,29 +46,33 @@ const F_SEMIFINAL_WINNER = "fld1Z8I5xeFrt7kCm";
 // Airtable record names that need canonicalizing before display.
 const PARTNER_NAME_OVERRIDES = {
   "SEK Lab/ ?": "SEK Lab",
+  // A duplicated Airtable record (Airtable's own "copy" suffix). Same organization, so it
+  // collapses onto the original and the dedupe below drops the second copy from its row.
+  "DOHE - EdTech HUB copy": "DOHE - EdTech HUB",
 };
 const COUNTRY_NAME_OVERRIDES = {
   "Eswatini (formerly Swaziland)": "Eswatini",
   "Swaziland (renamed to Eswatini)": "Eswatini",
 };
-// Partners whose Logo field holds several variants and whose newest upload isn't the one we
-// want. Keyed by partner name -> Airtable attachment filename. Without an entry the last
-// (most recent) attachment wins. Mirrored in lib/content/semifinals-airtable.ts.
-const LOGO_FILENAME_OVERRIDES = {
-  // The wide -02 variant is the newest upload, but the semifinals tiles read better with
-  // the square lockup.
-  "EdTech Ukraine": "LOGO_RGB_EDTECH-04.png",
-};
-
-/** Airtable appends new uploads, so the last attachment is the partner's current logo. */
+/* A partner's Logo field often holds several variants of the same mark — an icon, a wide
+ * wordmark, an older upload. The semifinals tile is a 48px circle, so the squarest variant
+ * is the one that reads: a 6:1 wordmark shrinks to about 46x8 in there and disappears.
+ * Aspect ratio decides, resolution breaks ties, and "newest upload" is only the last resort
+ * for attachments Airtable reports no dimensions for.
+ * Mirrored in lib/content/semifinals-airtable.ts. */
 function pickLogoAttachment(partnerName, attachments) {
   if (!attachments?.length) return undefined;
-  const preferred = LOGO_FILENAME_OVERRIDES[partnerName];
-  if (preferred) {
-    const match = attachments.find((a) => a.filename === preferred);
-    if (match) return match;
-  }
-  return attachments[attachments.length - 1];
+
+  const measured = attachments.filter((a) => a.width > 0 && a.height > 0);
+  if (measured.length === 0) return attachments[attachments.length - 1];
+
+  // |log(ratio)| treats 1:2 and 2:1 as equally far from square.
+  const squareness = (a) => Math.abs(Math.log(a.width / a.height));
+  return measured.reduce((best, a) => {
+    const d = squareness(a) - squareness(best);
+    if (Math.abs(d) > 0.01) return d < 0 ? a : best;
+    return a.width * a.height > best.width * best.height ? a : best;
+  });
 }
 
 // Continent overrides — take precedence over Airtable's "Geographic Area" for countries
@@ -315,6 +319,14 @@ if (semifinalRecords.length > 0) {
       const partnerName =
         PARTNER_NAME_OVERRIDES[cleanName(partnerRec.fields[F_PARTNER_NAME])] ??
         cleanName(partnerRec.fields[F_PARTNER_NAME]);
+      /* Two records for one organization (see PARTNER_NAME_OVERRIDES) would otherwise render
+       * as two identical overlapping logos in the same row. */
+      if (semifinalPartners.some((p) => p.name === partnerName)) {
+        warnings.push(
+          `Semifinal "${name}" links "${partnerName}" more than once — kept a single logo.`
+        );
+        continue;
+      }
       semifinalPartners.push({ name: partnerName });
 
       // Merge this partner's countries into the semifinal's country list (deduped).
