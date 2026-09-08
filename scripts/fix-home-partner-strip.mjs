@@ -16,6 +16,10 @@ for (const [_id, name] of Object.entries(RENAMES)) {
   step1.push({ patch: { id: _id, set: { name } } });
 }
 
+// MindCET Labs had a document in both groups with the same logo. MindCET runs the
+// awards, so the "Powered by" one stays and the Worldwide duplicate goes.
+step1.push({ delete: { id: "gesawards-partner-worldwide-mindcet-labs" } });
+
 // EdTech HUB has no `type`, so the home-page strip filters it out of every group.
 step1.push({ patch: { id: "977d9e0f-c75e-4428-9836-6f884df72fdb", set: { type: "worldwide" } } });
 
