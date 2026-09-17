@@ -93,7 +93,7 @@ export const homeContent: HomeContent = {
   timelineTitle: "The 2026 journey",
   timeline: [
     { date: "March 2026", label: "Official launch of 2026 applications at SXSW EDU" },
-    { date: "Sept 15, 2026", label: "Deadline for startup submissions" },
+    { date: "Sept 18, 2026", label: "Deadline for startup submissions" },
     { date: "Oct–Nov 2026", label: "Regional semifinals around the world" },
     { date: "January 2027", label: "Finals week at Bett Global, London" },
   ],

@@ -39,11 +39,22 @@ import type {
  * images are still being migrated. */
 
 async function fetchCms<T>(query: string, fallback: T, params: Record<string, unknown> = {}) {
-  if (!sanityClient) return fallback;
+  if (!sanityClient) {
+    console.error(
+      "[Sanity CMS] sanityClient is uninitialized (missing NEXT_PUBLIC_SANITY_PROJECT_ID). Using fallback content."
+    );
+    return fallback;
+  }
 
   try {
-    return (await sanityClient.fetch<T | null>(query, params)) ?? fallback;
-  } catch {
+    const result = await sanityClient.fetch<T | null>(query, params);
+    if (result === null || result === undefined) {
+      console.warn("[Sanity CMS] Query returned null/undefined. Using fallback content.", { query });
+      return fallback;
+    }
+    return result;
+  } catch (error) {
+    console.error("[Sanity CMS] Fetch error. Falling back to seed content.", { query, error });
     return fallback;
   }
 }
