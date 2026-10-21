@@ -400,7 +400,7 @@ export const judges: Judge[] = [
   {
     name: "Alex Paiva",
     title: "Head of Products",
-    company: "Postivio",
+    company: "Positivo",
     photo: wixSquare("69f6a1_f4a360602483426281e8457987590dd1", "jpeg"),
   },
   {
