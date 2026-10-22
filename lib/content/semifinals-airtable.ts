@@ -6,11 +6,10 @@
 //
 // Hybrid model (see [[semifinals-refresh-pipeline]]):
 // - DATA (semifinal names, linked partners, merged countries, dates) is pulled LIVE here.
-// - LOGOS are pulled LIVE from the Partners table's "Logo" attachment field. Airtable
-//   attachment URLs are signed and expire within hours, but since this data is refetched
-//   every SEMIFINALS_REVALIDATE_SECONDS the URL baked into a page is never stale by more
-//   than that window. Falls back to the committed public/brand/partners/ manifest (matched
-//   by partner name) for partners with no Logo attachment, then to an initials badge.
+// - LOGOS prefer the committed public/brand/partners/ manifest (matched by partner name).
+//   Partners without a local logo use the live "Logo" attachment field, then an initials
+//   badge. Airtable attachment URLs are signed and expire within hours; keep the periodic
+//   refresh as well as the on-demand refresh rather than caching them indefinitely.
 //
 // Requires AIRTABLE_API_KEY (PAT, data.records:read on base appyTu8uOPQUVXD4x) in the
 // server environment — set it in Vercel Project → Settings → Environment Variables, and in
@@ -37,9 +36,10 @@ const F_SEMIFINAL_NAME = "fldp0VsrprsjrJbLS";
 const F_SEMIFINAL_PARTNERS = "fldYjUfAY9BclTPuD";
 const F_SEMIFINAL_DATE = "fldQBCREpbQqI6KXD";
 
-// Revalidate the cached Airtable data at most this often (seconds). An Airtable automation
-// can hit /api/revalidate-semifinals to refresh instantly instead of waiting this out.
-export const SEMIFINALS_REVALIDATE_SECONDS = 60;
+// Five-minute time-based refresh for schedule content. The existing authenticated
+// /api/revalidate-semifinals endpoint can mark data stale sooner after an edit.
+// Both paths use stale-while-revalidate: fresh data is fetched on subsequent traffic.
+export const SEMIFINALS_REVALIDATE_SECONDS = 300;
 export const SEMIFINALS_CACHE_TAG = "semifinals";
 
 const PARTNER_NAME_OVERRIDES: Record<string, string> = {
@@ -163,13 +163,20 @@ function areaToContinentKey(area: string): string {
 
 type AirtableRecord = { id: string; fields: Record<string, unknown> };
 
-async function fetchAllRecords(tableId: string, apiKey: string): Promise<AirtableRecord[]> {
+async function fetchAllRecords(
+  tableId: string,
+  apiKey: string,
+  fields: readonly string[],
+): Promise<AirtableRecord[]> {
   const records: AirtableRecord[] = [];
   let offset: string | undefined;
   do {
     const url = new URL(`https://api.airtable.com/v0/${BASE_ID}/${tableId}`);
     url.searchParams.set("returnFieldsByFieldId", "true");
     url.searchParams.set("pageSize", "100");
+    // Next caches the raw response, before the transformation below. Exclude unused
+    // fields so unrelated edits and attachments cannot enlarge or churn that entry.
+    for (const field of fields) url.searchParams.append("fields[]", field);
     if (offset) url.searchParams.set("offset", offset);
 
     const res = await fetch(url, {
@@ -199,9 +206,9 @@ export async function fetchRegionalSemifinals(): Promise<RegionalSemifinalEntry[
   let semifinalRecords: AirtableRecord[];
   try {
     [countryRecords, partnerRecords, semifinalRecords] = await Promise.all([
-      fetchAllRecords(COUNTRIES_TABLE, apiKey),
-      fetchAllRecords(PARTNERS_TABLE, apiKey),
-      fetchAllRecords(SEMIFINALS_TABLE, apiKey),
+      fetchAllRecords(COUNTRIES_TABLE, apiKey, [F_COUNTRY_NAME, F_COUNTRY_AREA]),
+      fetchAllRecords(PARTNERS_TABLE, apiKey, [F_PARTNER_NAME, F_PARTNER_LOGO, F_PARTNER_COUNTRIES]),
+      fetchAllRecords(SEMIFINALS_TABLE, apiKey, [F_SEMIFINAL_NAME, F_SEMIFINAL_PARTNERS, F_SEMIFINAL_DATE]),
     ]);
   } catch {
     return null;
