@@ -5,7 +5,14 @@ import { PartnerLogo } from "./PartnerLogo";
 function formatDate(iso: string): string {
   const date = new Date(iso);
   if (Number.isNaN(date.getTime())) return iso;
-  return date.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+  // Airtable dates are plain YYYY-MM-DD, which parse as UTC midnight. This renders in the
+  // visitor's browser, so without a fixed zone anyone west of UTC sees the previous day.
+  return date.toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+    timeZone: "UTC",
+  });
 }
 
 export function PartnerRow({
