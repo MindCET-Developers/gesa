@@ -7,7 +7,7 @@ import type { RegionalSemifinalEntry } from "./types";
 
 export const regionalSemifinals: RegionalSemifinalEntry[] = [
   {
-    "name": "USA East",
+    "name": "North America",
     "partners": [
       {
         "name": "Learnlaunch",
@@ -24,23 +24,8 @@ export const regionalSemifinals: RegionalSemifinalEntry[] = [
         "name": "Canada",
         "code": "ca"
       }
-    ]
-  },
-  {
-    "name": "USA West",
-    "partners": [
-      {
-        "name": "StartEdAccelerator",
-        "logo": "/brand/partners/startedaccelerator.png"
-      }
     ],
-    "continent": "north-america",
-    "countries": [
-      {
-        "name": "United States",
-        "code": "us"
-      }
-    ]
+    "date": "2026-11-17"
   },
   {
     "name": "Baltics",
@@ -64,7 +49,8 @@ export const regionalSemifinals: RegionalSemifinalEntry[] = [
         "name": "Latvia",
         "code": "lv"
       }
-    ]
+    ],
+    "date": "2026-11-10"
   },
   {
     "name": "Europe",
@@ -282,7 +268,8 @@ export const regionalSemifinals: RegionalSemifinalEntry[] = [
         "name": "Netherlands",
         "code": "nl"
       }
-    ]
+    ],
+    "date": "2026-11-11"
   },
   {
     "name": "Italy",
@@ -646,7 +633,8 @@ export const regionalSemifinals: RegionalSemifinalEntry[] = [
         "name": "Myanmar (formerly Burma)",
         "code": "mm"
       }
-    ]
+    ],
+    "date": "2026-11-25"
   },
   {
     "name": "Taiwan",
@@ -812,7 +800,8 @@ export const regionalSemifinals: RegionalSemifinalEntry[] = [
         "name": "Trinidad and Tobago",
         "code": "tt"
       }
-    ]
+    ],
+    "date": "2026-12-03"
   },
   {
     "name": "Africa",
@@ -1040,6 +1029,7 @@ export const regionalSemifinals: RegionalSemifinalEntry[] = [
         "name": "Seychelles",
         "code": "sc"
       }
-    ]
+    ],
+    "date": "2026-11-20"
   }
 ];

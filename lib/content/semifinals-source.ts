@@ -8,7 +8,7 @@
 // - Table "Semifinals" (tblAJHZRBQyfPOySc): each named semifinal + linked partners + date.
 // - Partners linked from table "Partners" (tblAfv3rYs6GyXQEF): partner names + logo attachments.
 // - Table "all countries" (tbl7wFk8g0AbGx7ee): each country's real "Geographic Area".
-// Last refreshed: 2026-09-08.
+// Last refreshed: 2026-10-24.
 //
 // Winners (1st/2nd/3rd place) exist in Airtable but are empty for now — add later.
 
@@ -38,6 +38,7 @@ export const RAW_SEMIFINALS: RawSemifinalEntry[] = [
       "Guinea-Bissau", "Equatorial Guinea", "Mauritius", "Eswatini", "Djibouti", "Comoros",
       "Cape Verde", "Sao Tome and Principe", "Seychelles",
     ],
+    date: "2026-11-20",
   },
   {
     name: "Baltics",
@@ -45,6 +46,7 @@ export const RAW_SEMIFINALS: RawSemifinalEntry[] = [
     countries: [
       "Lithuania", "Estonia", "Latvia",
     ],
+    date: "2026-11-10",
   },
   {
     name: "Brazil",
@@ -89,6 +91,7 @@ export const RAW_SEMIFINALS: RawSemifinalEntry[] = [
     countries: [
       "Germany", "Austria", "Netherlands",
     ],
+    date: "2026-11-11",
   },
   {
     name: "Hong Kong",
@@ -145,6 +148,7 @@ export const RAW_SEMIFINALS: RawSemifinalEntry[] = [
       "Cuba", "Dominican Republic", "Haiti", "Jamaica", "Bahamas", "Barbados",
       "Trinidad and Tobago",
     ],
+    date: "2026-12-03",
   },
   {
     name: "Middle East & Oceania",
@@ -168,6 +172,7 @@ export const RAW_SEMIFINALS: RawSemifinalEntry[] = [
       "Singapore", "Brunei", "Cambodia", "Indonesia", "Laos", "Malaysia", "Philippines",
       "Thailand", "East Timor", "Vietnam", "Myanmar (formerly Burma)",
     ],
+    date: "2026-11-25",
   },
   {
     name: "Spain & Portugal",
@@ -200,7 +205,7 @@ export const RAW_SEMIFINALS: RawSemifinalEntry[] = [
     ],
   },
   {
-    name: "USA East",
+    name: "North America",
     partners: ["Learnlaunch"],
     countries: [
       "USA - Alabama", "USA - Arkansas", "USA - Illinois", "USA - New Jersey",
@@ -216,14 +221,7 @@ export const RAW_SEMIFINALS: RawSemifinalEntry[] = [
       "USA - Utah", "USA - South Dakota", "USA - California", "USA - Texas", "USA - Colorado",
       "USA - Oklahoma", "USA - Montana", "USA - Alaska", "USA - Washington",
     ],
-  },
-  {
-    name: "USA West",
-    partners: ["StartEdAccelerator"],
-    countries: [
-      "USA - Alaska", "USA - Arizona", "USA - California", "USA - Colorado", "USA - Montana",
-      "USA - Wyoming",
-    ],
+    date: "2026-11-17",
   },
 ];
 
