@@ -85,6 +85,7 @@ export default async function WinnersYearPage({
             </p>
             <Link
               href="/winners"
+              prefetch={false}
               className="mt-6 inline-flex items-center gap-1.5 font-semibold text-brand hover:gap-2.5 transition-all"
             >
               Back to the archive

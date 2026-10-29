@@ -38,6 +38,7 @@ export default async function WinnersPage() {
               <li key={year}>
                 <Link
                   href={`/winners/${year}`}
+                  prefetch={false}
                   className="group flex items-center justify-between rounded-2xl border border-line bg-white p-7 transition hover:-translate-y-1 hover:border-brand/40 hover:shadow-lg"
                 >
                   <span className="font-display text-3xl font-extrabold text-navy">

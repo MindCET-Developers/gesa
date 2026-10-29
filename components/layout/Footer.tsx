@@ -48,7 +48,7 @@ export async function Footer() {
           <ul className="mt-4 space-y-3">
             {settings.nav.map((item) => (
               <li key={item.href}>
-                <Link href={item.href} className="text-white/80 hover:text-white">
+                <Link href={item.href} prefetch={false} className="text-white/80 hover:text-white">
                   {item.label}
                 </Link>
               </li>
@@ -90,7 +90,7 @@ export async function Footer() {
         <div className="container-page flex flex-col items-center justify-between gap-2 py-6 text-xs text-white/50 sm:flex-row">
           <p>© {year} Global EdTech Startup Awards. All rights reserved.</p>
           <div className="flex items-center gap-3">
-            <Link href="/privacy-policy" className="hover:text-white transition-colors">
+            <Link href="/privacy-policy" prefetch={false} className="hover:text-white transition-colors">
               Privacy Policy
             </Link>
             <span>·</span>
