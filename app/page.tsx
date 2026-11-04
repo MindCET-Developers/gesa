@@ -1,5 +1,6 @@
 import { Hero } from "@/components/home/Hero";
 import { GalleryMarquee } from "@/components/home/GalleryMarquee";
+import { FINALS_EVENTS, FinalsEvents } from "@/components/home/FinalsEvents";
 import { IntroStats } from "@/components/home/IntroStats";
 import { Criteria } from "@/components/home/Criteria";
 import { PrizeCategories } from "@/components/home/PrizeCategories";
@@ -28,14 +29,19 @@ export default async function HomePage() {
     getRegionalSemifinals(),
   ]);
 
-  // Add startDate/endDate and location once the edition timeline is final —
-  // they are required for Google event rich results.
   const eventJsonLd = {
     "@context": "https://schema.org",
     "@type": "Event",
-    name: `Global EdTech Startup Awards ${home.editionYear}`,
-    url: `${SITE_URL}/apply`,
-    eventAttendanceMode: "https://schema.org/MixedEventAttendanceMode",
+    name: `Global EdTech Startup Awards ${home.editionYear} Finals`,
+    url: SITE_URL,
+    startDate: FINALS_EVENTS[0].startDate,
+    endDate: FINALS_EVENTS[FINALS_EVENTS.length - 1].endDate,
+    eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+    location: {
+      "@type": "Place",
+      name: "London",
+      address: { "@type": "PostalAddress", addressLocality: "London", addressCountry: "GB" },
+    },
     organizer: {
       "@type": "Organization",
       name: "Global EdTech Startup Awards",
@@ -50,6 +56,7 @@ export default async function HomePage() {
         dangerouslySetInnerHTML={{ __html: jsonLdString(eventJsonLd) }}
       />
       <Hero home={home} settings={settings} />
+      <FinalsEvents editionYear={home.editionYear} />
       <GalleryMarquee images={home.gallery} />
       <IntroStats home={home} />
       <Criteria home={home} />
