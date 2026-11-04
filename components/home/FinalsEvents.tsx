@@ -1,7 +1,7 @@
 // Finals week of the current edition. Dates are fixed for the 2026 edition (held January 2027).
 export const FINALS_EVENTS = [
-  { title: "Exclusive All Stars Bootcamp", dates: "January 18 & 19", startDate: "2027-01-18", endDate: "2027-01-19" },
-  { title: "Grand Finale", dates: "January 21", startDate: "2027-01-21", endDate: "2027-01-21" },
+  { title: "Exclusive All Stars Bootcamp", dates: "January 18 & 19, 2027", startDate: "2027-01-18", endDate: "2027-01-19" },
+  { title: "Grand Finale", dates: "January 21, 2027", startDate: "2027-01-21", endDate: "2027-01-21" },
 ] as const;
 
 export function FinalsEvents({ editionYear }: { editionYear: number }) {
