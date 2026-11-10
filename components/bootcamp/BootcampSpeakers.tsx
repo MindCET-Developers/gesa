@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 import { bootcampSpeakers } from "@/lib/content/bootcampData";
 import { cn } from "@/lib/utils";
@@ -77,10 +78,22 @@ export function BootcampSpeakers() {
                 className="group relative flex flex-col justify-between rounded-2xl border border-line bg-surface/40 p-5 transition-all duration-200 hover:-translate-y-1 hover:border-brand/40 hover:bg-white hover:shadow-lg hover:shadow-navy/5"
               >
                 <div className="flex items-start gap-4">
-                  {/* Avatar with Initials */}
-                  <div className="grid size-12 shrink-0 place-items-center rounded-xl bg-gradient-to-br from-navy to-brand font-display font-extrabold text-sm text-white shadow-sm">
-                    {initials}
-                  </div>
+                  {/* Photo or Avatar with Initials */}
+                  {speaker.photo ? (
+                    <div className="relative size-14 shrink-0 overflow-hidden rounded-xl border border-line shadow-sm">
+                      <Image
+                        src={speaker.photo}
+                        alt={speaker.name}
+                        fill
+                        sizes="56px"
+                        className="object-cover transition-transform duration-200 group-hover:scale-105"
+                      />
+                    </div>
+                  ) : (
+                    <div className="grid size-14 shrink-0 place-items-center rounded-xl bg-gradient-to-br from-navy to-brand font-display font-extrabold text-sm text-white shadow-sm">
+                      {initials}
+                    </div>
+                  )}
 
                   <div className="min-w-0 flex-1">
                     <h3 className="font-extrabold text-base text-navy leading-tight truncate group-hover:text-brand-700 transition-colors">

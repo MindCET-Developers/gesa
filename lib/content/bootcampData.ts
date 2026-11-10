@@ -10,6 +10,7 @@ export interface BootcampSpeaker {
   name: string;
   role: string;
   company: string;
+  photo?: string;
   category?: "mindcet" | "investor" | "expert" | "founder";
 }
 
@@ -237,42 +238,135 @@ export const bootcampDays: {
   },
 ];
 
+const wixSquare = (id: string, ext = "jpg", size = 256) =>
+  `https://static.wixstatic.com/media/${id}~mv2.${ext}/v1/fill/w_${size},h_${size},al_c,q_85,enc_avif,quality_auto/photo.${ext}`;
+
 export const bootcampSpeakers: BootcampSpeaker[] = [
-  { name: "Avi Warshavsky", role: "CEO", company: "MindCET", category: "mindcet" },
+  {
+    name: "Avi Warshavsky",
+    role: "CEO",
+    company: "MindCET",
+    photo: "https://static.wixstatic.com/media/c2de03_c8cb12108ef74850b8da8f9bc9b60bbc~mv2_d_4500_3000_s_4_2.jpg/v1/fill/w_256,h_256,al_c,q_85,enc_avif,quality_auto/photo.jpg",
+    category: "mindcet",
+  },
   { name: "Cecilia Waismann", role: "VP", company: "MindCET", category: "mindcet" },
   { name: "Lord Jim Knight", role: "Director", company: "Suklaa Ltd", category: "expert" },
   { name: "Benoit Wirz", role: "Founding Partner", company: "Brighteye VC", category: "investor" },
   { name: "Meg Hamel", role: "VP", company: "HolonIQ", category: "expert" },
-  { name: "Victoria Throen Longhi", role: "Investor", company: "Owl Ventures", category: "investor" },
+  {
+    name: "Victoria Throen Longhi",
+    role: "Investor",
+    company: "Owl Ventures",
+    photo: wixSquare("69f6a1_207611d5313246d9a0bc9cc0068779d5"),
+    category: "investor",
+  },
   { name: "Irit Touitou", role: "CEO", company: "CET", category: "expert" },
   { name: "Alan Bekker", role: "CTO", company: "Kaltura", category: "expert" },
-  { name: "Stephen Jull", role: "Venture Partner", company: "Emerge Education", category: "investor" },
+  {
+    name: "Stephen Jull",
+    role: "Venture Partner",
+    company: "Emerge Education",
+    photo: wixSquare("69f6a1_6735a970f0f642ebb06b01e345e07fce"),
+    category: "investor",
+  },
   { name: "Melody Lang", role: "Partner", company: "MPA Capital", category: "investor" },
   { name: "Matt Johnson", role: "Director EdTech", company: "Oppenheimer Fund", category: "investor" },
   { name: "Monique Malcolm-Hay", role: "VP", company: "Rethink Capital", category: "investor" },
   { name: "Vincent Fung", role: "Partner", company: "IBIS Capital", category: "investor" },
-  { name: "Tamas Haiman", role: "Co-Founder", company: "SuperCharger Ventures", category: "investor" },
-  { name: "Pierre-Antoine Ullmo", role: "CEO", company: "TYME EDUCATION", category: "expert" },
+  {
+    name: "Tamas Haiman",
+    role: "Co-Founder",
+    company: "SuperCharger Ventures",
+    photo: wixSquare("69f6a1_fc30e29594414406bcc27f82e852409e"),
+    category: "investor",
+  },
+  {
+    name: "Pierre-Antoine Ullmo",
+    role: "CEO",
+    company: "TYME EDUCATION",
+    photo: wixSquare("69f6a1_aaec69dd86084f07830a81963ea0b88d", "png"),
+    category: "expert",
+  },
   { name: "Michael Forshaw", role: "CEO", company: "EdTech Impact", category: "founder" },
-  { name: "Amanda Slavin", role: "Founder", company: "The Future Frequency", category: "founder" },
+  {
+    name: "Amanda Slavin",
+    role: "Founder",
+    company: "The Future Frequency",
+    photo: wixSquare("69f6a1_eece792df9ba464d96df87e768f95609", "png"),
+    category: "founder",
+  },
   { name: "Wayne Holmes", role: "Professor AI", company: "UCL", category: "expert" },
-  { name: "Fernando Valenzuela", role: "CEO", company: "Edlatam Alliance", category: "expert" },
-  { name: "Félix López Capel", role: "Director", company: "SEK Lab EdTech Accelerator", category: "expert" },
-  { name: "Norihisa Wada", role: "Director", company: "Global EdTech Acceleration Committee", category: "expert" },
+  {
+    name: "Fernando Valenzuela",
+    role: "CEO",
+    company: "Edlatam Alliance",
+    photo: wixSquare("69f6a1_99aac115650a4c9f87a816eea2cb2344"),
+    category: "expert",
+  },
+  {
+    name: "Félix López Capel",
+    role: "Director",
+    company: "SEK Lab EdTech Accelerator",
+    photo: wixSquare("69f6a1_a16dbb6de09845f48b714ea4220d1038", "png"),
+    category: "expert",
+  },
+  {
+    name: "Norihisa Wada",
+    role: "Director",
+    company: "Global EdTech Acceleration Committee",
+    photo: "https://static.wixstatic.com/media/c2de03_dbe340d4470f4e048b2a489fc2e98785~mv2_d_2832_4256_s_4_2.jpg/v1/fill/w_256,h_256,al_c,q_85,enc_avif,quality_auto/photo.jpg",
+    category: "expert",
+  },
   { name: "Elinor Honigstein", role: "Global Marketing", company: "WeWork", category: "expert" },
   { name: "Ilan Ben Yaakov", role: "VP Learning Experience", company: "MindCET", category: "mindcet" },
   { name: "Ran Magen", role: "VP Product Innovation", company: "MindCET", category: "mindcet" },
-  { name: "Alex Paiva", role: "Head of Products", company: "Positivo Tecnologia", category: "expert" },
-  { name: "Ernest Gavor", role: "Co-Founder", company: "Ghana Society Edu Tech", category: "founder" },
+  {
+    name: "Alex Paiva",
+    role: "Head of Products",
+    company: "Positivo Tecnologia",
+    photo: wixSquare("69f6a1_f4a360602483426281e8457987590dd1", "jpeg"),
+    category: "expert",
+  },
+  {
+    name: "Ernest Gavor",
+    role: "Co-Founder",
+    company: "Ghana Society Edu Tech",
+    photo: wixSquare("69f6a1_caa440e9895649ada07a33df8f80f019"),
+    category: "founder",
+  },
   { name: "Houtan Froushan", role: "Programme Director", company: "UCL EdTech Labs", category: "expert" },
-  { name: "Jitske van Os", role: "Managing Director", company: "Dutch EdTech", category: "expert" },
+  {
+    name: "Jitske van Os",
+    role: "Managing Director",
+    company: "Dutch EdTech",
+    photo: wixSquare("69f6a1_11e4fe3c19e7431893a1d375d6c09d79"),
+    category: "expert",
+  },
   { name: "Heather Lyons", role: "Founder", company: "Kita", category: "founder" },
   { name: "Morayo Ojikutu", role: "Founder", company: "Flow", category: "founder" },
   { name: "Daniel Landau", role: "Founder & CEO", company: "Avris", category: "founder" },
-  { name: "Kate Lee Carey", role: "Partner", company: "Cooley LLP", category: "expert" },
+  {
+    name: "Kate Lee Carey",
+    role: "Partner",
+    company: "Cooley LLP",
+    photo: wixSquare("69f6a1_cdde81898f524b57afe4ad4361018482", "png"),
+    category: "expert",
+  },
   { name: "Aaron Archer", role: "Partner", company: "Cooley LLP", category: "expert" },
   { name: "Chris Stack", role: "Partner", company: "Cooley LLP", category: "expert" },
-  { name: "Patrick Hayes", role: "Chief Development Officer", company: "Times Higher Education", category: "expert" },
-  { name: "Valeriy Platonov", role: "Co-organizer", company: "EdCrunch", category: "expert" },
+  {
+    name: "Patrick Hayes",
+    role: "Chief Development Officer",
+    company: "Times Higher Education",
+    photo: wixSquare("69f6a1_8f7d5e2dca83462d80112e1ac80b0a1b"),
+    category: "expert",
+  },
+  {
+    name: "Valeriy Platonov",
+    role: "Co-organizer",
+    company: "EdCrunch",
+    photo: wixSquare("69f6a1_c75befe1895c43b29ba38921b111cf17", "png"),
+    category: "expert",
+  },
   { name: "Seonghye Yoon", role: "CRO", company: "Learningspark", category: "founder" },
 ];
