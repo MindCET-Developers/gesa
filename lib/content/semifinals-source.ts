@@ -63,6 +63,7 @@ export const RAW_SEMIFINALS: RawSemifinalEntry[] = [
       "Russia", "Azerbaijan", "Kazakhstan", "Armenia", "Kyrgyzstan", "Uzbekistan",
       "Tajikistan", "Turkmenistan", "Mongolia", "Georgia",
     ],
+    date: "2026-11-25",
   },
   {
     name: "Europe",
@@ -122,6 +123,7 @@ export const RAW_SEMIFINALS: RawSemifinalEntry[] = [
     countries: [
       "Italy",
     ],
+    date: "2026-11-18",
   },
   {
     name: "Japan",
@@ -137,6 +139,7 @@ export const RAW_SEMIFINALS: RawSemifinalEntry[] = [
     countries: [
       "South Korea", "North Korea",
     ],
+    date: "2026-10-29",
   },
   {
     name: "LATAM",
@@ -196,6 +199,7 @@ export const RAW_SEMIFINALS: RawSemifinalEntry[] = [
     countries: [
       "United Kingdom (UK)",
     ],
+    date: "2026-11-18",
   },
   {
     name: "Ukraine",

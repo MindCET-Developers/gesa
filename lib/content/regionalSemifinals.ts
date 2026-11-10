@@ -285,7 +285,8 @@ export const regionalSemifinals: RegionalSemifinalEntry[] = [
         "name": "Italy",
         "code": "it"
       }
-    ]
+    ],
+    "date": "2026-11-18"
   },
   {
     "name": "Nordic",
@@ -362,7 +363,8 @@ export const regionalSemifinals: RegionalSemifinalEntry[] = [
         "name": "United Kingdom (UK)",
         "code": "gb"
       }
-    ]
+    ],
+    "date": "2026-11-18"
   },
   {
     "name": "Ukraine",
@@ -503,7 +505,8 @@ export const regionalSemifinals: RegionalSemifinalEntry[] = [
         "name": "Georgia",
         "code": "ge"
       }
-    ]
+    ],
+    "date": "2026-11-25"
   },
   {
     "name": "Hong Kong",
@@ -577,7 +580,8 @@ export const regionalSemifinals: RegionalSemifinalEntry[] = [
         "name": "North Korea",
         "code": "kp"
       }
-    ]
+    ],
+    "date": "2026-10-29"
   },
   {
     "name": "South East Asia",

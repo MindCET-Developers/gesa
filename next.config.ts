@@ -103,7 +103,12 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
-        source: "/:slug(copy-of-bootcamp|bootcamp|gesa-finals|events-1)",
+        source: "/copy-of-bootcamp",
+        destination: "/bootcamp",
+        permanent: true,
+      },
+      {
+        source: "/:slug(gesa-finals|events-1)",
         destination: "/about",
         permanent: true,
       },
