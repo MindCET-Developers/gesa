@@ -564,10 +564,8 @@ export const tracks: Track[] = [
         // Seventh Sibling sponsors this award, not the track as a whole.
         sponsor: "Seventh Sibling",
         sponsorUrl: "https://seventhsibling.co.uk/",
-        // sponsorLogo is deliberately unset: the official file ("Logo SS Oct 2026.png",
-        // sent by Stella James on 12 Nov 2026) is not in the repository yet. Save it as
-        // public/brand/sponsors/seventh-sibling.png and point sponsorLogo at it, or
-        // upload it on the track's award in the Studio.
+        // Official logo supplied by Seventh Sibling (12 Nov 2026), stored unmodified.
+        sponsorLogo: "/brand/sponsors/seventh-sibling.png",
         kind: "in-kind",
         summary:
           "The B2Education Launch Award, sponsored by Seventh Sibling — the full EdTech Academy, plus two hours with Stella James on your own sales process.",
