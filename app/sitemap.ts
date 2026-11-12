@@ -14,6 +14,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/apply",
     "/tracks",
     "/semifinals",
+    "/bootcamp",
     "/winners",
     "/terms-and-condition",
   ].map((path) => ({

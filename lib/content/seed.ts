@@ -39,6 +39,7 @@ export const siteSettings: SiteSettings = {
     { label: "About", href: "/about" },
     { label: "Tracks", href: "/tracks" },
     { label: "Semifinals", href: "/semifinals" },
+    { label: "Bootcamp", href: "/bootcamp" },
     { label: "Winners", href: "/winners" },
     { label: "Terms", href: "/terms-and-condition" },
   ],
