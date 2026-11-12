@@ -238,7 +238,7 @@ const track = {
             {
               name: "kind",
               title: "Award type",
-              description: "In-kind awards are labelled on the site as carrying no cash prize.",
+              description: "Shown as a label on the award.",
               type: "string",
               options: { list: ["in-kind", "cash"] },
               initialValue: "in-kind",
