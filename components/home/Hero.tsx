@@ -62,7 +62,7 @@ export function Hero({
               rel="noopener noreferrer"
               className={buttonClasses({ size: "lg" })}
             >
-              Apply today
+              Apply for 2027
               <ArrowRight className="size-5" />
             </a>
             <VideoDialog

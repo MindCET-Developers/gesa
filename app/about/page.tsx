@@ -250,7 +250,7 @@ export default async function AboutPage() {
           rel="noopener noreferrer"
           className={`${buttonClasses({ size: "lg" })} mt-6`}
         >
-          Apply for {home.editionYear}
+          Apply for 2027
           <ArrowRight className="size-5" />
         </a>
       </section>
