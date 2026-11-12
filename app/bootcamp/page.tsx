@@ -177,7 +177,7 @@ export default function BootcampPage() {
                 <p className="text-xs font-bold uppercase tracking-wider text-sky">Participation</p>
                 <p className="mt-1 font-bold text-white text-base">By Invitation Only</p>
                 <p className="mt-1 text-xs text-white/60">
-                  Invited startups confirm attendance through the personal RSVP link in their invitation email.
+                  Open to startups placed 1st, 2nd or 3rd in the GESAwards Regional Semifinals.
                 </p>
               </div>
             </div>

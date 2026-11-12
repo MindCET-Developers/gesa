@@ -7,8 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "refresh:semifinals": "node --experimental-strip-types --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/pull-regional-semifinals.mjs",
-    "bootcamp:tokens": "node scripts/bootcamp-rsvp-tokens.mjs"
+    "refresh:semifinals": "node --experimental-strip-types --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/pull-regional-semifinals.mjs"
   },
   "dependencies": {
     "@next/third-parties": "^16.2.10",
