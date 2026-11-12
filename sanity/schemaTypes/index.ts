@@ -216,6 +216,52 @@ const track = {
         },
       ],
     },
+    {
+      name: "awards",
+      title: "Sponsored awards",
+      description:
+        "Named awards given inside this track. An award's sponsor is separate from the track's own Sponsor field above.",
+      type: "array",
+      of: [
+        {
+          type: "object",
+          fields: [
+            { name: "name", title: "Award name", type: "string" },
+            { name: "sponsor", title: "Award sponsor", type: "string" },
+            {
+              name: "sponsorLogo",
+              title: "Award sponsor logo",
+              description: "Only upload a logo the sponsor has supplied and approved.",
+              type: "image",
+            },
+            { name: "sponsorUrl", title: "Award sponsor website", type: "url" },
+            {
+              name: "kind",
+              title: "Award type",
+              description: "In-kind awards are labelled on the site as carrying no cash prize.",
+              type: "string",
+              options: { list: ["in-kind", "cash"] },
+              initialValue: "in-kind",
+            },
+            {
+              name: "summary",
+              title: "One-line summary",
+              description: "Shown on the award and on the Tracks listing.",
+              type: "text",
+              rows: 2,
+            },
+            {
+              name: "includes",
+              title: "What the winner receives",
+              type: "array",
+              of: [{ type: "string" }],
+            },
+            { name: "delivery", title: "How it is delivered", type: "string" },
+          ],
+          preview: { select: { title: "name", subtitle: "sponsor", media: "sponsorLogo" } },
+        },
+      ],
+    },
     { name: "sourceUrl", title: "Original source", type: "url", readOnly: true },
   ],
   preview: { select: { title: "title", subtitle: "year", media: "logos.0.image" } },

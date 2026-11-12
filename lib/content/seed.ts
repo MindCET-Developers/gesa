@@ -562,6 +562,27 @@ export const tracks: Track[] = [
       "A powerful network of female founders, leaders, and supporters",
       "Inclusion in thought leadership and storytelling campaigns focused on women in EdTech",
     ],
+    awards: [
+      {
+        name: "The B2Education Launch Award",
+        // Seventh Sibling sponsors this award, not the track (see `sponsor` above).
+        sponsor: "Seventh Sibling",
+        // sponsorLogo is deliberately unset: the official file ("Logo SS Oct 2026.png",
+        // sent by Stella James on 12 Nov 2026) is not in the repository yet. Save it as
+        // public/brand/sponsors/seventh-sibling.png and point sponsorLogo at it, or
+        // upload it on the track's award in the Studio.
+        kind: "in-kind",
+        summary:
+          "The B2Education Launch Award, sponsored by Seventh Sibling — the full EdTech Academy, plus two hours with Stella James on your own sales process.",
+        includes: [
+          "The complete EdTech Academy: five courses covering the foundations of selling into education, pre-discovery, the discovery call, post-discovery and implementation.",
+          "Twelve months in the Academy community.",
+          "Two hours of personalized sales-process consulting with Stella James, founder of Seventh Sibling, spent on the winner's own sales process and real pipeline.",
+        ],
+        delivery:
+          "Delivered online, wherever in the world the winner is based.",
+      },
+    ],
     logos: [
       {
         name: "GESAwards winner trophy",

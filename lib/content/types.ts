@@ -138,7 +138,26 @@ export type Track = {
   criteria?: string[];
   benefits?: string[];
   logos?: TrackLogo[];
+  /** Named awards given inside this track, each with its own sponsor. */
+  awards?: TrackAward[];
   sourceUrl?: string;
+};
+
+export type TrackAward = {
+  name: string;
+  /** Sponsor of this award only. The track's own sponsor is `Track.sponsor`. */
+  sponsor: string;
+  sponsorUrl?: string;
+  /** Absent = the sponsor is shown by name only, until an approved logo is supplied. */
+  sponsorLogo?: string;
+  /** "in-kind" awards are labelled as carrying no cash prize. */
+  kind: "in-kind" | "cash";
+  /** One-line version, also shown on the /tracks listing. */
+  summary: string;
+  /** What the winner receives, one entry per item. */
+  includes?: string[];
+  /** How and where the award is delivered. */
+  delivery?: string;
 };
 
 export type TrackLogo = {
