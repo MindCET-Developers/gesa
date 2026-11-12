@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     template: "%s · GESAwards",
   },
   description:
-    "GESAwards is the largest EdTech startup competition and community in the world — 9,000+ startups from 155 countries. Apply for the 2026 edition.",
+    "GESAwards is the largest EdTech startup competition and community in the world — 9,000+ startups from 155 countries. Apply for the 2027 edition.",
   openGraph: {
     title: "Global EdTech Startup Awards (GESAwards)",
     description:
