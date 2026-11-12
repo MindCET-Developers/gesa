@@ -159,7 +159,7 @@ export default async function TrackDetailPage({
                           <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between">
                             <div className="min-w-0">
                               <p className={`inline-flex rounded-full bg-white px-3 py-1 text-xs font-bold uppercase tracking-wide ${style.ink}`}>
-                                {inKind ? "In-kind award · No cash prize" : "Cash award"}
+                                {inKind ? "In-kind award" : "Cash award"}
                               </p>
                               <h3 className="mt-4 break-words font-display text-2xl font-bold text-navy md:text-3xl">
                                 {award.name}
@@ -202,16 +202,8 @@ export default async function TrackDetailPage({
                             </>
                           ) : null}
 
-                          {award.delivery || inKind ? (
-                            <p className="mt-6 leading-7 text-navy/80">
-                              {award.delivery}
-                              {award.delivery && inKind ? " " : null}
-                              {inKind ? (
-                                <strong className="font-semibold text-navy">
-                                  This is an in-kind award and does not include a cash prize.
-                                </strong>
-                              ) : null}
-                            </p>
+                          {award.delivery ? (
+                            <p className="mt-6 leading-7 text-navy/80">{award.delivery}</p>
                           ) : null}
                         </article>
                       );

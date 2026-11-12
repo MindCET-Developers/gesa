@@ -100,9 +100,7 @@ export default async function TracksPage() {
                       className="mt-6 max-w-md rounded-2xl bg-white/95 p-5 text-navy shadow-sm"
                     >
                       <p className="font-display text-xs font-bold uppercase tracking-[0.16em] text-navy/70">
-                        {award.kind === "in-kind"
-                          ? "Sponsored award · In-kind, no cash prize"
-                          : "Sponsored award"}
+                        {award.kind === "in-kind" ? "Sponsored award · In-kind" : "Sponsored award"}
                       </p>
                       <p className="mt-2 text-sm leading-6 text-navy/80">{award.summary}</p>
                     </div>

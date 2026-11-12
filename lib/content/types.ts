@@ -150,7 +150,7 @@ export type TrackAward = {
   sponsorUrl?: string;
   /** Absent = the sponsor is shown by name only, until an approved logo is supplied. */
   sponsorLogo?: string;
-  /** "in-kind" awards are labelled as carrying no cash prize. */
+  /** Shown as a label on the award ("In-kind award" / "Cash award"). */
   kind: "in-kind" | "cash";
   /** One-line version, also shown on the /tracks listing. */
   summary: string;
