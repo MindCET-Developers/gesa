@@ -68,7 +68,6 @@ const tracks = [
     title: "Female Founders Track",
     slug: { _type: "slug", current: "female-founders-track" },
     subtitle: "Spotlighting Innovation. Driving Equity.",
-    sponsor: "Copper Wire Ventures",
     description:
       "The Female Founders Special Track is a dedicated category within the GESAwards, the world's largest EdTech startup competition. This track was created to address a stark imbalance: while women make up nearly 30% of EdTech founders, they receive only 3.8% of venture funding. We aim to elevate the voices and ventures of women leading the way in education innovation, bringing their ideas to global stages, building meaningful connections, and unlocking the support they need to thrive.",
     criteria: [
@@ -78,13 +77,10 @@ const tracks = [
       "Demonstrating innovation, scalability, and a clear vision for impact.",
     ],
     benefits: [
-      "Cash prize",
       "Global recognition through the GESAwards platform",
       "A chance to pitch at international events and showcases",
       "Exposure to investors, media, and EdTech partners",
-      "Tailored mentorship opportunities and strategic guidance",
       "A powerful network of female founders, leaders, and supporters",
-      "Inclusion in thought leadership and storytelling campaigns focused on women in EdTech",
     ],
     logos: [trophyLogo],
     sourceUrl: "https://www.globaledtechawards.org/femalefounderstrack",

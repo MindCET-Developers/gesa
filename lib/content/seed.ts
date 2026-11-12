@@ -544,7 +544,6 @@ export const tracks: Track[] = [
     year: 2026,
     order: 3,
     subtitle: "Spotlighting Innovation. Driving Equity.",
-    sponsor: "Copper Wire Ventures",
     description:
       "The Female Founders Special Track is a dedicated category within the GESAwards, the world's largest EdTech startup competition. This track was created to address a stark imbalance: while women make up nearly 30% of EdTech founders, they receive only 3.8% of venture funding. We aim to elevate the voices and ventures of women leading the way in education innovation, bringing their ideas to global stages, building meaningful connections, and unlocking the support they need to thrive.",
     criteria: [
@@ -554,18 +553,15 @@ export const tracks: Track[] = [
       "Demonstrating innovation, scalability, and a clear vision for impact.",
     ],
     benefits: [
-      "Cash prize",
       "Global recognition through the GESAwards platform",
       "A chance to pitch at international events and showcases",
       "Exposure to investors, media, and EdTech partners",
-      "Tailored mentorship opportunities and strategic guidance",
       "A powerful network of female founders, leaders, and supporters",
-      "Inclusion in thought leadership and storytelling campaigns focused on women in EdTech",
     ],
     awards: [
       {
         name: "The B2Education Launch Award",
-        // Seventh Sibling sponsors this award, not the track (see `sponsor` above).
+        // Seventh Sibling sponsors this award, not the track as a whole.
         sponsor: "Seventh Sibling",
         // sponsorLogo is deliberately unset: the official file ("Logo SS Oct 2026.png",
         // sent by Stella James on 12 Nov 2026) is not in the repository yet. Save it as
