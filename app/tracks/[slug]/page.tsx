@@ -136,6 +136,90 @@ export default async function TrackDetailPage({
                 </section>
               ) : null}
 
+              {track.awards?.length ? (
+                <section className="mt-14" aria-labelledby="awards-title">
+                  <h2 id="awards-title" className="font-display text-3xl font-bold text-navy">
+                    {track.awards.length > 1 ? "Sponsored awards" : "Sponsored award"}
+                  </h2>
+                  <div className="mt-7 grid gap-6">
+                    {track.awards.map((award) => {
+                      const inKind = award.kind === "in-kind";
+                      const sponsorLogo = award.sponsorLogo ? (
+                        <Image
+                          src={award.sponsorLogo}
+                          alt={award.sponsor}
+                          width={160}
+                          height={80}
+                          className="max-h-16 w-auto object-contain"
+                        />
+                      ) : null;
+
+                      return (
+                        <article key={award.name} className={`${style.soft} rounded-3xl p-6 sm:p-8`}>
+                          <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between">
+                            <div className="min-w-0">
+                              <p className={`inline-flex rounded-full bg-white px-3 py-1 text-xs font-bold uppercase tracking-wide ${style.ink}`}>
+                                {inKind ? "In-kind award · No cash prize" : "Cash award"}
+                              </p>
+                              <h3 className="mt-4 break-words font-display text-2xl font-bold text-navy md:text-3xl">
+                                {award.name}
+                              </h3>
+                              <p className="mt-2 text-sm font-bold uppercase tracking-[0.14em] text-muted">
+                                Award sponsored by{" "}
+                                {award.sponsorUrl ? (
+                                  <a href={award.sponsorUrl} target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 hover:text-brand">
+                                    {award.sponsor}
+                                  </a>
+                                ) : (
+                                  award.sponsor
+                                )}
+                              </p>
+                            </div>
+                            {sponsorLogo && (
+                              <div className="grid h-24 w-44 shrink-0 place-items-center rounded-2xl bg-white p-4">
+                                {sponsorLogo}
+                              </div>
+                            )}
+                          </div>
+
+                          <p className="mt-6 text-lg leading-8 text-navy/80">{award.summary}</p>
+
+                          {award.includes?.length ? (
+                            <>
+                              <h4 className="mt-8 font-display text-lg font-bold text-navy">
+                                What the winner receives
+                              </h4>
+                              <ul className="mt-4 grid gap-3">
+                                {award.includes.map((item) => (
+                                  <li key={item} className="flex gap-4 rounded-2xl bg-white p-5 text-navy/80">
+                                    <span className={`${style.panel} mt-0.5 grid size-7 shrink-0 place-items-center rounded-full text-white`}>
+                                      <Check className="size-4" aria-hidden="true" />
+                                    </span>
+                                    <span className="leading-7">{item}</span>
+                                  </li>
+                                ))}
+                              </ul>
+                            </>
+                          ) : null}
+
+                          {award.delivery || inKind ? (
+                            <p className="mt-6 leading-7 text-navy/80">
+                              {award.delivery}
+                              {award.delivery && inKind ? " " : null}
+                              {inKind ? (
+                                <strong className="font-semibold text-navy">
+                                  This is an in-kind award and does not include a cash prize.
+                                </strong>
+                              ) : null}
+                            </p>
+                          ) : null}
+                        </article>
+                      );
+                    })}
+                  </div>
+                </section>
+              ) : null}
+
               {track.logos?.length ? (
                 <section className="mt-14" aria-labelledby="logos-title">
                   <h2 id="logos-title" className="font-display text-2xl font-bold text-navy">

@@ -145,15 +145,26 @@ export async function getRegionalSemifinals() {
   return live && live.length ? live : regionalSemifinals;
 }
 
+/* A CMS track with no awards entered yet keeps the awards of the seed track with
+ * the same slug, so a sponsored award is not dropped from the page while the
+ * "Sponsored awards" field is still empty in the Studio. Once an editor adds
+ * awards there, the CMS list replaces the seed list outright. */
+function withSeedAwards(track: Track): Track {
+  if (track.awards?.length) return track;
+  const seed = tracks.find((item) => item.slug === track.slug);
+  return seed?.awards?.length ? { ...track, awards: seed.awards } : track;
+}
+
 export async function getTracks(year?: number): Promise<Track[]> {
   const content = await fetchCms<Track[]>(tracksQuery, [], { year: year ?? null });
-  if (content.length) return content;
+  if (content.length) return content.map(withSeedAwards);
   return year ? tracks.filter((track) => track.year === year) : tracks;
 }
 
 export async function getTrackBySlug(slug: string): Promise<Track | undefined> {
   const fallback = tracks.find((track) => track.slug === slug);
-  return fetchCms<Track | undefined>(trackBySlugQuery, fallback, { slug });
+  const track = await fetchCms<Track | undefined>(trackBySlugQuery, fallback, { slug });
+  return track && withSeedAwards(track);
 }
 
 export async function getWinnerYears(): Promise<number[]> {

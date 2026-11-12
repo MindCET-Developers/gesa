@@ -34,13 +34,17 @@ export const partnersQuery = /* groq */ `
 export const tracksQuery = /* groq */ `
   *[_type == "track" && ($year == null || year == $year)] | order(order asc, title asc){
     "slug": slug.current, title, year, order, subtitle, description, sponsor,
-    criteria, benefits, logos[]{name, role, url, "image": image.asset->url}, sourceUrl
+    criteria, benefits, logos[]{name, role, url, "image": image.asset->url},
+    awards[]{name, sponsor, sponsorUrl, kind, summary, includes, delivery, "sponsorLogo": sponsorLogo.asset->url},
+    sourceUrl
   }`;
 
 export const trackBySlugQuery = /* groq */ `
   *[_type == "track" && slug.current == $slug][0]{
     "slug": slug.current, title, year, order, subtitle, description, sponsor,
-    criteria, benefits, logos[]{name, role, url, "image": image.asset->url}, sourceUrl
+    criteria, benefits, logos[]{name, role, url, "image": image.asset->url},
+    awards[]{name, sponsor, sponsorUrl, kind, summary, includes, delivery, "sponsorLogo": sponsorLogo.asset->url},
+    sourceUrl
   }`;
 
 export const winnerYearsQuery = /* groq */ `
