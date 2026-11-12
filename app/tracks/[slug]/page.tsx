@@ -147,10 +147,10 @@ export default async function TrackDetailPage({
                       const sponsorLogo = award.sponsorLogo ? (
                         <Image
                           src={award.sponsorLogo}
-                          alt={award.sponsor}
+                          alt={`${award.sponsor} logo`}
                           width={160}
-                          height={80}
-                          className="max-h-16 w-auto object-contain"
+                          height={160}
+                          className="h-full w-auto max-w-44 object-contain"
                         />
                       ) : null;
 
@@ -176,7 +176,7 @@ export default async function TrackDetailPage({
                               </p>
                             </div>
                             {sponsorLogo && (
-                              <div className="grid h-24 w-44 shrink-0 place-items-center rounded-2xl bg-white p-4">
+                              <div className="flex h-36 shrink-0 items-center justify-center self-start rounded-2xl bg-white p-2">
                                 {sponsorLogo}
                               </div>
                             )}
