@@ -30,15 +30,18 @@ Everything is in the **GESAwards 2026** base (`appyTu8uOPQUVXD4x`):
 
 - **Read only:** `Semifinals` (name + 1st/2nd/3rd place) and the `Startup Name` of the linked
   `2026 Registration` rows. The browser receives only startup names, semifinal names and record IDs.
-- **New table `Bootcamp 2027 RSVP`:** Startup Name, **Startup** (real link to the `2026 Registration`
-  record), Startup record ID, Semifinal, Place, P1/P2 Full name, Role, Email, Phone, Participants,
-  First submitted, Last updated, Update count. View: *Registrations by semifinal*.
+- **New table `Bootcamp 2027 RSVP`:** **Startup** (real link to the `2026 Registration` record),
+  P1/P2 Full name, Role, Email, Phone, Participants, First submitted, Last updated, Update count.
+  **Semifinal** and **Place** are formulas over the lookups `1st/2nd/3rd place in` (through the
+  Startup link), so they always reflect the current `Semifinals` data. The primary field should be
+  the formula `ARRAYJOIN({Startup})`. View: *Registrations by semifinal*. The website finds an
+  existing registration by the Startup link itself.
 - Side effect of the link: Airtable automatically added the reverse-link column
   **`Bootcamp 2027 RSVP`** on `2026 Registration`. No existing record or field was edited.
 
 ## Duplicates & corrections
 
-- One row per startup (keyed on the original record ID).
+- One row per startup (matched on the Startup link).
 - **Correction:** submit the form again for the same startup **with the same Participant 1 email**.
   The row is updated in place (`Update count` increases).
 - To change Participant 1's email, or if the startup lost access, the team edits the row in Airtable.

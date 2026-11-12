@@ -27,11 +27,9 @@ const R_STARTUP_NAME = "fldRs9KvsdXdDww1g";
 // --- Bootcamp 2027 RSVP table (same base, write) ----------------------------
 const RSVP_TABLE = "tblaJJblfzKUyTxTN";
 const F = {
-  startupName: "fldkpVylHuWIunET9",
+  // Startup name, Semifinal and Place are NOT written: they are live lookups/formulas
+  // through the Startup link, so they always reflect 2026 Registration / Semifinals.
   startupLink: "fldzx1KpEcAltpiBE",
-  recordId: "fldVs6fIkJcQSIS1I",
-  semifinal: "fldEelWrD5L8z89BQ",
-  place: "fld3YbaravbSu4uT1",
   p1Name: "fldsNe5tfJZjFSQhD",
   p1Role: "fldCQUTaIcw5i0Nt3",
   p1Email: "fldDdjoAatHmKDchh",
@@ -138,10 +136,14 @@ export async function getEligibleStartups(): Promise<EligibleStartup[]> {
 }
 
 async function findRegistration(startupId: string): Promise<Rec[]> {
-  // RECORD_ID_RE was checked by the caller, so the value cannot inject formula syntax.
-  const formula = encodeURIComponent(`{${F.recordId}}='${startupId}'`);
-  const data = await rsvp(`${RSVP_TABLE}?filterByFormula=${formula}&returnFieldsByFieldId=true`);
-  return data.records as Rec[];
+  // Formulas only see linked-record *names*, so read the link IDs and match here.
+  // The table holds at most a few dozen rows.
+  const rows = await listAll((offset) =>
+    rsvp(
+      `${RSVP_TABLE}?fields[]=${F.startupLink}&fields[]=${F.p1Email}&fields[]=${F.updateCount}&returnFieldsByFieldId=true${offset ? `&offset=${offset}` : ""}`
+    )
+  );
+  return rows.filter((r) => ((r.fields[F.startupLink] as string[] | undefined) ?? []).includes(startupId));
 }
 
 export type SaveResult =
@@ -162,11 +164,7 @@ export async function saveRegistration(
 ): Promise<SaveResult> {
   const now = new Date().toISOString();
   const fields = {
-    [F.startupName]: startup.name,
     [F.startupLink]: [startup.id],
-    [F.recordId]: startup.id,
-    [F.semifinal]: startup.semifinal,
-    [F.place]: startup.place,
     [F.p1Name]: p1.name,
     [F.p1Role]: p1.role,
     [F.p1Email]: p1.email,
