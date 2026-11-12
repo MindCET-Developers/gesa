@@ -68,6 +68,7 @@ const tracks = [
     title: "Female Founders Track",
     slug: { _type: "slug", current: "female-founders-track" },
     subtitle: "Spotlighting Innovation. Driving Equity.",
+    sponsor: "Seventh Sibling",
     description:
       "The Female Founders Special Track is a dedicated category within the GESAwards, the world's largest EdTech startup competition. This track was created to address a stark imbalance: while women make up nearly 30% of EdTech founders, they receive only 3.8% of venture funding. We aim to elevate the voices and ventures of women leading the way in education innovation, bringing their ideas to global stages, building meaningful connections, and unlocking the support they need to thrive.",
     criteria: [

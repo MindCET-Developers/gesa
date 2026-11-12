@@ -544,6 +544,7 @@ export const tracks: Track[] = [
     year: 2026,
     order: 3,
     subtitle: "Spotlighting Innovation. Driving Equity.",
+    sponsor: "Seventh Sibling",
     description:
       "The Female Founders Special Track is a dedicated category within the GESAwards, the world's largest EdTech startup competition. This track was created to address a stark imbalance: while women make up nearly 30% of EdTech founders, they receive only 3.8% of venture funding. We aim to elevate the voices and ventures of women leading the way in education innovation, bringing their ideas to global stages, building meaningful connections, and unlocking the support they need to thrive.",
     criteria: [
@@ -561,7 +562,6 @@ export const tracks: Track[] = [
     awards: [
       {
         name: "The B2Education Launch Award",
-        // Seventh Sibling sponsors this award, not the track as a whole.
         sponsor: "Seventh Sibling",
         sponsorUrl: "https://seventhsibling.co.uk/",
         // Official logo supplied by Seventh Sibling (12 Nov 2026), stored unmodified.
