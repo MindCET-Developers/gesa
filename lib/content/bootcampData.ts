@@ -25,7 +25,7 @@ export const bootcampDays: {
   {
     id: "day-1",
     dayNumber: "Day 01",
-    date: "January 19",
+    date: "January 19, 2026",
     title: "Global Ecosystems & Market Readiness",
     location: "Cooley — 22 Bishopsgate, London EC2N 4BQ",
     sessions: [
@@ -131,7 +131,7 @@ export const bootcampDays: {
   {
     id: "day-2",
     dayNumber: "Day 02",
-    date: "January 20",
+    date: "January 20, 2026",
     title: "AI Frontier, Global Scaling & Investor Roundtables",
     location: "Cooley — 22 Bishopsgate, London EC2N 4BQ",
     sessions: [

@@ -23,13 +23,13 @@ export function BootcampAgenda() {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-8 border-b border-line">
           <div>
             <span className="inline-block text-xs font-bold uppercase tracking-[0.25em] text-brand-700">
-              Two-Day Intensive Program
+              Bootcamp 2026 · Archive
             </span>
             <h2 className="mt-2 text-3xl font-extrabold text-navy sm:text-4xl md:text-5xl">
-              Bootcamp Agenda
+              Previous Year&apos;s Agenda — For Reference Only
             </h2>
             <p className="mt-3 max-w-xl text-base text-muted md:text-lg">
-              Presentations by industry leaders, hands-on workshops, and investor roundtables designed to generate concrete outcomes.
+              This is the agenda of the January 2026 Bootcamp. The 2027 agenda is still being finalized and will be shared online soon.
             </p>
           </div>
 

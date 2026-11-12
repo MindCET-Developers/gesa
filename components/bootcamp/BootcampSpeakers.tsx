@@ -30,13 +30,13 @@ export function BootcampSpeakers() {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-10 border-b border-line">
           <div>
             <span className="inline-block text-xs font-bold uppercase tracking-[0.25em] text-brand-700">
-              World-Class Mentors & Leaders
+              Bootcamp 2026 · Archive
             </span>
             <h2 className="mt-2 text-3xl font-extrabold text-navy sm:text-4xl md:text-5xl">
-              Bootcamp Speakers
+              Previous Year&apos;s Speakers
             </h2>
             <p className="mt-3 max-w-xl text-base text-muted md:text-lg">
-              Meet the global investors, seasoned operators, legal specialists, and education pioneers leading the sessions.
+              The investors, operators, legal specialists and education leaders who led sessions in January 2026. The 2027 speakers will be announced soon.
             </p>
           </div>
 
