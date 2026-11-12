@@ -246,7 +246,7 @@ const track = {
             {
               name: "summary",
               title: "One-line summary",
-              description: "Shown on the award and on the Tracks listing.",
+              description: "Shown at the top of the award on the track page.",
               type: "text",
               rows: 2,
             },

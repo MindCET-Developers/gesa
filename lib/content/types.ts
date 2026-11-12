@@ -152,7 +152,7 @@ export type TrackAward = {
   sponsorLogo?: string;
   /** Shown as a label on the award ("In-kind award" / "Cash award"). */
   kind: "in-kind" | "cash";
-  /** One-line version, also shown on the /tracks listing. */
+  /** One-line version, shown at the top of the award on the track page. */
   summary: string;
   /** What the winner receives, one entry per item. */
   includes?: string[];

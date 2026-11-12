@@ -94,17 +94,6 @@ export default async function TracksPage() {
                       Sponsored by {track.sponsor}
                     </p>
                   )}
-                  {track.awards?.map((award) => (
-                    <div
-                      key={award.name}
-                      className="mt-6 max-w-md rounded-2xl bg-white/95 p-5 text-navy shadow-sm"
-                    >
-                      <p className="font-display text-xs font-bold uppercase tracking-[0.16em] text-navy/70">
-                        {award.kind === "in-kind" ? "Sponsored award · In-kind" : "Sponsored award"}
-                      </p>
-                      <p className="mt-2 text-sm leading-6 text-navy/80">{award.summary}</p>
-                    </div>
-                  ))}
                   <Link
                     href={`/tracks/${track.slug}`}
                     className={`mt-9 inline-flex min-h-14 w-full max-w-md items-center justify-center gap-2 bg-white px-8 font-display text-lg font-semibold shadow-sm transition hover:-translate-y-0.5 hover:shadow-lg ${style.ink}`}
