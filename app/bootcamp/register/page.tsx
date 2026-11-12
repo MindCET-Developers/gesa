@@ -41,7 +41,7 @@ export default async function BootcampRegisterPage() {
             </p>
           ) : (
             <BootcampRegisterForm
-              startups={startups.map(({ id, name, semifinal }) => ({ id, name, semifinal }))}
+              startups={startups.map(({ id, name, country }) => ({ id, name, country }))}
             />
           )}
         </div>

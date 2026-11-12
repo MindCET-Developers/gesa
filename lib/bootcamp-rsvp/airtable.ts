@@ -23,6 +23,7 @@ const PLACE_FIELDS = [
   ["3rd place", "fld08DEsB7jVN6saN"],
 ] as const; // People's Choice is deliberately NOT eligible.
 const R_STARTUP_NAME = "fldRs9KvsdXdDww1g";
+const R_COUNTRY = "fldYcw8QSJvMvLWje"; // "country text" (mirrors the Country link)
 
 // --- Bootcamp 2027 RSVP table (same base, write) ----------------------------
 const RSVP_TABLE = "tblaJJblfzKUyTxTN";
@@ -47,6 +48,7 @@ export interface EligibleStartup {
   id: string; // record ID in 2026 Registration
   name: string;
   semifinal: string;
+  country: string; // the startup's own country, shown in the dropdown
   place: string;
 }
 
@@ -117,21 +119,25 @@ export async function getEligibleStartups(): Promise<EligibleStartup[]> {
   // Fetch ONLY the startup name for those records (100 IDs per formula).
   const ids = [...byId.keys()];
   const names = new Map<string, string>();
+  const countries = new Map<string, string>();
   for (let i = 0; i < ids.length; i += 100) {
     const formula = encodeURIComponent(
       `OR(${ids.slice(i, i + 100).map((id) => `RECORD_ID()='${id}'`).join(",")})`
     );
     const recs = await listAll((offset) =>
       readGesa(
-        `${REGISTRATION}?filterByFormula=${formula}&fields[]=${R_STARTUP_NAME}&returnFieldsByFieldId=true${offset ? `&offset=${offset}` : ""}`
+        `${REGISTRATION}?filterByFormula=${formula}&fields[]=${R_STARTUP_NAME}&fields[]=${R_COUNTRY}&returnFieldsByFieldId=true${offset ? `&offset=${offset}` : ""}`
       )
     );
-    for (const r of recs) names.set(r.id, String(r.fields[R_STARTUP_NAME] ?? "").trim());
+    for (const r of recs) {
+      names.set(r.id, String(r.fields[R_STARTUP_NAME] ?? "").trim());
+      countries.set(r.id, String(r.fields[R_COUNTRY] ?? "").trim());
+    }
   }
 
   return ids
     .filter((id) => names.get(id))
-    .map((id) => ({ id, name: names.get(id)!, ...byId.get(id)! }))
+    .map((id) => ({ id, name: names.get(id)!, country: countries.get(id) ?? "", ...byId.get(id)! }))
     .sort((a, b) => a.name.localeCompare(b.name, "en", { sensitivity: "base" }));
 }
 

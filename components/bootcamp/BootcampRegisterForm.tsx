@@ -61,7 +61,7 @@ function ParticipantFields({
 export function BootcampRegisterForm({
   startups,
 }: {
-  startups: { id: string; name: string; semifinal: string }[];
+  startups: { id: string; name: string; country: string }[];
 }) {
   const [state, action, pending] = useActionState<RegisterState, FormData>(registerForBootcamp, {
     status: "idle",
@@ -109,7 +109,7 @@ export function BootcampRegisterForm({
           {startups.map((s) => (
             <option key={s.id} value={s.id}>
               {s.name}
-              {s.semifinal ? ` (${s.semifinal})` : ""}
+              {s.country ? ` (${s.country})` : ""}
             </option>
           ))}
         </select>
