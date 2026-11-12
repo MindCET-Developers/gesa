@@ -2,13 +2,12 @@
  * Server-only Airtable access for the GESAwards Bootcamp 2027 registration.
  * Never import from a client component.
  *
- * Two bases, two keys (least privilege):
- * - READ  GESAwards 2026 (appyTu8uOPQUVXD4x) with AIRTABLE_API_KEY, the same
- *   read-only key the semifinals pages use. We read only the Semifinals place
- *   fields and the "Startup Name" of the linked 2026 Registration rows. Nothing
- *   in the historical base is ever written.
- * - WRITE "GESAwards Bootcamp 2027 RSVP" (appkgKBfdmjHBG8JR) with
- *   BOOTCAMP_RSVP_AIRTABLE_TOKEN, a PAT scoped to that base only.
+ * Everything lives in the GESAwards 2026 base (appyTu8uOPQUVXD4x):
+ * - Eligibility is READ from Semifinals (1st/2nd/3rd place) + the "Startup Name"
+ *   of the linked 2026 Registration rows, using AIRTABLE_API_KEY (read only).
+ * - Registrations are WRITTEN only to the "Bootcamp 2027 RSVP" table, with a
+ *   real link to the startup's 2026 Registration record, using
+ *   BOOTCAMP_RSVP_AIRTABLE_TOKEN. The code never writes to any other table.
  */
 
 const API = "https://api.airtable.com/v0";
@@ -25,25 +24,25 @@ const PLACE_FIELDS = [
 ] as const; // People's Choice is deliberately NOT eligible.
 const R_STARTUP_NAME = "fldRs9KvsdXdDww1g";
 
-// --- RSVP base (read/write) -------------------------------------------------
-const RSVP_BASE_DEFAULT = "appkgKBfdmjHBG8JR";
-const RSVP_TABLE = "tblpYpvglFsrvuobN";
+// --- Bootcamp 2027 RSVP table (same base, write) ----------------------------
+const RSVP_TABLE = "tblaJJblfzKUyTxTN";
 const F = {
-  startup: "fld5T6s85NoB09bfR",
-  recordId: "fld8hP1EoXPmYR6E0",
-  semifinal: "fldirtVD2w2oNCTDn",
-  place: "fldhigUs4RVtspeQ3",
-  p1Name: "fld87hc0KO6KIfQW1",
-  p1Role: "fldn21ln3xosFcS6D",
-  p1Email: "fldFDwSRIMeHD8VoG",
-  p1Phone: "fldocqZnq7gphfEbc",
-  p2Name: "fldvtmKTYig7AGBw7",
-  p2Role: "fldhRqkEf2czLy7jd",
-  p2Email: "fldCD6lewfAf5WF9M",
-  p2Phone: "fldOk4PE9pKtLS1Ck",
-  firstSubmitted: "fldeB0m8IFiFsCAog",
-  lastUpdated: "fldmxLDwWNmjc2Qig",
-  updateCount: "fldtor7YSfjNVPVlj",
+  startupName: "fldkpVylHuWIunET9",
+  startupLink: "fldzx1KpEcAltpiBE",
+  recordId: "fldVs6fIkJcQSIS1I",
+  semifinal: "fldEelWrD5L8z89BQ",
+  place: "fld3YbaravbSu4uT1",
+  p1Name: "fldsNe5tfJZjFSQhD",
+  p1Role: "fldCQUTaIcw5i0Nt3",
+  p1Email: "fldDdjoAatHmKDchh",
+  p1Phone: "fldLi8rWaYOI6oIHy",
+  p2Name: "fldRnxBNSOaxcShps",
+  p2Role: "fldN8RUPcu2Htf3fO",
+  p2Email: "fldi4w6LLf8m01KgI",
+  p2Phone: "fldP8t0AeLSMGNmWL",
+  firstSubmitted: "fld9qRfLM94fxf8TY",
+  lastUpdated: "fldlVVDANZoM4VWWx",
+  updateCount: "fldCACrnGFzJSleko",
 } as const;
 
 export interface EligibleStartup {
@@ -81,12 +80,7 @@ async function call(base: string, key: string | undefined, path: string, init: R
 
 const readGesa = (path: string) => call(GESA_BASE, process.env.AIRTABLE_API_KEY, path);
 const rsvp = (path: string, init?: RequestInit) =>
-  call(
-    process.env.BOOTCAMP_RSVP_BASE_ID ?? RSVP_BASE_DEFAULT,
-    process.env.BOOTCAMP_RSVP_AIRTABLE_TOKEN,
-    path,
-    init
-  );
+  call(GESA_BASE, process.env.BOOTCAMP_RSVP_AIRTABLE_TOKEN, path, init);
 
 async function listAll(fetchPage: (offset?: string) => Promise<{ records: Rec[]; offset?: string }>) {
   const out: Rec[] = [];
@@ -168,7 +162,8 @@ export async function saveRegistration(
 ): Promise<SaveResult> {
   const now = new Date().toISOString();
   const fields = {
-    [F.startup]: startup.name,
+    [F.startupName]: startup.name,
+    [F.startupLink]: [startup.id],
     [F.recordId]: startup.id,
     [F.semifinal]: startup.semifinal,
     [F.place]: startup.place,
