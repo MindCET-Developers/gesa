@@ -518,6 +518,12 @@ export const tracks: Track[] = [
         image:
           "https://static.wixstatic.com/media/69f6a1_789a645b669043f49122a02ee8a948bb~mv2.png/v1/fill/w_230,h_225,al_c,lg_1,q_85,enc_avif,quality_auto/trophy.png",
       },
+      {
+        name: "Sharptext",
+        role: "partner",
+        // Original logo sent by Lucian Cosinschi (12 Nov 2026), stored unmodified.
+        image: "/brand/sponsors/sharptext.png",
+      },
     ],
     sourceUrl:
       "https://www.globaledtechawards.org/closing-the-workforce-skills-gap",
