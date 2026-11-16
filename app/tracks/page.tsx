@@ -13,9 +13,17 @@ const trackStyles = [
 ] as const;
 
 const originalTrackLogos: Record<string, { src: string; alt: string }> = {
+  "closing-the-workforce-skills-gap": {
+    src: "/brand/sponsors/sharptext.png",
+    alt: "Sharptext",
+  },
   "hacking-education-with-vibe-coding": {
     src: "/brand/partners/mindcet-labs.png",
     alt: "MindCET Labs",
+  },
+  "female-founders-track": {
+    src: "/brand/sponsors/seventh-sibling.png",
+    alt: "Seventh Sibling",
   },
   "learning-by-creating": {
     src: "/brand/novodia-wordmark.png",
