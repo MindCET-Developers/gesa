@@ -489,11 +489,23 @@ export const partners: Partner[] = [
     logo: wixLogo("7d9067_ab306a5a671743d79fab87fbc36841ca", "png", 280, 160),
     type: "worldwide",
   },
+  // Prize sponsors as requested by Cecilia (17 Nov 2026), replacing AWS.
+  // Logo files are the originals she supplied, stored unmodified.
   {
-    name: "Amazon Web Services",
-    logo: wixLogo("7d9067_880910682e4246148af96f5a8a360efb", "png", 280, 160),
+    name: "DOHE",
+    logo: "/brand/partners/dohe.png",
     type: "prize-sponsor",
-    knockout: true,
+  },
+  {
+    name: "EduEvidence",
+    logo: "/brand/sponsors/eduevidence.png",
+    type: "prize-sponsor",
+  },
+  {
+    name: "Seventh Sibling",
+    logo: "/brand/sponsors/seventh-sibling.png",
+    url: "https://seventhsibling.co.uk/",
+    type: "prize-sponsor",
   },
 ];
 
