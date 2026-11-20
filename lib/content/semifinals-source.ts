@@ -26,7 +26,7 @@ export type RawSemifinalEntry = {
 export const RAW_SEMIFINALS: RawSemifinalEntry[] = [
   {
     name: "Africa",
-    partners: ["GSET Ghana Society for Education Technology"],
+    partners: ["GSET Ghana Society for Education Technology", "Africa EdTech Exchange"],
     countries: [
       "Nigeria", "Ethiopia", "Egypt", "Democratic Republic of the Congo",
       "Republic of the Congo", "Tanzania", "South Africa", "Kenya", "Sudan", "Uganda",

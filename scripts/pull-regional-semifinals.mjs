@@ -43,6 +43,13 @@ const F_SEMIFINAL_DATE = "fldQBCREpbQqI6KXD"; // date field (ISO string, may be 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const F_SEMIFINAL_WINNER = "fld1Z8I5xeFrt7kCm";
 
+// Partners added to a semifinal in code, on top of Airtable's links. Shared with
+// lib/content/semifinals-airtable.ts so the live data and this snapshot agree.
+const SEMIFINAL_PARTNER_ADDITIONS = JSON.parse(
+  readFileSync(path.join(root, "lib/content/semifinal-partner-additions.json"), "utf8")
+);
+delete SEMIFINAL_PARTNER_ADDITIONS._comment;
+
 // Airtable record names that need canonicalizing before display.
 const PARTNER_NAME_OVERRIDES = {
   "SEK Lab/ ?": "SEK Lab",
@@ -338,6 +345,11 @@ if (semifinalRecords.length > 0) {
         countrySeen.add(countryName);
         semifinalCountries.push(countryName);
       }
+    }
+
+    // Partners added in code rather than in Airtable (see the JSON's own comment).
+    for (const extra of SEMIFINAL_PARTNER_ADDITIONS[name] ?? []) {
+      if (!semifinalPartners.some((p) => p.name === extra)) semifinalPartners.push({ name: extra });
     }
 
     if (semifinalPartners.length === 0) continue;

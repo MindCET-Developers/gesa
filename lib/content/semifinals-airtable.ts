@@ -20,6 +20,7 @@
 // scripts/pull-regional-semifinals.mjs (which still generates the committed fallback).
 
 import logoManifest from "../../public/brand/partners/manifest.json";
+import partnerAdditions from "./semifinal-partner-additions.json";
 import type { ContinentKey, RegionalSemifinalEntry } from "./types";
 
 const BASE_ID = "appyTu8uOPQUVXD4x";
@@ -290,6 +291,15 @@ export async function fetchRegionalSemifinals(): Promise<RegionalSemifinalEntry[
     }
 
     if (partners.length === 0) continue;
+
+    /* Partners added in code (lib/content/semifinal-partner-additions.json) rather than in
+     * Airtable, so they show up without touching the base. Skipped if Airtable already
+     * links the same partner. */
+    const additions = (partnerAdditions as Record<string, unknown>)[name];
+    for (const extra of Array.isArray(additions) ? (additions as string[]) : []) {
+      if (partners.some((p) => p.name === extra)) continue;
+      partners.push({ name: extra, logo: manifest[extra] });
+    }
 
     // Tally countries per continent to pick a single primary continent.
     const perContinent = new Map<ContinentKey, number>();

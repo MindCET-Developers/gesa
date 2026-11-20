@@ -813,6 +813,10 @@ export const regionalSemifinals: RegionalSemifinalEntry[] = [
       {
         "name": "GSET Ghana Society for Education Technology",
         "logo": "/brand/partners/gset-ghana-society-for-education-technology.png"
+      },
+      {
+        "name": "Africa EdTech Exchange",
+        "logo": "/brand/partners/africa-edtech-exchange.png"
       }
     ],
     "continent": "africa",
