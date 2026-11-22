@@ -1,0 +1,4 @@
+{
+  "_comment": "Partners added to a semifinal in code, on top of whatever Airtable links. Applied by lib/content/semifinals-airtable.ts (live data) and scripts/pull-regional-semifinals.mjs (committed snapshot) so they survive a data refresh. Keys are semifinal names; values are partner names (logos resolve via public/brand/partners/manifest.json).",
+  "Africa": ["Africa EdTech Exchange"]
+}
