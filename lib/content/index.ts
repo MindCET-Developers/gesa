@@ -125,16 +125,51 @@ function sortPartnerGroup(group: Partner[]): Partner[] {
   );
 }
 
+/* Partners that are added in code rather than in Sanity, so they show up in the strip
+ * without a CMS edit (and keep showing if the document is never created there). Each
+ * lands right after `after` in its group, or at the group's end when that partner is
+ * absent; a CMS document with the same name wins and is left untouched. Applied after
+ * sorting so a missing "Sort order" on these doesn't flip the whole group to alphabetical. */
+const CODE_PARTNERS: { partner: Partner; after?: string }[] = [
+  {
+    partner: {
+      name: "Africa EdTech Exchange",
+      logo: "/brand/partners/africa-edtech-exchange.png",
+      type: "worldwide",
+    },
+    after: "GSET Ghana Society for Education Technology",
+  },
+];
+
+function withCodePartners(sorted: Partner[]): Partner[] {
+  const result = [...sorted];
+  for (const { partner, after } of CODE_PARTNERS) {
+    if (result.some((p) => p.name === partner.name)) continue;
+    const afterIndex = after ? result.findIndex((p) => p.name === after && p.type === partner.type) : -1;
+    if (afterIndex >= 0) {
+      result.splice(afterIndex + 1, 0, partner);
+      continue;
+    }
+    const lastInGroup = result.map((p) => p.type).lastIndexOf(partner.type);
+    result.splice(lastInGroup >= 0 ? lastInGroup + 1 : result.length, 0, partner);
+  }
+  return result;
+}
+
 export async function getPartners(type?: Partner["type"]): Promise<Partner[]> {
   const content = await fetchCms<Partial<Partner>[]>(partnersQuery, []);
   const allPartners = content.length ? withPartnerFallbacks(content) : partners;
-  if (type) return sortPartnerGroup(allPartners.filter((partner) => partner.type === type));
+  if (type) {
+    return withCodePartners(sortPartnerGroup(allPartners.filter((partner) => partner.type === type))).filter(
+      (partner) => partner.type === type
+    );
+  }
 
   /* Each group sorts on its own, then they come back in the order the strip
    * renders them, so a caller taking the whole list still gets tidy groups. */
   const groups: Partner["type"][] = ["powered-by", "worldwide", "prize-sponsor"];
-  return groups.flatMap((group) =>
-    sortPartnerGroup(allPartners.filter((partner) => partner.type === group))
+  return withCodePartners(
+    groups.flatMap((group) => sortPartnerGroup(allPartners.filter((partner) => partner.type === group)))
   );
 }
 
