@@ -39,22 +39,28 @@ export function websiteUrl(value: unknown): string | undefined {
   } catch { return undefined; }
 }
 
-function logoUrl(value: unknown): string | undefined {
+/** First logo attachment a browser can render: Airtable thumbnail, or a web image type (not EPS/AI/PDF). */
+export function logoAttachment(value: unknown): { id: string; url: string } | undefined {
   if (!Array.isArray(value)) return undefined;
   for (const attachment of value) {
-    if (!attachment || typeof attachment !== "object") continue;
-    // Airtable thumbnails are always PNG/JPEG. Without one, only accept formats browsers render (not EPS/AI/PDF).
+    if (!attachment || typeof attachment !== "object" || typeof attachment.id !== "string" || !/^att[A-Za-z0-9]{14}$/.test(attachment.id)) continue;
     const type = typeof attachment.type === "string" ? attachment.type : "";
     const url = attachment.thumbnails?.large?.url ?? (/^image\/(png|jpe?g|webp|gif|svg\+xml|avif)$/.test(type) ? attachment.url : undefined);
     if (typeof url !== "string") continue;
     try {
       const parsed = new URL(url);
-      if (parsed.protocol === "https:" && parsed.hostname.endsWith(".airtableusercontent.com")) {
-        // SVG stays as-is; raster logos go through the margin-trimming route.
-        return type === "image/svg+xml" && !attachment.thumbnails ? url : `/api/winner-logo?src=${encodeURIComponent(url)}`;
-      }
+      if (parsed.protocol === "https:" && parsed.hostname.endsWith(".airtableusercontent.com")) return { id: attachment.id, url };
     } catch { /* Invalid attachments use the initials fallback. */ }
   }
+}
+
+/**
+ * Stable path per record + attachment: Airtable's signed URLs rotate every few hours, but this
+ * path only changes when the logo file itself is replaced, so the CDN keeps the trimmed image.
+ */
+function logoUrl(recordId: string, value: unknown): string | undefined {
+  const attachment = logoAttachment(value);
+  return attachment && `/api/winner-logo/${recordId}/${attachment.id}`;
 }
 
 export function assembleRegionalWinners(semifinals: RecordData[], startups: RecordData[]): RegionalWinners[] {
@@ -65,7 +71,7 @@ export function assembleRegionalWinners(semifinals: RecordData[], startups: Reco
     const winners = winnerIds(semifinal).flatMap((id) => {
       const record = byId.get(id);
       const name = text(record?.fields[STARTUP_NAME]);
-      return record && name ? [{ id, name, logo: logoUrl(record.fields[STARTUP_LOGO]), country: countryLabel(record.fields[STARTUP_COUNTRY]),
+      return record && name ? [{ id, name, logo: logoUrl(id, record.fields[STARTUP_LOGO]), country: countryLabel(record.fields[STARTUP_COUNTRY]),
         website: websiteUrl(record.fields[STARTUP_WEBSITE]) }] : [];
     }).sort((a, b) => a.name.localeCompare(b.name, "en", { sensitivity: "base" }));
     return winners.length ? [{ id: semifinal.id, name, winners }] : [];
