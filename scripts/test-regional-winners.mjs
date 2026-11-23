@@ -29,7 +29,7 @@ test('missing or unsafe logos fall back, valid Airtable thumbnails are preferred
     startup(ids[3], 'D', [{ id: 'att00000000000003', type: 'application/postscript', url: 'https://v5.airtableusercontent.com/logo.eps' }]),
   ]);
   assert.deepEqual(output[0].winners.map((w) => w.logo), [undefined, undefined,
-    `/api/winner-logo/${ids[2]}/att00000000000002`, undefined]);
+    `/api/winner-logo/${ids[2]}/att00000000000002?v=2`, undefined]);
 });
 
 test('a startup can be recognized in separate semifinals without duplicates within either', () => {
