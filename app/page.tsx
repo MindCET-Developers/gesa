@@ -18,15 +18,20 @@ import {
   getRegionalSemifinals,
 } from "@/lib/content";
 import { SITE_URL, jsonLdString } from "@/lib/site";
+import { RegionalWinners } from "@/components/home/RegionalWinners";
+import { getRegionalWinners } from "@/lib/content/regional-winners";
+
+export const revalidate = 300;
 
 export default async function HomePage() {
-  const [home, settings, categories, judges, partners, seminfinals] = await Promise.all([
+  const [home, settings, categories, judges, partners, seminfinals, regionalWinners] = await Promise.all([
     getHomeContent(),
     getSiteSettings(),
     getPrizeCategories(),
     getJudges(),
     getPartners(),
     getRegionalSemifinals(),
+    getRegionalWinners(),
   ]);
 
   const eventJsonLd = {
@@ -57,6 +62,7 @@ export default async function HomePage() {
       />
       <Hero home={home} settings={settings} />
       <FinalsEvents editionYear={home.editionYear} />
+      <RegionalWinners regions={regionalWinners} />
       <GalleryMarquee images={home.gallery} />
       <IntroStats home={home} />
       <Criteria home={home} />

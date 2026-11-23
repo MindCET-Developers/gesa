@@ -23,7 +23,8 @@ import logoManifest from "../../public/brand/partners/manifest.json";
 import partnerAdditions from "./semifinal-partner-additions.json";
 import type { ContinentKey, RegionalSemifinalEntry } from "./types";
 
-const BASE_ID = "appyTu8uOPQUVXD4x";
+import { fetchAllRecords, type AirtableRecord } from "./airtable-read";
+export { SEMIFINALS_REVALIDATE_SECONDS, SEMIFINALS_CACHE_TAG } from "./airtable-read";
 const PARTNERS_TABLE = "tblAfv3rYs6GyXQEF";
 const COUNTRIES_TABLE = "tbl7wFk8g0AbGx7ee";
 const SEMIFINALS_TABLE = "tblAJHZRBQyfPOySc";
@@ -36,12 +37,6 @@ const F_COUNTRY_AREA = "fld1A4UPsFR1Bji3N";
 const F_SEMIFINAL_NAME = "fldp0VsrprsjrJbLS";
 const F_SEMIFINAL_PARTNERS = "fldYjUfAY9BclTPuD";
 const F_SEMIFINAL_DATE = "fldQBCREpbQqI6KXD";
-
-// Five-minute time-based refresh for schedule content. The existing authenticated
-// /api/revalidate-semifinals endpoint can mark data stale sooner after an edit.
-// Both paths use stale-while-revalidate: fresh data is fetched on subsequent traffic.
-export const SEMIFINALS_REVALIDATE_SECONDS = 300;
-export const SEMIFINALS_CACHE_TAG = "semifinals";
 
 const PARTNER_NAME_OVERRIDES: Record<string, string> = {
   "SEK Lab/ ?": "SEK Lab",
@@ -160,38 +155,6 @@ function areaToContinentKey(area: string): string {
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^rest-of-the-world$/, "rest-of-world");
-}
-
-type AirtableRecord = { id: string; fields: Record<string, unknown> };
-
-async function fetchAllRecords(
-  tableId: string,
-  apiKey: string,
-  fields: readonly string[],
-): Promise<AirtableRecord[]> {
-  const records: AirtableRecord[] = [];
-  let offset: string | undefined;
-  do {
-    const url = new URL(`https://api.airtable.com/v0/${BASE_ID}/${tableId}`);
-    url.searchParams.set("returnFieldsByFieldId", "true");
-    url.searchParams.set("pageSize", "100");
-    // Next caches the raw response, before the transformation below. Exclude unused
-    // fields so unrelated edits and attachments cannot enlarge or churn that entry.
-    for (const field of fields) url.searchParams.append("fields[]", field);
-    if (offset) url.searchParams.set("offset", offset);
-
-    const res = await fetch(url, {
-      headers: { Authorization: `Bearer ${apiKey}` },
-      next: { revalidate: SEMIFINALS_REVALIDATE_SECONDS, tags: [SEMIFINALS_CACHE_TAG] },
-    });
-    if (!res.ok) {
-      throw new Error(`Airtable ${tableId} request failed: HTTP ${res.status}`);
-    }
-    const page = (await res.json()) as { records: AirtableRecord[]; offset?: string };
-    records.push(...page.records);
-    offset = page.offset;
-  } while (offset);
-  return records;
 }
 
 /**
