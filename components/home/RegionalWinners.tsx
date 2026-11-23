@@ -2,7 +2,10 @@ import type { RegionalWinners as Region } from "@/lib/content/regional-winners-d
 import { WinnerLogo } from "./WinnerLogo";
 
 export function RegionalWinners({ regions }: { regions: Region[] }) {
-  if (!regions.length) return null;
+  const winners = [...new Map(regions.flatMap((region) => region.winners)
+    .map((winner) => [winner.id, winner])).values()]
+    .sort((a, b) => a.name.localeCompare(b.name, "en", { sensitivity: "base" }));
+  if (!winners.length) return null;
   return (
     <section id="regional-winners" aria-labelledby="regional-winners-heading"
       className="relative overflow-hidden bg-navy py-20 text-white md:py-28">
@@ -17,23 +20,15 @@ export function RegionalWinners({ regions }: { regions: Region[] }) {
             Discover the innovative EdTech startups recognized at GESAwards regional semifinals around the world. More winners will be announced soon.
           </p>
         </div>
-        <div className="grid items-start gap-5 md:grid-cols-2 xl:grid-cols-3">
-          {regions.map((region) => (
-            <article key={region.id} className="overflow-hidden rounded-2xl border border-white/15 bg-white shadow-lg">
-              <div className="border-b border-line bg-surface px-6 py-5">
-                <h3 className="text-xl font-bold leading-snug text-navy [overflow-wrap:anywhere]">{region.name}</h3>
-              </div>
-              <ul className="divide-y divide-line px-6">
-                {region.winners.map((winner) => (
-                  <li key={winner.id} className="flex min-h-24 items-center gap-4 py-4">
-                    <WinnerLogo name={winner.name} src={winner.logo} />
-                    <span className="min-w-0 text-base font-semibold leading-snug text-navy [overflow-wrap:anywhere]">{winner.name}</span>
-                  </li>
-                ))}
-              </ul>
-            </article>
+        <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-5 lg:grid-cols-4 xl:grid-cols-5">
+          {winners.map((winner) => (
+            <li key={winner.id} className="flex flex-col items-center rounded-2xl border border-white/15 bg-white px-4 py-6 text-center shadow-lg sm:px-5 sm:py-8">
+              <WinnerLogo name={winner.name} src={winner.logo} />
+              <h3 className="mt-5 w-full text-base font-semibold leading-snug text-navy [overflow-wrap:anywhere]">{winner.name}</h3>
+              {winner.country && <p className="mt-1.5 text-sm text-muted">{winner.country}</p>}
+            </li>
           ))}
-        </div>
+        </ul>
       </div>
     </section>
   );

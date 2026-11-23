@@ -3,9 +3,11 @@ export const WINNER_FIELDS = ["fld1Z8I5xeFrt7kCm", "fld8oGo5xYMyl664R", "fld08DE
 export const SEMIFINAL_NAME = "fldp0VsrprsjrJbLS";
 export const STARTUP_NAME = "fldRs9KvsdXdDww1g";
 export const STARTUP_LOGO = "fld7pNh9VXfDtafH4";
+/** Free-text country on the startup record (not the semifinal region). */
+export const STARTUP_COUNTRY = "fldYcw8QSJvMvLWje";
 
 type RecordData = { id: string; fields: Record<string, unknown> };
-export type RegionalWinner = { id: string; name: string; logo?: string };
+export type RegionalWinner = { id: string; name: string; logo?: string; country?: string };
 export type RegionalWinners = { id: string; name: string; winners: RegionalWinner[] };
 
 export function winnerIds(record: RecordData): string[] {
@@ -18,6 +20,12 @@ export function winnerIds(record: RecordData): string[] {
 
 function text(value: unknown): string {
   return typeof value === "string" ? value.trim() : "";
+}
+
+/** Display form: "USA - Tennessee" -> "USA", "United Kingdom (UK)" -> "United Kingdom". */
+export function countryLabel(value: unknown): string | undefined {
+  const label = text(value).replace(/\s*\([^)]*\)\s*/g, " ").split(/\s+-\s+/)[0].replace(/\s+/g, " ").trim();
+  return label || undefined;
 }
 
 function logoUrl(value: unknown): string | undefined {
@@ -41,7 +49,7 @@ export function assembleRegionalWinners(semifinals: RecordData[], startups: Reco
     const winners = winnerIds(semifinal).flatMap((id) => {
       const record = byId.get(id);
       const name = text(record?.fields[STARTUP_NAME]);
-      return record && name ? [{ id, name, logo: logoUrl(record.fields[STARTUP_LOGO]) }] : [];
+      return record && name ? [{ id, name, logo: logoUrl(record.fields[STARTUP_LOGO]), country: countryLabel(record.fields[STARTUP_COUNTRY]) }] : [];
     }).sort((a, b) => a.name.localeCompare(b.name, "en", { sensitivity: "base" }));
     return winners.length ? [{ id: semifinal.id, name, winners }] : [];
   }).sort((a, b) => a.name.localeCompare(b.name, "en", { sensitivity: "base" }));

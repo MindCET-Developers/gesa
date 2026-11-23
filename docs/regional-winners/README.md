@@ -4,7 +4,7 @@ Implemented on `codex/regional-semifinal-winners`. No production deployment, mer
 
 ## Behavior
 
-The homepage displays the exact requested heading and introduction, followed by equally styled winners grouped by the actual semifinal name. Regions and startups are alphabetical. The three placement fields determine membership only; placement data is never passed to the UI. Repeated record IDs are deduplicated within each region, while recognition in different regions remains intact.
+The homepage displays the exact requested heading and introduction, followed by a single alphabetical company gallery with equally sized logo areas and company names. No region cards or region labels are displayed. Each tile shows the startup country from the startup record's `country text` field (normalized, e.g. "USA - Tennessee" -> "USA"); it is omitted when empty. The three placement fields determine membership only; placement data is never passed to the UI. Repeated record IDs are deduplicated across the entire gallery, including companies recognized in multiple semifinals.
 
 The existing server-side Airtable reader is shared by the schedule and winners. It fetches only selected fields, paginates, and caches for 300 seconds using the existing `semifinals` cache tag. Startup lookups are batched by linked record ID. The homepage also revalidates every 300 seconds so an initial upstream failure does not permanently omit the section. Refresh is traffic-driven, using Next.js stale-while-revalidate semantics.
 
@@ -28,7 +28,7 @@ Read the requested view `viwAO4gA7Bf1RjJCT` in Semifinals `tblAJHZRBQyfPOySc`, b
 - `npm run lint`: fails on three pre-existing `@typescript-eslint/no-require-imports` errors in `scripts/download_bootcamp_speakers.js` and `scripts/extract_all_wix_speakers.js`. Targeted lint of all changed TS/TSX/MJS files passed.
 - `node --experimental-strip-types --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --test scripts/test-regional-winners.mjs`: five tests passed, covering all fields, ties, repeated links, empty/unresolved records, logo fallback, cross-region recognition, missing credentials and HTTP 503 handling.
 - `node --experimental-strip-types --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/verify-regional-winners.mjs`: read-only live data audit passed.
-- Browser checked against the production build at 1440×1000 and 390×844: 15 region cards and 46 entries, no horizontal overflow, no ranking or Global Finalist copy in the section, no browser console warnings/errors captured. Long region/startup names wrap.
+- Browser checked against the production build at 1440×1000 and 390×844: 46 unique company tiles in one gallery, no horizontal overflow, no ranking or Global Finalist copy in the section, no browser console warnings/errors captured. Long startup names wrap. The gallery uses two columns on mobile and five on wide desktop screens.
 - Scanned 996 public build files (client assets and rendered HTML/RSC) for the configured Airtable credential: zero matches. Server-only imports protect the data modules.
 
 ## Files
