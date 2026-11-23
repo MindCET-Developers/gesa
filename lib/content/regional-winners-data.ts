@@ -43,11 +43,16 @@ function logoUrl(value: unknown): string | undefined {
   if (!Array.isArray(value)) return undefined;
   for (const attachment of value) {
     if (!attachment || typeof attachment !== "object") continue;
-    const url = attachment.thumbnails?.large?.url ?? attachment.url;
+    // Airtable thumbnails are always PNG/JPEG. Without one, only accept formats browsers render (not EPS/AI/PDF).
+    const type = typeof attachment.type === "string" ? attachment.type : "";
+    const url = attachment.thumbnails?.large?.url ?? (/^image\/(png|jpe?g|webp|gif|svg\+xml|avif)$/.test(type) ? attachment.url : undefined);
     if (typeof url !== "string") continue;
     try {
       const parsed = new URL(url);
-      if (parsed.protocol === "https:" && parsed.hostname.endsWith(".airtableusercontent.com")) return url;
+      if (parsed.protocol === "https:" && parsed.hostname.endsWith(".airtableusercontent.com")) {
+        // SVG stays as-is; raster logos go through the margin-trimming route.
+        return type === "image/svg+xml" && !attachment.thumbnails ? url : `/api/winner-logo?src=${encodeURIComponent(url)}`;
+      }
     } catch { /* Invalid attachments use the initials fallback. */ }
   }
 }
