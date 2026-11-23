@@ -24,12 +24,12 @@ test('empty regions, unresolved links and unnamed startups never become placehol
 
 test('missing or unsafe logos fall back, valid Airtable thumbnails are preferred', () => {
   const output = assembleRegionalWinners([semi({ [WINNER_FIELDS[1]]: ids })], [
-    startup(ids[0], 'A'), startup(ids[1], 'B', [{ url: 'javascript:alert(1)' }]),
-    startup(ids[2], 'C', [{ url: 'https://v5.airtableusercontent.com/full', thumbnails: { large: { url: 'https://v5.airtableusercontent.com/thumb' } } }]),
-    startup(ids[3], 'D', [{ type: 'application/postscript', url: 'https://v5.airtableusercontent.com/logo.eps' }]),
+    startup(ids[0], 'A'), startup(ids[1], 'B', [{ id: 'att00000000000001', url: 'javascript:alert(1)' }]),
+    startup(ids[2], 'C', [{ id: 'att00000000000002', url: 'https://v5.airtableusercontent.com/full', thumbnails: { large: { url: 'https://v5.airtableusercontent.com/thumb' } } }]),
+    startup(ids[3], 'D', [{ id: 'att00000000000003', type: 'application/postscript', url: 'https://v5.airtableusercontent.com/logo.eps' }]),
   ]);
   assert.deepEqual(output[0].winners.map((w) => w.logo), [undefined, undefined,
-    `/api/winner-logo?src=${encodeURIComponent('https://v5.airtableusercontent.com/thumb')}`, undefined]);
+    `/api/winner-logo/${ids[2]}/att00000000000002`, undefined]);
 });
 
 test('a startup can be recognized in separate semifinals without duplicates within either', () => {
