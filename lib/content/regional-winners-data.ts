@@ -58,9 +58,12 @@ export function logoAttachment(value: unknown): { id: string; url: string } | un
  * Stable path per record + attachment: Airtable's signed URLs rotate every few hours, but this
  * path only changes when the logo file itself is replaced, so the CDN keeps the trimmed image.
  */
+/** Bump when the logo processing changes, so CDN copies of the old rendering are bypassed. */
+const LOGO_RENDER_VERSION = 2;
+
 function logoUrl(recordId: string, value: unknown): string | undefined {
   const attachment = logoAttachment(value);
-  return attachment && `/api/winner-logo/${recordId}/${attachment.id}`;
+  return attachment && `/api/winner-logo/${recordId}/${attachment.id}?v=${LOGO_RENDER_VERSION}`;
 }
 
 export function assembleRegionalWinners(semifinals: RecordData[], startups: RecordData[]): RegionalWinners[] {
