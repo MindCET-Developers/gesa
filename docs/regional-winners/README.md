@@ -51,3 +51,7 @@ Read the requested view `viwAO4gA7Bf1RjJCT` in Semifinals `tblAJHZRBQyfPOySc`, b
 ![Mobile](mobile.jpg)
 
 No hosted preview deployment was created. Run `npm run build` and `npm run start -- --port 3100`, then open `http://localhost:3100/#regional-winners` for a local production preview.
+
+## Detail card, website and logo monitoring
+
+Each tile opens a modal card (native `<dialog>`) with a larger logo, the startup's product paragraph (`Describe your product in one paragraph.`) and a "Visit" button for its `Website` field. Websites without a scheme (e.g. `www.x.com`) are normalized to `https://`. Anything else is dropped rather than linked. If a winner has no logo, the tile shows initials, and the server logs `[regional-winners] MISSING LOGO in Airtable ...` with the company names. The live audit script also reports `hasLogo` and `website` for every winner.

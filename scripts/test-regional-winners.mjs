@@ -70,3 +70,13 @@ test('API failure and missing credentials return no cards; public fetches remain
     else process.env.AIRTABLE_API_KEY = originalKey;
   }
 });
+
+test('websites are normalized to safe http(s) links, country labels are cleaned', async () => {
+  const { websiteUrl, countryLabel } = await import('../lib/content/regional-winners-data.ts');
+  assert.equal(websiteUrl('www.themarkingapp.co.za'), 'https://www.themarkingapp.co.za/');
+  assert.equal(websiteUrl('https://x.io/en'), 'https://x.io/en');
+  assert.equal(websiteUrl('javascript:alert(1)'), undefined);
+  assert.equal(websiteUrl('n/a'), undefined);
+  assert.equal(countryLabel('USA - Tennessee '), 'USA');
+  assert.equal(countryLabel('United Kingdom (UK)'), 'United Kingdom');
+});
