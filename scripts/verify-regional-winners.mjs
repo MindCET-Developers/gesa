@@ -2,7 +2,7 @@
 import nextEnv from '@next/env';
 import { readFile } from 'node:fs/promises';
 import ts from 'typescript';
-import { assembleRegionalWinners, winnerIds, WINNER_FIELDS, SEMIFINAL_NAME, STARTUP_NAME, STARTUP_LOGO, STARTUP_COUNTRY, STARTUP_WEBSITE, STARTUP_DESCRIPTION } from '../lib/content/regional-winners-data.ts';
+import { assembleRegionalWinners, winnerIds, WINNER_FIELDS, SEMIFINAL_NAME, STARTUP_NAME, STARTUP_LOGO, STARTUP_COUNTRY, STARTUP_WEBSITE } from '../lib/content/regional-winners-data.ts';
 
 nextEnv.loadEnvConfig(process.cwd());
 // Run the actual Next fetch helper outside Next; only remove its build-time server guard.
@@ -15,7 +15,7 @@ const semis = await fetchAllRecords('tblAJHZRBQyfPOySc', key, [SEMIFINAL_NAME, .
 const ids = [...new Set(semis.flatMap(winnerIds))].sort();
 const startups = [];
 for (let i = 0; i < ids.length; i += 100) {
-  startups.push(...await fetchAllRecords('tblvXv2QLUDoMBs2Y', key, [STARTUP_NAME, STARTUP_LOGO, STARTUP_COUNTRY, STARTUP_WEBSITE, STARTUP_DESCRIPTION], {
+  startups.push(...await fetchAllRecords('tblvXv2QLUDoMBs2Y', key, [STARTUP_NAME, STARTUP_LOGO, STARTUP_COUNTRY, STARTUP_WEBSITE], {
     filterByFormula: `OR(${ids.slice(i, i + 100).map((id) => `RECORD_ID()='${id}'`).join(',')})`,
   }));
 }
@@ -25,5 +25,5 @@ console.log(JSON.stringify({
   linkedCountsBySourceField: WINNER_FIELDS.map((field) => semis.reduce((n, s) => n + (s.fields[field]?.length ?? 0), 0)),
   multipleWinnerFields: semis.flatMap((s) => WINNER_FIELDS.filter((f) => s.fields[f]?.length > 1).map((f) => ({ region: s.fields[SEMIFINAL_NAME], count: s.fields[f].length }))),
   unresolvedOrUnnamed: ids.filter((id) => !startups.some((s) => s.id === id && s.fields[STARTUP_NAME]?.trim())),
-  regions: regions.map((r) => ({ name: r.name, winners: r.winners.map((w) => ({ name: w.name, hasLogo: Boolean(w.logo), country: w.country ?? null, website: w.website ?? null, hasDescription: Boolean(w.description) })) })),
+  regions: regions.map((r) => ({ name: r.name, winners: r.winners.map((w) => ({ name: w.name, hasLogo: Boolean(w.logo), country: w.country ?? null, website: w.website ?? null })) })),
 }, null, 2));

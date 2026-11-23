@@ -1,6 +1,6 @@
 import "server-only";
 import { fetchAllRecords, type AirtableRecord } from "./airtable-read";
-import { assembleRegionalWinners, winnerIds, WINNER_FIELDS, SEMIFINAL_NAME, STARTUP_NAME, STARTUP_LOGO, STARTUP_COUNTRY, STARTUP_WEBSITE, STARTUP_DESCRIPTION } from "./regional-winners-data";
+import { assembleRegionalWinners, winnerIds, WINNER_FIELDS, SEMIFINAL_NAME, STARTUP_NAME, STARTUP_LOGO, STARTUP_COUNTRY, STARTUP_WEBSITE } from "./regional-winners-data";
 
 export async function getRegionalWinners() {
   const key = process.env.AIRTABLE_API_KEY;
@@ -13,7 +13,7 @@ export async function getRegionalWinners() {
     // Bounded, sequential batches avoid per-company requests and rate-limit bursts.
     for (let i = 0; i < ids.length; i += 100) {
       startups.push(...await fetchAllRecords("tblvXv2QLUDoMBs2Y", key,
-        [STARTUP_NAME, STARTUP_LOGO, STARTUP_COUNTRY, STARTUP_WEBSITE, STARTUP_DESCRIPTION], {
+        [STARTUP_NAME, STARTUP_LOGO, STARTUP_COUNTRY, STARTUP_WEBSITE], {
           filterByFormula: `OR(${ids.slice(i, i + 100).map((id) => `RECORD_ID()='${id}'`).join(",")})`,
         }));
     }

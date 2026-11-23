@@ -6,10 +6,9 @@ export const STARTUP_LOGO = "fld7pNh9VXfDtafH4";
 /** Free-text country on the startup record (not the semifinal region). */
 export const STARTUP_COUNTRY = "fldYcw8QSJvMvLWje";
 export const STARTUP_WEBSITE = "fld4ZHcsO9YQRD7hs";
-export const STARTUP_DESCRIPTION = "fldhQnzm7gmufirIy";
 
 type RecordData = { id: string; fields: Record<string, unknown> };
-export type RegionalWinner = { id: string; name: string; logo?: string; country?: string; website?: string; description?: string };
+export type RegionalWinner = { id: string; name: string; logo?: string; country?: string; website?: string };
 export type RegionalWinners = { id: string; name: string; winners: RegionalWinner[] };
 
 export function winnerIds(record: RecordData): string[] {
@@ -62,7 +61,7 @@ export function assembleRegionalWinners(semifinals: RecordData[], startups: Reco
       const record = byId.get(id);
       const name = text(record?.fields[STARTUP_NAME]);
       return record && name ? [{ id, name, logo: logoUrl(record.fields[STARTUP_LOGO]), country: countryLabel(record.fields[STARTUP_COUNTRY]),
-        website: websiteUrl(record.fields[STARTUP_WEBSITE]), description: text(record.fields[STARTUP_DESCRIPTION]) || undefined }] : [];
+        website: websiteUrl(record.fields[STARTUP_WEBSITE]) }] : [];
     }).sort((a, b) => a.name.localeCompare(b.name, "en", { sensitivity: "base" }));
     return winners.length ? [{ id: semifinal.id, name, winners }] : [];
   }).sort((a, b) => a.name.localeCompare(b.name, "en", { sensitivity: "base" }));
