@@ -454,7 +454,8 @@ export const regionalSemifinals: RegionalSemifinalEntry[] = [
         "name": "United Arab Emirates (UAE)",
         "code": "ae"
       }
-    ]
+    ],
+    "date": "2026-11-30"
   },
   {
     "name": "EuroAsia",

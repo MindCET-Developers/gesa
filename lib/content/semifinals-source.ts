@@ -161,6 +161,7 @@ export const RAW_SEMIFINALS: RawSemifinalEntry[] = [
       "Australia", "Bangladesh", "Iraq", "Jordan", "Kuwait", "Lebanon", "Nepal", "Pakistan",
       "Papua New Guinea", "Saudi Arabia", "United Arab Emirates (UAE)",
     ],
+    date: "2026-11-30",
   },
   {
     name: "Nordic",
