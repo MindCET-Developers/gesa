@@ -12,12 +12,22 @@ lists and their Airtable tables are therefore fully separate.
 
 ## What it collects
 
-- **Startup** (Grand Finalists only)
-- **Attendance:** *On stage in London* or *Online*
-- **Presenter:** full name, role, email, phone
-- **Main contact:** same fields, or the checkbox "The main contact is the presenter"
-- **Pitch video:** file upload, video only, up to 500 MB. Required on the first submission;
-  on a correction it can be left empty to keep the stored video.
+1. **Judging panel** (during the Bootcamp, end of day 1 or day 2, Jan 18–19, from about 16:00
+   London time; hybrid on Zoom, so startups at the venue also present on Zoom; the team tells
+   each startup its day later):
+   - *During the judging, will you be in London?* → `Judging – Location`
+   - Who presents to the judges: name, role, email, phone → `Judging presenter – …`
+2. **Grand Final** (Jan 21, panels with the finalists, screening of edited videos, announcement
+   of the winners decided beforehand):
+   - *Will someone be on stage?* Yes, the judging presenter / Yes, someone else / No →
+     `Final stage` (Yes/No), `Final stage – Same as judging presenter`, and the person's
+     details in `Final stage – Full name / Role / Email / Phone` (copied from the judging
+     presenter when it's the same person).
+3. **Main contact:** the judging presenter by default, or a different person.
+4. **Pitch video:** up to one minute, video only, up to 500 MB. The browser reads the length
+   before uploading and refuses anything over 61 seconds; the length is stored in
+   `Pitch video – Length (s)` (empty if the browser couldn't read it, so check those by hand).
+   Required on the first submission; on a correction it can be left empty to keep the stored video.
 
 ## Eligibility
 
@@ -30,10 +40,13 @@ is read live on every page load, every upload and every submission.
 
 Base **GESAwards 2026** (`appyTu8uOPQUVXD4x`), new table **`Grand Final 2027`**
 (`tblOFUmNAiLMmpqsO`), one row per startup:
-Startup Name, Startup (link to `2026 Registration`), Attendance, Presenter – Full name / Role /
-Email / Phone, Contact is presenter, Contact – Full name / Role / Email / Phone (filled with the
-presenter's details when the checkbox is on), Pitch video (attachment), Pitch video URL,
-First submitted, Last updated, Update count.
+Startup Name, Startup (link to `2026 Registration`), Judging – Location, Judging presenter –
+Full name / Role / Email, Presenter – Phone, Final stage, Final stage – Same as judging presenter,
+Final stage – Full name / Role / Email / Phone, Contact is judging presenter, Contact – Full name /
+Role / Email / Phone (filled with the presenter's details when the checkbox is on), Pitch video
+(attachment), Pitch video URL, Pitch video – Length (s), First submitted, Last updated, Update count.
+
+`UNUSED – Attendance (delete me)` is the old single attendance question; no code writes to it.
 
 Side effect of the link: Airtable added a reverse-link column `Grand Final 2027` on
 `2026 Registration`.

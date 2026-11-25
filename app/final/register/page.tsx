@@ -27,7 +27,7 @@ export default async function FinalRegisterPage() {
       <PageHero
         kicker="GESAwards 2026 Grand Finalists"
         title="Grand Final Details"
-        intro="Grand Final · January 21, 2027 · London. Tell us how you will present, who will pitch, who we should contact, and upload your pitch video."
+        intro="Judging panels during the Bootcamp (January 18–19, 2027) and the Grand Final (January 21, 2027) in London. Tell us where you will be for the judging, who will present, who will be on stage at the Grand Final, and upload a one-minute video."
       />
       <section className="container-page py-14 md:py-20">
         <div className="mx-auto max-w-2xl">
