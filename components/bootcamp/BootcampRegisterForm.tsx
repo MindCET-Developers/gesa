@@ -115,8 +115,8 @@ export function BootcampRegisterForm({
         </select>
         <FieldError msg={errs.startup} />
         <p className="mt-1.5 text-xs text-muted">
-          Only startups placed 1st, 2nd or 3rd in a GESAwards 2026 regional semifinal are listed.
-          Is your startup missing? Contact your semifinal partner.
+          Only startups placed 1st, 2nd or 3rd in a GESAwards 2026 regional semifinal or Track are listed.
+          Is your startup missing? Contact your semifinal partner or the GESAwards team.
         </p>
       </div>
 

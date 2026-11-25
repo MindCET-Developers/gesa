@@ -29,7 +29,7 @@ export default async function BootcampRegisterPage() {
   return (
     <div className="bg-white">
       <PageHero
-        kicker="1st–3rd place regional semifinal winners"
+        kicker="1st–3rd place winners of the regional semifinals and Tracks"
         title="Bootcamp 2027 Registration"
         intro="GESAwards Bootcamp · January 18 & 19, 2027 · Central London. Up to two participants per startup."
       />
