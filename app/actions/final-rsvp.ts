@@ -3,12 +3,14 @@
 import {
   FinalConfigError,
   getFinalists,
+  getSubmissionSummary,
   isOwnVideoUrl,
   RECORD_ID_RE,
   saveFinalDetails,
   type FinalStage,
   type JudgingLocation,
   type Person,
+  type SubmissionSummary,
 } from "@/lib/final-rsvp/airtable";
 import { MAX_VIDEO_SECONDS, VIDEO_SECONDS_TOLERANCE } from "@/lib/final-rsvp/constants";
 
@@ -151,5 +153,23 @@ export async function submitFinalDetails(_prev: FinalState, fd: FormData): Promi
       err instanceof FinalConfigError ? err.message : err
     );
     return fail("We couldn't save your details right now. Please try again in a few minutes.");
+  }
+}
+
+/** Lets the form say, as soon as a startup is picked, that it already submitted. */
+export async function checkFinalSubmission(
+  startupId: string
+): Promise<{ status: "none" | "error" } | ({ status: "exists" } & SubmissionSummary)> {
+  if (!RECORD_ID_RE.test(startupId)) return { status: "none" };
+  try {
+    if (!(await getFinalists()).some((s) => s.id === startupId)) return { status: "none" };
+    const summary = await getSubmissionSummary(startupId);
+    return summary ? { status: "exists", ...summary } : { status: "none" };
+  } catch (err) {
+    console.error(
+      "[final-register] status check failed",
+      err instanceof FinalConfigError ? err.message : err
+    );
+    return { status: "error" };
   }
 }

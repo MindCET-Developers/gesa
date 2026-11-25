@@ -67,6 +67,11 @@ Side effect of the link: Airtable added a reverse-link column `Grand Final 2027`
 
 ## Duplicates & corrections
 
+As soon as a startup is picked, the form checks for an earlier submission. If one exists it shows
+a notice with the submission and last-update times, the main contact email masked
+(`j•••@acme.com`), and whether a video is on file, and the button reads **Update details**. No
+names or phone numbers from the existing row are sent to the browser.
+
 Same rules as the Bootcamp form: one row per startup. Submitting again with the **same main
 contact email** updates the row; a different email is refused and the team fixes it in Airtable.
 There is no identity check: anyone with the link can pick any finalist, so review the rows.
