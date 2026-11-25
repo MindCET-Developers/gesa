@@ -162,10 +162,37 @@ async function findRow(startupId: string): Promise<Rec | undefined> {
   // The table holds at most a few dozen rows.
   const rows = await listAll((offset) =>
     write(
-      `${FINAL_TABLE}?fields[]=${F.startupLink}&fields[]=${F.contactEmail}&fields[]=${F.updateCount}&fields[]=${F.videoUrl}&returnFieldsByFieldId=true${offset ? `&offset=${offset}` : ""}`
+      `${FINAL_TABLE}?fields[]=${F.startupLink}&fields[]=${F.contactEmail}&fields[]=${F.updateCount}&fields[]=${F.videoUrl}&fields[]=${F.firstSubmitted}&fields[]=${F.lastUpdated}&returnFieldsByFieldId=true${offset ? `&offset=${offset}` : ""}`
     )
   );
   return rows.find((r) => ((r.fields[F.startupLink] as string[] | undefined) ?? []).includes(startupId));
+}
+
+/** "jane@acme.com" -> "j•••@acme.com": enough to recognise, not enough to harvest. */
+function maskEmail(email: string): string {
+  const [user, domain] = email.split("@");
+  if (!user || !domain) return "";
+  return `${user[0]}•••@${domain}`;
+}
+
+export interface SubmissionSummary {
+  firstSubmitted: string | null;
+  lastUpdated: string | null;
+  contactEmailMasked: string;
+  hasVideo: boolean;
+}
+
+/** What the form may reveal about an existing submission. No names or phone numbers. */
+export async function getSubmissionSummary(startupId: string): Promise<SubmissionSummary | null> {
+  const row = await findRow(startupId);
+  if (!row) return null;
+  const str = (v: unknown) => (typeof v === "string" && v ? v : null);
+  return {
+    firstSubmitted: str(row.fields[F.firstSubmitted]),
+    lastUpdated: str(row.fields[F.lastUpdated]),
+    contactEmailMasked: maskEmail(String(row.fields[F.contactEmail] ?? "")),
+    hasVideo: !!row.fields[F.videoUrl],
+  };
 }
 
 export type SaveResult =

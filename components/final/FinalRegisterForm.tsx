@@ -1,8 +1,8 @@
 "use client";
 
-import { startTransition, useActionState, useState, type FormEvent, type ReactNode } from "react";
+import { startTransition, useActionState, useRef, useState, type FormEvent, type ReactNode } from "react";
 import { upload } from "@vercel/blob/client";
-import { submitFinalDetails, type FinalState } from "@/app/actions/final-rsvp";
+import { checkFinalSubmission, submitFinalDetails, type FinalState } from "@/app/actions/final-rsvp";
 import { buttonClasses } from "@/components/ui/button";
 import {
   MAX_VIDEO_BYTES,
@@ -106,6 +106,46 @@ function RadioCards({
   );
 }
 
+type Existing = Awaited<ReturnType<typeof checkFinalSubmission>> & { startupId: string };
+
+const formatWhen = (iso: string | null) =>
+  iso
+    ? new Date(iso).toLocaleString("en-GB", {
+        day: "numeric",
+        month: "long",
+        hour: "2-digit",
+        minute: "2-digit",
+        timeZone: "Europe/London",
+      }) + " (London time)"
+    : "";
+
+function ExistingNotice({ existing }: { existing: Existing | null }) {
+  // On "none" or a failed check, show nothing: the server still enforces the rules on submit.
+  if (!existing || existing.status !== "exists") return null;
+  const updated =
+    existing.lastUpdated && existing.lastUpdated !== existing.firstSubmitted
+      ? `, last updated ${formatWhen(existing.lastUpdated)}`
+      : "";
+  return (
+    <div role="status" className="mt-3 rounded-xl border border-amber-300 bg-amber-50 p-4 text-sm text-amber-950">
+      <p className="font-bold">This startup has already submitted its details.</p>
+      <p className="mt-1">
+        Submitted {formatWhen(existing.firstSubmitted)}
+        {updated}. Submitting this form again will <strong>replace</strong> the existing details.
+      </p>
+      {existing.contactEmailMasked && (
+        <p className="mt-1">
+          Use the same main contact email ({existing.contactEmailMasked}), otherwise the update will
+          be refused.
+        </p>
+      )}
+      {existing.hasVideo && (
+        <p className="mt-1">A pitch video is already on file. Leave the video field empty to keep it.</p>
+      )}
+    </div>
+  );
+}
+
 type UploadedVideo = { url: string; name: string; seconds: number | null; startupId: string };
 
 const formatMb = (bytes: number) => `${Math.round(bytes / (1024 * 1024))} MB`;
@@ -146,6 +186,22 @@ export function FinalRegisterForm({
   const [video, setVideo] = useState<UploadedVideo | null>(null);
   const [progress, setProgress] = useState<number | null>(null);
   const [clientError, setClientError] = useState("");
+  const [existing, setExisting] = useState<Existing | null>(null);
+  const [checking, setChecking] = useState(false);
+  const selected = useRef("");
+
+  async function onStartupChange(startupId: string) {
+    selected.current = startupId;
+    setExisting(null);
+    if (!startupId) return;
+    setChecking(true);
+    const res = await checkFinalSubmission(startupId).catch(() => ({ status: "error" as const }));
+    // Ignore a late answer for a startup that is no longer selected.
+    if (selected.current !== startupId) return;
+    setExisting({ ...res, startupId });
+    setChecking(false);
+  }
+  const isUpdate = existing?.status === "exists";
 
   // After each server response, restore UI state from the echoed values.
   const [seenNonce, setSeenNonce] = useState(state.nonce);
@@ -251,6 +307,7 @@ export function FinalRegisterForm({
           name="startup"
           required
           defaultValue={vals.startup ?? ""}
+          onChange={(e) => onStartupChange(e.target.value)}
           className={inputCls}
           aria-invalid={!!errs.startup}
         >
@@ -265,6 +322,8 @@ export function FinalRegisterForm({
           ))}
         </select>
         <FieldError msg={errs.startup} />
+        {checking && <p className="mt-2 text-xs text-muted">Checking for an earlier submission…</p>}
+        <ExistingNotice existing={existing} />
         <p className="mt-1.5 text-xs text-muted">
           Only the GESAwards 2026 Grand Finalists are listed. Is your startup missing? Contact the
           GESAwards team.
@@ -393,7 +452,13 @@ export function FinalRegisterForm({
         disabled={busy}
         className={buttonClasses({ variant: "primary", size: "lg", className: "w-full sm:w-auto disabled:opacity-60" })}
       >
-        {progress !== null ? "Uploading video…" : pending ? "Submitting…" : "Submit"}
+        {progress !== null
+          ? "Uploading video…"
+          : pending
+            ? "Submitting…"
+            : isUpdate
+              ? "Update details"
+              : "Submit"}
       </button>
     </form>
   );
