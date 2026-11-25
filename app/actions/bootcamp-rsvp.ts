@@ -85,7 +85,7 @@ export async function registerForBootcamp(
     // Re-check eligibility on the server against the live list. Never trust the dropdown.
     const startup = (await getEligibleStartups()).find((s) => s.id === startupId);
     if (!startup) {
-      return fail("This startup is not on the list of eligible semifinal winners.", {
+      return fail("This startup is not on the list of eligible semifinal and Track winners.", {
         startup: "Not eligible.",
       });
     }
