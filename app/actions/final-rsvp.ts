@@ -6,9 +6,11 @@ import {
   isOwnVideoUrl,
   RECORD_ID_RE,
   saveFinalDetails,
-  type Attendance,
+  type FinalStage,
+  type JudgingLocation,
   type Person,
 } from "@/lib/final-rsvp/airtable";
+import { MAX_VIDEO_SECONDS, VIDEO_SECONDS_TOLERANCE } from "@/lib/final-rsvp/constants";
 
 export type FinalState = {
   status: "idle" | "ok" | "error";
@@ -31,13 +33,16 @@ const clean = (v: FormDataEntryValue | null, max: number) =>
     .slice(0, max);
 
 const VALUE_KEYS = [
-  "startup", "attendance", "contactSame",
+  "startup", "judging", "stage", "contactSame",
   "pres-name", "pres-role", "pres-email", "pres-phone",
+  "stage-name", "stage-role", "stage-email", "stage-phone",
   "contact-name", "contact-role", "contact-email", "contact-phone",
-  "videoUrl", "videoName",
+  "videoUrl", "videoName", "videoSeconds",
 ];
 
-function readPerson(fd: FormData, prefix: "pres" | "contact"): Person {
+type Prefix = "pres" | "stage" | "contact";
+
+function readPerson(fd: FormData, prefix: Prefix): Person {
   return {
     name: clean(fd.get(`${prefix}-name`), 120),
     role: clean(fd.get(`${prefix}-role`), 120),
@@ -70,13 +75,23 @@ export async function submitFinalDetails(_prev: FinalState, fd: FormData): Promi
   const startupId = clean(fd.get("startup"), 20);
   if (!RECORD_ID_RE.test(startupId)) errors.startup = "Please select your startup.";
 
-  const attendanceRaw = clean(fd.get("attendance"), 10);
-  const attendance: Attendance | null =
-    attendanceRaw === "stage" || attendanceRaw === "online" ? attendanceRaw : null;
-  if (!attendance) errors.attendance = "Please choose how you will present.";
+  const judgingRaw = clean(fd.get("judging"), 10);
+  const judging: JudgingLocation | null =
+    judgingRaw === "london" || judgingRaw === "online" ? judgingRaw : null;
+  if (!judging) errors.judging = "Please choose where you will be during the judging.";
 
   const presenter = readPerson(fd, "pres");
   validate(presenter, "pres", errors);
+
+  const stageRaw = clean(fd.get("stage"), 10);
+  let stage: FinalStage | null = null;
+  if (stageRaw === "no") stage = { kind: "no" };
+  else if (stageRaw === "same") stage = { kind: "same" };
+  else if (stageRaw === "other") {
+    const person = readPerson(fd, "stage");
+    validate(person, "stage", errors);
+    stage = { kind: "person", person };
+  } else errors.stage = "Please tell us who will be on stage at the Grand Final.";
 
   const contactSame = clean(fd.get("contactSame"), 5) === "on";
   const contact = contactSame ? null : readPerson(fd, "contact");
@@ -84,6 +99,12 @@ export async function submitFinalDetails(_prev: FinalState, fd: FormData): Promi
 
   const videoUrl = clean(fd.get("videoUrl"), 600);
   const videoName = clean(fd.get("videoName"), 200) || "pitch-video";
+  const secondsRaw = Number(clean(fd.get("videoSeconds"), 10));
+  const videoSeconds = Number.isFinite(secondsRaw) && secondsRaw > 0 ? Math.round(secondsRaw) : null;
+  if (videoUrl && videoSeconds !== null && videoSeconds > MAX_VIDEO_SECONDS + VIDEO_SECONDS_TOLERANCE) {
+    errors.video = "The video must be one minute or shorter.";
+    values.videoUrl = "";
+  }
   if (videoUrl && RECORD_ID_RE.test(startupId) && !isOwnVideoUrl(videoUrl, startupId)) {
     errors.video = "Please upload the video again.";
     values.videoUrl = "";
@@ -103,10 +124,11 @@ export async function submitFinalDetails(_prev: FinalState, fd: FormData): Promi
     }
 
     const result = await saveFinalDetails(startup, {
-      attendance: attendance!,
+      judging: judging!,
       presenter,
+      stage: stage!,
       contact,
-      video: videoUrl ? { url: videoUrl, filename: videoName } : null,
+      video: videoUrl ? { url: videoUrl, filename: videoName, seconds: videoSeconds } : null,
     });
     if (result.kind === "video-required") {
       return fail("Please upload your pitch video.", { video: "Required." });

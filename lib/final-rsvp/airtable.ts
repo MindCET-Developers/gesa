@@ -32,7 +32,7 @@ const FINAL_TABLE = "tblOFUmNAiLMmpqsO";
 const F = {
   startupName: "fldHN0oCeMmLwbaJG",
   startupLink: "fldKkQA4E1yUZJ8nT",
-  attendance: "fld5TbBKrrXiqrdNW",
+  judging: "fldfEAYlUCsiLIWCQ",
   presName: "fldDunNFBTG9QkVa1",
   presRole: "fldqvqOJ1yns9vUqg",
   presEmail: "fldA1QY6BGZEBF08a",
@@ -42,18 +42,25 @@ const F = {
   contactRole: "fldp3OQwJn3Ou7T8u",
   contactEmail: "fldHD0GG9qE6XbedX",
   contactPhone: "fldZ6qbn9VSntoolV",
+  stage: "fld2RITqqPjc4KcA6",
+  stageSame: "fldag2RMJfCFTpcFu",
+  stageName: "fldbFxKXUkRatguyF",
+  stageRole: "fldn0sNYSg6QEjbi2",
+  stageEmail: "fld4RVpK3dJhDYTIq",
+  stagePhone: "fldFPynFhX7FlVAy0",
   video: "fldEUuaC3PXeqPb4p",
+  videoSeconds: "fldBONlosRyAjvo1I",
   videoUrl: "fldz60L01NYq4KMoX",
   firstSubmitted: "fldVrEvp6PUSoZsj6",
   lastUpdated: "fldnTSlYzhoaSDegS",
   updateCount: "fldiuZEbjAI012Beh",
 } as const;
 
-export const ATTENDANCE = {
-  stage: "On stage in London",
-  online: "Online",
+export const JUDGING = {
+  london: "In London (at the venue)",
+  online: "Online (remote)",
 } as const;
-export type Attendance = keyof typeof ATTENDANCE;
+export type JudgingLocation = keyof typeof JUDGING;
 
 export interface Finalist {
   id: string; // record ID in 2026 Registration
@@ -68,13 +75,22 @@ export interface Person {
   phone: string;
 }
 
+export type FinalStage =
+  | { kind: "no" }
+  | { kind: "same" } // the judging presenter
+  | { kind: "person"; person: Person };
+
 export interface FinalDetails {
-  attendance: Attendance;
+  /** Where the judging presenter will be during the (hybrid, Zoom) judging panel. */
+  judging: JudgingLocation;
+  /** Who pitches at the judging panel. */
   presenter: Person;
-  /** null = the main contact is the presenter. */
+  /** Who will be on stage at the Grand Final, if anyone. */
+  stage: FinalStage;
+  /** null = the main contact is the judging presenter. */
   contact: Person | null;
   /** Latest uploaded video, or null to keep the stored one (updates only). */
-  video: { url: string; filename: string } | null;
+  video: { url: string; filename: string; seconds: number | null } | null;
 }
 
 export const RECORD_ID_RE = /^rec[A-Za-z0-9]{14}$/;
@@ -167,11 +183,13 @@ export type SaveResult =
  */
 export async function saveFinalDetails(startup: Finalist, d: FinalDetails): Promise<SaveResult> {
   const contact = d.contact ?? d.presenter;
+  const onStage =
+    d.stage.kind === "same" ? d.presenter : d.stage.kind === "person" ? d.stage.person : null;
   const now = new Date().toISOString();
   const fields: Record<string, unknown> = {
     [F.startupName]: startup.name,
     [F.startupLink]: [startup.id],
-    [F.attendance]: ATTENDANCE[d.attendance],
+    [F.judging]: JUDGING[d.judging],
     [F.presName]: d.presenter.name,
     [F.presRole]: d.presenter.role,
     [F.presEmail]: d.presenter.email,
@@ -181,12 +199,19 @@ export async function saveFinalDetails(startup: Finalist, d: FinalDetails): Prom
     [F.contactRole]: contact.role,
     [F.contactEmail]: contact.email,
     [F.contactPhone]: contact.phone,
+    [F.stage]: onStage ? "Yes" : "No",
+    [F.stageSame]: d.stage.kind === "same",
+    [F.stageName]: onStage?.name ?? "",
+    [F.stageRole]: onStage?.role ?? "",
+    [F.stageEmail]: onStage?.email ?? "",
+    [F.stagePhone]: onStage?.phone ?? "",
     [F.lastUpdated]: now,
   };
   if (d.video) {
     // Airtable downloads the file from the URL and stores its own copy.
     fields[F.video] = [{ url: d.video.url, filename: d.video.filename }];
     fields[F.videoUrl] = d.video.url;
+    fields[F.videoSeconds] = d.video.seconds;
   }
 
   const row = await findRow(startup.id);
