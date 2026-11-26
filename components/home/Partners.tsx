@@ -54,7 +54,6 @@ export function Partners({
 }) {
   const poweredBy = partners.filter((p) => p.type === "powered-by");
   const worldwide = partners.filter((p) => p.type === "worldwide");
-  const sponsors = partners.filter((p) => p.type === "prize-sponsor");
 
   return (
     <section className="container-page py-20 md:py-28">
@@ -75,7 +74,6 @@ export function Partners({
       <div className="mt-16 space-y-12 border-t border-line pt-14">
         <LogoGroup title="Powered by" items={poweredBy} />
         <LogoGroup title="Worldwide partners" items={worldwide} />
-        <LogoGroup title="Prizes offered by our partners" items={sponsors} />
       </div>
     </section>
   );
