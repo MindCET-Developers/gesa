@@ -322,7 +322,8 @@ export const regionalSemifinals: RegionalSemifinalEntry[] = [
         "name": "Norway",
         "code": "no"
       }
-    ]
+    ],
+    "date": "2026-11-18"
   },
   {
     "name": "Spain & Portugal",
@@ -453,7 +454,8 @@ export const regionalSemifinals: RegionalSemifinalEntry[] = [
         "name": "United Arab Emirates (UAE)",
         "code": "ae"
       }
-    ]
+    ],
+    "date": "2026-11-30"
   },
   {
     "name": "EuroAsia",
@@ -543,7 +545,8 @@ export const regionalSemifinals: RegionalSemifinalEntry[] = [
         "name": "India",
         "code": "in"
       }
-    ]
+    ],
+    "date": "2026-11-30"
   },
   {
     "name": "Japan",

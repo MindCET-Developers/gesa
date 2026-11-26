@@ -108,6 +108,7 @@ export const RAW_SEMIFINALS: RawSemifinalEntry[] = [
     countries: [
       "India",
     ],
+    date: "2026-11-30",
   },
   {
     name: "Israel",
@@ -160,6 +161,7 @@ export const RAW_SEMIFINALS: RawSemifinalEntry[] = [
       "Australia", "Bangladesh", "Iraq", "Jordan", "Kuwait", "Lebanon", "Nepal", "Pakistan",
       "Papua New Guinea", "Saudi Arabia", "United Arab Emirates (UAE)",
     ],
+    date: "2026-11-30",
   },
   {
     name: "Nordic",
@@ -167,6 +169,7 @@ export const RAW_SEMIFINALS: RawSemifinalEntry[] = [
     countries: [
       "Denmark", "Sweden", "Estonia", "Finland", "Iceland", "Norway",
     ],
+    date: "2026-11-18",
   },
   {
     name: "South East Asia",
